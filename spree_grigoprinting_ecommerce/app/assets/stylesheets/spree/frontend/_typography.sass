@@ -1,0 +1,42 @@
+$base-font-size: 16px
+$base-line-height: 26px
++establish-baseline
+$round-to-nearest-half-line: true
+$rhythm-unit: "rem"
+$text_font_family: 'Lato', sans-serif
+$h-font-family: 'Montserrat', sans-serif
+//Headline size variabiles
+$h-1-gtdp: 50px
+$h-2-gtdp: 30px
+$h-3-gtdp: 24px
+$h-4-gtdp: 20px
+$h-5-gtdp: 16px
+$h-6-gtdp: 13px
+
+body
+  font-size: inherit
+  font-family: $text_font_family
+  font-weight: 300
+  line-height: inherit
+
+h1, h2, h3, h4, h5, h6
+  font-family: $h-font-family
+  font-weight: 800
+
+h1
+  +adjust-font-size-to($h-1-gtdp)
+
+h2
+  +adjust-font-size-to($h-2-gtdp)
+
+h3
+  +adjust-font-size-to($h-3-gtdp)
+
+h4
+  +adjust-font-size-to($h-4-gtdp)
+
+h5
+  +adjust-font-size-to($h-5-gtdp)
+
+h6
+  +adjust-font-size-to($h-6-gtdp)
