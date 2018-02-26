@@ -55,13 +55,15 @@
     <% end %>
   </div>
   <script>
-    $(document).on("change","#base",function(){
+    $(document).on("change","#base",calcola_prezzo);
+    $(document).on("change","#altezza",calcola_prezzo);
+    function calcola_prezzo(){
       $.ajax({
-    type: "POST",
-    url: "/price_flag",
-    data: $("#form_prodotto").serialize() //this will enable you to use params[:periods] and params[:age] in your controller
-    })
-  });
+        type: "POST",
+        url: "/price_flag",
+        data: $("#form_prodotto").serialize() //this will enable you to use params[:periods] and params[:age] in your controller
+      })
+    }
 
   </script>
 <% end %>

@@ -1,5 +1,7 @@
 module Spree
   OrdersController.class_eval do
+
+
     # override populate
     def populate
 
@@ -16,7 +18,7 @@ module Spree
         tipoProdotto = params[:prodotto_personalizzato]
         if tipoProdotto == "bandera_personalizzata"
           options[:product_customizzations] = estrai_specifiche_bandiera(params)
-
+          variant.price = Spree::PriceCalculator.new.calculate_flag(params)
         end
 
 
