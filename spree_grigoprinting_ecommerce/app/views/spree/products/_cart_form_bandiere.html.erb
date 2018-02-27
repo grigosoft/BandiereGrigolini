@@ -7,9 +7,9 @@
     <% if @product.price_in(current_currency) && !@product.price.nil? %>
       <div data-hook="product_price" class="col-md-5">
 
-        <h1>base</h1>
+        <h4>base</h4>
 	<%= number_field_tag :base, 150, class: 'title form-control', min: 30, step: 10 %>
-        <h1>altezza</h1>
+        <h4>altezza</h4>
 	<%= number_field_tag :altezza, 100, class: 'title form-control', min: 30 , step: 10 %>
 
         <div id="product-price">
