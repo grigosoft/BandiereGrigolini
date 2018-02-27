@@ -1,8 +1,8 @@
 module Spree
   class PriceController < Spree::StoreController
 
-    def calculate_flag
-      @price = Spree::PriceCalculator.calculate_flag(params).to_d
+    def calcola_bandiera
+      @price = Spree::CalcolatorePrezzo.calcola_bandiera(params).to_d
       #@price = Spree::Money.new(params[:base].to_i || 0, currency: @currency)
 
       respond_to do |format|

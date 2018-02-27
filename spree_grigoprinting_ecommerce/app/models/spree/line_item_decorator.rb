@@ -2,12 +2,13 @@ module Spree
   LineItem.class_eval do
 
     def update_price
-      # lo cambio se personalizzato
+      # lo cambio dentro VARIANT se personalizzato
       if more_options
         more_opt_h = JSON.parse(more_options, {:symbolize_names => true})
+        # aggiungo nei parametri la quantita per il ricalcolo del prezzo
         more_opt_h[:quantity] = quantity
         if more_opt_h #&& more_opt_h[:personalizzazione] && more_opt_h[:personalizzazione] == "bandiera_personalizzata"
-          variant.price = Spree::PriceCalculator.calculate_flag(more_opt_h).to_d
+          variant.price = Spree::CalcolatorePrezzo.calcola_bandiera(more_opt_h).to_d
         end
       end
 

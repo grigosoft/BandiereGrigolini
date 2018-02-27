@@ -1,6 +1,7 @@
 module Spree
-  class PriceCalculator
-    def self.calculate_flag(params = {})
+  class CalcolatorePrezzo
+
+    def self.calcola_bandiera(params = {})
       # calcolo del prezzo
       costo_stampa = 7.0/100; #ml
       dati = calcolo_formato_resa_consumo(params)
