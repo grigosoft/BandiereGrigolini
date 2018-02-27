@@ -1,6 +1,5 @@
 module Spree
   OrderContents.class_eval do
-    require 'json'
 
     def add_to_line_item(variant, quantity, options = {})
 

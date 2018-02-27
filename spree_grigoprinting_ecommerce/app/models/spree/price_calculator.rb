@@ -1,6 +1,6 @@
 module Spree
   class PriceCalculator
-    def calculate_flag(params = {})
+    def self.calculate_flag(params = {})
       # calcolo del prezzo
       costo_stampa = 7.0/100; #ml
       dati = calcolo_formato_resa_consumo(params)
@@ -9,7 +9,7 @@ module Spree
       #return Spree::Money.new(params[:base].to_i || 0, currency: @currency)
     end
 
-    def calcolo_formato_resa_consumo(params = {})
+    def self.calcolo_formato_resa_consumo(params = {})
       base = params[:base].to_d
       altezza = params[:altezza].to_d
       formato = nil

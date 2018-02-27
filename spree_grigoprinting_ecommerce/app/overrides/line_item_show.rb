@@ -3,7 +3,7 @@ Deface::Override.new(virtual_path: "spree/orders/_line_item",
                      text:
                      "<% more_options = line_item.more_options %>
                      <% if more_options  %>
-                      <%= more_options.to_json %>
+                      <%= more_options %>
                      <% else %>
                       <%= line_item_description_text(line_item.description) %>
                      <% end %>",

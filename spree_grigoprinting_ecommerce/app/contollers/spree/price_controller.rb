@@ -2,7 +2,7 @@ module Spree
   class PriceController < Spree::StoreController
 
     def calculate_flag
-      @price = Spree::PriceCalculator.new.calculate_flag(params)
+      @price = Spree::PriceCalculator.calculate_flag(params).to_d
       #@price = Spree::Money.new(params[:base].to_i || 0, currency: @currency)
 
       respond_to do |format|
