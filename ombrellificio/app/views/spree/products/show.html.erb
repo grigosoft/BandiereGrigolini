@@ -6,7 +6,7 @@
 
 <% cache cache_key_for_product do %>
   <div data-hook="product_show" class="row" itemscope itemtype="https://schema.org/Product">
-    <div class="col-md-4 col-sm-5" data-hook="product_left_part">
+    <div class="col-md-12 col-sm-5" data-hook="product_left_part">
       <div data-hook="product_left_part_wrap">
         <div id="product-images" data-hook="product_images">
           <div id="main-image" class="panel panel-default" data-hook>
@@ -14,9 +14,9 @@
               <%= product_image(@product, itemprop: "image") %>
             </div>
           </div>
-          <div id="thumbnails" data-hook>
+          <!--<div id="thumbnails" data-hook>
             <%= render partial: 'thumbnails' %>
-          </div>
+          </div>-->
         </div>
 
         <div data-hook="product_properties">
@@ -28,8 +28,9 @@
         </div>
       </div>
     </div>
-
-    <div class="col-md-8 col-sm-7" data-hook="product_right_part">
+</div>
+<div>
+    <div class="col-md-12 col-sm-7" data-hook="product_right_part">
       <div data-hook="product_right_part_wrap">
         <div id="product-description" data-hook="product_description">
           <h2 class="product-title" itemprop="name"><%= @product.name %></h2>

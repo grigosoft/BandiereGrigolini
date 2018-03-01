@@ -2,15 +2,111 @@
   <div class="row" id="inside-product-cart-form" data-hook="inside_product_cart_form" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
 
       <%= hidden_field_tag "variant_id", @product.master.id %>
-      <%= hidden_field_tag "personalizzazione", "bandiera_personalizzata" %>
+      <%= hidden_field_tag "prodotto_personalizzato", "bandera_personalizzata" %>
 
     <% if @product.price_in(current_currency) && !@product.price.nil? %>
-      <div data-hook="product_price" class="col-md-5">
+      <div data-hook="product_price" class="col-md-12 ">
+        <div class="container-fluid preventivo configurazione">
+          <div class="title_section row">
+              <span class="col-sm-1">01</span>
+              <h3 class="col-md-11">Crea il tuo preventivo</h3>
+              <p>TEXT</p>
+          </div>
 
-        <h4>base</h4>
-	<%= number_field_tag :base, 150, class: 'title form-control', min: 30, step: 10 %>
-        <h4>altezza</h4>
-	<%= number_field_tag :altezza, 100, class: 'title form-control', min: 30 , step: 10 %>
+          <div class="tessuto row">
+            <%= label_tag(:tessuti, "Scegli il tessuto", class: "col-md-5") %>
+            <%= select_tag(:tessuti, options_for_select(['Nautico', 'Ponge', 'Forato', 'Retato']), class: "col-md-7") %>
+          </div>
+
+          <div class="orientamento row">
+            <%= label_tag(:formato, "Formato", class: "col-md-5") %>
+            <div class="selezione_orientamento">
+              <%= radio_button_tag(:formato, "Orizzontale", class: "col-md-7") %>
+              <%= radio_button_tag(:formato, "Verticale", class: "col-md-7") %>
+            </div>
+          </div>
+          <div class="dimensione row">
+            <%= label_tag(:base, "Base", class: "col-md-5") %>
+            <%= number_field_tag :base, 150, class: 'title form-control', min: 30, step: 5, class: "col-sm-7" %>
+            <%= label_tag(:altezza, "Altezza", class: "col-md-5") %>
+    	      <%= number_field_tag :altezza, 100, class: 'title form-control', min: 30 , step: 5, class: "col-md-7" %>
+          </div>
+          <div class="finiture_1 row">
+            <%= label_tag(:taglio, "Taglio", class: "col") %>
+            <div class="seleziona_taglio row">
+              <div class="col-md-4 finitura finitura_1">
+                <img src="#" alt="nessuna-finitura">
+                <div class="finitura_text">
+                  <p>Nessuna</p>
+                </div>
+              </div>
+              <div class="col-md-4 finitura finitura_2">
+                <img src="#" alt="taglio a caldo">
+                <div class="finitura_text">
+                  <p>Taglio a caldo</p>
+                </div>
+              </div>
+              <div class="col-md-4 finitura finitura_3">
+                <img src="#" alt="stondo">
+                <div class="finitura_text">
+                  <p>stondo</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="finiture_2 row">
+            <%= label_tag(:finiture, "Finiture", class: "col-md-12") %>
+            <%= label_tag(:cucitura, "Cucitura", class: "col col-md-5") %>
+            <%= select_tag(:tessuti, options_for_select(['Tutto il perimetro', 'Sopra', 'Sotto', 'Destra', 'Sinistra', 'Sotto e Sopra', 'Destra e Sinistra']), class: "col col-md-7") %>
+            <div class="accessori row">
+              <%= label_tag(:accessori, "Accessori", class:"col-md-12") %>
+            </div>
+              <div class="seleziona_accessorio row">
+                <div class="col-sm-4 accessorio accessorio_1">
+                  <img src="#" alt="nessuna-finitura">
+                  <div class="finitura_text">
+                    <p>Nessuna</p>
+                  </div>
+                </div>
+                <div class="col-sm-4 accessorio accessorio_2">
+                  <img src="#" alt="occhielli">
+                  <div class="finitura_text">
+                    <p>Occhielli</p>
+                  </div>
+                </div>
+                <div class="col-sm-4 accessorio accessorio_3">
+                  <img src="#" alt="cappio e cordino">
+                  <div class="finitura_text">
+                    <p>Cappio e cordino</p>
+                  </div>
+                </div>
+                <div class="col-sm-5 accessorio accessorio_4">
+                  <img src="#" alt="moschettoni">
+                  <div class="finitura_text">
+                    <p>Moschettoni</p>
+                  </div>
+                </div>
+                <div class="col-sm-5 accessorio accessorio_5">
+                  <img src="#" alt="laccetti">
+                  <div class="finitura_text">
+                    <p>Laccetti</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="caricamento_file">
+          
+        </div>
+        <div class="row preventivo consegna">
+
+        </div>
+
+        <div class="row preventivo extra">
+
+        </div>
 
         <div id="product-price">
           <h6 class="product-section-title"><%= Spree.t(:price) %></h6>
