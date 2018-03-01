@@ -5,14 +5,13 @@ module Spree
     def self.calcola_bandiera(params = {})
       dati = Spree::CalcolatorePrezzo.calcolo_formato_resa_consumo(params)
       ora = Time.current.hour #if ora <= 14 # ricezione ordine in giornata
-      tempo = 1 # gestione iniziale
-      tempo += 2 # ingresso coda di stampa
-      tempo += (dati[:consumo] / 50).to_i
-      puts tempo.business_hour.from_now.to_date
+      giorni = 1 + (dati[:consumo] / 50).to_i
+      urgentissima = giorni.business_day.from_now
+      urgente = 1.business_day.after(urgentissima)
+      tranquilla = 5.business_day.after(urgente)
 
 
-
-      return {:urgentissima=>"", :urgente=>"", :tranquilla=>""}
+      return {:urgentissima=>urgentissima, :urgente=>urgente, :tranquilla=>tranquilla}
     end
   end
 end
