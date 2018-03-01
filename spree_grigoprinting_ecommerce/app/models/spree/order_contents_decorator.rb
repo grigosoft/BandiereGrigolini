@@ -6,7 +6,6 @@ module Spree
       if options[:product_customizzations]
         #forzo la creazone di un nuovo line item perche si tratta di prodotto personalizzato
         line_item = nil
-        #quantity = 100
         #Spree::PermittedAttributes.line_item_attributes << :product_customizzations
       else
         line_item = grab_line_item_by_variant(variant, false, options)
@@ -25,10 +24,10 @@ module Spree
         line_item = order.line_items.new(quantity: quantity,
                                          variant: variant,
                                          options: opts)
+
         if options[:product_customizzations]
           # salvo le customizzazioni
           line_item.more_options = options[:product_customizzations].to_json
-          #line_item.quantity += 10
         end
       end
       line_item.target_shipment = options[:shipment] if options.key? :shipment
