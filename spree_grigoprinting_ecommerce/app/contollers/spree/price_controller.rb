@@ -2,8 +2,12 @@ module Spree
   class PriceController < Spree::StoreController
 
     def calcola_bandiera
-      @price = Spree::CalcolatorePrezzo.calcola_bandiera(params).to_d
-      #@price = Spree::Money.new(params[:base].to_i || 0, currency: @currency)
+      prezzo = Spree::CalcolatorePrezzo.calcola_bandiera(params).to_d
+      # lo formatto giusto con simbolo richiesto, 2 decimali ecc
+      @price = Spree::Money.new(prezzo || 0, currency: @currency).to_s
+
+      # consegne
+      @consegna = Spree::CalcolatoreConsegna.calcola_bandiera(params)
 
       respond_to do |format|
         format.js{}  #this will make rails look for a file named calculate_flag.js.erb in your views

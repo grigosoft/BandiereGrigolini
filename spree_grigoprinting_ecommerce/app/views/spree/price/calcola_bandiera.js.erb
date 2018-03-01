@@ -1,1 +1,4 @@
-$("#prezzo").html("€ " +<%= @price.to_d%>);
+$("#prezzo").html("<%=@price%>");
+$("#consegna1").html("<%=@consegna[:urgentissima]%>");
+$("#consegna2").html("<%=@consegna[:urgente]%>");
+$("#consegna3").html("<%=@consegna[:tranquilla]%>");
