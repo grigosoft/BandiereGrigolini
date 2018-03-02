@@ -1,0 +1,59 @@
+<div class="title_section row">
+    <span class="col-sm-1">02</span>
+    <h3 class="col-md-11">Seleziona quantita e data di consegna</h3>
+    <p class="lead col-md-1 col-md-offset-1">TEXT</p>
+</div>
+<div class="row calcolo_data_scadenza">
+  <div class="col-md-1">
+    <div class="row">
+      <div class="col-md-12">
+        <%= number_field_tag :quantity, 1, class: 'quntita', min: 1 %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-11">
+    <div class="row">
+      <div class="col-md-3" role="button" id="consegna_1">
+        <div class="data_consegna">
+          <span class="giorno"></span>
+          <span class="numero"></span>
+          <span class="mese"></span>
+        </div>
+        <div class="prezzo_consegna">
+          <span class="prezzo"></span>
+        </div>
+      </div>
+      <div class="col-md-3" role="button" id="consegna_2">
+        <div class="data_consegna">
+          <span class="giorno"></span>
+          <span class="numero"></span>
+          <span class="mese"></span>
+        </div>
+        <div class="prezzo_consegna">
+          <span class="prezzo"></span>
+        </div>
+      </div>
+      <div class="col-md-3" role="button" id="consegna_3">
+        <div class="data_consegna">
+          <span class="giorno"></span>
+          <span class="numero"></span>
+          <span class="mese"></span>
+        </div>
+        <div class="prezzo_consegna">
+          <span class="prezzo"></span>
+        </div>
+      </div>
+      <div class="col-md-3" role="button" id="consegna_4">
+        <div class="data_consegna">
+          <span class="giorno"></span>
+          <span class="numero"></span>
+          <span class="mese"></span>
+        </div>
+        <div class="prezzo_consegna">
+          <span class="prezzo"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
