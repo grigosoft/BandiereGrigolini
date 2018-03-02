@@ -224,6 +224,9 @@
             <span class="out-of-stock"><%= Spree.t(:out_of_stock) %></span>
           <% end %>
         </div>
+        <%= button_tag class: 'btn btn-success', id: 'add-to-cart-button', type: :submit do %>
+          <%= Spree.t(:add_to_cart) %>
+        <% end %>
         <!--
         <% if @product.can_supply? %>
           <div class="add-to-cart">
