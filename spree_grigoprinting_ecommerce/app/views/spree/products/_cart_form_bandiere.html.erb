@@ -12,7 +12,8 @@
               <h3 class="col-md-11">Crea il tuo preventivo</h3>
               <p>TEXT</p>
           </div>
-
+          <%= image_tag(@product.identifica_img("tesla").attachment.url(:large), class: "thumbnail") %>
+          </li>
           <div class="tessuto row">
             <%= label_tag(:tessuti, "Scegli il tessuto", class: "col-md-5") %>
             <%= select_tag(:tessuti, options_for_select(['Nautico', 'Ponge', 'Forato', 'Retato']), class: "col-md-7") %>
@@ -98,7 +99,7 @@
           </div>
         </div>
         <div class="caricamento_file">
-          
+
         </div>
         <div class="row preventivo consegna">
 

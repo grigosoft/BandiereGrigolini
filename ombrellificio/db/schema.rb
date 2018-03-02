@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180221141900) do
+ActiveRecord::Schema.define(version: 20180302110640) do
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 20180221141900) do
     t.text "alt"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string "identificativo"
     t.index ["position"], name: "index_spree_assets_on_position"
     t.index ["viewable_id"], name: "index_assets_on_viewable_id"
     t.index ["viewable_type", "type"], name: "index_assets_on_viewable_type_and_type"

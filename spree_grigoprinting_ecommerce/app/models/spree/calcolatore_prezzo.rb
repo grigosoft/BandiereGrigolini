@@ -3,8 +3,12 @@ module Spree
 
     def self.calcola_bandiera(params = {})
       # calcolo del prezzo
-      costo_stampa = 7.0/100; #ml
       dati = calcolo_formato_resa_consumo(params)
+      if dati[:formato] == "grande"
+        costo_stampa = 14.0/100; #ml
+      else
+        costo_stampa = 7.0/100; #ml
+      end
 
       return costo_stampa * (dati[:consumo].to_d) / (params[:quantity].to_d)
       #return Spree::Money.new(params[:base].to_i || 0, currency: @currency)
