@@ -10,98 +10,197 @@
           <div class="title_section row">
               <span class="col-sm-1">01</span>
               <h3 class="col-md-11">Crea il tuo preventivo</h3>
-              <p>TEXT</p>
+              <p class="lead col-md-1 col-md-offset-1">TEXT</p>
           </div>
-
+          <div class="nome lavorazione row">
+            <div class="col-md-2">
+              <%= label_tag(:lavorazione, "Assegna un nome alla lavorazione")%>
+            </div>
+            <div class="col-md-6">
+              <%= text_field_tag(:nome, value = nil, options = {size: 25, maxlength: 25}) %>
+            </div>
+          </div>
+          <hr>
           <div class="tessuto row">
-            <%= label_tag(:tessuti, "Scegli il tessuto", class: "col-md-5") %>
-            <%= select_tag(:tessuti, options_for_select(['Nautico', 'Ponge', 'Forato', 'Retato']), class: "col-md-7") %>
+            <div class="col-md-2">
+              <%= label_tag(:tessuti, "Scegli il tessuto")%>
+            </div>
+            <div class="col-md-10">
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="scelta_tessut" role="button">
+                    <img src="#" alt="Tessuto nautico 110g/m">
+                    <p>Tessuto nautico 110g/m</p>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="scelta_tessut" role="button">
+                    <img src="#" alt="Tessuto ponge 110g/m">
+                    <p>Tessuto ponge 110g/m</p>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="scelta_tessut" role="button">
+                    <img src="#" alt="Tessuto forato 110g/m">
+                    <p>Tessuto forato 110g/m</p>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="scelta_tessut" role="button">
+                    <img src="#" alt="Tessuto retato 110g/m">
+                    <p>Tessuto retato 110g/m</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-
+          <hr>
           <div class="orientamento row">
-            <%= label_tag(:formato, "Formato", class: "col-md-5") %>
-            <div class="selezione_orientamento">
-              <%= radio_button_tag(:formato, "Orizzontale", class: "col-md-7") %>
-              <%= radio_button_tag(:formato, "Verticale", class: "col-md-7") %>
+            <div class="col-md-2">
+              <%= label_tag(:formato, "Formato") %>
+            </div>
+            <div class="col-md-10">
+              <div class="selezione_orientamento row">
+                <div class="col-md-3 col-md-offset-3">
+                  <div class="scelta_orientamento orizzontale" role="button">
+                    <img src="#" alt="Orizzontale">
+                    <p>Orizzontale</p>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="scelta_orientamento verticale" role="button">
+                    <img src="#" alt="Verticale">
+                    <p>Verticale</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="dimensione row">
-            <%= label_tag(:base, "Base", class: "col-md-5") %>
-            <%= number_field_tag :base, 150, class: 'title form-control', min: 30, step: 5, class: "col-sm-7" %>
-            <%= label_tag(:altezza, "Altezza", class: "col-md-5") %>
-    	      <%= number_field_tag :altezza, 100, class: 'title form-control', min: 30 , step: 5, class: "col-md-7" %>
+          <hr>
+          <div class="base row">
+            <div class="col-md-2">
+              <%= label_tag(:base, "Base") %>
+            </div>
+            <div class="col-md-6">
+              <%= number_field_tag :base, 150, class: 'title form-control', min: 30, step: 5 %>
+            </div>
           </div>
-          <div class="finiture_1 row">
-            <%= label_tag(:taglio, "Taglio", class: "col") %>
-            <div class="seleziona_taglio row">
-              <div class="col-md-4 finitura finitura_1">
-                <img src="#" alt="nessuna-finitura">
-                <div class="finitura_text">
-                  <p>Nessuna</p>
+          <div class="altezza row">
+            <div class="col-md-2">
+              <%= label_tag(:altezza, "Altezza") %>
+            </div>
+            <div class="col-md-6">
+              <%= number_field_tag :altezza, 150, class: 'title form-control', min: 30, step: 5 %>
+            </div>
+          </div>
+          <hr>
+          <div class="finitura_lato_asta row">
+            <div class="col-md-2">
+              <%= label_tag(:lato_asta, "Seleziona lato asta") %>
+            </div>
+            <div class="col-md-6">
+              <%= select_tag "Lato asta", options_for_select(["Lato sinistro", "Lato destro"], "Lato sinistro") %>
+            </div>
+          </div>
+          <hr>
+          <div class="scelta_finitura row">
+            <div class="col-md-2">
+              <%= label_tag(:seleziona_finitura, "Seleziona finitura")%>
+            </div>
+            <div class="finitura_manica col-md-5" role="button"> <!--nascondo se verticale-->
+              <img src="" alt="manica">
+              <p>Manica</p>
+            </div>
+            <div class="finitura_fettuccia col-md-5" role="button"> <!--nascondo se orizzontale-->
+              <img src="" alt="fettuccia">
+              <p>Fettuccia</p>
+            </div>
+            <div class="finitura_personalizzata col-md-5" role="button"> <!-- sempre visibile -->
+              <img src="" alt="personalizzata">
+              <p>Personalizzata</p>
+            </div>
+          </div>
+          <div class="scelta_finitura_specifica specifica_manica row"> <!-- Nascosta se fettuccia -->
+            <div class="col-md-2">
+              <%= label_tag(:seleziona_tipo_manica, "Seleziona tipo manica")%>
+            </div>
+            <div class="manica_chiusa col-md-5" role="button">
+              <img src="" alt="manica chiusa">
+              <ul>
+                <li>Manica chiusa sopra</li>
+                <li>Laccetti sotto</li>
+              </ul>
+            </div>
+            <div class="manica_aperta col-md-5" role="button">
+              <img src="" alt="manica aperta">
+              <ul>
+                <li>Manica aperta sopra</li>
+                <li>Laccetti sopra</li>
+                <li>Laccetti sotto</li>
+              </ul>
+            </div>
+          </div>min: 5, max: 70
+          <div class="scelta_finitura_specifica specifica_fettuccia row"> <!-- Nascosta se manica -->
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-2">
+                  <%= label_tag(:manica_superiore, "Vuoi la manica superiore")%>
                 </div>
-              </div>
-              <div class="col-md-4 finitura finitura_2">
-                <img src="#" alt="taglio a caldo">
-                <div class="finitura_text">
-                  <p>Taglio a caldo</p>
+                <div class="col-md-4">
+                  <%= select_tag "Manica superiore", options_for_select(["Si", "No"], "Si") %>
                 </div>
-              </div>
-              <div class="col-md-4 finitura finitura_3">
-                <img src="#" alt="stondo">
-                <div class="finitura_text">
-                  <p>stondo</p>
+                <div class="col-md-2">
+                  <%= label_tag(:aperta_o_chiusa, "Vuoi la manica aperta o chiusa")%>
+                </div>
+                <div class="col-md-4">
+                  <%= select_tag "Aperta o Chiusa", options_for_select(["Aperta", "Chiusa"], "Aperta") %>
                 </div>
               </div>
             </div>
 
-          </div>
-          <div class="finiture_2 row">
-            <%= label_tag(:finiture, "Finiture", class: "col-md-12") %>
-            <%= label_tag(:cucitura, "Cucitura", class: "col col-md-5") %>
-            <%= select_tag(:tessuti, options_for_select(['Tutto il perimetro', 'Sopra', 'Sotto', 'Destra', 'Sinistra', 'Sotto e Sopra', 'Destra e Sinistra']), class: "col col-md-7") %>
-            <div class="accessori row">
-              <%= label_tag(:accessori, "Accessori", class:"col-md-12") %>
+            <div class="col-md-2">
+              <%= label_tag(:seleziona_tipo_fettuccia, "Seleziona finitura fettuccia")%>
             </div>
-              <div class="seleziona_accessorio row">
-                <div class="col-sm-4 accessorio accessorio_1">
-                  <img src="#" alt="nessuna-finitura">
-                  <div class="finitura_text">
-                    <p>Nessuna</p>
-                  </div>
+            <div class="col-md-10">
+              <div class="row">
+                <div class="cappio_cordino col-md-3" role="button"> <!-- nascosto se verticale -->
+                  <img src="" alt="Cappio e cordino">
+                  <ul>
+                    <li>Fettuccia di rinforzo</li>
+                    <li>Cappio superiore</li>
+                    <li>Cordino inferiore</li>
+                  </ul>
                 </div>
-                <div class="col-sm-4 accessorio accessorio_2">
-                  <img src="#" alt="occhielli">
-                  <div class="finitura_text">
-                    <p>Occhielli</p>
-                  </div>
+                <div class="occhielli col-md-3" role="button">
+                  <img src="" alt="occhielli">
+                  <ul>
+                    <li>Fettuccia di rinforzo</li>
+                    <li>Occhielli ogni 50cm</li>
+                  </ul>
                 </div>
-                <div class="col-sm-4 accessorio accessorio_3">
-                  <img src="#" alt="cappio e cordino">
-                  <div class="finitura_text">
-                    <p>Cappio e cordino</p>
-                  </div>
+                <div class="moschettoni col-md-3" role="button">
+                  <img src="" alt="moschettoni">
+                  <ul>
+                    <li>Fettuccia di rinforzo</li>
+                    <li>Moschettoni ogni 50cm</li>
+                  </ul>
                 </div>
-                <div class="col-sm-5 accessorio accessorio_4">
-                  <img src="#" alt="moschettoni">
-                  <div class="finitura_text">
-                    <p>Moschettoni</p>
-                  </div>
-                </div>
-                <div class="col-sm-5 accessorio accessorio_5">
-                  <img src="#" alt="laccetti">
-                  <div class="finitura_text">
-                    <p>Laccetti</p>
-                  </div>
+                <div class="laccetti col-md-3" role="button">
+                  <img src="" alt="laccetti">
+                  <ul>
+                    <li>Fetticcia di rinforzo</li>
+                    <li>Laccetti sopra e sotto</li>
+                  </ul>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+          <hr>
         <div class="caricamento_file">
-          
+
         </div>
         <div class="row preventivo consegna">
-
+          <%= render partial: 'spree/products/quantity_and_date' %>
         </div>
 
         <div class="row preventivo extra">
@@ -124,7 +223,7 @@
             <span class="out-of-stock"><%= Spree.t(:out_of_stock) %></span>
           <% end %>
         </div>
-
+        <!-- 
         <% if @product.can_supply? %>
           <div class="add-to-cart">
             <br />
@@ -138,17 +237,19 @@
             </div>
           </div>
         <% end %>
-      </div>
-    <% else %>
-      <div id="product-price">
-        <br />
-        <div>
-          <span class="price selling" itemprop="price">
-            <%= Spree.t('product_not_available_in_this_currency') %>
-          </span>
+
+        <% else %>
+        <div id="product-price">
+          <br />
+          <div>
+            <span class="price selling" itemprop="price">
+              <%= Spree.t('product_not_available_in_this_currency') %>
+            </span>
+          </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
+  -->
   </div>
   <script>
     $(document).on("change","#base",calcola_prezzo);
