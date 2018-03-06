@@ -1,56 +1,63 @@
 <div class="title_section row">
-    <span class="col-sm-1">02</span>
-    <h3 class="col-md-11">Seleziona quantita e data di consegna</h3>
-    <p class="lead col-md-1 col-md-offset-1">TEXT</p>
+    <span class="col-md-2">02</span>
+    <h3 class="col-md-10">Seleziona quantita e data di consegna</h3>
+    <div class="col-md-10 col-md-offset-2">
+      <p class="in_product_text"> Le proponiamo 4 opzioni di prezzo con le rispettive date di consegna per dare priorita al suo ordine in base alle sue esigienze </p>
+      <p class="in_product_text">Gli ordini verranno spediti via corriere per tanto, essendo un soggetto terzo, <em>le date sono indicative</em> e il 99% di essi arriveranno entro la data stimata. </p>
+      <p class="in_product_text">In caso avesse bisogno di aiuto non esiti a contattarci per quasiasi informazione o aiuto per completare il suo ordine</p>
+    </div>
 </div>
 <div class="row calcolo_data_scadenza">
-  <div class="col-md-1">
-    <div class="row">
+  <div class="col-md-2">
+    <div class="row row_quantita">
       <div class="col-md-12">
-        <%= number_field_tag :quantity, 1, class: 'quntita', min: 1 %>
+        <%= label_tag(:quantita, "Quantita")%>
+      </div>
+      <div class="col-md-12">
+        <%= number_field_tag :quantity, 1, class: 'quntita form-control', min: 1, id: "quantity" %>
       </div>
     </div>
   </div>
-  <div class="col-md-11">
+  <div class="col-md-10">
     <div class="row">
-      <div class="col-md-3" role="button" id="consegna_1">
-        <div class="data_consegna">
-          <span class="giorno"></span>
-          <span class="numero"></span>
-          <span class="mese"></span>
+      <div class="col-md-3" id="consegna_1">
+        <div class="data_consegna btn btn-options unactive"  role="button" >
+          <span class="giorno">Lunedi</span>
+          <span class="numero">20</span>
+          <span class="mese">Marzo</span>
         </div>
-        <div class="prezzo_consegna">
-          <span class="prezzo"></span>
-        </div>
-      </div>
-      <div class="col-md-3" role="button" id="consegna_2">
-        <div class="data_consegna">
-          <span class="giorno"></span>
-          <span class="numero"></span>
-          <span class="mese"></span>
-        </div>
-        <div class="prezzo_consegna">
-          <span class="prezzo"></span>
+        <div class="prezzo_consegna unactive">
+          <span class="prezzo">10,00</span>
         </div>
       </div>
-      <div class="col-md-3" role="button" id="consegna_3">
-        <div class="data_consegna">
-          <span class="giorno"></span>
-          <span class="numero"></span>
-          <span class="mese"></span>
+      <div class="col-md-3" id="consegna_2">
+        <div class="data_consegna btn btn-options" role="button" >
+          <span class="giorno">Mercoledi</span>
+          <span class="numero">23</span>
+          <span class="mese">Marzo</span>
         </div>
         <div class="prezzo_consegna">
-          <span class="prezzo"></span>
+          <span class="prezzo">9,00</span>
         </div>
       </div>
-      <div class="col-md-3" role="button" id="consegna_4">
-        <div class="data_consegna">
-          <span class="giorno"></span>
-          <span class="numero"></span>
-          <span class="mese"></span>
+      <div class="col-md-3" id="consegna_3">
+        <div class="data_consegna btn btn-options" role="button" >
+          <span class="giorno">Venerdi</span>
+          <span class="numero">25</span>
+          <span class="mese">Marzo</span>
         </div>
         <div class="prezzo_consegna">
-          <span class="prezzo"></span>
+          <span class="prezzo">8,00</span>
+        </div>
+      </div>
+      <div class="col-md-3" id="consegna_4">
+        <div class="data_consegna btn btn-options" role="button" >
+          <span class="giorno">Lunedi</span>
+          <span class="numero">27</span>
+          <span class="mese">Marzo</span>
+        </div>
+        <div class="prezzo_consegna">
+          <span class="prezzo">7,00</span>
         </div>
       </div>
     </div>

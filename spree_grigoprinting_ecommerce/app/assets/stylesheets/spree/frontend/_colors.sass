@@ -1,2 +1,40 @@
+
+$back-link-button: rgba(8, 65, 92, 1)
+$back-full-text: rgba(235, 235, 235, 1)
+$allert: rgba(204, 41, 54, 1)
+$positive: rgba(61, 84, 103, 1)
+$link-back-full: rgba(107, 129, 140, 1)
+$long-text: rgba(25, 25, 25, 1)
+html, body
+  background: tint($back-full-text, 80%)
+
+
+
 .title_section
-  background-color: grey
+  color: $back-full-text
+  span
+    background-color: $positive
+  h3
+    background-color: $link-back-full
+
+hr
+  border-top: 1px dashed +shade($back-full-text, 40%)
+  border-bottom: 1px dashed +tint($back-full-text, 40%)
+
+.form-control
+  +transition
+  &:focus
+    border-color: $back-link-button
+    +box-shadow(0 0 5px tint($back-link-button, 20%))
+
+.prezzo_consegna
+  color: $back-link-button
+  span
+    background-color: $back-full-text
+
+
+.data_consegna.unactive, .prezzo_consegna.unactive
+  color: shade($back-full-text, 40%)
+
+.in_product_text
+  color: $long-text
