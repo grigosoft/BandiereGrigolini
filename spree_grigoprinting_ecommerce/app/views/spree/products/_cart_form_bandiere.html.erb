@@ -1,239 +1,246 @@
 <%= form_for :order, url: populate_orders_path, html: {id: "form_prodotto"} do |f| %>
-  <div class="row" id="inside-product-cart-form" data-hook="inside_product_cart_form" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+<div class="row" id="inside-product-cart-form" data-hook="inside_product_cart_form" itemprop="offers" itemscope="itemscope" itemtype="https://schema.org/Offer">
 
-      <%= hidden_field_tag "variant_id", @product.master.id %>
-      <%= hidden_field_tag "prodotto_personalizzato", "bandera_personalizzata" %>
+  <%= hidden_field_tag "variant_id", @product.master.id %>
+  <%= hidden_field_tag "prodotto_personalizzato", "bandera_personalizzata" %>
 
-    <% if @product.price_in(current_currency) && !@product.price.nil? %>
-      <div data-hook="product_price" class="col-md-12 ">
-        <div class="container-fluid preventivo configurazione">
-          <div class="title_section row">
-              <span class="col-md-2">01</span>
-              <h3 class="col-md-10">Crea il tuo preventivo</h3>
-              <p class="lead col-md-10 col-md-offset-2">TEXT</p>
+  <% if @product.price_in(current_currency) && !@product.price.nil? %>
+    <div data-hook="product_price" class="col-md-12 ">
+      <div class="container-fluid preventivo configurazione">
+        <div class="title_section row">
+          <span class="col-md-2">01</span>
+          <h3 class="col-md-10">Crea il tuo preventivo</h3>
+          <div class="col-md-10 col-md-offset-2">
+            <p class="in_product_text">Seguendo questi semplici passi creerai un preventivo basato sulle tue esigienze, personalizza il prodotto in base alle tue necessit&agrave;</p>
+            <p class="in_product_text">Potrai seguire i nostri semplici step oppure personalizzare completamete la tua bandiera.</p>
+            <p class="in_product_text">Se hai dubbi o domande non esitare a contattarci</p>
           </div>
-          <%= image_tag(@product.identifica_img("jumbotron1").attachment.url(:large), class: "img-responsive", alt: @product.identifica_img("jumbotron1").alt) %>
-          <div class="nome lavorazione row">
-            <div class="col-md-2">
-              <%= label_tag(:lavorazione, "Assegna un nome alla lavorazione")%>
-            </div>
-            <div class="col-md-3">
-              <%= text_field_tag 'name', nil, size: 25, maxlength: 25, class: "form-control" %>
-            </div>
-          </div>
-          <hr>
-          <div class="tessuto row">
-            <div class="col-md-2">
-              <%= label_tag(:tessuti, "Scegli il tessuto")%>
-            </div>
-            <div class="col-md-10">
-              <div class="row">
-                <div class="col-md-3">
-                  <div class="btn btn-options selezione scelta_tessuto" role="button">
-                    <img src="#" alt="Tessuto nautico 110g/m">
-                    <p>Tessuto nautico 110g/m</p>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="btn btn-options selezione scelta_tessuto" role="button">
-                    <img src="#" alt="Tessuto ponge 110g/m">
-                    <p>Tessuto ponge 110g/m</p>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="btn btn-options selezione scelta_tessuto" role="button">
-                    <img src="#" alt="Tessuto forato 110g/m">
-                    <p>Tessuto forato 110g/m</p>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="btn btn-options selezione scelta_tessuto" role="button">
-                    <img src="#" alt="Tessuto retato 110g/m">
-                    <p>Tessuto retato 110g/m</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <hr>
-          <div class="orientamento row">
-            <div class="col-md-2">
-              <%= label_tag(:formato, "Formato") %>
-            </div>
-            <div class="col-md-10">
-              <div class="selezione_orientamento row">
-                <div class="col-md-3">
-                  <div class="btn btn-options scelta_orientamento orizzontale" role="button">
-                    <img src="#" alt="Orizzontale">
-                    <p>Orizzontale</p>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="btn btn-options scelta_orientamento verticale" role="button">
-                    <img src="#" alt="Verticale">
-                    <p>Verticale</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <hr>
-          <div class="base row">
-            <div class="col-md-2">
-              <%= label_tag(:base, "Base") %>
-            </div>
-            <div class="col-md-3">
-              <%= number_field_tag :base, 150, class: 'title form-control', min: 30, step: 5 %>
-            </div>
-          </div>
-          <div class="altezza row">
-            <div class="col-md-2">
-              <%= label_tag(:altezza, "Altezza") %>
-            </div>
-            <div class="col-md-3">
-              <%= number_field_tag :altezza, 150, class: 'title form-control', min: 30, step: 5 %>
-            </div>
-          </div>
-          <hr>
-          <div class="finitura_lato_asta row">
-            <div class="col-md-2">
-              <%= label_tag(:lato_asta, "Seleziona lato asta") %>
-            </div>
-            <div class="col-md-3">
-              <%= select_tag "Lato asta", options_for_select(["Lato sinistro", "Lato destro"], "Lato sinistro"), class: "form-control" %>
-            </div>
-          </div>
-          <hr>
-          <div class="scelta_finitura row">
-            <div class="col-md-2">
-              <%= label_tag(:seleziona_finitura, "Seleziona finitura")%>
-            </div>
-            <div class="col-md-10">
-              <div class="row">
-                <div class="col-md-3">
-                  <div class="btn btn-options finitura_manica " role="button"> <!--nascondo se verticale-->
-                    <img src="" alt="manica">
-                    <p>Manica</p>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="btn btn-options finitura_fettuccia" role="button"> <!--nascondo se orizzontale-->
-                    <img src="" alt="fettuccia">
-                    <p>Fettuccia</p>
-                  </div>
-                </div>
-                <div class="col-md-3 hidden">
-                  <div class="btn btn-options finitura_personalizzata" role="button"> <!-- sempre visibile -->
-                    <img src="" alt="personalizzata">
-                    <p>Personalizzata</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="scelta_finitura_specifica specifica_manica row"> <!-- Nascosta se fettuccia -->
-            <div class="col-md-2">
-              <%= label_tag(:seleziona_tipo_manica, "Seleziona tipo manica")%>
-            </div>
-            <div class="col-md-10">
-              <div class="row">
-                <div class="col-md-3">
-                  <div class="btn btn-options manica_chiusa " role="button">
-                    <img src="" alt="manica chiusa">
-                    <ul>
-                      <li>Manica chiusa sopra</li>
-                      <li>Laccetti sotto</li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="btn btn-options selezione manica_aperta " role="button">
-                    <img src="" alt="manica aperta">
-                    <ul>
-                      <li>Manica aperta sopra</li>
-                      <li>Laccetti sopra</li>
-                      <li>Laccetti sotto</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="scelta_finitura_specifica specifica_fettuccia row"> <!-- Nascosta se manica -->
-            <div class="col-md-12">
-              <div class="row">
-                <div class="col-md-2">
-                  <%= label_tag(:manica_superiore, "Vuoi la manica superiore")%>
-                </div>
-                <div class="col-md-4">
-                  <%= select_tag "Manica superiore", options_for_select(["Si", "No"], "Si"), class: "form-control" %>
-                </div>
-                <div class="col-md-2">
-                  <%= label_tag(:aperta_o_chiusa, "Vuoi la manica aperta o chiusa")%>
-                </div>
-                <div class="col-md-4">
-                  <%= select_tag "Aperta o Chiusa", options_for_select(["Aperta", "Chiusa"], "Aperta"), class: "form-control" %>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-12">
-              <div class="row">
-                <div class="col-md-2">
-                  <%= label_tag(:seleziona_tipo_fettuccia, "Seleziona finitura fettuccia")%>
-                </div>
-                <div class="col-md-10">
-                  <div class="row">
-                    <div class="col-md-3">
-                      <div class="btn btn-options selezione cappio_cordino" role="button"> <!-- nascosto se verticale -->
-                        <h5>Cappio e cordino</h5>
-                        <%= image_tag(@product.identifica_img("cappio").attachment.url(:large), alt: @product.identifica_img("cappio").alt) %>
-                        <ul>
-                          <li>Fettuccia di rinforzo</li>
-                          <li>Cappio superiore</li>
-                          <li>Cordino inferiore</li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="btn btn-options selezione occhielli" role="button">
-                        <h5>Occhielli</h5>
-                        <%= image_tag(@product.identifica_img("occhielli").attachment.url(:large), alt: @product.identifica_img("occhielli").alt) %>
-                        <ul>
-                          <li>Fettuccia di rinforzo</li>
-                          <li>Occhielli ogni 50cm</li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="btn btn-options selezione moschettoni" role="button">
-                        <h5>Moschettoni</h5>
-                        <%= image_tag(@product.identifica_img("moschettone").attachment.url(:large), alt: @product.identifica_img("moschettone").alt) %>
-                        <ul>
-                          <li>Fettuccia di rinforzo</li>
-                          <li>Moschettoni ogni 50cm</li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="btn btn-options selezione laccetti" role="button">
-                        <h5>Laccetti</h5>
-                        <img src="" alt="laccetti">
-                        <ul>
-                          <li>Fettuccia di rinforzo</li>
-                          <li>Laccetti sopra e sotto</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <hr>
-        <div class="caricamento_file">
-
         </div>
+        <div class="nome lavorazione row">
+          <div class="col-md-2">
+            <%= label_tag(:lavorazione, "Assegna un nome alla lavorazione")%>
+          </div>
+          <div class="col-md-3">
+            <%= text_field_tag 'name', nil, size: 25, maxlength: 25, class: "form-control" %>
+          </div>
+        </div>
+        <hr>
+        <div class="tessuto row">
+          <div class="col-md-2">
+            <%= label_tag(:tessuti, "Scegli il tessuto")%>
+          </div>
+          <div class="col-md-10">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="btn btn-options selezione scelta_tessuto" role="button">
+                  <img src="#" alt="Tessuto nautico 110g/m">
+                  <p>Tessuto nautico 110g/m</p>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="btn btn-options selezione scelta_tessuto" role="button">
+                  <img src="#" alt="Tessuto ponge 110g/m">
+                  <p>Tessuto ponge 110g/m</p>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="btn btn-options selezione scelta_tessuto" role="button">
+                  <img src="#" alt="Tessuto forato 110g/m">
+                  <p>Tessuto forato 110g/m</p>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="btn btn-options selezione scelta_tessuto" role="button">
+                  <img src="#" alt="Tessuto retato 110g/m">
+                  <p>Tessuto retato 110g/m</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="orientamento row">
+          <div class="col-md-2">
+            <%= label_tag(:formato, "Formato") %>
+          </div>
+          <div class="col-md-10">
+            <div class="selezpsddingione_orientamento row">
+              <div class="col-md-3">
+                <div class="btn btn-options scelta_orientamento orizzontale" role="button">
+                  <img src="#" alt="Orizzontale">
+                  <p>Orizzontale</p>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="btn btn-options scelta_orientamento verticale" role="button">
+                  <img src="#" alt="Verticale">
+                  <p>Verticale</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="base row">
+          <div class="col-md-2">
+            <%= label_tag(:base, "Base") %>
+          </div>
+          <div class="col-md-3">
+            <%= number_field_tag :base, 150, class: 'title form-control', min: 30, step: 5 %>
+          </div>
+        </div>
+        <div class="altezza row">
+          <div class="col-md-2">
+            <%= label_tag(:altezza, "Altezza") %>
+          </div>
+          <div class="col-md-3">
+            <%= number_field_tag :altezza, 150, class: 'title form-control', min: 30, step: 5 %>
+          </div>
+        </div>
+        <hr>
+        <div class="finitura_lato_asta row">
+          <div class="col-md-2">
+            <%= label_tag(:lato_asta, "Seleziona lato asta") %>
+          </div>
+          <div class="col-md-3">
+            <%= select_tag "Lato asta", options_for_select(["Lato sinistro", "Lato destro"], "Lato sinistro"), class: "form-control" %>
+          </div>
+        </div>
+        <hr>
+        <div class="scelta_finitura row">
+          <div class="col-md-2">
+            <%= label_tag(:seleziona_finitura, "Seleziona finitura")%>
+          </div>
+          <div class="col-md-10">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="btn btn-options finitura_manica " role="button">
+                  <!--nascondo se verticale-->
+                  <img src="" alt="manica">
+                  <p>Manica</p>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="btn btn-options finitura_fettuccia" role="button">
+                  <!--nascondo se orizzontale-->
+                  <img src="" alt="fettuccia">
+                  <p>Fettuccia</p>
+                </div>
+              </div>
+              <div class="col-md-3 hidden">
+                <div class="btn btn-options finitura_personalizzata" role="button">
+                  <!-- sempre visibile -->
+                  <img src="" alt="personalizzata">
+                  <p>Personalizzata</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="scelta_finitura_specifica specifica_manica row">
+          <!-- Nascosta se fettuccia -->
+          <div class="col-md-2">
+            <%= label_tag(:seleziona_tipo_manica, "Seleziona tipo manica")%>
+          </div>
+          <div class="col-md-10">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="btn btn-options manica_chiusa " role="button">
+                  <img src="" alt="manica chiusa">
+                  <ul>
+                    <li>Manica chiusa sopra</li>
+                    <li>Laccetti sotto</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="btn btn-options selezione manica_aperta " role="button">
+                  <img src="" alt="manica aperta">
+                  <ul>
+                    <li>Manica aperta sopra</li>
+                    <li>Laccetti sopra</li>
+                    <li>Laccetti sotto</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="scelta_finitura_specifica specifica_fettuccia row">
+          <!-- Nascosta se manica -->
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-2">
+                <%= label_tag(:manica_superiore, "Vuoi la manica superiore")%>
+              </div>
+              <div class="col-md-4">
+                <%= select_tag "Manica superiore", options_for_select(["Si", "No"], "Si"), class: "form-control" %>
+              </div>
+              <div class="col-md-2">
+                <%= label_tag(:aperta_o_chiusa, "Vuoi la manica aperta o chiusa")%>
+              </div>
+              <div class="col-md-4">
+                <%= select_tag "Aperta o Chiusa", options_for_select(["Aperta", "Chiusa"], "Aperta"), class: "form-control" %>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-2">
+                <%= label_tag(:seleziona_tipo_fettuccia, "Seleziona finitura fettuccia")%>
+              </div>
+              <div class="col-md-10">
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="btn btn-options selezione cappio_cordino" role="button">
+                      <!-- nascosto se verticale -->
+                      <h5>Cappio e cordino</h5>
+                      <%= image_tag(@product.identifica_img("cappio").attachment.url(:large), alt: @product.identifica_img("cappio").alt) %>
+                      <ul>
+                        <li>Fettuccia di rinforzo</li>
+                        <li>Cappio superiore</li>
+                        <li>Cordino inferiore</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="btn btn-options selezione occhielli" role="button">
+                      <h5>Occhielli</h5>
+                      <%= image_tag(@product.identifica_img("occhielli").attachment.url(:large), alt: @product.identifica_img("occhielli").alt) %>
+                      <ul>
+                        <li>Fettuccia di rinforzo</li>
+                        <li>Occhielli ogni 50cm</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="btn btn-options selezione moschettoni" role="button">
+                      <h5>Moschettoni</h5>
+                      <%= image_tag(@product.identifica_img("moschettone").attachment.url(:large), alt: @product.identifica_img("moschettone").alt) %>
+                      <ul>
+                        <li>Fettuccia di rinforzo</li>
+                        <li>Moschettoni ogni 50cm</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="btn btn-options selezione laccetti" role="button">
+                      <h5>Laccetti</h5>
+                      <img src="" alt="laccetti">
+                      <ul>
+                        <li>Fettuccia di rinforzo</li>
+                        <li>Laccetti sopra e sotto</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="caricamento_file"></div>
         <div class="row preventivo consegna">
           <%= render partial: 'spree/products/quantity_and_date' %>
         </div>
@@ -241,61 +248,83 @@
         <div class="row preventivo extra">
           <%= render partial: 'spree/products/servizi_extra' %>
         </div>
-
-        <div id="product-price">
-          <h6 class="product-section-title"><%= Spree.t(:price) %></h6>
-          <div>
-            <span id="prezzo", class="lead price selling" itemprop="price" content="<%= @product.price_in(current_currency).amount.to_d %>">
-              <%= display_price(@product) %>
-            </span>
-            <span itemprop="priceCurrency" content="<%= current_currency %>"></span>
+        <div class="row preventivo riepilogo">
+          <div class="title_section row">
+            <span class="col-md-2">04</span>
+            <h3 class="col-md-10">Riepilogo</h3>
           </div>
+          <div class="col-md-10 col-md-offset-2">
+            <div class="row">
+              <div class="col-md-10">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Nomelavoro</th>
 
-          <% if @product.master.can_supply? %>
-            <link itemprop="availability" href="https://schema.org/InStock" />
-          <% elsif @product.variants.empty? %>
-            <br />
-            <span class="out-of-stock"><%= Spree.t(:out_of_stock) %></span>
-          <% end %>
-        </div>
-        <!--
-        <% if @product.can_supply? %>
-          <div class="add-to-cart">
-            <br />
-            <div class="input-group">
-              <%= number_field_tag :quantity, 1, class: 'title form-control', min: 1 %>
-              <span class="input-group-btn btn-options">
-                <%= button_tag class: 'btn btn-options btn btn-options-success', id: 'add-to-cart-button', type: :submit do %>
-                  <%= Spree.t(:add_to_cart) %>
+                      <th>Quantit&agrave;</th>
+
+                      <th>Giorno di consegna</th>
+
+                      <th>Prezzo</th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+              <div class="col-md-2">
+                <div id="product-price">
+                  <h6 class="product-section-title"><%= Spree.t(:price) %></h6>
+                  <div>
+                    <span id="prezzo" ,="," class="lead price selling" itemprop="price" content="<%= @product.price_in(current_currency).amount.to_d %>">
+                      <%= display_price(@product) %>
+                    </span>
+                    <span itemprop="priceCurrency" content="<%= current_currency %>"></span>
+                  </div>
+
+                  <% if @product.master.can_supply? %>
+                    <link itemprop="availability" href="https://schema.org/InStock"/>
+                    <% elsif @product.variants.empty? %>
+                      <br/>
+                      <span class="out-of-stock"><%= Spree.t(:out_of_stock) %></span>
+                    <% end %>
+                  </div>
+                  <% if @product.can_supply? %>
+                    <div class="add-to-cart">
+                      <br/>
+                      <div class="input-group">
+                        <span class="input-group-btn btn-options">
+                          <%= button_tag class: 'btn btn-options btn btn-options-success', id: 'add-to-cart-button', type: :submit do %>
+                          <%= Spree.t(:add_to_cart) %>
+                        <% end %>
+                      </span>
+                    </div>
+                  </div>
                 <% end %>
-              </span>
+
+              <% else %>
+                <div id="product-price">
+                  <br/>
+                  <div>
+                    <span class="price selling" itemprop="price">
+                      <%= Spree.t('product_not_available_in_this_currency') %>
+                    </span>
+                  </div>
+                </div>
+              <% end %>
+              </div>
             </div>
           </div>
-        <% end %>
-
-        <% else %>
-        <div id="product-price">
-          <br />
-          <div>
-            <span class="price selling" itemprop="price">
-              <%= Spree.t('product_not_available_in_this_currency') %>
-            </span>
-          </div>
         </div>
-      <% end %>
-    </div>
 
+    </div>
   </div>
+</div>
   <script>
-    $(document).on("change","#base",calcola_prezzo);
-    $(document).on("change","#altezza",calcola_prezzo);
-    function calcola_prezzo(){
+    $(document).on("change", "#base", calcola_prezzo);
+    $(document).on("change", "#altezza", calcola_prezzo);
+    function calcola_prezzo() {
       $.ajax({
-        type: "POST",
-        url: "/price_flag",
-        data: $("#form_prodotto").serialize() //this will enable you to use params[:periods] and params[:age] in your controller
+        type: "POST", url: "/price_flag", data: $("#form_prodotto").serialize() //this will enable you to use params[:periods] and params[:age] in your controller
       })
     }
-
   </script>
 <% end %>

@@ -1,8 +1,109 @@
 <div class="title_section row">
-    <span class="col-md-2">03</span>
-    <h3 class="col-md-10">Servizi extra</h3>
-    <p class="lead col-md-10 col-md-offset-2">TEXT</p>
+  <span class="col-md-2">03</span>
+  <h3 class="col-md-10">Servizi extra</h3>
+  <div class="col-md-10 col-md-offset-2">
+    <p class="in_product_text">Di seguito troverai i nostri servizi che ti assicurano il miglior risultato possibile</p>
+  </div>
 </div>
 <div class="row">
-
-</div>
+  <div class="col-md-10 col-md-offset-2">
+    <div class="row controllo_file">
+      <div class="col-md-2">
+        <%= check_box("controllo_file", "accepted", { :class => 'controllo_file' }, "si", "no") %>
+      </div>
+      <div class="col-md-6">
+        <p>
+          <strong>Verifica file aggiuntiva</strong>
+        </p>
+      </div>
+      <div class="col-md-2">
+        <p>
+          <strong>€4,00</strong>
+        </p>
+      </div>
+      <div class="col-md-2">
+        <a class="informazioni" role="button" data-toggle="collapse" href="#verifica" aria-expanded="false" aria-controls="verifica">
+          <i>i</i>
+        </a>
+      </div>
+      <div class="col-md-12 alert-info collapse" id="verifica">
+        <h4>Verifica automatica</h4>
+        <p>I file, prima di essere messi in stampa, verranno sottoposti ad un controllo automatico che comprende:</p>
+        <ul>
+          <li>Inserimento abbondanze cucitura e eventuali asole</li>
+          <li>Controllo della corretta stampabilita</li>
+          <li>Verifica e conversione in tracciato dei font</li>
+          <li>verifica dimensione</li>
+        </ul>
+        <hr>
+        <h4>Verifica file</h4>
+        <p>La verifica del file aggiuntiva comprende i seguenti servizi:</p>
+        <ul>
+          <li>Controllo impaginazione</li>
+          <li>Rispetto dei margini</li>
+          <li>Controllo profilo colori</li>
+          <li>Controllo risoluzione</li>
+        </ul>
+        <p>
+          <em>N.B.: Se durante il processo di controllo potrebbe venire aggiornata la data di consegna.</em>
+        </p>
+      </div>
+    </div>
+    <div class="row controllo_file">
+      <div class="col-md-2">
+        <%= check_box("impaginazione", "accepted", { :class => 'impaginazionee' }, "si", "no") %>
+      </div>
+      <div class="col-md-6">
+        <p>
+          <strong>Impaginazione della grafica</strong>
+        </p>
+      </div>
+      <div class="col-md-2">
+        <p>
+          <strong>€10,00</strong>
+        </p>
+      </div>
+      <div class="col-md-2">
+        <a class="informazioni" role="button" data-toggle="collapse" href="#impaginazione" aria-expanded="false" aria-controls="impaginazione">
+          <i>i</i>
+        </a>
+      </div>
+      <div class="col-md-12 alert-info collapse" id="impaginazione">
+        <h4>Impaginazione</h4>
+        <p>Se scegli questo servizio pensermo a noi a creare il file di stampa una volta consegnatoci il logo da inserire nella bandiera.</p>
+        <p>Appena preparato il file le verr&agrave; inviata una bozza per approvazione, una volta approvato procederemo con la stampa</p>
+        <p>
+          <em>N.B.: Il processo di modifica e approvazione della stampa implica un aggiornamento della data di consegna</em>
+        </p>
+      </div>
+    </div>
+    <div class="row controllo_file">
+      <div class="col-md-2">
+        <%= check_box("vettorializzazione", "accepted", { :class => 'vettorializzazione' }, "si", "no") %>
+      </div>
+      <div class="col-md-6">
+        <p>
+          <strong>Vettorializzazione grafica</strong>
+        </p>
+      </div>
+      <div class="col-md-2">
+        <p>
+          <strong>€20,00</strong>
+        </p>
+      </div>
+      <div class="col-md-2">
+        <a class="informazioni" role="button" data-toggle="collapse" href="#vettor" aria-expanded="false" aria-controls="vettor">
+          <i>i</i>
+        </a>
+      </div>
+      <div class="col-md-12 alert-info collapse" id="vettor">
+        <h4>Vettorializzazione</h4>
+        <p>Se hai un logo o una grafica a bassa risoluzione puoi selezzionare questo servizio. Procedermo con la creazione del file vettoriale (alta risoluzione) cos&iacute; da non doverti preoccupare della risoluzione del file.</p>
+        <p>Appena preparato il file le verr&agrave; inviata una bozza per approvazione, una volta approvato procederemo con la stampa</p>
+        <p>Se sceglie questo servizio sar&agrave; incluso anche il servizio di impaginazione</p>
+        <p>
+          <em>N.B.: Il processo di modifica e approvazione della stampa implica un aggiornamento della data di consegna</em>
+        </p>
+      </div>
+    </div>
+  </div>
