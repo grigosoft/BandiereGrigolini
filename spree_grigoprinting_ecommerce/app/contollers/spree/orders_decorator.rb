@@ -12,10 +12,11 @@ module Spree
         options  = params[:options] || {}
 
         # smistamento prodotti particolari
-        tipoProdotto = params[:personalizzazione]
+        tipoProdotto = params[:prodotto_personalizzato]
         if tipoProdotto == "bandiera_personalizzata"
-          options[:product_customizzations] = estrai_specifiche_bandiera(params)
+          options[:product_customizzations] = estrai_specifiche_bandiera
           #variant.price = Spree::PriceCalculator.calculate_flag(params).to_d
+          quantity = 10
         end
 
         # 2,147,483,647 is crazy. See issue #2695.
@@ -42,10 +43,9 @@ module Spree
         end
     end
 
-    def estrai_specifiche_bandiera (params = {})
+    def estrai_specifiche_bandiera
       params.permit(:personalizzazione, :base, :altezza)
     end
 
-    
   end
 end
