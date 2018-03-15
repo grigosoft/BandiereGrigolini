@@ -43,9 +43,9 @@ module Spree
     end
 
     def estrai_specifiche_bandiera (params = {})
-      altezza = params[:altezza]
-      base = params[:base]
-      return {personalizzazione: "bandiera_personalizzata", altezza: altezza, base: base}
+      params.permit(:personalizzazione, :base, :altezza)
     end
+
+    
   end
 end

@@ -70,13 +70,27 @@
           <%= truncate(item.description, length: 100) %>
           <%= "(" + item.variant.options_text + ")" unless item.variant.option_values.empty? %>
         </td>
-        <td data-hook="order_item_files"><div>
-          <span > files</span>
-        </div></td>
+        <td data-hook="order_item_files">
+          <!-- file collegati a questo line item -->
+          <%= item.approvato_upload == nil ? "file non approvati" : "file approvati" %>
+        </td>
         <td data-hook="order_item_price" class="lead text-primary price"><span><%= item.single_money.to_html %></span></td>
         <td data-hook="order_item_qty" class="order-qty"><%= item.quantity %></td>
         <td data-hook="order_item_total" class="lead text-primary total"><span><%= item.display_amount.to_html %></span></td>
+        <tr>
+          <td colspan="6"><div class="row">
+            <%= form_for(Spree::Upload.new, html: {id: "new_upload_#{item.id}", multipart: true, class: "dropzone"}) do |f|  %>
+              <%= hidden_field_tag "upload[order_id]", order.id %>
+              <%= hidden_field_tag "upload[line_item_id]", item.id %>
+              <div class="fallback">
+                <%= f.file_field :image %><br>
+                <%= f.submit "Upload" %>
+              </div>
+            <% end %>
+          </div></td>
+        </tr>
       </tr>
+
     <% end %>
   </tbody>
   <tfoot id="order-total" data-hook="order_details_total">
@@ -136,3 +150,67 @@
     <% end %>
   </tfoot>
 </table>
+
+<script>
+Dropzone.autoDiscover = false;
+  <% order.line_items.each do |item| %>
+    new Dropzone("#new_upload_<%= item.id %>", {
+
+      //url: "/upload_photo", // You can override url of form in here.
+
+      //maxFiles: 10, // da errore e non ti fa togliere il file, da gestire noi
+      maxFilesize: 50, // in MB
+      maxFiles: 10,
+      parallelUploads: 1,
+
+      acceptedFiles:'.jpg, .png, .jpeg',// .pdf, .ai, .eps', // type of files
+
+      // non mettendone una mantiene le proprozioni
+      //thumbnailWidth: 120,
+      //thumbnailHeight: 120,
+
+      // changed the passed param to one accepted by
+      // our rails app
+      paramName: "upload[image]",
+
+      addRemoveLinks: true,
+
+      success: function(file, response){
+  			// find the remove button link of the uploaded file and give it an id
+  			// based of the fileID response from the server
+  			$(file.previewTemplate).find('.dz-remove').attr('id', response.fileID);
+  			// add the dz-success class (the green tick sign)
+  			$(file.previewElement).addClass("dz-success");
+  		},
+  		//when the remove button is clicked
+  		removedfile: function(file){
+  			// grap the id of the uploaded file we set earlier
+  			var id = $(file.previewTemplate).find('.dz-remove').attr('id');
+
+  			// make a DELETE ajax request to delete the file
+  			$.ajax({
+  				type: 'DELETE',
+  				url: '/uploads/' + id,
+  				success: function(data){
+  					console.log(data.message);
+            // TOLGO ANTEPRIMA
+            $(document).find(file.previewElement).remove();
+  				}
+  			});
+      },
+      // aggiungo file gia presenti nel server
+      init: function () {
+        <% item.upload.each do |file| %>
+          var mockFile = {name: "<%= file.image_file_name %>", size: <%= file.image_file_size %>, type: '<%= file.image_content_type %>', accepted: true };
+          this.options.addedfile.call(this, mockFile);
+          this.options.thumbnail.call(this, mockFile, "<%= "/spree/uploads/ord_#{order.id}/li_#{item.id}/#{file.id}/thumb/#{file.image_file_name}" %>");
+          // aggiungo id per rimozione file
+          $(mockFile.previewTemplate).find('.dz-remove').attr('id', <%= file.id %>);
+          mockFile.previewElement.classList.add('dz-success');
+          mockFile.previewElement.classList.add('dz-complete');
+        <% end %>
+      }
+    }); // new dropzone
+
+    <% end %>
+</script>

@@ -1,5 +1,8 @@
 module Spree
   LineItem.class_eval do
+    has_many :upload, class_name: 'Spree::Upload'
+
+    delegate :personalizzabile, to: :variant
 
     def update_price
       # lo cambio dentro VARIANT se personalizzato

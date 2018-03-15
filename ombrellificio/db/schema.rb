@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180302110640) do
+ActiveRecord::Schema.define(version: 20180313122908) do
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
@@ -192,6 +192,8 @@ ActiveRecord::Schema.define(version: 20180302110640) do
     t.decimal "taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
     t.decimal "non_taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
     t.string "more_options"
+    t.integer "approvatore_upload_id"
+    t.time "approvato_upload"
     t.index ["order_id"], name: "index_spree_line_items_on_order_id"
     t.index ["tax_category_id"], name: "index_spree_line_items_on_tax_category_id"
     t.index ["variant_id"], name: "index_spree_line_items_on_variant_id"
@@ -254,15 +256,15 @@ ActiveRecord::Schema.define(version: 20180302110640) do
 
   create_table "spree_orders", force: :cascade do |t|
     t.string "number", limit: 32
-    t.decimal "item_total", precision: 10, scale: 2, default: "0.0", null: false
-    t.decimal "total", precision: 10, scale: 2, default: "0.0", null: false
+    t.decimal "item_total", default: "0.0", null: false
+    t.decimal "total", default: "0.0", null: false
     t.string "state"
-    t.decimal "adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
+    t.decimal "adjustment_total", default: "0.0", null: false
     t.integer "user_id"
     t.datetime "completed_at"
     t.integer "bill_address_id"
     t.integer "ship_address_id"
-    t.decimal "payment_total", precision: 10, scale: 2, default: "0.0"
+    t.decimal "payment_total", default: "0.0"
     t.string "shipment_state"
     t.string "payment_state"
     t.string "email"
@@ -272,11 +274,11 @@ ActiveRecord::Schema.define(version: 20180302110640) do
     t.string "currency"
     t.string "last_ip_address"
     t.integer "created_by_id"
-    t.decimal "shipment_total", precision: 10, scale: 2, default: "0.0", null: false
-    t.decimal "additional_tax_total", precision: 10, scale: 2, default: "0.0"
-    t.decimal "promo_total", precision: 10, scale: 2, default: "0.0"
+    t.decimal "shipment_total", default: "0.0", null: false
+    t.decimal "additional_tax_total", default: "0.0"
+    t.decimal "promo_total", default: "0.0"
     t.string "channel", default: "spree"
-    t.decimal "included_tax_total", precision: 10, scale: 2, default: "0.0", null: false
+    t.decimal "included_tax_total", default: "0.0", null: false
     t.integer "item_count", default: 0
     t.integer "approver_id"
     t.datetime "approved_at"
@@ -287,8 +289,8 @@ ActiveRecord::Schema.define(version: 20180302110640) do
     t.integer "canceler_id"
     t.integer "store_id"
     t.integer "state_lock_version", default: 0, null: false
-    t.decimal "taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
-    t.decimal "non_taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
+    t.decimal "taxable_adjustment_total", default: "0.0", null: false
+    t.decimal "non_taxable_adjustment_total", default: "0.0", null: false
     t.index ["approver_id"], name: "index_spree_orders_on_approver_id"
     t.index ["bill_address_id"], name: "index_spree_orders_on_bill_address_id"
     t.index ["canceler_id"], name: "index_spree_orders_on_canceler_id"
@@ -394,29 +396,8 @@ ActiveRecord::Schema.define(version: 20180302110640) do
     t.index ["property_id"], name: "index_spree_product_properties_on_property_id"
   end
 
-  create_table "spree_products", force: :cascade do |t|
-    t.string "name", default: "", null: false
-    t.text "description"
-    t.datetime "available_on"
-    t.datetime "deleted_at"
-    t.string "slug"
-    t.text "meta_description"
-    t.string "meta_keywords"
-    t.integer "tax_category_id"
-    t.integer "shipping_category_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "promotionable", default: true
-    t.string "meta_title"
-    t.datetime "discontinue_on"
-    t.index ["available_on"], name: "index_spree_products_on_available_on"
-    t.index ["deleted_at"], name: "index_spree_products_on_deleted_at"
-    t.index ["discontinue_on"], name: "index_spree_products_on_discontinue_on"
-    t.index ["name"], name: "index_spree_products_on_name"
-    t.index ["shipping_category_id"], name: "index_spree_products_on_shipping_category_id"
-    t.index ["slug"], name: "index_spree_products_on_slug", unique: true
-    t.index ["tax_category_id"], name: "index_spree_products_on_tax_category_id"
-  end
+# Could not dump table "spree_products" because of following StandardError
+#   Unknown type 'bool' for column 'upload_check'
 
   create_table "spree_products_taxons", force: :cascade do |t|
     t.integer "product_id"
@@ -975,6 +956,17 @@ ActiveRecord::Schema.define(version: 20180302110640) do
     t.index ["active"], name: "index_spree_trackers_on_active"
   end
 
+  create_table "spree_uploads", force: :cascade do |t|
+    t.integer "line_item_id"
+    t.integer "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
   create_table "spree_users", force: :cascade do |t|
     t.string "encrypted_password", limit: 128
     t.string "password_salt", limit: 128
@@ -1059,6 +1051,16 @@ ActiveRecord::Schema.define(version: 20180302110640) do
     t.string "kind"
     t.index ["default_tax"], name: "index_spree_zones_on_default_tax"
     t.index ["kind"], name: "index_spree_zones_on_kind"
+  end
+
+  create_table "uploads", force: :cascade do |t|
+    t.integer "line_item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
   end
 
 end
