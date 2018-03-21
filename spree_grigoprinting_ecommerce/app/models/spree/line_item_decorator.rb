@@ -27,7 +27,37 @@ module Spree
           "\nFiniture: varie"
         end
       end
-      return desc
+      desc
+    end
+
+    def add_storico_files(azione="", info="")
+      new_row = {}
+      new_row[:azione] = azione
+      new_row[:info] = info
+      new_row[:timestamp] = Time.now
+      storico = stato_files_decoded
+      if storico != nil
+        storico.push(new_row)
+      else
+        storico = [new_row]
+      end
+      self.stato_files = storico.to_json
+      save!
+    end
+
+    def stato_files_decoded
+      unless stato_files.nil?
+        return JSON.parse(stato_files, symbolize_names: true)
+      end
+      nil
+    end
+
+    def file_approvati?
+      storico = stato_files_decoded
+      if !storico.nil? && storico.last[:azione] == "approvato"
+        return true
+      end
+      false
     end
 
   end

@@ -72,7 +72,7 @@
         </td>
         <td data-hook="order_item_files">
           <!-- file collegati a questo line item -->
-          <%= item.approvato_upload == nil ? "file non approvati" : "file approvati" %>
+          
         </td>
         <td data-hook="order_item_price" class="lead text-primary price"><span><%= item.single_money.to_html %></span></td>
         <td data-hook="order_item_qty" class="order-qty"><%= item.quantity %></td>

@@ -6,7 +6,7 @@
   <%= render 'spree/admin/shared/error_messages', target: @order %>
 </div>
 
-<h1>Prodotti Personalizzati che abbisognano di un file di stampa</h1>
+<h1>Prodotti Personalizzati che necessitano di un file di stampa</h1>
 
 
 <table id='line-items' class="table" data-hook="order_details">
@@ -39,8 +39,53 @@
           </td>
           <td><div>
             <%= form_tag do %>
-              <%= check_box :item_approvvato, "#{item.id}" %>
-              <%= label :approvati, "File verificati e approvati" %>
+              <%= link_to_with_icon 'save', "Approva File", "#", class: 'btn btn-success btn-sm', id: "approva_<%= item.id %>", no_text: true, data: { :'line-item-id' => item.id, action: 'approva'}, title: "Approva File" %>
+              <%= link_to_with_icon 'delete', "Disapprova File", "#", class: 'btn btn-danger btn-sm', data: { toggle: "modal", target: "#modal_disapprovazione_#{item.id}" }, title: "Disapprova File", no_text: true %>
+              <!-- Modal "motivazione Disapprovazione" -->
+              <div class="modal fade" id="modal_disapprovazione_<%= item.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel">Motiva la Disapprovazione File</h4>
+                    </div>
+                    <div class="modal-body">
+                      <textarea id="motivazione_disapprovazione" rows=10 style="width: 100%">il file non è stato approvato
+La Invitiamo a consultare la nostra guida sui file da caricare</textarea>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary" id="disapprova_<%= item.id %>" line-item-id=<%= item.id %>>Disapprova File</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <%= link_to_with_icon 'arrow-left', "Visualizza Storico", "#", class: 'btn btn-default btn-sm', data: { toggle: "modal", target: "#modal_storico_#{item.id}"}, title: "Visualizza storico", no_text: true %>
+              <!-- Modal "motivazione Disapprovazione" -->
+              <div class="modal fade" id="modal_storico_<%= item.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel">Storico Files</h4>
+                    </div>
+                    <div class="modal-body">
+                      <% if item.stato_files_decoded.nil? %>
+                        <%= "Nessun evento" %>
+                      <% else %>
+                        <% item.stato_files_decoded.each do |evento| %>
+                          <h3><%= evento[:azione] %></h3>
+                          <p><%= evento[:timestamp] %></p></br>
+                          <p><%= evento[:info] %></p>
+                        <% end %>
+                      <% end %>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             <% end %>
             <%= form_for(Spree::Upload.new, html: {id: "new_upload_#{item.id}", multipart: true, class: "dropzone"}) do |f|  %>
               <%= hidden_field_tag "upload[order_id]", @order.id %>
@@ -118,31 +163,22 @@ Dropzone.autoDiscover = false;
       }
     }); // new dropzone
 
-
-// verifica files
-$(document).ready(function(){
-  $('body').delegate('#Yourbuttonid','click',function(){
-        var chkval = 0
-          if($('#yourcheckboxid').is(':checked')){
-            chkval  = 1;
-          }
-   $.ajax({
-       url: "Your_url",
-       type: "POST",
-       data:{'checkboxvalue':chkval},
-
-       success:function(returndata){
+    $("a#approva_<%= item.id %>").click(inviaApprovazioneFile(<%= item.id %>,"approvato", ""))
+    $("a#disapprova_<%= item.id %>").click(inviaApprovazioneFile(<%= item.id %>,"disapprovato", ""))
 
 
-       },error:function(errordata){
+  <% end %>
+  // verifica files
 
+function inviaApprovazioneFile(var line_item_id, var approvazione, var info){
+  $.ajax({
+    type: 'POST',
+    url: '/line_item/' + id,
+    data: {line_item_id: line_item_id, approvazione: approvazione, info: info},
+    success: function(data){
+      console.log(data.message);
 
-       }
-     });
-
-   });
-
-});
-
-    <% end %>
+    }
+  });
+}
 </script>
