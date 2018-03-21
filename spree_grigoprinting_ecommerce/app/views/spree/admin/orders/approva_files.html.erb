@@ -1,0 +1,148 @@
+<%= render 'order_actions', order: @order, events: @order_events %>
+
+<%= render 'spree/admin/shared/order_tabs', current: :approva_files %>
+
+<div data-hook="admin_order_edit_header">
+  <%= render 'spree/admin/shared/error_messages', target: @order %>
+</div>
+
+<h1>Prodotti Personalizzati che abbisognano di un file di stampa</h1>
+
+
+<table id='line-items' class="table" data-hook="order_details">
+  <col width="15%" valign="middle" halign="center">
+  <col width="45%" valign="middle">
+  <col width="40%" valign="middle">
+
+  <thead data-hook>
+    <tr class="active" data-hook="order_details_line_items_headers">
+      <th colspan="2">Prodotto Ordinato</th>
+      <th class="price">File caricati</th>
+    </tr>
+  </thead>
+
+  <tbody data-hook>
+    <% @order.line_items.each do |item| %>
+    <% if item.product.personalizzabile = 't' %>
+        <tr data-hook="order_details_line_item_row">
+          <td data-hook="order_item_image">
+            <%= item.product.personalizzabile %>
+            <% if item.variant.images.length == 0 %>
+              <%= link_to small_image(item.variant.product), item.variant.product %>
+            <% else %>
+              <%= link_to image_tag(item.variant.images.first.attachment.url(:small)), item.variant.product %>
+            <% end %>
+          </td>
+          <td data-hook="order_item_description">
+            <h4><%= item.name %></h4>
+            <%= item.more_options %>
+          </td>
+          <td><div>
+            <%= form_tag do %>
+              <%= check_box :item_approvvato, "#{item.id}" %>
+              <%= label :approvati, "File verificati e approvati" %>
+            <% end %>
+            <%= form_for(Spree::Upload.new, html: {id: "new_upload_#{item.id}", multipart: true, class: "dropzone"}) do |f|  %>
+              <%= hidden_field_tag "upload[order_id]", @order.id %>
+              <%= hidden_field_tag "upload[line_item_id]", item.id %>
+              <div class="fallback">
+                <%= f.file_field :image %><br>
+                <%= f.submit "Upload" %>
+              </div>
+            <% end %>
+          </div></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<script>
+Dropzone.autoDiscover = false;
+  <% @order.line_items.each do |item| %>
+    new Dropzone("#new_upload_<%= item.id %>", {
+
+      //url: "/upload_photo", // You can override url of form in here.
+
+      //maxFiles: 10, // da errore e non ti fa togliere il file, da gestire noi
+      maxFilesize: 50, // in MB
+      maxFiles: 10,
+      parallelUploads: 1,
+
+      acceptedFiles:'.jpg, .png, .jpeg',// .pdf, .ai, .eps', // type of files
+
+      // non mettendone una mantiene le proprozioni
+      //thumbnailWidth: 120,
+      //thumbnailHeight: 120,
+
+      // changed the passed param to one accepted by
+      // our rails app
+      paramName: "upload[image]",
+
+      addRemoveLinks: true,
+
+      success: function(file, response){
+  			// find the remove button link of the uploaded file and give it an id
+  			// based of the fileID response from the server
+  			$(file.previewTemplate).find('.dz-remove').attr('id', response.fileID);
+  			// add the dz-success class (the green tick sign)
+  			$(file.previewElement).addClass("dz-success");
+  		},
+  		//when the remove button is clicked
+  		removedfile: function(file){
+  			// grap the id of the uploaded file we set earlier
+  			var id = $(file.previewTemplate).find('.dz-remove').attr('id');
+
+  			// make a DELETE ajax request to delete the file
+  			$.ajax({
+  				type: 'DELETE',
+  				url: '/uploads/' + id,
+  				success: function(data){
+  					console.log(data.message);
+            // TOLGO ANTEPRIMA
+            $(document).find(file.previewElement).remove();
+  				}
+  			});
+      },
+      // aggiungo file gia presenti nel server
+      init: function () {
+        <% item.upload.each do |file| %>
+          var mockFile = {name: "<%= file.image_file_name %>", size: <%= file.image_file_size %>, type: '<%= file.image_content_type %>', accepted: true };
+          this.options.addedfile.call(this, mockFile);
+          this.options.thumbnail.call(this, mockFile, "<%= "/spree/uploads/ord_#{@order.id}/li_#{item.id}/#{file.id}/thumb/#{file.image_file_name}" %>");
+          // aggiungo id per rimozione file
+          $(mockFile.previewTemplate).find('.dz-remove').attr('id', <%= file.id %>);
+          mockFile.previewElement.classList.add('dz-success');
+          mockFile.previewElement.classList.add('dz-complete');
+        <% end %>
+      }
+    }); // new dropzone
+
+
+// verifica files
+$(document).ready(function(){
+  $('body').delegate('#Yourbuttonid','click',function(){
+        var chkval = 0
+          if($('#yourcheckboxid').is(':checked')){
+            chkval  = 1;
+          }
+   $.ajax({
+       url: "Your_url",
+       type: "POST",
+       data:{'checkboxvalue':chkval},
+
+       success:function(returndata){
+
+
+       },error:function(errordata){
+
+
+       }
+     });
+
+   });
+
+});
+
+    <% end %>
+</script>

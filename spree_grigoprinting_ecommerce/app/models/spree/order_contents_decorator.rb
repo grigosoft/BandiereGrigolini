@@ -6,11 +6,9 @@ module Spree
       if options[:product_customizzations]
         #forzo la creazone di un nuovo line item perche si tratta di prodotto personalizzato
         line_item = nil
-        quantity = 100
         #Spree::PermittedAttributes.line_item_attributes << :product_customizzations
       else
         line_item = grab_line_item_by_variant(variant, false, options)
-        quantity = 10000
       end
 
       if line_item

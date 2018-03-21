@@ -57,9 +57,9 @@
       </li>
     <% end %>
 
-    <% if can? :update, @order %>
-      <li<%== ' class="active"' if current == :conferma_files %> data-hook='admin_order_tabs_conferma_files'>
-        <%= link_to_with_icon 'transfer', 'Controllo File', spree.admin_order_conferma_files_url(@order) %>
+    <% if can? :index, @order %>
+      <li<%== ' class="active"' if current == :approva_files %> data-hook='admin_order_tabs_approva_files'>
+        <%= link_to_with_icon 'transfer', 'Controllo File', "/admin/orders/#{@order.number}/uploads" %>
       </li>
     <% end %>
   </ul>

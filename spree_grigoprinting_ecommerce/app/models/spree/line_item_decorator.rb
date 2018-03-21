@@ -10,7 +10,7 @@ module Spree
         more_opt_h = JSON.parse(more_options, {:symbolize_names => true})
         # aggiungo nei parametri la quantita per il ricalcolo del prezzo
         more_opt_h[:quantity] = quantity
-        if more_opt_h && more_opt_h[:personalizzazione] && more_opt_h[:personalizzazione] == "bandiera_personalizzata"
+        if more_opt_h && more_opt_h[:prodotto_personalizzato] && more_opt_h[:prodotto_personalizzato] == "bandiera_personalizzata"
           variant.price = Spree::CalcolatorePrezzo.calcola_bandiera(more_opt_h).to_d
         end
       end
@@ -22,7 +22,7 @@ module Spree
       desc = variant.description
       if more_options
         more_opt_h = JSON.parse(more_options, {:symbolize_names => true})
-        if more_opt_h && more_opt_h[:personalizzazione] && more_opt_h[:personalizzazione] == "bandiera_personalizzata"
+        if more_opt_h && more_opt_h[:prodotto_personalizzato] && more_opt_h[:prodotto_personalizzato] == "bandiera_personalizzata"
           desc = "in nautico 110g cm "+more_opt_h[:base]+"x"+more_opt_h[:altezza]+
           "\nFiniture: varie"
         end
