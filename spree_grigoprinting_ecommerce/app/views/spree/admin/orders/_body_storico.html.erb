@@ -1,0 +1,9 @@
+<% if @item.storico_files.nil? %>
+  <%= "Nessun evento" %>
+<% else %>
+  <% @item.storico_files_decoded.each do |evento| %>
+    <h3><%= evento[:azione] %></h3>
+    <p><%= evento[:timestamp] %></p></br>
+    <p><%= evento[:info] %></p>
+  <% end %>
+<% end %>

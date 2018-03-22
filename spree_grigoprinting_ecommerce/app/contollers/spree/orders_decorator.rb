@@ -12,9 +12,9 @@ module Spree
         options  = params[:options] || {}
 
         # smistamento prodotti particolari
-        tipoProdotto = params[:personalizzazione]
+        tipoProdotto = params[:prodotto_personalizzato]
         if tipoProdotto == "bandiera_personalizzata"
-          options[:product_customizzations] = estrai_specifiche_bandiera(params)
+          options[:product_customizzations] = estrai_specifiche_bandiera
           #variant.price = Spree::PriceCalculator.calculate_flag(params).to_d
         end
 
@@ -42,10 +42,9 @@ module Spree
         end
     end
 
-    def estrai_specifiche_bandiera (params = {})
-      altezza = params[:altezza]
-      base = params[:base]
-      return {personalizzazione: "bandiera_personalizzata", altezza: altezza, base: base}
+    def estrai_specifiche_bandiera
+      params.permit(:prodotto_personalizzato, :base, :altezza)
     end
+
   end
 end
