@@ -178,21 +178,21 @@ ActiveRecord::Schema.define(version: 20180321133246) do
     t.integer "variant_id"
     t.integer "order_id"
     t.integer "quantity", null: false
-    t.decimal "price", null: false
+    t.decimal "price", precision: 10, scale: 2, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "currency"
-    t.decimal "cost_price"
+    t.decimal "cost_price", precision: 10, scale: 2
     t.integer "tax_category_id"
-    t.decimal "adjustment_total", default: "0.0"
-    t.decimal "additional_tax_total", default: "0.0"
-    t.decimal "promo_total", default: "0.0"
-    t.decimal "included_tax_total", default: "0.0", null: false
-    t.decimal "pre_tax_amount", default: "0.0", null: false
-    t.decimal "taxable_adjustment_total", default: "0.0", null: false
-    t.decimal "non_taxable_adjustment_total", default: "0.0", null: false
+    t.decimal "adjustment_total", precision: 10, scale: 2, default: "0.0"
+    t.decimal "additional_tax_total", precision: 10, scale: 2, default: "0.0"
+    t.decimal "promo_total", precision: 10, scale: 2, default: "0.0"
+    t.decimal "included_tax_total", precision: 10, scale: 2, default: "0.0", null: false
+    t.decimal "pre_tax_amount", precision: 12, scale: 4, default: "0.0", null: false
+    t.decimal "taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
+    t.decimal "non_taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
     t.string "more_options"
-    t.string "stato_files"
+    t.string "storico_files"
     t.index ["order_id"], name: "index_spree_line_items_on_order_id"
     t.index ["tax_category_id"], name: "index_spree_line_items_on_tax_category_id"
     t.index ["variant_id"], name: "index_spree_line_items_on_variant_id"
@@ -255,15 +255,15 @@ ActiveRecord::Schema.define(version: 20180321133246) do
 
   create_table "spree_orders", force: :cascade do |t|
     t.string "number", limit: 32
-    t.decimal "item_total", default: "0.0", null: false
-    t.decimal "total", default: "0.0", null: false
+    t.decimal "item_total", precision: 10, scale: 2, default: "0.0", null: false
+    t.decimal "total", precision: 10, scale: 2, default: "0.0", null: false
     t.string "state"
-    t.decimal "adjustment_total", default: "0.0", null: false
+    t.decimal "adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
     t.integer "user_id"
     t.datetime "completed_at"
     t.integer "bill_address_id"
     t.integer "ship_address_id"
-    t.decimal "payment_total", default: "0.0"
+    t.decimal "payment_total", precision: 10, scale: 2, default: "0.0"
     t.string "shipment_state"
     t.string "payment_state"
     t.string "email"
@@ -273,11 +273,11 @@ ActiveRecord::Schema.define(version: 20180321133246) do
     t.string "currency"
     t.string "last_ip_address"
     t.integer "created_by_id"
-    t.decimal "shipment_total", default: "0.0", null: false
-    t.decimal "additional_tax_total", default: "0.0"
-    t.decimal "promo_total", default: "0.0"
+    t.decimal "shipment_total", precision: 10, scale: 2, default: "0.0", null: false
+    t.decimal "additional_tax_total", precision: 10, scale: 2, default: "0.0"
+    t.decimal "promo_total", precision: 10, scale: 2, default: "0.0"
     t.string "channel", default: "spree"
-    t.decimal "included_tax_total", default: "0.0", null: false
+    t.decimal "included_tax_total", precision: 10, scale: 2, default: "0.0", null: false
     t.integer "item_count", default: 0
     t.integer "approver_id"
     t.datetime "approved_at"
@@ -288,8 +288,8 @@ ActiveRecord::Schema.define(version: 20180321133246) do
     t.integer "canceler_id"
     t.integer "store_id"
     t.integer "state_lock_version", default: 0, null: false
-    t.decimal "taxable_adjustment_total", default: "0.0", null: false
-    t.decimal "non_taxable_adjustment_total", default: "0.0", null: false
+    t.decimal "taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
+    t.decimal "non_taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
     t.index ["approver_id"], name: "index_spree_orders_on_approver_id"
     t.index ["bill_address_id"], name: "index_spree_orders_on_bill_address_id"
     t.index ["canceler_id"], name: "index_spree_orders_on_canceler_id"
@@ -1050,16 +1050,6 @@ ActiveRecord::Schema.define(version: 20180321133246) do
     t.string "kind"
     t.index ["default_tax"], name: "index_spree_zones_on_default_tax"
     t.index ["kind"], name: "index_spree_zones_on_kind"
-  end
-
-  create_table "uploads", force: :cascade do |t|
-    t.integer "line_item_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "image_file_name"
-    t.string "image_content_type"
-    t.integer "image_file_size"
-    t.datetime "image_updated_at"
   end
 
 end
