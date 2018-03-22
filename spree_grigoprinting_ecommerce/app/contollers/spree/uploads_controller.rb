@@ -19,9 +19,10 @@ module Spree
 
     def destroy
         upload = Upload.find(params[:id])
+        nome_eliminato = upload.image_file_name
         if upload.destroy
           item = Spree::LineItem.find(upload.line_item_id)
-          item.add_storico_files("elimina", upload.image_file_name)
+          item.add_storico_files("elimina", nome_eliminato)
           #cancella_approvazione(upload.line_item_id)
           render json: { message: "File deleted from server" }
         else

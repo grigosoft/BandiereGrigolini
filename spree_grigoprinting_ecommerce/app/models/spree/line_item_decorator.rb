@@ -23,8 +23,8 @@ module Spree
       if more_options
         more_opt_h = JSON.parse(more_options, {:symbolize_names => true})
         if more_opt_h && more_opt_h[:prodotto_personalizzato] && more_opt_h[:prodotto_personalizzato] == "bandiera_personalizzata"
-          desc = "in nautico 110g cm "+more_opt_h[:base]+"x"+more_opt_h[:altezza]+
-          "\nFiniture: varie"
+          desc = "in nautico 110g cm "+more_opt_h[:base] +
+              "x" + more_opt_h[:altezza] + "\nFiniture: varie"
         end
       end
       desc
@@ -35,29 +35,43 @@ module Spree
       new_row[:azione] = azione
       new_row[:info] = info
       new_row[:timestamp] = Time.now
-      storico = stato_files_decoded
+      storico = storico_files_decoded
       if storico != nil
         storico.push(new_row)
       else
         storico = [new_row]
       end
-      self.stato_files = storico.to_json
+      self.storico_files = storico.to_json
       save!
     end
 
-    def stato_files_decoded
-      unless stato_files.nil?
-        return JSON.parse(stato_files, symbolize_names: true)
+
+
+    def stato_files
+      storico = storico_files_decoded
+      if !storico.nil? && storico.last[:azione] == 'approvato'
+        return 'approvato'
+      elsif !storico.nil? && storico.last[:azione] == 'disapprovato'
+        return 'disapprovato'
       end
-      nil
+      'da_approvare'
     end
 
     def file_approvati?
-      storico = stato_files_decoded
-      if !storico.nil? && storico.last[:azione] == "approvato"
+      storico = storico_files_decoded
+      if !storico.nil? && storico.last[:azione] == 'approvato'
         return true
       end
       false
+    end
+
+    #private
+
+    def storico_files_decoded
+      unless storico_files.nil?
+        return JSON.parse(storico_files, symbolize_names: true)
+      end
+      nil
     end
 
   end

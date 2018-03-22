@@ -39,7 +39,7 @@
           </td>
           <td><div>
             <%= form_tag do %>
-              <%= link_to_with_icon 'save', "Approva File", "#", class: 'btn btn-success btn-sm', id: "approva_<%= item.id %>", no_text: true, data: { :'line-item-id' => item.id, action: 'approva'}, title: "Approva File" %>
+              <%= link_to_with_icon 'save', "Approva File", "#", class: 'btn btn-success btn-sm', id: "approva_#{item.id}", no_text: true, title: "Approva File" %>
               <%= link_to_with_icon 'delete', "Disapprova File", "#", class: 'btn btn-danger btn-sm', data: { toggle: "modal", target: "#modal_disapprovazione_#{item.id}" }, title: "Disapprova File", no_text: true %>
               <!-- Modal "motivazione Disapprovazione" -->
               <div class="modal fade" id="modal_disapprovazione_<%= item.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -50,18 +50,19 @@
                       <h4 class="modal-title" id="myModalLabel">Motiva la Disapprovazione File</h4>
                     </div>
                     <div class="modal-body">
-                      <textarea id="motivazione_disapprovazione" rows=10 style="width: 100%">il file non è stato approvato
+                      <textarea id="motivazione_disapprovazione_<%= item.id %>" rows=10 style="width: 100%">il file non è stato approvato
 La Invitiamo a consultare la nostra guida sui file da caricare</textarea>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary" id="disapprova_<%= item.id %>" line-item-id=<%= item.id %>>Disapprova File</button>
+                      <button type="button" class="btn btn-primary" id="disapprova_<%= item.id %>" data-dismiss="modal">Disapprova File</button>
                     </div>
                   </div>
                 </div>
               </div>
-              <%= link_to_with_icon 'arrow-left', "Visualizza Storico", "#", class: 'btn btn-default btn-sm', data: { toggle: "modal", target: "#modal_storico_#{item.id}"}, title: "Visualizza storico", no_text: true %>
-              <!-- Modal "motivazione Disapprovazione" -->
+              <!-- , data: { toggle: "modal", target: "#modal_storico_#{item.id}"} -->
+              <%= link_to_with_icon 'arrow-left', "Visualizza Storico", "#", id: "storico_#{item.id}", class: 'btn btn-default btn-sm', title: "Visualizza storico", no_text: true %>
+              <!-- Modal "storico files" -->
               <div class="modal fade" id="modal_storico_<%= item.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
@@ -69,16 +70,8 @@ La Invitiamo a consultare la nostra guida sui file da caricare</textarea>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                       <h4 class="modal-title" id="myModalLabel">Storico Files</h4>
                     </div>
-                    <div class="modal-body">
-                      <% if item.stato_files_decoded.nil? %>
-                        <%= "Nessun evento" %>
-                      <% else %>
-                        <% item.stato_files_decoded.each do |evento| %>
-                          <h3><%= evento[:azione] %></h3>
-                          <p><%= evento[:timestamp] %></p></br>
-                          <p><%= evento[:info] %></p>
-                        <% end %>
-                      <% end %>
+                    <div class="modal-body" id="body_storico_<%= item.id %>">
+                      ...
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -102,7 +95,7 @@ La Invitiamo a consultare la nostra guida sui file da caricare</textarea>
   </tbody>
 </table>
 
-<script>
+<script type="text/javascript">
 Dropzone.autoDiscover = false;
   <% @order.line_items.each do |item| %>
     new Dropzone("#new_upload_<%= item.id %>", {
@@ -163,22 +156,56 @@ Dropzone.autoDiscover = false;
       }
     }); // new dropzone
 
-    $("a#approva_<%= item.id %>").click(inviaApprovazioneFile(<%= item.id %>,"approvato", ""))
-    $("a#disapprova_<%= item.id %>").click(inviaApprovazioneFile(<%= item.id %>,"disapprovato", ""))
-
+    //link ad ajax per verifica file
+    //$("#approva_<%= item.id %>").click(inviaApprovazioneFile(<%= item.id %>, "approvato", ""));
+    //$("#disapprova_<%= item.id %>").click(inviaApprovazioneFile(<%= item.id %>, "disapprovato", $("#motivazione_disapprovazione_<%= item.id %>").val()));
+    $("#approva_<%= item.id %>").click(function(){
+      $.ajax({
+        type: 'POST',
+        url: '/line_item/' + <%= item.id %> + '/approvazione',
+        data: {line_item_id: <%= item.id %>, approvazione: "approvato", info: ""},
+        success: function(data){
+          console.log(data.message);
+        }
+      });
+    });
+    $("#disapprova_<%= item.id %>").click(function(){
+      $.ajax({
+        type: 'POST',
+        url: '/line_item/' + <%= item.id %> + '/approvazione',
+        data: {line_item_id: <%= item.id %>, approvazione: "disapprovato", info: $("#motivazione_disapprovazione_<%= item.id %>").serialize()},
+        success: function(data){
+          console.log(data.message);
+        }
+      });
+    });
+    $("#storico_<%= item.id %>").click(function(){
+    $("#body_storico_<%= item.id %>").html("Loading...");
+    $("#modal_storico_<%= item.id %>").modal({});
+      $.ajax({
+        async: true,
+        type: 'GET',
+        url: '/line_item/' + <%= item.id %> + '/storico',
+        success: function(data){
+          //console.log(data);
+          $("#body_storico_<%= item.id %>").html(data);
+        }
+      });
+    });
 
   <% end %>
   // verifica files
 
-function inviaApprovazioneFile(var line_item_id, var approvazione, var info){
-  $.ajax({
-    type: 'POST',
-    url: '/line_item/' + id,
-    data: {line_item_id: line_item_id, approvazione: approvazione, info: info},
-    success: function(data){
-      console.log(data.message);
-
-    }
-  });
-}
+  inviaApprovazioneFile = function inviaApprovazioneFile(line_item_id, approvazione, info){
+    console.log("bla");
+    alert("bla "+line_item_id);
+    $.ajax({
+      type: 'POST',
+      url: '/line_item/' + line_item_id + '/approvazione',
+      data: {line_item_id: line_item_id, approvazione: approvazione, info: info},
+      success: function(data){
+        console.log(data.message);
+      }
+    });
+  }
 </script>

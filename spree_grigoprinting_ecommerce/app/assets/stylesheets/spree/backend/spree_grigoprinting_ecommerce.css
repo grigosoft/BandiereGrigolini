@@ -8,5 +8,6 @@ the installer will append this file to the app vendored assets here: 'vendor/ass
 */
 
 /* colori label lato backend admin index ordini */
-.label-verificato { background-color: #7DB942;}
-.label-da_verificare { background-color: #f8d053; }
+.label-approvato { background-color: #7DB942;}
+.label-disapprovato { background-color: #B97D42;}
+.label-da_approvare { background-color: #f8d053; }
