@@ -1,60 +1,92 @@
-$base-font-size: 16px
-$base-line-height: 26px
-+establish-baseline
-$round-to-nearest-half-line: true
-$rhythm-unit: "rem"
-$text_font_family: 'Lato', sans-serif
-$h-font-family: 'Montserrat', sans-serif
-//Headline size variabiles
-$h-1-gtdp: 50px
-$h-2-gtdp: 30px
-$h-3-gtdp: 24px
-$h-4-gtdp: 20px
-$h-5-gtdp: 16px
-$h-6-gtdp: 13px
+// +establish-baseline
+
+// Fluid typography
+@function strip-unit($value)
+  @return $value / ($value * 0 + 1)
+
+@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size)
+  $u1 : unit($min-vw)
+  $u2 : unit($max-vw)
+  $u3 : unit($min-font-size)
+  $u4 : unit($max-font-size)
+
+  @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4
+    &
+      font-size: $min-font-size
+      @media screen and (min-width: $min-vw)
+        font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}))
+      @media screen and (min-width: $max-vw)
+        font-size: $max-font-size
+
+html
+  @include fluid-type($min_width, $max_width, $min_font, $max_font)
 
 body
   font-size: inherit
   font-family: $text_font_family
   font-weight: 300
-  line-height: inherit
+  line-height: 160%
+  @include fluid-type($min_width, $max_width, $min_font, $max_font)
 
 h1, h2, h3, h4, h5, h6
   font-family: $h-font-family
 
+// Heding wid fluid-type
+$mod_1: 1.1 // mobile
+$mod_2: 1.2 // desktop
 
 h1
-  +adjust-font-size-to($h-1-gtdp)
+  font-size: $mod_1*$mod_1*$mod_1*$mod_1 *1rem
+  @include fluid-type($min_width, $max_width, $mod_1*$mod_1*$mod_1 *$min_font, $mod_2*$mod_2*$mod_2 *$min_font)
   font-weight: 800
 
 h2
-  +adjust-font-size-to($h-2-gtdp)
+  font-size: $mod_1*$mod_1*$mod_1 *1rem
+  @include fluid-type($min_width, $max_width, $mod_1*$mod_1*$mod_1 *$min_font, $mod_2*$mod_2*$mod_2 *$min_font)
   font-weight: 700
 
 h3
-  +adjust-font-size-to($h-3-gtdp)
+  font-size: $mod_1*$mod_1 *1rem
+  @include fluid-type($min_width, $max_width, $mod_1*$mod_1 *$min_font, $mod_2*$mod_2 *$min_font)
   font-weight: 600
 
-h4
-  +adjust-font-size-to($h-4-gtdp)
-  font-weight: 400
+h1, h2, h3
+  line-height: 160%
+// h1
+//   +adjust-font-size-to($h-1-gtdp)
+//   font-weight: 800
+//
+// h2
+//   +adjust-font-size-to($h-2-gtdp)
+//   font-weight: 700
+//
+// h3
+//   +adjust-font-size-to($h-3-gtdp)
+//   font-weight: 600
+//
+// h4
+//   +adjust-font-size-to($h-4-gtdp)
+//   font-weight: 400
+//
+// h5
+//   +adjust-font-size-to($h-5-gtdp)
+//   font-weight: 400
+//
+// h6
+//   +adjust-font-size-to($h-6-gtdp)
+//   font-weight: 400
 
-h5
-  +adjust-font-size-to($h-5-gtdp)
-  font-weight: 400
+// .title_section
+//   span
+//     +adjust-font-size-to($h-3-gtdp)
+//     font-weight: 700
+//     margin: 20px 0 10px 0
+//     text-align: center
 
-h6
-  +adjust-font-size-to($h-6-gtdp)
-  font-weight: 400
+.title_number
+  text-align: center
 
-.title_section
-  span
-    +adjust-font-size-to($h-3-gtdp)
-    font-weight: 700
-    margin: 20px 0 10px 0
-    text-align: center
-
-.btn-options
+.button-options
   ul, li
     text-align: left
     list-style-position: inside
@@ -66,24 +98,28 @@ h6
     width: 100%
     text-align: center
   .giorno, .mese
-    font-size: 1.2rem
     font-style: italic
   .numero
-    font-size: 3rem
+    font-size: 2rem
     font-weight: 900
 
 
 .prezzo_consegna
   span
-    margin-top: 1rem
-    font-size: 2rem
+    border-top: 1px solid $positive
+    font-size: 1.5rem
     display: block
     text-align: center
     padding: 10px 5px 10px
+    @media screen and (min-width: 992px)
+      margin-top: 1rem
+      border: none
   &::before
     float: left
     content: '\20ac'
     padding: 10px 5px 10px
+
+
 
 .informazioni
   text-align: center
@@ -94,3 +130,52 @@ h6
   p
     em
       font-weight: 600
+
+.form-control
+  font-size: inherit
+
+label
+  font-family: $h-font-family
+  font-size: 16px
+
+#riepilogo
+  font-size: 14px
+
+#add-to-cart-button
+  font-family: $h-font-family
+  font-size: $mod_1 * 1rem
+  @include fluid-type($min_width, $max_width, $mod_1*$mod_1 *$min_font, $mod_2*$mod_2 *$min_font)
+  font-weight: 700
+  +transition
+  +border-radius(5px)
+  border: 1px solid $back-full-text
+  &::before
+    +transition
+    font-family: "Glyphicons Halflings"
+    content: "\e116"
+    display:  inline-block
+    background: $back-full-text
+    position: absolute
+    top: 0
+    bottom: 0
+    width: 40px
+    left: -35px
+    border: 1px solid $back-link-button
+    +border-radius(5px)
+    color: $back-link-button
+    vertical-align:  middle
+    padding: 5px
+  &:hover
+    border-color: $back-link-button
+    color: $back-link-button
+    background-color: $back-full-text
+  &:hover::before
+    color: $back-full-text
+    background: $back-link-button
+    border-color: $back-full-text
+
+
+$mod_1_btn: 1 // mobile
+$mod_2_btn: 0.98 // desktop
+.button-options
+  @include fluid-type($min_width, $max_width, $mod_1_btn*$mod_1_btn *$min_font, $mod_2_btn*$mod_2_btn *$min_font)

@@ -1,27 +1,23 @@
-<div class="title_section row">
-    <span class="col-md-2">02</span>
-    <h3 class="col-md-10">Seleziona quantita e data di consegna</h3>
-    <div class="col-md-10 col-md-offset-2">
+<h3 class="title_section row">
+  <span class="col-sm-3 title_number">02</span>
+  <span class="col-sm-9">Seleziona quantita e data di consegna</span>
+</h3>
+<div class="row">
+    <div class="col-md-9 col-md-offset-3">
       <p class="in_product_text"> Le proponiamo 4 opzioni di prezzo con le rispettive date di consegna per dare priorita al suo ordine in base alle sue esigienze </p>
       <p class="in_product_text">Gli ordini verranno spediti via corriere per tanto, essendo un soggetto terzo, <em>le date sono indicative</em> e il 99% di essi arriveranno entro la data stimata. </p>
       <p class="in_product_text">In caso avesse bisogno di aiuto non esiti a contattarci per quasiasi informazione o aiuto per completare il suo ordine</p>
     </div>
 </div>
 <div class="row calcolo_data_scadenza">
-  <div class="col-md-2">
-    <div class="row row_quantita">
-      <div class="col-md-12">
+  <div class="col-md-3" id="flexquantity">
         <%= label_tag(:quantita, "Quantita")%>
-      </div>
-      <div class="col-md-12">
         <%= number_field_tag :quantity, 1, class: 'quntita form-control', min: 1, id: "quantity" %>
-      </div>
-    </div>
   </div>
-  <div class="col-md-10">
-    <div class="row">
-      <div class="col-md-3" id="consegna_1">
-        <div class="data_consegna btn btn-options unactive"  role="button" >
+  <div class="col-md-9">
+    <div class="row-form">
+      <div class="col-xs-6 col-sm-3" id="consegna_1">
+        <div class="data_consegna btn button-options unactive"  role="button" >
           <span class="giorno">Lunedi</span>
           <span class="numero">20</span>
           <span class="mese">Marzo</span>
@@ -30,8 +26,8 @@
           <span class="prezzo">10,00</span>
         </div>
       </div>
-      <div class="col-md-3" id="consegna_2">
-        <div class="data_consegna btn btn-options" role="button" >
+      <div class="col-xs-6 col-sm-3" id="consegna_2">
+        <div class="data_consegna btn button-options" role="button" >
           <span class="giorno">Mercoledi</span>
           <span class="numero">23</span>
           <span class="mese">Marzo</span>
@@ -40,8 +36,8 @@
           <span class="prezzo">9,00</span>
         </div>
       </div>
-      <div class="col-md-3" id="consegna_3">
-        <div class="data_consegna btn btn-options" role="button" >
+      <div class="col-xs-6 col-sm-3" id="consegna_3">
+        <div class="data_consegna btn button-options" role="button" >
           <span class="giorno">Venerdi</span>
           <span class="numero">25</span>
           <span class="mese">Marzo</span>
@@ -50,8 +46,8 @@
           <span class="prezzo">8,00</span>
         </div>
       </div>
-      <div class="col-md-3" id="consegna_4">
-        <div class="data_consegna btn btn-options" role="button" >
+      <div class="col-xs-6 col-sm-3" id="consegna_4">
+        <div class="data_consegna btn button-options" role="button" >
           <span class="giorno">Lunedi</span>
           <span class="numero">27</span>
           <span class="mese">Marzo</span>

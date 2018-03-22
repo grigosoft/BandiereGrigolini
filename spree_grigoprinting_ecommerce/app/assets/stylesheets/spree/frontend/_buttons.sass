@@ -1,19 +1,32 @@
-.btn-options
+.button-options
   display: block
   +transition
-  background-color: $back-full-text
   color: $back-link-button
   border: 1px solid $back-full-text
   +border-radius(2px)
+  padding: 0
+  overflow: hidden
   &:hover
     border: 1px solid $back-link-button
+    text-decoration: none
   &:active
     +box-shadow(0 0 5px tint($back-link-button, 20%))
+    border: 1px solid $back-link-button
   img
     width: 100%
     height: auto
+    padding: 2px
+    +transition
+    &:hover
+      transform: scale(1.5)
+  p, ul, h5
+    background-color: $back-full-text
+    margin: 0
+    padding: 5px
+    text-align: center
+    z-index: 1000
 
-.btn-options.unactive
+.button-options.unactive
   cursor: not-allowed
   &:hover
     border: 1px solid $back-full-text

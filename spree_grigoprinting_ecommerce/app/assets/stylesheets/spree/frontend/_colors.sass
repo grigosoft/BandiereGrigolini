@@ -1,9 +1,3 @@
-$back-link-button: rgba(8, 65, 92, 1)
-$back-full-text: rgba(235, 235, 235, 1)
-$allert: rgba(204, 41, 54, 1)
-$positive: rgba(61, 84, 103, 1)
-$link-back-full: rgba(107, 129, 140, 1)
-$long-text: rgba(25, 25, 25, 1)
 html, body
   background: tint($back-full-text, 80%)
 
@@ -11,10 +5,9 @@ html, body
 
 .title_section
   color: $back-full-text
-  span
+  background-color: $link-back-full
+  .title_number
     background-color: $positive
-  h3
-    background-color: $link-back-full
 
 hr
   border-top: 1px dashed +shade($back-full-text, 40%)
@@ -47,3 +40,76 @@ hr
   border: 1px solid shade($positive, 40%)
   hr
     border-top-color: shade($positive, 40%)
+
+#add-to-cart-button
+  background-color: $back-link-button
+  color: $back-full-text
+
+.info-panel
+  p
+    padding: 10px
+    border: 1px solid
+    +border-radius(5px)
+    &.bg-success
+      border-color: $success
+      color: shade($success, 50%)
+      background-color: tint($success, 90%)
+      &::before
+        content: "\e013"
+        font-family: 'Glyphicons Halflings'
+        padding-right: 10px
+    &.bg-warning
+      border-color: $warning
+      color: shade($warning, 50%)
+      background-color: tint($warning, 90%)
+      &::before
+        content: "\e107"
+        font-family: 'Glyphicons Halflings'
+        padding-right: 10px
+    &.bg-danger
+      border-color: $allert
+      color: shade($allert, 50%)
+      background-color: tint($allert, 90%)
+      &::before
+        content: "\e101"
+        font-family: 'Glyphicons Halflings'
+        padding-right: 10px
+
+.bg-success, .bg-danger, .bg-warning
+  display: none
+
+.row-success
+  input
+    border-color: $success
+  label
+    color: shade($success, 50%)c
+    &::after
+      content: "\e013"
+      font-family: 'Glyphicons Halflings'
+      padding-left: 10px
+  .bg-success
+    display: block
+
+.row-warning
+  input
+    border-color: $warning
+  label
+    color: shade($warning, 50%)
+    &::after
+      content: "\e107"
+      font-family: 'Glyphicons Halflings'
+      padding-left: 10px
+  .bg-warning
+    display: block
+
+.row-danger
+  input
+    border-color: $allert
+  label
+    color: shade($allert, 50%)
+    &::after
+      content: "\e101"
+      font-family: 'Glyphicons Halflings'
+      padding-left: 10px
+  .bg-danger
+    display: block

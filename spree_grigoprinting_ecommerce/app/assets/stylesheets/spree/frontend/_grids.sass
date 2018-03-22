@@ -1,15 +1,40 @@
+.row-form
+  +make-row($gutter: $grid-gutter-width)
+  .col-xs-6
+    +make-xs-column(6, $gutter: $grid-gutter-width)
+    @media only screen and (orientation: landscape)
+      +make-xs-column(3, $gutter: $grid-gutter-width)
+  .col-sm-3
+    +make-sm-column(3, $gutter: $grid-gutter-width)
+  .col-pers
+    +make-xs-column(12, $gutter: $grid-gutter-width)
+    @media only screen and (min-width: 375px)
+      +make-xs-column(6, $gutter: $grid-gutter-width)
+      min-height: 288px
+    @media only screen and (orientation: landscape)
+      +make-xs-column(3, $gutter: $grid-gutter-width)
+    @media only screen and (min-width: 426px)
+      +make-xs-column(3, $gutter: $grid-gutter-width)
+#spree-header #logo
+  img
+    max-width: 250px
+    min-height: 100%
+
 #form_prodotto
   .row
     margin: 1rem 0
-.btn-options
-  width: 180px
-  margin: 0 auto
+.button-options
+  margin: 1rem auto 0 auto
   position: relative
+  padding: 5px
   ul
     padding: 5px
+  @media screen and (min-width: 992px)
+    margin: auto
 
 .row_quantita
-  margin-top: 100% !important
+  @media screen and (min-width: 992px)
+    margin-top: 100% !important
 
 .informazioni
   display: block
@@ -18,3 +43,45 @@
   +border-radius(4px)
   margin-bottom: 0.5rem
   padding: 1.5rem
+
+.form-control
+  height: auto
+
+.riepilogo_interno
+  float:  left
+  margin: auto 1px
+  padding: 0 12px
+  border-bottom: 1px solid #444
+  width: 100%
+  @media screen and (min-width: 768px)
+    border-right: 1px solid #444
+    border-bottom: none
+    width: 32.3333333%
+    height: 100px
+
+.calcolo_data_scadenza
+  @media screen and (min-width: 992px)
+    display: flex
+    align-items: flex-end
+    #flexquantity
+      margin: 1rem auto
+
+.title_section
+  span
+    display: inline-block
+
+.alert-info
+  position: relative
+  margin-top: 5px
+  h3, h4
+    margin-top: 0
+
+  a
+    position: absolute
+    top: 5px
+    right: 5px
+
+.table-row
+  display: table
+  .button-table
+    display: table-cell
