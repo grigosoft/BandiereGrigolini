@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180302110640) do
+ActiveRecord::Schema.define(version: 20180321133246) do
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
@@ -192,6 +192,7 @@ ActiveRecord::Schema.define(version: 20180302110640) do
     t.decimal "taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
     t.decimal "non_taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
     t.string "more_options"
+    t.string "storico_files"
     t.index ["order_id"], name: "index_spree_line_items_on_order_id"
     t.index ["tax_category_id"], name: "index_spree_line_items_on_tax_category_id"
     t.index ["variant_id"], name: "index_spree_line_items_on_variant_id"
@@ -394,29 +395,8 @@ ActiveRecord::Schema.define(version: 20180302110640) do
     t.index ["property_id"], name: "index_spree_product_properties_on_property_id"
   end
 
-  create_table "spree_products", force: :cascade do |t|
-    t.string "name", default: "", null: false
-    t.text "description"
-    t.datetime "available_on"
-    t.datetime "deleted_at"
-    t.string "slug"
-    t.text "meta_description"
-    t.string "meta_keywords"
-    t.integer "tax_category_id"
-    t.integer "shipping_category_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "promotionable", default: true
-    t.string "meta_title"
-    t.datetime "discontinue_on"
-    t.index ["available_on"], name: "index_spree_products_on_available_on"
-    t.index ["deleted_at"], name: "index_spree_products_on_deleted_at"
-    t.index ["discontinue_on"], name: "index_spree_products_on_discontinue_on"
-    t.index ["name"], name: "index_spree_products_on_name"
-    t.index ["shipping_category_id"], name: "index_spree_products_on_shipping_category_id"
-    t.index ["slug"], name: "index_spree_products_on_slug", unique: true
-    t.index ["tax_category_id"], name: "index_spree_products_on_tax_category_id"
-  end
+# Could not dump table "spree_products" because of following StandardError
+#   Unknown type 'bool' for column 'personalizzabile'
 
   create_table "spree_products_taxons", force: :cascade do |t|
     t.integer "product_id"
@@ -973,6 +953,17 @@ ActiveRecord::Schema.define(version: 20180302110640) do
     t.datetime "updated_at", null: false
     t.integer "engine", default: 0, null: false
     t.index ["active"], name: "index_spree_trackers_on_active"
+  end
+
+  create_table "spree_uploads", force: :cascade do |t|
+    t.integer "line_item_id"
+    t.integer "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "spree_users", force: :cascade do |t|

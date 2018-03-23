@@ -6,13 +6,13 @@ module Spree
       dati = Spree::CalcolatorePrezzo.calcolo_formato_resa_consumo(params)
       ora = Time.current.hour #if ora <= 14 # ricezione ordine in giornata
       giorni = 1 + (dati[:consumo] / 50).to_i
-      consegna_1 = giorni.business_day.from_now
-      consegna_2 = 1.business_day.after(urgentissima)
-      consegna_3 = 5.business_day.after(urgente)
-      consegna_4 = 10.business_day.after(urgente)
+      consegna1 = giorni.business_day.from_now
+      consegna2 = 1.business_day.after(consegna1)
+      consegna3 = 5.business_day.after(consegna2)
+      consegna4 = 10.business_day.after(consegna3)
 
 
-      return {:consegna_1=>consegna_1, :consegna_2=>consegna_2, :consegna_3=>consegna_3, :consegna_4=>consegna_4}
+      return {:consegna_1=>consegna1, :consegna_2=>consegna2, :consegna_3=>consegna3, :consegna_4=>consegna4}
     end
   end
 end
