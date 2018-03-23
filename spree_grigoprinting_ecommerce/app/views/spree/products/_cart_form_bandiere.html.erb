@@ -6,7 +6,7 @@
 
   <% if @product.price_in(current_currency) && !@product.price.nil? %>
     <div data-hook="product_price" class="col-md-12 ">
-      <div "preventivo configurazione">
+      <div class="preventivo configurazione">
         <h3 class="title_section row">
           <span class="col-sm-3 title_number">01</span>
           <span class="col-sm-9">Crea il tuo preventivo</span>
@@ -38,32 +38,34 @@
           <div class="col-md-3">
             <%= label_tag(:tessuti, "Scegli il tessuto")%>
           </div>
-          <div class="col-md-9"><div class="row-form">
-                <div class="col-xs-6 col-sm-3">
-                  <a href="#nautico" class="button-options selezione scelta_tessuto" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="nautico">
-                    <%= image_tag("bandiera_personalizzata/nautico.png", alt: "Tessuto nautico 110g/m") %>
-                    <p>Nautico</p>
-                  </a>
-                </div>
-                <div class="col-xs-6 col-sm-3">
-                  <a href="#ponge" class="button-options selezione scelta_tessuto" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="ponge">
-                    <%= image_tag("bandiera_personalizzata/ponge.png", alt: "Tessuto Ponge 90g/m") %>
-                    <p>Pong&egrave;</p>
-                  </a>
-                </div>
-                <div class="col-xs-6 col-sm-3">
-                  <a href="#forato" class="button-options selezione scelta_tessuto" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="forato">
-                    <%= image_tag("bandiera_personalizzata/forato.png", alt: "Tessuto forato 110g/m") %>
-                    <p>Passavento</p>
-                  </a>
-                </div>
-                <div class="col-xs-6 col-sm-3">
-                  <a href="#retato" class="button-options selezione scelta_tessuto" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="retato">
-                    <%= image_tag("bandiera_personalizzata/retato.png", alt: "Tessuto retato 110g/m") %>
-                    <p>Rete</p>
-                  </a>
+          <div class="col-md-9">
+            <div class="row-form">
+              <div class="col-xs-6 col-sm-3">
+                <a href="#nautico" class="button-options selezione scelta_tessuto" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="nautico">
+                  <%= image_tag("bandiera_personalizzata/nautico.png", alt: "Tessuto nautico 110g/m") %>
+                  <p>Nautico</p>
+                </a>
               </div>
-            </div></div>
+              <div class="col-xs-6 col-sm-3">
+                <a href="#ponge" class="button-options selezione scelta_tessuto" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="ponge">
+                  <%= image_tag("bandiera_personalizzata/ponge.png", alt: "Tessuto Ponge 90g/m") %>
+                  <p>Pong&egrave;</p>
+                </a>
+              </div>
+              <div class="col-xs-6 col-sm-3">
+                <a href="#forato" class="button-options selezione scelta_tessuto" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="forato">
+                  <%= image_tag("bandiera_personalizzata/forato.png", alt: "Tessuto forato 110g/m") %>
+                  <p>Passavento</p>
+                </a>
+              </div>
+              <div class="col-xs-6 col-sm-3">
+                <a href="#retato" class="button-options selezione scelta_tessuto" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="retato">
+                  <%= image_tag("bandiera_personalizzata/retato.png", alt: "Tessuto retato 110g/m") %>
+                  <p>Rete</p>
+                </a>
+              </div>
+            </div>
+          </div>
           <div class="col-md-9 col-md-offset-3">
             <div class="col-md-12 alert-info collapse" id="nautico">
               <a class="btn" href="#nautico" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="nautico">x</a>
@@ -71,7 +73,8 @@
               <p>
                 <em>Tessuto 110g</em>
               </p>
-              <p> Il tessuto classico da bandiera a 3 pettini, 110g, 100% poliestere, indemagliabile (non sfila), &eacute; il pi&ugrave; robusto nella famiglia dei nautici.</p>
+              <p>
+                Il tessuto classico da bandiera a 3 pettini, 110g, 100% poliestere, indemagliabile (non sfila), &eacute; il pi&ugrave; robusto nella famiglia dei nautici.</p>
             </div>
             <div class="col-md-12 alert-info collapse" id="ponge">
               <a class="btn" href="#ponge" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="ponge">x</a>
@@ -79,7 +82,9 @@
               <p>
                 <em>Tessuto 85g</em>
               </p>
-              <p>Tessuto in pongè in tela si usa quando una bandiera deve sventolare bene, battuto di puro poliestere , un tessuto che vola. Viene di solito confezionato con manica nelle bandiere ma anche altre finiture gli si accordano. Viene utilizzato anche nei foulard e nelle pochette. 100% poliestere </p>
+              <p>Tessuto in pongè in tela si usa quando una bandiera deve sventolare bene, battuto di puro poliestere , un tessuto che vola. Viene di solito confezionato con manica nelle bandiere ma anche altre finiture gli si accordano. Viene utilizzato anche nei
+                foulard e nelle pochette. 100% poliestere
+              </p>
             </div>
             <div class="col-md-12 alert-info collapse" id="forato">
               <a class="btn" href="#forato" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="forato">x</a>
@@ -95,7 +100,8 @@
               <p>
                 <em>Tessuto 220g</em>
               </p>
-              <p>Tessuto per bandiere robustissimo con durata eccezionale. Il contro è che è talmente grosso che si può stampare solo monofacciale (da una parte sola) poiché il colore non filtra. Viene utilizzato nelle bandiere quando vi è necessità di durata o per  impieghi dove l’effetto rete è richiesto.</p>
+              <p>Tessuto per bandiere robustissimo con durata eccezionale. Il contro è che è talmente grosso che si può stampare solo monofacciale (da una parte sola) poiché il colore non filtra. Viene utilizzato nelle bandiere quando vi è necessità di durata o
+                per impieghi dove l’effetto rete è richiesto.</p>
             </div>
           </div>
         </div>
@@ -126,7 +132,7 @@
           <div class="col-md-3">
             <%= label_tag(:base, "Base") %>
           </div>
-          <div class="col-xs-6 col-sm-3">
+          <div class="col-md-3">
             <%= number_field_tag :base, 150, class: 'title form-control', min: 30, step: 5 %>
           </div>
         </div>
@@ -134,7 +140,7 @@
           <div class="col-md-3">
             <%= label_tag(:altezza, "Altezza") %>
           </div>
-          <div class="col-xs-6 col-sm-3">
+          <div class="col-md-3">
             <%= number_field_tag :altezza, 150, class: 'title form-control', min: 30, step: 5 %>
           </div>
         </div>
@@ -143,7 +149,7 @@
           <div class="col-md-3">
             <%= label_tag(:lato_asta, "Seleziona lato asta") %>
           </div>
-          <div class="col-xs-6 col-sm-3">
+          <div class="col-md-3">
             <%= select_tag "Lato asta", options_for_select(["Lato sinistro", "Lato destro"], "Lato sinistro"), class: "form-control" %>
           </div>
         </div>
@@ -157,14 +163,14 @@
               <div class="col-xs-6 col-sm-3">
                 <div class="button-options finitura_manica " role="button">
                   <!--nascondo se verticale-->
-                  <img src="" alt="manica">
+                  <%= image_tag("bandiera_personalizzata/manica.svg", alt: "Bandiera personalizzata con manica lato asta") %>
                   <p>Manica</p>
                 </div>
               </div>
               <div class="col-xs-6 col-sm-3">
                 <div class="button-options finitura_fettuccia" role="button">
                   <!--nascondo se orizzontale-->
-                  <img src="" alt="fettuccia">
+                  <%= image_tag("bandiera_personalizzata/fettuccia.svg", alt: "Bandiera personalizzata con fettuccia di rinforzo") %>
                   <p>Fettuccia</p>
                 </div>
               </div>
@@ -224,7 +230,7 @@
               <div class="col-md-3">
                 <%= label_tag(:manica_superiore, "Vuoi la manica superiore")%>
               </div>
-              <div class="col-xs-6 col-sm-3">
+              <div class="col-md-3">
                 <%= select_tag "Manica superiore", options_for_select(["Si", "No"], "Si"), class: "form-control" %>
               </div>
             </div>
@@ -232,11 +238,10 @@
               <div class="col-md-3">
                 <%= label_tag(:aperta_o_chiusa, "Vuoi la manica aperta o chiusa")%>
               </div>
-              <div class="col-xs-6 col-sm-3">
+              <div class="col-md-3">
                 <%= select_tag "Aperta o Chiusa", options_for_select(["Aperta", "Chiusa"], "Aperta"), class: "form-control" %>
               </div>
             </div>
-
           </div>
 
           <div class="col-md-12">
@@ -246,27 +251,27 @@
               </div>
               <div class="col-md-9">
                 <div class="row-form">
-                  <div class="col-pers">
+                  <div class="col-xs-6 col-sm-3">
                     <a href="#cappio" class="button-options selezione cappio_cordino" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="cappio">
                       <!-- nascosto se verticale -->
                       <%= image_tag("bandiera_personalizzata/cappio.svg", alt: "Bandiera con fettuccia di rinforzo, cappio superiore e cordino inferiore") %>
                       <p>Cappio e cordino</p>
                     </a>
                   </div>
-                  <div class="col-pers">
+                  <div class="col-xs-6 col-sm-3 correct_occhielli">
                     <a href="#occhielli" class="button-options selezione occhielli" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="occhielli">
 
                       <%= image_tag("bandiera_personalizzata/occhielli.svg", alt: "Bandiera con fettuccia di rinforzo e occhielli") %>
                       <p>Occhielli</p>
                     </a>
                   </div>
-                  <div class="col-pers">
+                  <div class="col-xs-6 col-sm-3">
                     <a href="#moschettoni" class="button-options selezione moschettoni" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="moschettoni">
                       <%= image_tag("bandiera_personalizzata/moschettoni.svg", alt: "Bandiera con fettuccia di rinforzo e moschettoni") %>
                       <p>Moschettoni</p>
                     </a>
                   </div>
-                  <div class="col-pers">
+                  <div class="col-xs-6 col-sm-3">
                     <a href="#laccetti" class="button-options selezione laccetti" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="laccetti">
                       <%= image_tag("bandiera_personalizzata/laccetti.svg", alt: "Bandiera con fettuccia di rinforzo e laccetti") %>
                       <p>Laccetti</p>
@@ -324,84 +329,86 @@
           </h3>
           <div class="col-md-9 col-md-offset-3">
             <div class="row">
-                <div class="riepilogo_interno nome_lavoro">
-                  <h4>
-                    <strong>Nome Lavoro</strong>
-                  </h4>
-                  <p id="nome_lavoro">Lavorazione</p>
-                </div>
-                <div class="riepilogo_interno quantita">
-                  <h4>
-                    <strong>Quantit&agrave;</strong>
-                  </h4>
-                  <p id="quantita">100</p>
-                </div>
-                <div class="riepilogo_interno giorno_di_consegna">
-                  <h4>
-                    <strong>Giorno di Consegna</strong>
-                  </h4>
-                  <p id="giorno_di_consegna">25 Marzo</p>
-                </div>
-              <div class="col-md-3">
-                <div id="product-price">
-                  <h4 class="product-section-title"><strong><%= Spree.t(:price) %></strong></h4>
-                  <div>
-                    <span id="prezzo" ,="," class="lead price selling" itemprop="price" content="<%= @product.price_in(current_currency).amount.to_d %>">
-                      <%= display_price(@product) %>
-                    </span>
-                    <span itemprop="priceCurrency" content="<%= current_currency %>"></span>
-                  </div>
-
-                  <% if @product.master.can_supply? %>
-                    <link itemprop="availability" href="https://schema.org/InStock"/>
-                    <% elsif @product.variants.empty? %>
-                      <br/>
-                      <span class="out-of-stock"><%= Spree.t(:out_of_stock) %></span>
-                    <% end %>
-                  </div>
-                  <% if @product.can_supply? %>
-                    <div class="add-to-cart">
-                      <br/>
-                      <div class="input-group">
-                        <span class="input-group-btn btn-options">
-                          <%= button_tag class: 'btn btn-options btn btn-options-success', id: 'add-to-cart-button', type: :submit do %>
-                          <%= Spree.t(:add_to_cart) %>
-                        <% end %>
-                      </span>
-                    </div>
-                  </div>
-                <% end %>
-
-              <% else %>
-                <div id="product-price">
-                  <br/>
-                  <div>
-                    <span class="price selling" itemprop="price">
-                      <%= Spree.t('product_not_available_in_this_currency') %>
-                    </span>
-                  </div>
-                </div>
-              <% end %>
+              <div class="riepilogo_interno nome_lavoro">
+                <h4>
+                  <strong>Nome Lavoro</strong>
+                </h4>
+                <p id="nome_lavoro">Lavorazione</p>
+              </div>
+              <div class="riepilogo_interno quantita">
+                <h4>
+                  <strong>Quantit&agrave;</strong>
+                </h4>
+                <p id="quantita">100</p>
+              </div>
+              <div class="riepilogo_interno giorno_di_consegna">
+                <h4>
+                  <strong>Giorno di Consegna</strong>
+                </h4>
+                <p id="giorno_di_consegna">25 Marzo</p>
               </div>
             </div>
           </div>
         </div>
+        <div class="row">
+          <div class="col-md-3 total_prezzo">
+            <% if @product.can_supply? %>
+              <div id="product-price">
+              <h4 class="product-section-title">
+                <strong><%= Spree.t(:price) %></strong>
+              </h4>
+              <div>
+                <span id="prezzo" class="lead price selling" itemprop="price" content="<%= @product.price_in(current_currency).amount.to_d %>">
+                  <%= display_price(@product) %>
+                </span>
+                <span itemprop="priceCurrency" content="<%= current_currency %>"></span>
+              </div>
 
+              <% if @product.master.can_supply? %>
+                <link itemprop="availability" href="https://schema.org/InStock"/>
+              <% elsif @product.variants.empty? %>
+              <br/>
+                <span class="out-of-stock"><%= Spree.t(:out_of_stock) %></span>
+              <% end %>
+            </div>
+              <div class="add-to-cart">
+                  <br/>
+                  <div class="input-group">
+                    <span class="input-group-btn btn-options">
+                      <%= button_tag class: 'btn btn-options btn btn-options-success', id: 'add-to-cart-button', type: :submit do %>
+                       <%= Spree.t(:add_to_cart) %>
+                      <% end %>
+                    </span>
+                  </div>
+                </div>
+            <% else %>
+              <div id="product-price">
+              <br/>
+              <div>
+                <span class="price selling" itemprop="price">
+                  <%= Spree.t('product_not_available_in_this_currency') %>
+                </span>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>
-  <script>
-    $(document).on("change", "#base", calcola_prezzo);
-    $(document).on("change", "#altezza", calcola_prezzo);
-    $(document).click(function(e) {
-      if (!$(e.target).is('.button-options')) {
-    	  $('.collapse').collapse('hide');
-      }
-    })
-    function calcola_prezzo() {
-      $.ajax({
-        type: "POST", url: "/price_flag", data: $("#form_prodotto").serialize() //this will enable you to use params[:periods] and params[:age] in your controller
-      })
-    }
-  </script>
 <% end %>
+<script>
+$(document).on("change", "#base", calcola_prezzo);
+$(document).on("change", "#altezza", calcola_prezzo);
+$(document).click(function (e) {
+  if (!$(e.target).is('.button-options')) {
+    $('.collapse').collapse('hide');
+  }
+})
+function calcola_prezzo() {
+  $.ajax({
+    type: "POST", url: "/price_flag", data: $("#form_prodotto").serialize() //this will enable you to use params[:periods] and params[:age] in your controller
+  })
+}
+</script>
