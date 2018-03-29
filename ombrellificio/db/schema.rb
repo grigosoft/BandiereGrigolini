@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180321133246) do
+ActiveRecord::Schema.define(version: 20180326112030) do
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
@@ -26,26 +26,8 @@ ActiveRecord::Schema.define(version: 20180321133246) do
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
   end
 
-  create_table "spree_addresses", force: :cascade do |t|
-    t.string "firstname"
-    t.string "lastname"
-    t.string "address1"
-    t.string "address2"
-    t.string "city"
-    t.string "zipcode"
-    t.string "phone"
-    t.string "state_name"
-    t.string "alternative_phone"
-    t.string "company"
-    t.integer "state_id"
-    t.integer "country_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["country_id"], name: "index_spree_addresses_on_country_id"
-    t.index ["firstname"], name: "index_addresses_on_firstname"
-    t.index ["lastname"], name: "index_addresses_on_lastname"
-    t.index ["state_id"], name: "index_spree_addresses_on_state_id"
-  end
+# Could not dump table "spree_addresses" because of following StandardError
+#   Unknown type 'bool' for column 'bill'
 
   create_table "spree_adjustments", force: :cascade do |t|
     t.string "source_type"
@@ -85,6 +67,19 @@ ActiveRecord::Schema.define(version: 20180321133246) do
     t.index ["position"], name: "index_spree_assets_on_position"
     t.index ["viewable_id"], name: "index_assets_on_viewable_id"
     t.index ["viewable_type", "type"], name: "index_assets_on_viewable_type_and_type"
+  end
+
+  create_table "spree_bookkeeping_documents", force: :cascade do |t|
+    t.string "printable_type"
+    t.integer "printable_id"
+    t.string "template"
+    t.string "number"
+    t.string "firstname"
+    t.string "lastname"
+    t.string "email"
+    t.decimal "total", precision: 12, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "spree_calculators", force: :cascade do |t|
@@ -290,6 +285,8 @@ ActiveRecord::Schema.define(version: 20180321133246) do
     t.integer "state_lock_version", default: 0, null: false
     t.decimal "taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
     t.decimal "non_taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
+    t.string "bill_adress"
+    t.string "ship_adress"
     t.index ["approver_id"], name: "index_spree_orders_on_approver_id"
     t.index ["bill_address_id"], name: "index_spree_orders_on_bill_address_id"
     t.index ["canceler_id"], name: "index_spree_orders_on_canceler_id"
@@ -996,6 +993,9 @@ ActiveRecord::Schema.define(version: 20180321133246) do
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.string "ragione_sociale"
+    t.string "piva"
+    t.string "cf"
     t.index ["bill_address_id"], name: "index_spree_users_on_bill_address_id"
     t.index ["deleted_at"], name: "index_spree_users_on_deleted_at"
     t.index ["email"], name: "email_idx_unique", unique: true

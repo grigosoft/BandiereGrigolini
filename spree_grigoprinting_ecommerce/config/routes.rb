@@ -16,4 +16,15 @@ Spree::Core::Engine.add_routes do
 
   post '/line_item/:id/approvazione' => 'admin/line_items#approvazione'
   get '/line_item/:id/storico' => 'admin/line_items#storico'
+
+  get '/user/modifica_password' => 'users#modifica_password'
+  get '/user/modifica_email' => 'users#modifica_email'
+  get '/user/modifica_dati_azienda' => 'users#modifica_dati_azienda'
+  # post 'user/modifica_password' => 'users#modifica_password_save'
+  # post 'user/modifica_email' => 'users#modifica_email_save'
+  # post 'user/modifica_dati_azienda' => 'users#modifica_dati_azienda_save'
+  get '/user/modifica_indirizzo/:id' => 'addresses#edit'
+  get '/user/nuovo_indirizzo/:type' => 'addresses#new'
+  post '/address/update' => 'addresses#update'
+  post '/address/create' => 'addresses#create'
 end
