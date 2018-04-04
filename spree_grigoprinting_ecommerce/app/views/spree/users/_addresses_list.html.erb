@@ -4,12 +4,12 @@
     <tr>
       <% if spree_current_user.bill_address.nil? %>
         <div id='new_address_link'>
-          <%= link_to 'aggiungi indirizzo fatturazione', '/account/address/fatt' %>
+          <%= link_to 'Aggiungi un indirizzo di fatturazione', controller: :addresses, action: :new, type: 'fatt' %>
         </div>
       <% else %>
         <td><%= spree_current_user.bill_address.to_s.gsub("<br/>", ", ") %></td>
         <td>
-          <%= link_to Spree.t(:edit), "/account/address/#{spree_current_user.bill_address.id}/edit" %>
+          <%= link_to Spree.t(:edit), edit_address_path(spree_current_user.bill_address) %>
         </td>
       <% end %>
     </tr>
@@ -23,7 +23,8 @@
       <tr>
         <td><%= address.to_s.gsub("<br/>", ", ") %></td>
         <td>
-          <%= link_to Spree.t(:edit), "/account/address/#{address.id}/edit" %>
+          <%= link_to Spree.t(:edit), edit_address_path(address) %>&nbsp;
+          <%= link_to Spree.t(:remove), address_path(address), method: :delete, confirm: Spree.t(:are_you_sure) %>
         </td>
       </tr>
       <% end %>
@@ -31,5 +32,5 @@
   </table>
 <% end %>
 <div id='new_address_link'>
-  <%= link_to 'aggiungi indirizzo di spedizione', '/account/address/sped' %>
+  <%= link_to t(:add_new_shipping_address, scope: :address_book), controller: :addresses, action: :new, type: 'sped' %>
 </div>

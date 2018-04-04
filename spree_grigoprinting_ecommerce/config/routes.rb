@@ -23,8 +23,5 @@ Spree::Core::Engine.add_routes do
   # post 'user/modifica_password' => 'users#modifica_password_save'
   # post 'user/modifica_email' => 'users#modifica_email_save'
   # post 'user/modifica_dati_azienda' => 'users#modifica_dati_azienda_save'
-  get '/account/address/:id/edit' => 'addresses#edit'
-  get '/account/address/new/:type' => 'addresses#new'
-  post '/account/address/update' => 'addresses#update'
-  post '/account/address/create' => 'addresses#create'
+  
 end
