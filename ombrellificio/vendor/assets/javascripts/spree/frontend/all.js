@@ -12,3 +12,4 @@
 //= require_tree .
 //= require spree/frontend/spree_auth
 //= require spree/frontend/spree_grigoprinting_ecommerce
+//= require spree/frontend/spree_address_book
