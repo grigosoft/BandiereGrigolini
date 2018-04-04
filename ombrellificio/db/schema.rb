@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180326112030) do
+ActiveRecord::Schema.define(version: 20180329083610) do
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20180326112030) do
   end
 
 # Could not dump table "spree_addresses" because of following StandardError
-#   Unknown type 'bool' for column 'bill'
+#   Unknown type 'bool' for column 'is_bill'
 
   create_table "spree_adjustments", force: :cascade do |t|
     t.string "source_type"
@@ -248,58 +248,8 @@ ActiveRecord::Schema.define(version: 20180326112030) do
     t.index ["promotion_id"], name: "index_spree_order_promotions_on_promotion_id"
   end
 
-  create_table "spree_orders", force: :cascade do |t|
-    t.string "number", limit: 32
-    t.decimal "item_total", precision: 10, scale: 2, default: "0.0", null: false
-    t.decimal "total", precision: 10, scale: 2, default: "0.0", null: false
-    t.string "state"
-    t.decimal "adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
-    t.integer "user_id"
-    t.datetime "completed_at"
-    t.integer "bill_address_id"
-    t.integer "ship_address_id"
-    t.decimal "payment_total", precision: 10, scale: 2, default: "0.0"
-    t.string "shipment_state"
-    t.string "payment_state"
-    t.string "email"
-    t.text "special_instructions"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "currency"
-    t.string "last_ip_address"
-    t.integer "created_by_id"
-    t.decimal "shipment_total", precision: 10, scale: 2, default: "0.0", null: false
-    t.decimal "additional_tax_total", precision: 10, scale: 2, default: "0.0"
-    t.decimal "promo_total", precision: 10, scale: 2, default: "0.0"
-    t.string "channel", default: "spree"
-    t.decimal "included_tax_total", precision: 10, scale: 2, default: "0.0", null: false
-    t.integer "item_count", default: 0
-    t.integer "approver_id"
-    t.datetime "approved_at"
-    t.boolean "confirmation_delivered", default: false
-    t.boolean "considered_risky", default: false
-    t.string "guest_token"
-    t.datetime "canceled_at"
-    t.integer "canceler_id"
-    t.integer "store_id"
-    t.integer "state_lock_version", default: 0, null: false
-    t.decimal "taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
-    t.decimal "non_taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
-    t.string "bill_adress"
-    t.string "ship_adress"
-    t.index ["approver_id"], name: "index_spree_orders_on_approver_id"
-    t.index ["bill_address_id"], name: "index_spree_orders_on_bill_address_id"
-    t.index ["canceler_id"], name: "index_spree_orders_on_canceler_id"
-    t.index ["completed_at"], name: "index_spree_orders_on_completed_at"
-    t.index ["confirmation_delivered"], name: "index_spree_orders_on_confirmation_delivered"
-    t.index ["considered_risky"], name: "index_spree_orders_on_considered_risky"
-    t.index ["created_by_id"], name: "index_spree_orders_on_created_by_id"
-    t.index ["guest_token"], name: "index_spree_orders_on_guest_token"
-    t.index ["number"], name: "index_spree_orders_on_number", unique: true
-    t.index ["ship_address_id"], name: "index_spree_orders_on_ship_address_id"
-    t.index ["store_id"], name: "index_spree_orders_on_store_id"
-    t.index ["user_id", "created_by_id"], name: "index_spree_orders_on_user_id_and_created_by_id"
-  end
+# Could not dump table "spree_orders" because of following StandardError
+#   Unknown type 'bool' for column 'richiesta_fattura'
 
   create_table "spree_payment_capture_events", force: :cascade do |t|
     t.decimal "amount", precision: 10, scale: 2, default: "0.0"

@@ -3,10 +3,10 @@
 <div data-hook="account_summary" class="account-summary well">
   <dl id="user-info">
     <dt><%= Spree.t(:email) %></dt>
-    <dd><%= @user.email %> (<%= link_to Spree.t(:edit), 'user/modifica_email' %>)</dd>
-    <dd>cambio password (<%= link_to Spree.t(:edit), 'user/modifica_password' %>)</dd>
+    <dd><%= @user.email %> (<%= link_to Spree.t(:edit), '/account/email/edit' %>)</dd>
+    <dd>cambio password (<%= link_to Spree.t(:edit), '/account/password/edit' %>)</dd>
     <% unless @user.piva.nil? %>
-      <dd>account aziendale (<%= link_to Spree.t(:edit), 'user/modifica_dati_azienda' %>)</dd>
+      <dd>account aziendale (<%= link_to Spree.t(:edit), '/account/corporate_data/edit' %>)</dd>
     <% end %>
     <br />
     <dt><%= Spree.t(:credit_balance, scope: [:store_credits])%></dt>

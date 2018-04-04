@@ -4,12 +4,12 @@
     <tr>
       <% if spree_current_user.bill_address.nil? %>
         <div id='new_address_link'>
-          <%= link_to 'aggiungi indirizzo fatturazione', '/user/nuovo_indirizzo/fatt' %>
+          <%= link_to 'aggiungi indirizzo fatturazione', '/account/address/fatt' %>
         </div>
       <% else %>
         <td><%= spree_current_user.bill_address.to_s.gsub("<br/>", ", ") %></td>
         <td>
-          <%= link_to Spree.t(:edit), "/user/modifica_indirizzo/#{spree_current_user.bill_address.id}" %>
+          <%= link_to Spree.t(:edit), "/account/address/#{spree_current_user.bill_address.id}/edit" %>
         </td>
       <% end %>
     </tr>
@@ -22,12 +22,14 @@
       <% spree_current_user.ship_addresses.each do |address| %>
       <tr>
         <td><%= address.to_s.gsub("<br/>", ", ") %></td>
-        <td></td>
+        <td>
+          <%= link_to Spree.t(:edit), "/account/address/#{address.id}/edit" %>
+        </td>
       </tr>
       <% end %>
     </tbody>
   </table>
 <% end %>
 <div id='new_address_link'>
-  <%= link_to 'aggiungi indirizzo di spedizione', '/user/nuovo_indirizzo/sped' %>
+  <%= link_to 'aggiungi indirizzo di spedizione', '/account/address/sped' %>
 </div>

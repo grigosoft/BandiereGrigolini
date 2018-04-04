@@ -8,6 +8,14 @@ GIT
       sprockets (< 4.0)
 
 GIT
+  remote: https://github.com/spree-contrib/spree_address_book.git
+  revision: 6f43552924eb9bc9eaec1943e792e4cad2084897
+  specs:
+    spree_address_book (3.2.0.alpha)
+      spree_auth_devise (>= 3.1.0, < 4.0)
+      spree_core (>= 3.1.0, < 4.0)
+
+GIT
   remote: https://github.com/spree-contrib/spree_mail_settings.git
   revision: be7a9a9fa866054a81270f15e8e5fb289e80a9d7
   specs:
@@ -435,6 +443,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   selenium-webdriver
   spree (~> 3.4.4)
+  spree_address_book!
   spree_auth_devise (~> 3.3)
   spree_gateway (~> 3.3)
   spree_grigoprinting_ecommerce!

@@ -1,6 +1,6 @@
 Spree::Core::Engine.add_routes do
   # Add your extension routes here
-  post '/price_flag' => 'price#calcola_bandiera', as: 'calcola_bandiera'
+  post '/price_flag' => 'price#calcola_bandiera'
 
   resources :uploads
 
@@ -17,14 +17,14 @@ Spree::Core::Engine.add_routes do
   post '/line_item/:id/approvazione' => 'admin/line_items#approvazione'
   get '/line_item/:id/storico' => 'admin/line_items#storico'
 
-  get '/user/modifica_password' => 'users#modifica_password'
-  get '/user/modifica_email' => 'users#modifica_email'
-  get '/user/modifica_dati_azienda' => 'users#modifica_dati_azienda'
+  get '/account/password/edit' => 'users#modifica_password'
+  get '/account/email/edit' => 'users#modifica_email'
+  get '/account/corporate_data/edit' => 'users#modifica_dati_azienda'
   # post 'user/modifica_password' => 'users#modifica_password_save'
   # post 'user/modifica_email' => 'users#modifica_email_save'
   # post 'user/modifica_dati_azienda' => 'users#modifica_dati_azienda_save'
-  get '/user/modifica_indirizzo/:id' => 'addresses#edit'
-  get '/user/nuovo_indirizzo/:type' => 'addresses#new'
-  post '/address/update' => 'addresses#update'
-  post '/address/create' => 'addresses#create'
+  get '/account/address/:id/edit' => 'addresses#edit'
+  get '/account/address/new/:type' => 'addresses#new'
+  post '/account/address/update' => 'addresses#update'
+  post '/account/address/create' => 'addresses#create'
 end

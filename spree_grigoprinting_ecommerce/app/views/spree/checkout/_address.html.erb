@@ -12,6 +12,7 @@ address_name = "#{address_type[0...4]}_address" %>
           <% bill_address = Spree::Address.default
           unless spree_current_user.bill_address.nil? %>
             <%= spree_current_user.bill_address %>
+            <%= link_to 'edit', edit_address_path(spree_current_user.bill_address) %>
           <% else
             bill_address =  Spree::Address.default %>
             <%= form.fields_for address_name do |address_form| %>

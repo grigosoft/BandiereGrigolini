@@ -1,6 +1,6 @@
 module Spree
   Address.class_eval do
-    belongs_to :user, class_name: 'Spree::User'
+    #belongs_to :user, class_name: 'Spree::User'
     # aggiunstamento per presenza di dati aziendali (ragione sociale sostituisce nome e cognome, ma solo se bill)
     with_options presence: true do
           validates :firstname, if: :serve_nome?
@@ -12,16 +12,16 @@ module Spree
 
     # serve solo se è
     def serve_nome?
-      !bill || user.piva.nil?
+      true #!is_bill || user.piva.nil?
     end
 
     def serve_cognome?
-      user.piva.nil?
+      true #user.piva.nil?
     end
-    
+
     def type
-      return 'billing' if bill
-      return 'shipping' unless bill
+      return 'billing' if is_bill
+      return 'shipping' unless is_bill
     end
   end
 end
