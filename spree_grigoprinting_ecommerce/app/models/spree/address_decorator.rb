@@ -1,6 +1,6 @@
 module Spree
   Address.class_eval do
-    #belongs_to :user, class_name: 'Spree::User'
+    belongs_to :user, class_name: 'Spree::User'
     # aggiunstamento per presenza di dati aziendali (ragione sociale sostituisce nome e cognome, ma solo se bill)
     with_options presence: true do
           validates :firstname, if: :serve_nome?
