@@ -1,0 +1,37 @@
+<h3><%= "Indirizzo fatturazione" %></h3>
+<table id='user_billing_address' class="table table-striped">
+  <tbody>
+    <tr>
+      <% if spree_current_user.fatturazione.nil? %>
+        <div id='new_address_link'>
+          <%= link_to 'Aggiungi un indirizzo di fatturazione', controller: :addresses, action: :new, type: 'fatt' %>
+        </div>
+      <% else %>
+        <td><%= spree_current_user.fatturazione.to_s.gsub("<br/>", ", ") %></td>
+        <td>
+          <%= link_to Spree.t(:edit), edit_address_path(spree_current_user.fatturazione) %>
+        </td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
+<h3><%= "Indirizzi spedizione" %></h3>
+<% if spree_current_user.ship_addresses.present? %>
+  <table id='user_addresses' class="table table-striped">
+    <tbody>
+      <% spree_current_user.ship_addresses.each do |address| %>
+      <tr>
+        <td><%= address.to_s.gsub("<br/>", ", ") %>
+            <%= '<h3>indirizzo di default</h3>' if spree_current_user.ship_defaults == address %></td>
+        <td>
+          <%= link_to Spree.t(:edit), edit_address_path(address) %>&nbsp;
+          <%= link_to Spree.t(:remove), address_path(address), method: :delete, confirm: Spree.t(:are_you_sure) %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+<div id='new_address_link'>
+  <%= link_to t(:add_new_shipping_address, scope: :address_book), controller: :addresses, action: :new, type: 'sped' %>
+</div>

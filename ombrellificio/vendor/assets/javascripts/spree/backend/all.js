@@ -10,3 +10,4 @@
 
 //= require_tree .
 //= require spree/backend/spree_grigoprinting_ecommerce
+//= require spree/backend/spree_print_invoice

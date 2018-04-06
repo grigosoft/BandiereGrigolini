@@ -1,6 +1,6 @@
 module Spree
   class Upload < ActiveRecord::Base
-    belongs_to :line_item, class_name: 'Spree::LineItem'
+    belongs_to :line_item, class_name: 'Spree::LineItem', dependent: :destroy
 
   	has_attached_file :image,
                       :styles => { :medium => "300x300>",:thumb => "120x120>" },
