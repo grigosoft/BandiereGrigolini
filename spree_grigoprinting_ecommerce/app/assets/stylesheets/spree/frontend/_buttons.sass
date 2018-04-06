@@ -3,7 +3,7 @@
   +transition
   color: $back-link-button
   border: 1px solid $back-full-text
-  +border-radius(2px)
+  +border-radius($radius)
   padding: 0
   overflow: hidden
   &:hover
@@ -18,7 +18,7 @@
     padding: 2px
     +transition
     &:hover
-      transform: scale(1.5)
+      transform: scale(1.2)
   p, ul, h5
     background-color: $back-full-text
     margin: 0
@@ -34,4 +34,24 @@
 
 .informazioni
   background-color: $back-full-text
-  +border-radius(2px)
+  +border-radius($radius)
+.btn
+  +border-radius($radius)
+  +transition
+.btn-primary
+  background-color: $back-link-button
+  color: $back-full-text
+  &:hover, &:focus
+    background: tint($back-link-button, 10%)
+    color: $back-full-text
+
+.btn-cart
+  width: 100%
+.pull-right-btn
+  @media screen and (min-width: 992px)
+    float: right !important
+#spree-header .nav
+  .btn-primary
+    color: $back-full-text
+    &:hover, &:focus
+      background: tint($back-link-button, 10%)

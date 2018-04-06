@@ -2,13 +2,19 @@
   display: flex
   flex-wrap: wrap
   +make-row($gutter: $grid-gutter-width)
-  .col-xs-6
-    +make-xs-column(6, $gutter: $grid-gutter-width)
-    &.correct_occhielli
-    @media only screen and (orientation: landscape)
-      +make-xs-column(3, $gutter: $grid-gutter-width)
+  @for $i from 1 through 12
+    .col-xs-#{$i}
+      +make-xs-column($i, $gutter: $grid-gutter-width)
+      @if $i == 6
+        &.correct_occhielli
+        @media only screen and (orientation: landscape)
+          +make-xs-column(3, $gutter: $grid-gutter-width)
   .col-sm-3
     +make-sm-column(3, $gutter: $grid-gutter-width)
+  @for $i from 1 through 12
+    .col-md-#{$i}
+      +make-md-column($i, $gutter: $grid-gutter-width)
+
   // .col-pers
   //   +make-xs-column(12, $gutter: $grid-gutter-width)
   //   @media only screen and (min-width: 375px)
@@ -24,6 +30,39 @@
   img
     max-width: 250px
     min-height: 100%
+    max-height: none
+
+.navbar
+  margin-bottom: 0
+.navbar-nav
+  width: 100%
+  text-align: center
+
+#spree-header
+  margin-bottom: 1rem
+  padding: 15px 0
+  +box-shadow(0 1px 5px #999)
+  img
+    display: block
+    margin: auto
+
+.navbar-right .h_sub_menu a
+  display: block
+
+.hover_menu a
+  margin: 5px
+#logo
+  svg
+    display: block
+    margin: auto
+    #g980
+      +translateX(85px)
+      @media screen and (min-width: 992px)
+        +translateX(0)
+    #g922, #g946
+      opacity: 0
+      @media screen and (min-width: 992px)
+        opacity: 1
 
 #form_prodotto
   .row
@@ -45,7 +84,7 @@
   display: block
 
 .alert-info
-  +border-radius(4px)
+  +border-radius($radius)
   margin-bottom: 0.5rem
   padding: 1.5rem
 
@@ -90,3 +129,45 @@
   display: table
   .button-table
     display: table-cell
+.panel
+  +border-radius($radius)
+
+.cart_header
+  margin-bottom: 1rem
+  +border-radius($radius)
+  div:nth-child(even)
+    border: solid $back-full-text
+    border-width: 0 1px
+.cart-item-image
+  img
+    width: 100%
+.line-item
+  position: relative
+  @media screen and (min-width: 992px)
+    display: flex
+  align-items: center
+  padding: 0.5rem 0
+  margin: auto
+  &:nth-child(4n+3)
+    background-color: tint($back-full-text, 75%)
+  &:nth-child(4n+1)
+    background: tint($back-full-text, 95%)
+#line_items
+  border: solid $link-back-full
+  border-width: 1px 1px 1px 1px
+  +border-radius($radius)
+  +box-shadow(0 0 1px $link-back-full)
+.cart-item-pric
+  position: absolute !important
+  top: 5px
+  right: 0px
+  text-align: right
+  @media screen and (min-width: 992px)
+    position: inherit !important
+    top: auto
+    right: auto
+    text-align: center
+.cart-item-description
+  margin-bottom: 10px
+.cart-item-delete
+  margin-top: 10px

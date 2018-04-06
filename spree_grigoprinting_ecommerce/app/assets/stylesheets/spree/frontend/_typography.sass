@@ -83,6 +83,9 @@ h1, h2, h3
 //     margin: 20px 0 10px 0
 //     text-align: center
 
+.nav-bar
+  text-align: center
+
 .title_number
   text-align: center
 
@@ -144,11 +147,10 @@ label
 #add-to-cart-button
   font-family: $h-font-family
   float: right
-  font-size: $mod_1 * 1rem
-  @include fluid-type($min_width, $max_width, $mod_1*$mod_1 *$min_font, $mod_2*$mod_2 *$min_font)
+  @include fluid-type($min_width, $max_width, $min_font, $min_font)
   font-weight: 700
   +transition
-  +border-radius(5px)
+  +border-radius($radius)
   border: 1px solid $back-full-text
   &::before
     +transition
@@ -162,7 +164,7 @@ label
     width: 40px
     left: -35px
     border: 1px solid $back-link-button
-    +border-radius(5px)
+    +border-radius($radius)
     color: $back-link-button
     vertical-align:  middle
     padding: 5px
@@ -176,8 +178,62 @@ label
     border-color: $back-full-text
 #product-price
   text-align: right
+.cart_header
+  text-transform: capitalize
+  line-height: 2rem
+  font-weight: 600
+  font-family: $h-font-family
+  div
+    padding-left: 5px
+.line-item
+  h4
+    margin-bottom: auto
+.cart-item-delete
+  text-align: center
+  a
+    color: shade($back-full-text, 25%)
+    &:hover
+      color: shade($back-full-text, 40%)
+.cart-item-total, .cart-item-total-header, .adjustment, .cart-adjustment-header
+  text-align: right
+.cart-item-quantity, .cart-item-quantity-header, .cart-item-pric, .cart-item-price-header
+  text-align: center
+.cart-item-pric, .cart-item-total
+  color: $long-text
+.cart-item-total
+  font-weight: 400
 
+.cart-subtotal, .cart-total
+  text-align: right
+.cart-item-delete
+  text-align: left
+  font-size: 0.8rem
+  @media screen and (min-width: 992px)
+    text-align: center
 $mod_1_btn: 1 // mobile
 $mod_2_btn: 0.98 // desktop
 .button-options
   @include fluid-type($min_width, $max_width, $mod_1_btn*$mod_1_btn *$min_font, $mod_2_btn*$mod_2_btn *$min_font)
+
+.cart_containter
+  position: relative
+  display: inline-block
+  .badge_cart
+    position: absolute
+    left: -41px
+    position:  absolute
+    font-size: .5rem
+    width: 25px
+    height: 25px
+    background:  $back-link-button
+    line-height: 25px
+    +border-radius(50%)
+    color: $back-full-text
+    font-weight:  bold
+    top: -9px
+.cart-info, .account
+  position: relative
+  .glyphicon
+    display: block
+    @media screen and (min-width: 992px)
+      display: inline-block

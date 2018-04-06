@@ -66,5 +66,6 @@ gem 'spree_auth_devise', '~> 3.3'
 gem 'spree_gateway', '~> 3.3'
 gem 'spree_mail_settings', github: 'spree-contrib/spree_mail_settings'
 # mia estensione
+gem 'spree_i18n', github: 'spree-contrib/spree_i18n'
 gem 'spree_grigoprinting_ecommerce', path: '../spree_grigoprinting_ecommerce'
 #gem 'spree_grigoprinting_ecommerce', github: 'grigosoft/spree_grigoprinting_ecommerce'
