@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180404163230) do
+ActiveRecord::Schema.define(version: 20180406154007) do
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
@@ -930,6 +930,7 @@ ActiveRecord::Schema.define(version: 20180404163230) do
     t.string "last_sign_in_ip"
     t.string "login"
     t.integer "ship_address_id"
+    t.integer "bill_address_id"
     t.string "authentication_token"
     t.string "unlock_token"
     t.datetime "locked_at"
@@ -945,6 +946,7 @@ ActiveRecord::Schema.define(version: 20180404163230) do
     t.string "ragione_sociale"
     t.string "piva"
     t.string "cf"
+    t.index ["bill_address_id"], name: "index_spree_users_on_bill_address_id"
     t.index ["deleted_at"], name: "index_spree_users_on_deleted_at"
     t.index ["email"], name: "email_idx_unique", unique: true
     t.index ["ship_address_id"], name: "index_spree_users_on_ship_address_id"
