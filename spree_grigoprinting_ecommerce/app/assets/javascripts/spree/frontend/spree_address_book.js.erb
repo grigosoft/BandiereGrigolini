@@ -3,10 +3,16 @@
 
 (function($) {
   $(document).ready(function(){
-    if($("span#billing_show").length == 1){
+    // inizio con use billing address attivo e il resto nascosto
+    $('#order_use_billing').checked = true;
+    $("#shipping .select_address_shipping").hide();
+    hide_address_form('shipping');
+    $("input.billing_radio").hide();
+    // controllo se esiste un indirizzo di fatturazione e se esiste nascondo campi personalizzati
+    if($(".select_address_billing").length > 0){
       hide_address_form('billing');
     }
-    if ($(".select_address").length > 0) {
+    if ($(".select_address_shipping").length > 0) {
       $('input#order_use_billing').unbind("change");
 
       //hide_address_form('billing');
@@ -18,10 +24,10 @@
 
       $('input#order_use_billing').click(function() {
         if ($(this).is(':checked')) {
-          $("#shipping .select_address").hide();
+          $("#shipping .select_address_shipping").hide();
           hide_address_form('shipping');
         } else {
-          $("#shipping .select_address").show();
+          $("#shipping .select_address_shipping").show();
           if ($("input[name='order[ship_address_id]']:checked").val() == '0') {
             show_address_form('shipping');
           } else {
@@ -30,13 +36,14 @@
         }
       });
 
-      // $("input[name='order[bill_address_id]']:radio").change(function(){
-      //   if ($("input[name='order[bill_address_id]']:checked").val() == '0') {
-      //     show_address_form('billing');
-      //   } else {
-      //     hide_address_form('billing');
-      //   }
-      // });
+// inutile tanto ho nascosto i radio del bill address
+      $("input[name='order[bill_address_id]']:radio").change(function(){
+        if ($("input[name='order[bill_address_id]']:checked").val() == '0') {
+          show_address_form('billing');
+        } else {
+          hide_address_form('billing');
+        }
+      });
 
       $("input[name='order[ship_address_id]']:radio").change(function(){
         if ($("input[name='order[ship_address_id]']:checked").val() == '0') {
