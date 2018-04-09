@@ -9,7 +9,7 @@ Spree::BaseHelper.module_eval do
         text = "<span class='glyphicon glyphicon-shopping-cart'></span> <span>#{text}</span>"
         css_class = 'empty'
       else
-        text = "<span class='glyphicon glyphicon-shopping-cart'></span> <div class='cart_containter'>#{text}<span class='badge_cart'> #{simple_current_order.item_count}</span></div>"
+        text = "<span class='glyphicon glyphicon-shopping-cart cart_containter'><span class='badge_cart badges'> #{simple_current_order.item_count}</span></span> <div class=''>#{text}</div>"
         css_class = 'full'
       end
 

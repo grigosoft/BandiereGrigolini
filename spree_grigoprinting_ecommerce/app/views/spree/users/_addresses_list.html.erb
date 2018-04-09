@@ -22,7 +22,7 @@
       <% spree_current_user.ship_addresses.each do |address| %>
       <tr>
         <td><%= address.to_s.gsub("<br/>", ", ") %>
-            <%= '<h3>indirizzo di default</h3>' if spree_current_user.ship_defaults == address %></td>
+            <%= '<h3>indirizzo di default</h3>'.html_safe if spree_current_user.ship_defaults == address %></td>
         <td>
           <%= link_to Spree.t(:edit), edit_address_path(address) %>&nbsp;
           <%= link_to Spree.t(:remove), address_path(address), method: :delete, confirm: Spree.t(:are_you_sure) %>

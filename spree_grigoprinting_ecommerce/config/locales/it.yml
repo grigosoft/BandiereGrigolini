@@ -3,3 +3,4 @@ it:
     adjustment_labels:
       tax_rates:
         excluding_tax: Tasse escluse
+    my_account: Account
