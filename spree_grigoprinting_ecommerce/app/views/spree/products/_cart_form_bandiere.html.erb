@@ -3,6 +3,8 @@
 
   <%= hidden_field_tag "variant_id", @product.master.id %>
   <%= hidden_field_tag "prodotto_personalizzato", "bandiera_personalizzata" %>
+  <%= hidden_field_tag "orientamento", 'nil' %>
+  <%= hidden_field_tag "finitura", "nil" %>
 
   <% if @product.price_in(current_currency) && !@product.price.nil? %>
     <div data-hook="product_price" class="col-md-12 ">
@@ -113,13 +115,13 @@
           <div class="col-md-9">
             <div class="selezione_orientamento row-form">
               <div class="col-xs-6 col-sm-3">
-                <div class="button-options scelta_orientamento orizzontale" role="button">
+                <div id="btn_orizzontale" class="button-options scelta_orientamento orizzontale" role="button">
                   <%= image_tag("bandiera_personalizzata/horizontal.svg", alt: "Bandiera personalizzata Orizzontale") %>
                   <p>Orizzontale</p>
                 </div>
               </div>
               <div class="col-xs-6 col-sm-3">
-                <div class="button-options scelta_orientamento verticale" role="button">
+                <div id="btn_verticale" class="button-options scelta_orientamento verticale" role="button">
                   <%= image_tag("bandiera_personalizzata/vertical.svg", alt: "Bandiera personalizzata Verticale") %>
                   <p>Verticale</p>
                 </div>
@@ -145,7 +147,7 @@
           </div>
         </div>
         <hr>
-        <div class="finitura_lato_asta row">
+        <div class="att_orizzontale att_verticale finitura_lato_asta row">
           <div class="col-md-3">
             <%= label_tag(:lato_asta, "Seleziona lato asta") %>
           </div>
@@ -154,21 +156,21 @@
           </div>
         </div>
         <hr>
-        <div class="scelta_finitura row">
+        <div class="att_orizzontale scelta_finitura_lato_asta row">
           <div class="col-md-3">
             <%= label_tag(:seleziona_finitura, "Seleziona finitura")%>
           </div>
           <div class="col-md-9">
             <div class="row-form">
               <div class="col-xs-6 col-sm-3">
-                <div class="button-options finitura_manica " role="button">
+                <div id="btn_manica" class="button-options scelta_finitura_lato_asta" role="button">
                   <!--nascondo se verticale-->
                   <%= image_tag("bandiera_personalizzata/manica.svg", alt: "Bandiera personalizzata con manica lato asta") %>
                   <p>Manica</p>
                 </div>
               </div>
               <div class="col-xs-6 col-sm-3">
-                <div class="button-options finitura_fettuccia" role="button">
+                <div id="btn_fettuccia" class="button-options scelta_finitura_lato_asta" role="button">
                   <!--nascondo se orizzontale-->
                   <%= image_tag("bandiera_personalizzata/fettuccia.svg", alt: "Bandiera personalizzata con fettuccia di rinforzo") %>
                   <p>Fettuccia</p>
@@ -184,7 +186,7 @@
             </div>
           </div>
         </div>
-        <div class="scelta_finitura_specifica specifica_manica row">
+        <div class="att_orizzontale att_manica scelta_tipo_manica scelta_finitura_specifica specifica_manica row">
           <!-- Nascosta se fettuccia -->
           <div class="col-md-3">
             <%= label_tag(:seleziona_tipo_manica, "Seleziona tipo manica")%>
@@ -192,13 +194,13 @@
           <div class="col-md-9">
             <div class="row-form">
               <div class="col-xs-6 col-sm-3">
-                <a href="#chiusa" class="button-options manica_chiusa " role="button" data-toggle="collapse" aria-expanded="false" aria-controls="chiusa">
+                <a href="#chiusa" class="button-options scelta_tipo_manica manica_chiusa" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="chiusa">
                   <%= image_tag("bandiera_personalizzata/manica_chiusa.svg", alt: "Bandiera orizzontale con manica chiusa e laccetto sotto") %>
                   <p>Chiusa</p>
                 </a>
               </div>
               <div class="col-xs-6 col-sm-3">
-                <a href="#aperta" class="button-options selezione manica_aperta " role="button" data-toggle="collapse" aria-expanded="false" aria-controls="aperta">
+                <a href="#aperta" class="button-options scelta_tipo_manica manica_aperta" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="aperta">
                   <%= image_tag("bandiera_personalizzata/manica_aperta.svg", alt: "Bandiera orizzontale con manica aperta, laccetto sotto e laccetto sopra") %>
                   <p>Aperta</p>
                 </a>
@@ -216,16 +218,16 @@
             <div class="col-md-12 alert-info collapse" id="aperta">
               <a class="btn" href="#aperta" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="aperta">x</a>
               <ul>
-                <li>Manica aperta sopra</li>
+                <li>Manica aperta sopra e sotto</li>
                 <li>Laccetti sopra</li>
                 <li>Laccetti sotto</li>
               </ul>
             </div>
           </div>
         </div>
-        <div class="scelta_finitura_specifica specifica_fettuccia row">
+        <div class="att_verticale att_orizzontale att_fettuccia scelta_finitura_specifica specifica_fettuccia row">
           <!-- Nascosta se manica -->
-          <div class="col-md-12">
+          <div class="att_verticale col-md-12">
             <div class="row">
               <div class="col-md-3">
                 <%= label_tag(:manica_superiore, "Vuoi la manica superiore")%>
@@ -244,35 +246,35 @@
             </div>
           </div>
 
-          <div class="col-md-12">
+          <div class="att_verticale att_orizzontale col-md-12">
             <div class="row">
               <div class="col-md-3">
                 <%= label_tag(:seleziona_tipo_fettuccia, "Seleziona finitura fettuccia")%>
               </div>
               <div class="col-md-9">
                 <div class="row-form">
-                  <div class="col-xs-6 col-sm-3">
-                    <a href="#cappio" class="button-options selezione cappio_cordino" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="cappio">
+                  <div class="att_orizzontale col-xs-6 col-sm-3">
+                    <a href="#cappio" class="button-options scelta_acessori_fettuccia selezione cappio_cordino" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="cappio">
                       <!-- nascosto se verticale -->
                       <%= image_tag("bandiera_personalizzata/cappio.svg", alt: "Bandiera con fettuccia di rinforzo, cappio superiore e cordino inferiore") %>
                       <p>Cappio e cordino</p>
                     </a>
                   </div>
                   <div class="col-xs-6 col-sm-3 correct_occhielli">
-                    <a href="#occhielli" class="button-options selezione occhielli" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="occhielli">
+                    <a href="#occhielli" class="button-options scelta_acessori_fettuccia selezione occhielli" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="occhielli">
 
                       <%= image_tag("bandiera_personalizzata/occhielli.svg", alt: "Bandiera con fettuccia di rinforzo e occhielli") %>
                       <p>Occhielli</p>
                     </a>
                   </div>
                   <div class="col-xs-6 col-sm-3">
-                    <a href="#moschettoni" class="button-options selezione moschettoni" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="moschettoni">
+                    <a href="#moschettoni" class="button-options scelta_acessori_fettuccia selezione moschettoni" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="moschettoni">
                       <%= image_tag("bandiera_personalizzata/moschettoni.svg", alt: "Bandiera con fettuccia di rinforzo e moschettoni") %>
                       <p>Moschettoni</p>
                     </a>
                   </div>
                   <div class="col-xs-6 col-sm-3">
-                    <a href="#laccetti" class="button-options selezione laccetti" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="laccetti">
+                    <a href="#laccetti" class="button-options scelta_acessori_fettuccia selezione laccetti" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="laccetti">
                       <%= image_tag("bandiera_personalizzata/laccetti.svg", alt: "Bandiera con fettuccia di rinforzo e laccetti") %>
                       <p>Laccetti</p>
                     </a>
