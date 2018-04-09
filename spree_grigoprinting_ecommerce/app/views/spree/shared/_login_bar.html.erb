@@ -1,7 +1,7 @@
 <% if spree_current_user %>
 <li id="link-to-login" class="col-md-6 col-sm-9 h_sub_menu">
   <a href="<%= spree.account_path %>" class="h_header_menu account">
-    <span class="glyphicon glyphicon-user"></span>
+    <span class="glyphicon glyphicon-user"><span class='badge_account badges'>1</span></span>
     <%= Spree.t(:my_account) %>
   </a>
     <div class="hover_menu">

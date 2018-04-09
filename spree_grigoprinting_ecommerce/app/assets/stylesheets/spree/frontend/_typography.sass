@@ -218,19 +218,23 @@ $mod_2_btn: 0.98 // desktop
 .cart_containter
   position: relative
   display: inline-block
-  .badge_cart
-    position: absolute
-    left: -41px
-    position:  absolute
-    font-size: .5rem
-    width: 25px
-    height: 25px
+.badges
+  position: absolute
+  left: -20px
+  position:  absolute
+  font-family: $text_font_family
+  font-size: .5rem
+  width: 20px
+  height: 20px
+  line-height: 20px
+  color: $back-full-text
+  +border-radius(50%)
+  font-weight:  bold
+  top: -16px
+  &.badge_cart
     background:  $back-link-button
-    line-height: 25px
-    +border-radius(50%)
-    color: $back-full-text
-    font-weight:  bold
-    top: -9px
+  &.badge_account
+    background: $allert
 .cart-info, .account
   position: relative
   .glyphicon
