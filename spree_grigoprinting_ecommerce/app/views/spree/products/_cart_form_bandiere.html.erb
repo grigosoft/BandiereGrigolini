@@ -5,6 +5,7 @@
   <%= hidden_field_tag "prodotto_personalizzato", "bandiera_personalizzata" %>
   <%= hidden_field_tag "orientamento", 'nil' %>
   <%= hidden_field_tag "finitura", "nil" %>
+  <%= hidden_field_tag "more_options", "{}" %>
 
   <% if @product.price_in(current_currency) && !@product.price.nil? %>
     <div data-hook="product_price" class="col-md-12 ">
@@ -129,8 +130,8 @@
             </div>
           </div>
         </div>
-        <hr>
-        <div class="base row">
+        <hr class="att_verticale att_orizzontale">
+        <div class="att_verticale att_orizzontale base row">
           <div class="col-md-3">
             <%= label_tag(:base, "Base") %>
           </div>
@@ -138,7 +139,7 @@
             <%= number_field_tag :base, 150, class: 'title form-control', min: 30, step: 5 %>
           </div>
         </div>
-        <div class="altezza row">
+        <div class="att_verticale att_orizzontale altezza row">
           <div class="col-md-3">
             <%= label_tag(:altezza, "Altezza") %>
           </div>
@@ -146,8 +147,8 @@
             <%= number_field_tag :altezza, 150, class: 'title form-control', min: 30, step: 5 %>
           </div>
         </div>
-        <hr>
-        <div class="att_orizzontale att_verticale finitura_lato_asta row">
+        <hr class="att_verticale att_orizzontale">
+        <div class="att_verticale att_orizzontale finitura_lato_asta row">
           <div class="col-md-3">
             <%= label_tag(:lato_asta, "Seleziona lato asta") %>
           </div>
@@ -155,7 +156,7 @@
             <%= select_tag "Lato asta", options_for_select(["Lato sinistro", "Lato destro"], "Lato sinistro"), class: "form-control" %>
           </div>
         </div>
-        <hr>
+        <hr class="att_verticale att_orizzontale">
         <div class="att_orizzontale scelta_finitura_lato_asta row">
           <div class="col-md-3">
             <%= label_tag(:seleziona_finitura, "Seleziona finitura")%>

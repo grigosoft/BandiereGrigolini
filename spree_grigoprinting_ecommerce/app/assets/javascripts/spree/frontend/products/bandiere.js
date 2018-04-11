@@ -30,6 +30,28 @@ function showPartialFromData(){
     $('.att_fettuccia').addClass('hidden');
   }
 }
+function showPartialFromState(stato){
+  var visibili = stato.split('.');
+  // nascondo tutti
+  $('.hide_all').addClass('hidden');
+  // mostro
+  for(att in visibili){
+    $('show_'+att).removeClass('hidden');
+  }
+}
+
+function setInMoreOptions(comando){
+  var moreOptionsTag = $('more_options');
+  var moreOptionsValue = JSON.parse(moreOptionsTag.val());
+  var attributi = comando.split('.');
+  var navigatore = moreOptionsValue;
+  for(att in attributi){
+    next = navigatore[att];
+    if(next == null){
+
+    }
+  }
+}
 
 $(document).ready(function(){
   // bind gruppi di scelta
