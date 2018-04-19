@@ -51,7 +51,7 @@ function isFinitureSelezionate(){
   // trovo componente show_state e prendo attributo completed
 }
 function setInMoreOptions(active){
-
+  
 }
 // funzioni di salvataggio dati nel campo more options
 // var optionIniector;

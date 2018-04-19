@@ -39,24 +39,22 @@ var SidebarMenuEffects = (function() {
 			};
 
 		buttons.forEach( function( el, i ) {
-			var effect = el.getAttribute( 'data-effect' );
 
 			el.addEventListener( eventtype, function( ev ) {
 				ev.stopPropagation();
 				ev.preventDefault();
-				container.className = 'st-container'; // clear
-				classie.toggle( container, effect );
-				setTimeout( function() {
-          if (classie.has(container, 'st-menu-open')) {
-            alert("prova");
-            resetMenu();
-          }else{
-            classie.toggle( container, 'st-menu-open' );
-          }
-				}, 25 );
+				// container.className = 'st-container'; // clear
+        if($('#st-container').hasClass('st-menu-open')){
+          resetMenu();
+        } else {
+  				classie.add( container, "st-effect-1" );
+  				setTimeout( function() {
+            classie.add( container, 'st-menu-open' );
+  				}, 25 );
 
-				document.addEventListener( eventtype, bodyClickFn );
-				document.addEventListener( eventtype, resetClickFn );
+  				document.addEventListener( eventtype, bodyClickFn );
+  				document.addEventListener( eventtype, resetClickFn );
+        }
 			});
 		} );
 
