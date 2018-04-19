@@ -57,7 +57,6 @@ var SidebarMenuEffects = (function() {
         }
 			});
 		} );
-
 	}
 
 	init();
