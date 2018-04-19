@@ -37,13 +37,13 @@
       });
 
 // inutile tanto ho nascosto i radio del bill address
-      $("input[name='order[bill_address_id]']:radio").change(function(){
-        if ($("input[name='order[bill_address_id]']:checked").val() == '0') {
-          show_address_form('billing');
-        } else {
-          hide_address_form('billing');
-        }
-      });
+      // $("input[name='order[bill_address_id]']:radio").change(function(){
+      //   if ($("input[name='order[bill_address_id]']:checked").val() == '0') {
+      //     show_address_form('billing');
+      //   } else {
+      //     hide_address_form('billing');
+      //   }
+      // });
 
       $("input[name='order[ship_address_id]']:radio").change(function(){
         if ($("input[name='order[ship_address_id]']:checked").val() == '0') {

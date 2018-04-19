@@ -23,5 +23,5 @@ Spree::Core::Engine.add_routes do
   # post 'user/modifica_password' => 'users#modifica_password_save'
   # post 'user/modifica_email' => 'users#modifica_email_save'
   # post 'user/modifica_dati_azienda' => 'users#modifica_dati_azienda_save'
-  
+
 end
