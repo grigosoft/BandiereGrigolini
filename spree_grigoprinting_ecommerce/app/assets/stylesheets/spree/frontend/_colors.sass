@@ -2,72 +2,6 @@ html, body
   background: tint($back-full-text, 80%)
 a
   color: $link-back-full
-#spree-header
-  background-color: inherit
-  border-bottom: 1px solid $link-back-full
-  #header
-    background: inherit
-  .nav
-    a:focus
-      background: none
-      border: none
-    li
-      & > a
-        +transition
-        +border-radius($radius)
-        line-height: inherit
-        &::after
-          content: ''
-          display: block
-          width: 0
-          height: 2px
-          background-color: $link-back-full
-          +transition-property(width)
-          +transition-duration(0.2s)
-          &:focus
-            background: none
-      &:hover
-        & > a
-          color: $back-link-button
-        & > a::after
-          width: 100%
-
-.cart_header
-  background: $link-back-full
-  color: $back-full-text
-
-.hover_menu
-  display: none
-  z-index: 1000
-  width: 60%
-  background: $back-full-text
-  border: 1px solid $back-link-button
-  left: 20%
-  a
-    font-size: 0.8rem
-
-
-.h_header_menu:hover + .hover_menu
-  display: block
-
-.h_sub_menu
-  position: relative
-  .hover_menu
-    position: absolute
-    &:hover
-      display: block
-
-.h_sub_menu:hover > a
-  display: block
-
-#spree-header .nav a:hover, #spree-header .nav a:focus
-  background: none
-
-nav a
-#spree-header .nav a
-  color: $long-text
-  &.btn-default
-    color: $back-full-text
 
 .title_section
   color: $back-full-text
@@ -180,3 +114,6 @@ hr
       padding-left: 10px
   .bg-danger
     display: block
+.selezionato
+  border: 1px solid $back-link-button
+  +box-shadow(0 0 5px tint($back-link-button, 20%))

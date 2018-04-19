@@ -1,15 +1,13 @@
-<nav class="navbar col-md-4 col-sm-5" id="top-nav-bar">
-  <ul id="nav-bar" class="nav navbar-nav navbar-right" data-hook>
+
     <%= render partial: 'spree/shared/login_bar' %>
-    <li class="col-sm-6" id="link-to-cart" data-hook>
+    <div id="link-to-cart" class="nav_bar" data-hook>
       <noscript>
         <%= link_to_cart %>
       </noscript>
       &nbsp;
-    </li>
+    </div>
     <script>Spree.fetch_cart()</script>
-  </ul>
-</nav>
+
       <!-- <nav class="col-md-6">
         <div id="main-nav-bar" class="navbar">
           <ul class="nav navbar-nav" data-hook>

@@ -3,3 +3,4 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require dropzone
+//= require modernizr.custom.js

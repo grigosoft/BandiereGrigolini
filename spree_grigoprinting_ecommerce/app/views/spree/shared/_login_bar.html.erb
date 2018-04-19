@@ -1,22 +1,20 @@
-<% if spree_current_user %>
-<li id="link-to-login" class="col-md-6 col-sm-9 h_sub_menu">
-  <a href="<%= spree.account_path %>" class="h_header_menu account">
-    <span class="glyphicon glyphicon-user"><span class='badge_account badges'>1</span></span>
-    <%= Spree.t(:my_account) %>
-  </a>
-    <div class="hover_menu">
-      <%= render partial: 'spree/shared/my_account_intern' %>
-  </div>
-</li>
-  <!-- <li><%= link_to Spree.t(:logout), spree.logout_path %></li> -->
-<% else %>
-  <li id="link-to-login" class="col-md-6 col-sm-9 h_sub_menu">
-    <a href="<%= spree.login_path %>" class="h_header_menu account">
-      <span class="glyphicon glyphicon-user"></span>
-      <%= Spree.t(:login) %>
+<div class="login nav_bar">
+  <% if spree_current_user %>
+    <a id="link-to-login" class="h_sub_menu" href="<%= spree.account_path %>" class="h_header_menu account">
+      <span class="glyphicon glyphicon-user"><span class='badge_account badges'>1</span></span>
+       <div class=''><%= Spree.t(:my_account) %></div>
     </a>
-    <div class="hover_menu">
-      <%= render partial: 'spree/shared/my_account_intern' %>
-    </div>
-  </li>
-<% end %>
+      <div class="hover_menu">
+        <%= render partial: 'spree/shared/my_account_intern' %>
+      </div>
+    <!-- <li><%= link_to Spree.t(:logout), spree.logout_path %></li> -->
+  <% else %>
+      <a id="link-to-login" class="h_sub_menu" href="<%= spree.login_path %>" class="h_header_menu account">
+        <span class="glyphicon glyphicon-user"></span>
+        <%= Spree.t(:login) %>
+      </a>
+      <div class="hover_menu">
+        <%= render partial: 'spree/shared/my_account_intern' %>
+      </div>
+  <% end %>
+</div>
