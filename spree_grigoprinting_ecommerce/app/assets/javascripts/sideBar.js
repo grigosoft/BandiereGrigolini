@@ -45,16 +45,10 @@ var SidebarMenuEffects = (function() {
 				ev.stopPropagation();
 				ev.preventDefault();
 				container.className = 'st-container'; // clear
-				classie.toggle( container, effect );
+				classie.add( container, effect );
 				setTimeout( function() {
-          if (classie.has(container, 'st-menu-open')) {
-            alert("prova");
-            resetMenu();
-          }else{
-            classie.toggle( container, 'st-menu-open' );
-          }
+					classie.add( container, 'st-menu-open' );
 				}, 25 );
-
 				document.addEventListener( eventtype, bodyClickFn );
 				document.addEventListener( eventtype, resetClickFn );
 			});

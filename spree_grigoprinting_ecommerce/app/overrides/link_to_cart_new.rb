@@ -6,7 +6,7 @@ Spree::BaseHelper.module_eval do
       css_class = nil
 
       if simple_current_order.nil? || simple_current_order.item_count.zero?
-        text = "<span class='glyphicon glyphicon-shopping-cart'></span> <span>#{text}</span>"
+        text = "<span class='glyphicon glyphicon-shopping-cart'></span> <div>#{text}</div>"
         css_class = 'empty'
       else
         text = "<span class='glyphicon glyphicon-shopping-cart cart_containter'><span class='badge_cart badges'> #{simple_current_order.item_count}</span></span> <div class=''>#{text}</div>"

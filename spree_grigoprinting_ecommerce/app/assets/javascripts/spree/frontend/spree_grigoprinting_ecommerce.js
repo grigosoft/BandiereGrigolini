@@ -3,9 +3,5 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require dropzone
-<<<<<<< HEAD
-//= require modernizr.custom.js
-=======
 
-//= require_tree ./products
->>>>>>> 8ecb30d8f56898f342f2222de18c002ccfc10579
+//= require modernizr.custom.js
