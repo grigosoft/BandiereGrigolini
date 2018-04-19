@@ -3,9 +3,9 @@
 
   <%= hidden_field_tag "variant_id", @product.master.id %>
   <%= hidden_field_tag "prodotto_personalizzato", "bandiera_personalizzata" %>
-  <%= hidden_field_tag "orientamento", 'nil' %>
-  <%= hidden_field_tag "finitura", "nil" %>
-  <%= hidden_field_tag "more_options", "{}" %>
+  <%= hidden_field_tag "show_state_old", '' %>
+  <%= hidden_field_tag "show_state", '' %>
+  <%= hidden_field_tag "more_options", '{}' %>
 
   <% if @product.price_in(current_currency) && !@product.price.nil? %>
     <div data-hook="product_price" class="col-md-12 ">
@@ -44,25 +44,25 @@
           <div class="col-md-9">
             <div class="row-form">
               <div class="col-xs-6 col-sm-3">
-                <a href="#nautico" class="button-options selezione scelta_tessuto" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="nautico">
+                <a href="#nautico" class="button-options selezione scelta_tessuto" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="nautico" data-product-state="1" data-product-options="nautico" data-product-selection="tessuto">
                   <%= image_tag("bandiera_personalizzata/nautico.png", alt: "Tessuto nautico 110g/m") %>
                   <p>Nautico</p>
                 </a>
               </div>
               <div class="col-xs-6 col-sm-3">
-                <a href="#ponge" class="button-options selezione scelta_tessuto" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="ponge">
+                <a href="#ponge" class="button-options selezione scelta_tessuto" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="ponge" data-product-state="1" data-product-options="pongè" data-product-selection="tessuto">
                   <%= image_tag("bandiera_personalizzata/ponge.png", alt: "Tessuto Ponge 90g/m") %>
                   <p>Pong&egrave;</p>
                 </a>
               </div>
               <div class="col-xs-6 col-sm-3">
-                <a href="#forato" class="button-options selezione scelta_tessuto" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="forato">
+                <a href="#forato" class="button-options selezione scelta_tessuto" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="forato" data-product-state="1" data-product-options="forato" data-product-selection="tessuto">
                   <%= image_tag("bandiera_personalizzata/forato.png", alt: "Tessuto forato 110g/m") %>
                   <p>Passavento</p>
                 </a>
               </div>
               <div class="col-xs-6 col-sm-3">
-                <a href="#retato" class="button-options selezione scelta_tessuto" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="retato">
+                <a href="#retato" class="button-options selezione scelta_tessuto" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="retato" data-product-state="1" data-product-options="retato" data-product-selection="tessuto">
                   <%= image_tag("bandiera_personalizzata/retato.png", alt: "Tessuto retato 110g/m") %>
                   <p>Rete</p>
                 </a>
@@ -108,30 +108,30 @@
             </div>
           </div>
         </div>
-        <hr>
-        <div class="orientamento row">
+        <hr data-need-show="nautico pongè forato retato">
+        <div class="row" data-need-show="nautico pongè forato retato"> <!-- orientamento -->
           <div class="col-md-3">
             <%= label_tag(:formato, "Formato") %>
           </div>
           <div class="col-md-9">
             <div class="selezione_orientamento row-form">
               <div class="col-xs-6 col-sm-3">
-                <div id="btn_orizzontale" class="button-options scelta_orientamento orizzontale" role="button">
+                <a id="btn_orizzontale" class="button-options scelta_orientamento orizzontale" role="button" data-product-state="2" data-product-options="orizzontale" data-product-selection="orientamento">
                   <%= image_tag("bandiera_personalizzata/horizontal.svg", alt: "Bandiera personalizzata Orizzontale") %>
                   <p>Orizzontale</p>
-                </div>
+                </a>
               </div>
               <div class="col-xs-6 col-sm-3">
-                <div id="btn_verticale" class="button-options scelta_orientamento verticale" role="button">
+                <a id="btn_verticale" class="button-options scelta_orientamento verticale" role="button" data-product-state="2" data-product-options="verticale.fettuccia" data-product-selection="orientamento">
                   <%= image_tag("bandiera_personalizzata/vertical.svg", alt: "Bandiera personalizzata Verticale") %>
                   <p>Verticale</p>
-                </div>
+                </a>
               </div>
             </div>
           </div>
         </div>
-        <hr class="att_verticale att_orizzontale">
-        <div class="att_verticale att_orizzontale base row">
+        <hr data-need-show="orizzontale verticale">
+        <div class="row" data-need-show="orizzontale verticale"> <!-- base -->
           <div class="col-md-3">
             <%= label_tag(:base, "Base") %>
           </div>
@@ -139,7 +139,7 @@
             <%= number_field_tag :base, 150, class: 'title form-control', min: 30, step: 5 %>
           </div>
         </div>
-        <div class="att_verticale att_orizzontale altezza row">
+        <div class="row" data-need-show="orizzontale verticale"> <!-- altezza -->
           <div class="col-md-3">
             <%= label_tag(:altezza, "Altezza") %>
           </div>
@@ -147,8 +147,8 @@
             <%= number_field_tag :altezza, 150, class: 'title form-control', min: 30, step: 5 %>
           </div>
         </div>
-        <hr class="att_verticale att_orizzontale">
-        <div class="att_verticale att_orizzontale finitura_lato_asta row">
+        <hr data-need-show="orizzontale verticale">
+        <div class="row" data-need-show="orizzontale verticale"> <!-- lato asta -->
           <div class="col-md-3">
             <%= label_tag(:lato_asta, "Seleziona lato asta") %>
           </div>
@@ -156,29 +156,29 @@
             <%= select_tag "Lato asta", options_for_select(["Lato sinistro", "Lato destro"], "Lato sinistro"), class: "form-control" %>
           </div>
         </div>
-        <hr class="att_verticale att_orizzontale">
-        <div class="att_orizzontale scelta_finitura_lato_asta row">
+        <hr data-need-show="orizzontale verticale">
+        <div class="scelta_finitura_lato_asta row" data-need-show="orizzontale"> <!-- scelta_finitura_lato_asta -->
           <div class="col-md-3">
             <%= label_tag(:seleziona_finitura, "Seleziona finitura")%>
           </div>
           <div class="col-md-9">
             <div class="row-form">
               <div class="col-xs-6 col-sm-3">
-                <div id="btn_manica" class="button-options scelta_finitura_lato_asta" role="button">
+                <div id="btn_manica" class="button-options scelta_finitura_lato_asta" role="button" data-product-state="3" data-product-options="manica" data-product-selection="finitura_lato_asta">
                   <!--nascondo se verticale-->
                   <%= image_tag("bandiera_personalizzata/manica.svg", alt: "Bandiera personalizzata con manica lato asta") %>
                   <p>Manica</p>
                 </div>
               </div>
               <div class="col-xs-6 col-sm-3">
-                <div id="btn_fettuccia" class="button-options scelta_finitura_lato_asta" role="button">
+                <div id="btn_fettuccia" class="button-options scelta_finitura_lato_asta" role="button" data-product-state="3" data-product-options="fettuccia" data-product-selection="finitura_lato_asta">
                   <!--nascondo se orizzontale-->
                   <%= image_tag("bandiera_personalizzata/fettuccia.svg", alt: "Bandiera personalizzata con fettuccia di rinforzo") %>
                   <p>Fettuccia</p>
                 </div>
               </div>
               <div class="col-xs-6 col-sm-3 hidden">
-                <div class="button-options finitura_personalizzata" role="button">
+                <div class="button-options finitura_personalizzata" role="button" data-product-state="3" data-product-options="personalizzata" data-product-selection="finitura_lato_asta">
                   <!-- sempre visibile -->
                   <img src="" alt="personalizzata">
                   <p>Personalizzata</p>
@@ -187,7 +187,7 @@
             </div>
           </div>
         </div>
-        <div class="att_orizzontale att_manica scelta_tipo_manica scelta_finitura_specifica specifica_manica row">
+        <div class="row" data-need-show="manica">
           <!-- Nascosta se fettuccia -->
           <div class="col-md-3">
             <%= label_tag(:seleziona_tipo_manica, "Seleziona tipo manica")%>
@@ -195,13 +195,13 @@
           <div class="col-md-9">
             <div class="row-form">
               <div class="col-xs-6 col-sm-3">
-                <a href="#chiusa" class="button-options scelta_tipo_manica manica_chiusa" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="chiusa">
+                <a href="#chiusa" class="button-options scelta_tipo_manica manica_chiusa" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="chiusa" data-product-state="4" data-product-options="chiusa" data-product-selection="manica">
                   <%= image_tag("bandiera_personalizzata/manica_chiusa.svg", alt: "Bandiera orizzontale con manica chiusa e laccetto sotto") %>
                   <p>Chiusa</p>
                 </a>
               </div>
               <div class="col-xs-6 col-sm-3">
-                <a href="#aperta" class="button-options scelta_tipo_manica manica_aperta" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="aperta">
+                <a href="#aperta" class="button-options scelta_tipo_manica manica_aperta" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="aperta" data-product-state="4" data-product-options="aperta" data-product-selection="manica">
                   <%= image_tag("bandiera_personalizzata/manica_aperta.svg", alt: "Bandiera orizzontale con manica aperta, laccetto sotto e laccetto sopra") %>
                   <p>Aperta</p>
                 </a>
@@ -226,15 +226,15 @@
             </div>
           </div>
         </div>
-        <div class="att_verticale att_orizzontale att_fettuccia scelta_finitura_specifica specifica_fettuccia row">
+        <div class="row">
           <!-- Nascosta se manica -->
-          <div class="att_verticale col-md-12">
+          <div class="col-md-12" data-need-show="verticale.fettuccia">
             <div class="row">
               <div class="col-md-3">
-                <%= label_tag(:manica_superiore, "Vuoi la manica superiore")%>
+                <%= label_tag(:manica_superiore, "Vuoi le maniche nei lati corti")%>
               </div>
               <div class="col-md-3">
-                <%= select_tag "Manica superiore", options_for_select(["Si", "No"], "Si"), class: "form-control" %>
+                <%= select_tag "Manica superiore", options_for_select(["No", "Solo sopra", "Solo sotto", "Sopra e sotto"], "No"), class: "form-control" %>
               </div>
             </div>
             <div class="row">
@@ -247,35 +247,35 @@
             </div>
           </div>
 
-          <div class="att_verticale att_orizzontale col-md-12">
+          <div class="col-md-12" data-need-show="fettuccia">
             <div class="row">
               <div class="col-md-3">
                 <%= label_tag(:seleziona_tipo_fettuccia, "Seleziona finitura fettuccia")%>
               </div>
               <div class="col-md-9">
                 <div class="row-form">
-                  <div class="att_orizzontale col-xs-6 col-sm-3">
-                    <a href="#cappio" class="button-options scelta_acessori_fettuccia selezione cappio_cordino" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="cappio">
+                  <div class="col-xs-6 col-sm-3" data-need-show="orizzontale.fettuccia">
+                    <a href="#cappio" class="button-options scelta_acessori_fettuccia selezione cappio_cordino" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="cappio" data-product-state="4" data-product-options="cappio" data-product-selection="fettuccia">
                       <!-- nascosto se verticale -->
                       <%= image_tag("bandiera_personalizzata/cappio.svg", alt: "Bandiera con fettuccia di rinforzo, cappio superiore e cordino inferiore") %>
                       <p>Cappio e cordino</p>
                     </a>
                   </div>
                   <div class="col-xs-6 col-sm-3 correct_occhielli">
-                    <a href="#occhielli" class="button-options scelta_acessori_fettuccia selezione occhielli" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="occhielli">
+                    <a href="#occhielli" class="button-options scelta_acessori_fettuccia selezione occhielli" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="occhielli" data-product-state="4" data-product-options="occhielli" data-product-selection="fettuccia">
 
                       <%= image_tag("bandiera_personalizzata/occhielli.svg", alt: "Bandiera con fettuccia di rinforzo e occhielli") %>
                       <p>Occhielli</p>
                     </a>
                   </div>
                   <div class="col-xs-6 col-sm-3">
-                    <a href="#moschettoni" class="button-options scelta_acessori_fettuccia selezione moschettoni" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="moschettoni">
+                    <a href="#moschettoni" class="button-options scelta_acessori_fettuccia selezione moschettoni" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="moschettoni" data-product-state="4" data-product-options="moschettoni" data-product-selection="fettuccia">
                       <%= image_tag("bandiera_personalizzata/moschettoni.svg", alt: "Bandiera con fettuccia di rinforzo e moschettoni") %>
                       <p>Moschettoni</p>
                     </a>
                   </div>
                   <div class="col-xs-6 col-sm-3">
-                    <a href="#laccetti" class="button-options scelta_acessori_fettuccia selezione laccetti" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="laccetti">
+                    <a href="#laccetti" class="button-options scelta_acessori_fettuccia selezione laccetti" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="laccetti" data-product-state="4" data-product-options="laccetti" data-product-selection="fettuccia">
                       <%= image_tag("bandiera_personalizzata/laccetti.svg", alt: "Bandiera con fettuccia di rinforzo e laccetti") %>
                       <p>Laccetti</p>
                     </a>
