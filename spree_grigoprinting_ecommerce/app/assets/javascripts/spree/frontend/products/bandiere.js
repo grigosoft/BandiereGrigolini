@@ -26,13 +26,13 @@ function showPartialFromState(){
   }
   // nascondo fino al punto in comune
   for(var i=visibiliOld.length-1; i>=comPoint; i--){
-    $("div[data-need-show~='{}']".replace('{}',visibiliOld[i])).addClass('hidden');
+    $("[data-need-show~='{}']".replace('{}',visibiliOld[i])).addClass('hidden');
     if(i>0)
       $("div[data-need-show~='{}']".replace('{}',visibiliOld[i-1]+'.'+visibiliOld[i])).addClass('hidden');
   }
   // mostro nuovi
   for(var i=comPoint; i<visibili.length; i++){
-    $("div[data-need-show~='{}']".replace('{}',visibili[i])).removeClass('hidden');
+    $("[data-need-show~='{}']".replace('{}',visibili[i])).removeClass('hidden');
     if(i>0)
       $("div[data-need-show~='{}']".replace('{}',visibili[i-1]+'.'+visibili[i])).removeClass('hidden');
   }
@@ -51,7 +51,7 @@ function isFinitureSelezionate(){
   // trovo componente show_state e prendo attributo completed
 }
 function setInMoreOptions(active){
-  
+
 }
 // funzioni di salvataggio dati nel campo more options
 // var optionIniector;

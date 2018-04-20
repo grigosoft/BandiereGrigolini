@@ -1,0 +1,14 @@
+<% account_link = [{text:"Modifica dati personali", url:"users", icon:"user", current: :utente},
+                   {text:"Modifica indirizzi", url:"addresses", icon:"road", current: :indirizzi},
+                   {text:"Metodi di pagamento", url:"payments", icon:"credit-card", current: :pagamento},
+                   {text:"Ordini in corso", url:"orders", icon:"file", current: :ordini},
+                   {text:"Ordini completi", url:"orders", icon:"success", current: :ordini_completi}]%>
+
+
+<ul class="nav nav-pills nav-stacked">
+  <% account_link.each do |voce| %>
+    <li<%== ' class="active"' if current == voce[:current] %>>
+      <%= link_to_with_icon voce[:icon], voce[:text], voce[:url] %>
+    </li>
+  <% end %>
+</ul>

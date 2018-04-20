@@ -2,15 +2,19 @@ module Spree
   UsersController.class_eval do
     before_action :ceck_old_password, only: :update
 
-    def modifica_password
-      load_user
-    end
+    # def modifica_password
+    #   load_user
+    # end
+    #
+    # def modifica_email
+    #   load_user
+    # end
+    #
+    # def modifica_dati_azienda
+    #   load_user
+    # end
 
-    def modifica_email
-      load_user
-    end
-
-    def modifica_dati_azienda
+    def profilo_utente
       load_user
     end
 
