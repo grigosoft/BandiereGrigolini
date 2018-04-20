@@ -18,6 +18,15 @@ module Spree
       load_user
     end
 
+    def profilo_indirizzi
+      load_user
+    end
+
+    def profilo_ordini_completi
+      load_user
+      @orders = @user.orders
+    end
+
     private
     def user_params
       params.require(:user).permit(Spree::PermittedAttributes.user_attributes,

@@ -1,0 +1,12 @@
+<div class="container" data-hook="account_container">
+  <div class="row">
+    <div class="sidenav col-md-2">
+      <%= render 'spree/users/profilo_tabs', current: :indirizzi %>
+    </div>
+    <div class="sidenav col-md-10">
+      <div class="row">
+        <%= render partial: 'spree/users/addresses_list' %>
+      </div>
+    </div>
+  </div>
+</div>
