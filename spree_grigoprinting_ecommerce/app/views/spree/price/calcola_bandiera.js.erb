@@ -1,1 +1,1 @@
-$("#prezzo").html("<%=@price%>");
+$("div.consegna").html("<%= escape_javascript(render(:partial=>'spree/products/quantity_and_date')).html_safe %>")

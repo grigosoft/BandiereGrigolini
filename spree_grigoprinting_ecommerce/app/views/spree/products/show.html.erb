@@ -39,7 +39,15 @@
           </div>
 
           <div id="cart-form" data-hook="cart_form">
-            <%= render partial: 'cart_form' %>
+            <% if spree.product_path(@product, taxon_id: @taxon.try(:id)).include? "bandiera-personalizzata" %>
+              <%= render partial: "cart_form_bandiere_personalizzate" %>
+            <% elsif spree.product_path(@product, taxon_id: @taxon.try(:id)).include? "bandiere-istituzionali" %>
+              <%= render partial: "cart_form_bandiere_istituzionali" %>
+            <% elsif spree.product_path(@product, taxon_id: @taxon.try(:id)).include? "beach-banner" %>
+              <%= render partial: "cart_form_beach_banner" %>
+            <% else %>
+              <%= render partial: "cart_form" %>
+            <% end %>
           </div>
         </div>
 

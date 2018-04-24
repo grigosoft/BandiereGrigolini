@@ -4,8 +4,8 @@
   <%= hidden_field_tag "variant_id", @product.master.id %>
   <%= hidden_field_tag "prodotto_personalizzato", "bandiera_personalizzata" %>
   <%= hidden_field_tag "show_state_old", '' %>
-  <%= hidden_field_tag "show_state", '' %>
-  <%= hidden_field_tag "more_options", '{}' %>
+  <%= hidden_field_tag "show_state", ''%>
+  <%= hidden_field_tag "more_options",'' %>
 
   <% if @product.price_in(current_currency) && !@product.price.nil? %>
     <div data-hook="product_price" class="col-md-12 ">
@@ -44,25 +44,25 @@
           <div class="col-md-9">
             <div class="row-form">
               <div class="col-xs-6 col-sm-3">
-                <a href="#nautico" class="button-options selezione scelta_tessuto" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="nautico" data-product-state="1" data-product-options="nautico" data-product-selection="tessuto">
+                <a href="#nautico" class="button-options selezione scelta_tessuto" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="nautico" data-product-show="1" data-product-options="nautico" data-product-selection="tessuto">
                   <%= image_tag("bandiera_personalizzata/nautico.png", alt: "Tessuto nautico 110g/m") %>
                   <p>Nautico</p>
                 </a>
               </div>
               <div class="col-xs-6 col-sm-3">
-                <a href="#ponge" class="button-options selezione scelta_tessuto" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="ponge" data-product-state="1" data-product-options="pongè" data-product-selection="tessuto">
+                <a href="#ponge" class="button-options selezione scelta_tessuto" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="ponge" data-product-show="1" data-product-options="pongè" data-product-selection="tessuto">
                   <%= image_tag("bandiera_personalizzata/ponge.png", alt: "Tessuto Ponge 90g/m") %>
                   <p>Pong&egrave;</p>
                 </a>
               </div>
               <div class="col-xs-6 col-sm-3">
-                <a href="#forato" class="button-options selezione scelta_tessuto" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="forato" data-product-state="1" data-product-options="forato" data-product-selection="tessuto">
+                <a href="#forato" class="button-options selezione scelta_tessuto" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="forato" data-product-show="1" data-product-options="forato" data-product-selection="tessuto">
                   <%= image_tag("bandiera_personalizzata/forato.png", alt: "Tessuto forato 110g/m") %>
                   <p>Passavento</p>
                 </a>
               </div>
               <div class="col-xs-6 col-sm-3">
-                <a href="#retato" class="button-options selezione scelta_tessuto" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="retato" data-product-state="1" data-product-options="retato" data-product-selection="tessuto">
+                <a href="#retato" class="button-options selezione scelta_tessuto" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="retato" data-product-show="1" data-product-options="retato" data-product-selection="tessuto">
                   <%= image_tag("bandiera_personalizzata/retato.png", alt: "Tessuto retato 110g/m") %>
                   <p>Rete</p>
                 </a>
@@ -116,13 +116,13 @@
           <div class="col-md-9">
             <div class="selezione_orientamento row-form">
               <div class="col-xs-6 col-sm-3">
-                <a id="btn_orizzontale" class="button-options scelta_orientamento orizzontale" role="button" data-product-state="2" data-product-options="orizzontale" data-product-selection="orientamento">
+                <a id="btn_orizzontale" class="button-options scelta_orientamento orizzontale" role="button" data-product-show="2" data-product-options="orizzontale" data-product-selection="orientamento">
                   <%= image_tag("bandiera_personalizzata/horizontal.svg", alt: "Bandiera personalizzata Orizzontale") %>
                   <p>Orizzontale</p>
                 </a>
               </div>
               <div class="col-xs-6 col-sm-3">
-                <a id="btn_verticale" class="button-options scelta_orientamento verticale" role="button" data-product-state="2" data-product-options="verticale.fettuccia" data-product-selection="orientamento">
+                <a id="btn_verticale" class="button-options scelta_orientamento verticale" role="button" data-product-show="2" data-product-options="verticale.fettuccia" data-product-selection="orientamento">
                   <%= image_tag("bandiera_personalizzata/vertical.svg", alt: "Bandiera personalizzata Verticale") %>
                   <p>Verticale</p>
                 </a>
@@ -164,21 +164,21 @@
           <div class="col-md-9">
             <div class="row-form">
               <div class="col-xs-6 col-sm-3">
-                <div id="btn_manica" class="button-options scelta_finitura_lato_asta" role="button" data-product-state="3" data-product-options="manica" data-product-selection="finitura_lato_asta">
+                <div id="btn_manica" class="button-options scelta_finitura_lato_asta" role="button" data-product-show="3" data-product-options="manica" data-product-selection="finitura_lato_asta">
                   <!--nascondo se verticale-->
                   <%= image_tag("bandiera_personalizzata/manica.svg", alt: "Bandiera personalizzata con manica lato asta") %>
                   <p>Manica</p>
                 </div>
               </div>
               <div class="col-xs-6 col-sm-3">
-                <div id="btn_fettuccia" class="button-options scelta_finitura_lato_asta" role="button" data-product-state="3" data-product-options="fettuccia" data-product-selection="finitura_lato_asta">
+                <div id="btn_fettuccia" class="button-options scelta_finitura_lato_asta" role="button" data-product-show="3" data-product-options="fettuccia" data-product-selection="finitura_lato_asta">
                   <!--nascondo se orizzontale-->
                   <%= image_tag("bandiera_personalizzata/fettuccia.svg", alt: "Bandiera personalizzata con fettuccia di rinforzo") %>
                   <p>Fettuccia</p>
                 </div>
               </div>
               <div class="col-xs-6 col-sm-3 hidden">
-                <div class="button-options finitura_personalizzata" role="button" data-product-state="3" data-product-options="personalizzata" data-product-selection="finitura_lato_asta">
+                <div class="button-options finitura_personalizzata" role="button" data-product-show="3" data-product-options="personalizzata" data-product-selection="finitura_lato_asta">
                   <!-- sempre visibile -->
                   <img src="" alt="personalizzata">
                   <p>Personalizzata</p>
@@ -195,13 +195,13 @@
           <div class="col-md-9">
             <div class="row-form">
               <div class="col-xs-6 col-sm-3">
-                <a href="#chiusa" class="button-options scelta_tipo_manica manica_chiusa" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="chiusa" data-product-state="4" data-product-options="chiusa" data-product-selection="manica">
+                <a href="#chiusa" class="button-options scelta_tipo_manica manica_chiusa" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="chiusa" data-product-show="4" data-product-options="chiusa" data-product-selection="manica">
                   <%= image_tag("bandiera_personalizzata/manica_chiusa.svg", alt: "Bandiera orizzontale con manica chiusa e laccetto sotto") %>
                   <p>Chiusa</p>
                 </a>
               </div>
               <div class="col-xs-6 col-sm-3">
-                <a href="#aperta" class="button-options scelta_tipo_manica manica_aperta" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="aperta" data-product-state="4" data-product-options="aperta" data-product-selection="manica">
+                <a href="#aperta" class="button-options scelta_tipo_manica manica_aperta" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="aperta" data-product-show="4" data-product-options="aperta" data-product-selection="manica">
                   <%= image_tag("bandiera_personalizzata/manica_aperta.svg", alt: "Bandiera orizzontale con manica aperta, laccetto sotto e laccetto sopra") %>
                   <p>Aperta</p>
                 </a>
@@ -255,27 +255,27 @@
               <div class="col-md-9">
                 <div class="row-form">
                   <div class="col-xs-6 col-sm-3" data-need-show="orizzontale.fettuccia">
-                    <a href="#cappio" class="button-options scelta_acessori_fettuccia selezione cappio_cordino" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="cappio" data-product-state="4" data-product-options="cappio" data-product-selection="fettuccia">
+                    <a href="#cappio" class="button-options scelta_acessori_fettuccia selezione cappio_cordino" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="cappio" data-product-show="4" data-product-options="cappio" data-product-selection="fettuccia">
                       <!-- nascosto se verticale -->
                       <%= image_tag("bandiera_personalizzata/cappio.svg", alt: "Bandiera con fettuccia di rinforzo, cappio superiore e cordino inferiore") %>
                       <p>Cappio e cordino</p>
                     </a>
                   </div>
                   <div class="col-xs-6 col-sm-3 correct_occhielli">
-                    <a href="#occhielli" class="button-options scelta_acessori_fettuccia selezione occhielli" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="occhielli" data-product-state="4" data-product-options="occhielli" data-product-selection="fettuccia">
+                    <a href="#occhielli" class="button-options scelta_acessori_fettuccia selezione occhielli" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="occhielli" data-product-show="4" data-product-options="occhielli" data-product-selection="fettuccia">
 
                       <%= image_tag("bandiera_personalizzata/occhielli.svg", alt: "Bandiera con fettuccia di rinforzo e occhielli") %>
                       <p>Occhielli</p>
                     </a>
                   </div>
                   <div class="col-xs-6 col-sm-3">
-                    <a href="#moschettoni" class="button-options scelta_acessori_fettuccia selezione moschettoni" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="moschettoni" data-product-state="4" data-product-options="moschettoni" data-product-selection="fettuccia">
+                    <a href="#moschettoni" class="button-options scelta_acessori_fettuccia selezione moschettoni" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="moschettoni" data-product-show="4" data-product-options="moschettoni" data-product-selection="fettuccia">
                       <%= image_tag("bandiera_personalizzata/moschettoni.svg", alt: "Bandiera con fettuccia di rinforzo e moschettoni") %>
                       <p>Moschettoni</p>
                     </a>
                   </div>
                   <div class="col-xs-6 col-sm-3">
-                    <a href="#laccetti" class="button-options scelta_acessori_fettuccia selezione laccetti" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="laccetti" data-product-state="4" data-product-options="laccetti" data-product-selection="fettuccia">
+                    <a href="#laccetti" class="button-options scelta_acessori_fettuccia selezione laccetti" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="laccetti" data-product-show="4" data-product-options="laccetti" data-product-selection="fettuccia">
                       <%= image_tag("bandiera_personalizzata/laccetti.svg", alt: "Bandiera con fettuccia di rinforzo e laccetti") %>
                       <p>Laccetti</p>
                     </a>
@@ -401,18 +401,4 @@
   <% end %>
 </div>
 <% end %>
-<script>
-$(document).on("change", "#base", calcola_prezzo);
-$(document).on("change", "#altezza", calcola_prezzo);
-$(document).click(function (e) {
-  if (!$(e.target).is('.button-options')) {
-    $('.collapse').collapse('hide');
-  }
-})
-function calcola_prezzo() {
-  $.ajax({
-    type: "POST", url: "/price_flag", data: $("#form_prodotto").serialize() //this will enable you to use params[:periods] and params[:age] in your controller
-  })
-}
-</script>
 <%= javascript_include_tag "spree/frontend/products/bandiere" %>

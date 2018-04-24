@@ -1,4 +1,4 @@
-function bindSelezioni(){
+function bindSelezioniShow(){
   $('[data-product-selection]').click(function(){
     var active = $(this);
     // aggiorno show_state
@@ -6,15 +6,25 @@ function bindSelezioni(){
     $('#show_state_old').val(old_state);
     old_state = old_state.split('.');
     var new_state = "";
-    for(var i=0;i<active.data('product-state')-1; i++){
-      new_state += old_state[i]+'.';
+    if(active.data("product-selection") == 'tessuto'){ // il cambio dei tessuti non resetta la cascata di show
+      new_state = old_state;
+      new_state[active.data("product-show")-1] = active.data("product-options");
+      new_state = new_state.join('.');
+    } else {
+      for(var i=0;i<active.data('product-show')-1; i++){
+        new_state += old_state[i]+'.';
+      }
+      new_state += active.data('product-options');
     }
-    new_state += active.data('product-options');
     $('#show_state').val(new_state);
     showPartialFromState();
     setActiveFromState();
     controllaDati();
+    calcola_prezzo();
   });
+}
+function bindSelezioni(){
+
 }
 function showPartialFromState(){
   var visibili = $('#show_state').val().split('.');
@@ -27,13 +37,13 @@ function showPartialFromState(){
   // nascondo fino al punto in comune
   for(var i=visibiliOld.length-1; i>=comPoint; i--){
     $("[data-need-show~='{}']".replace('{}',visibiliOld[i])).addClass('hidden');
-    if(i>0)
+    if(i>0) // testo anche le coppie di stati
       $("div[data-need-show~='{}']".replace('{}',visibiliOld[i-1]+'.'+visibiliOld[i])).addClass('hidden');
   }
   // mostro nuovi
   for(var i=comPoint; i<visibili.length; i++){
     $("[data-need-show~='{}']".replace('{}',visibili[i])).removeClass('hidden');
-    if(i>0)
+    if(i>0) // testo anche le coppie di stati
       $("div[data-need-show~='{}']".replace('{}',visibili[i-1]+'.'+visibili[i])).removeClass('hidden');
   }
 }
@@ -49,65 +59,83 @@ function setActiveFromState(){
 // funzione che riconosce se sono stati fatte tutte le scelte relative alla finitura
 function isFinitureSelezionate(){
   // trovo componente show_state e prendo attributo completed
+  return 4 ==  $('#show_state').val().split('.').length;
 }
-function setInMoreOptions(active){
+function setInMoreOptions(){
+  var moreOptionsTag = $('#more_options');
+  var moreOptionsValue = {};
+  // try {
+    var show_state = $('#show_state').val().split('.');
+    moreOptionsValue["tessuto"] = show_state[0];
+    moreOptionsValue["orientamento"] = show_state[1];
+    moreOptionsValue["nome"] = $('#name').val();
+    moreOptionsValue["base"] = $('#base').val();
+    moreOptionsValue["altezza"] = $('#altezza').val();
+    moreOptionsValue["lato_asta"] = $('#Lato_asta').val();
+    var finitura = {};
+    finitura["tipo"] = show_state[2];
+    // doppio ago a prescindere poi cambio se maniche (in verticale)
+    finitura["sopra"] = 'doppio_ago';
+    finitura["sotto"] = 'doppio_ago';
+    if(show_state[1] == 'verticale'){
+      if($('#Manica_superiore').val() == 'Solo sopra' || $('#Manica_superiore').val() == 'Sora e sotto'){
+        finitura["sopra"] = {'finitura': 'manica', 'dettagli': $('Aperta_o_Chiusa').val()};
+      }
+      if($('#Manica_superiore').val() == 'Solo sotto' || $('#Manica_superiore').val() == 'Sora e sotto'){
+        finitura["sotto"] = {'finitura': 'manica', 'dettagli': $('#Aperta_o_Chiusa').val()};
+      }
+    }
+    if(show_state[2] == 'fettuccia'){
+      finitura["sinistra"] = {'finitura':show_state[2], 'accessori': $('.active[data-product-selection="fettuccia"]').data("product-options"), 'dettagli': ''};
+    }
+    finitura["destra"] = 'doppio_ago';
+    finitura["angolo_opposto"] = '';
 
+    moreOptionsValue["finitura"] = finitura;
+    if($("input#controllo_file_accepted").val()) {
+      moreOptionsValue["extra"] = {"controllo_file":"true"}};
+    }
+  // } catch(err){moreOptionsValue = {"err":err.message};}
+  moreOptionsTag.val(JSON.stringify(moreOptionsValue));
 }
-// funzioni di salvataggio dati nel campo more options
-// var optionIniector;
-// optionIniector['nome'] = function(nome){
-//   var moreOptionsTag = $('more_options');
-//   var moreOptionsValue = {};
-//   try {
-//     moreOptionsValue = JSON.parse(moreOptionsTag.val());
-//   } catch(err){console.error(err.message);}
-//   moreOptionsValue['nome'] = nome;
-//   moreOptionsTag.val(JSON.stringify(moreOptionsValue));
-// }
-
-
 
 function controllaDati(){
 
 }
-// function setInMoreOptions(active){
-//   var moreOptionsTag = $('more_options');
-//   var moreOptionsValue = {};
-//   try {
-//     moreOptionsValue = JSON.parse(moreOptionsTag.val());
-//   } catch(err){log.console.error(err.message);}
-//   var temp = active.data('product-options').split('->');
-//   var percorso = temp[0].split('/');
-//   var replaceData = JSON.parse(temp[1]);
-//   var navigatore = moreOptionsValue;
-//   for(var i=0;i<percorso.length()-1; i++){
-//
-//   }
-//   for(step in percorso){
-//     if(navigatore[step] == null){
-//
-//     }
-//     navigatore = navigatore[step];
-//   }
-// }
 
 $(document).ready(function(){
   // bind gruppi di scelta
-  bindSelezioni();
-  // // bind scelta tessuto
+  bindSelezioniShow();
+  bindSelezioni('');
   // bindWithActive('.scelta_tessuto');
-  // // bind scelta orizzontali/verticali
-  // bindWithActive('.scelta_orientamento');
-  // // bind scelta finitura lato asta
-  // bindWithActive('.scelta_finitura_lato_asta');
-  // // bind scelta tipo manica
-  // bindWithActive('.scelta_tipo_manica');
-  // // bind scelta acessori fettuccia
-  // bindWithActive('.scelta_acessori_fettuccia');
 
   // pagina appena caricata nascondo personalizzazioni
   $('[data-need-show]').addClass('hidden');
   $('#show_state_old').val("");
   showPartialFromState();
-  setActiveFromState()
+  setActiveFromState();
+
+  calcola_prezzo();
+
+  // contatori su cui legare il calcola prezzo
+  $(document).on("change", "#base", calcola_prezzo);
+  $(document).on("change", "#altezza", calcola_prezzo);
+  $(document).on("change", "#quantity", calcola_prezzo);
+
+
+  $(document).click(function (e) {
+    if (!$(e.target).is('.button-options')) {
+      $('.collapse').collapse('hide');
+    }
+  })
+
 });
+// funzioni ajax
+function calcola_prezzo() {
+  if(isFinitureSelezionate()) {
+    setInMoreOptions();
+    $.ajax({
+      type: "POST", url: "/price_flag", data: $("#form_prodotto").serialize() //this will enable you to use params[:periods] and params[:age] in your controller
+    });
+  }
+}

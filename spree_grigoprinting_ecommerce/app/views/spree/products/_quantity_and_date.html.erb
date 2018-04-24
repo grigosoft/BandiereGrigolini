@@ -2,6 +2,7 @@
   <span class="col-sm-3 title_number">02</span>
   <span class="col-sm-9">Seleziona quantita e data di consegna</span>
 </h3>
+
 <div class="row">
     <div class="col-md-9 col-md-offset-3">
       <p class="in_product_text"> Le proponiamo 4 opzioni di prezzo con le rispettive date di consegna per dare priorita al suo ordine in base alle sue esigienze </p>
@@ -16,46 +17,19 @@
   </div>
   <div class="col-md-9">
     <div class="row-form">
-      <div class="col-xs-6 col-sm-3" id="consegna_1">
-        <div class="data_consegna btn button-options unactive"  role="button" >
-          <span class="giorno">Lunedi</span>
-          <span class="numero">20</span>
-          <span class="mese">Marzo</span>
+      <% @consegna = Spree::CalcolatoreConsegna.default if @consegna.nil? %>
+      <% @consegna.each_with_index do |data,k|%>
+      <div class="col-xs-6 col-sm-3" id="consegna_<%=k%>">
+        <div class="data_consegna btn button-options<%= ' unactive' if data[:attivo] == 'false' %>"  role="button" >
+          <span class="giorno"><%= Spree.t(data[:giorno].downcase) %></span>
+          <span class="numero"><%= data[:numero] %></span>
+          <span class="mese"><%= Spree.t(data[:mese].downcase) %></span>
         </div>
-        <div class="prezzo_consegna unactive">
-          <span class="prezzo">10,00</span>
-        </div>
-      </div>
-      <div class="col-xs-6 col-sm-3" id="consegna_2">
-        <div class="data_consegna btn button-options" role="button" >
-          <span class="giorno">Mercoledi</span>
-          <span class="numero">23</span>
-          <span class="mese">Marzo</span>
-        </div>
-        <div class="prezzo_consegna">
-          <span class="prezzo">9,00</span>
+        <div class="prezzo_consegna<%= ' unactive' if data[:attivo] == 'false' %>">
+          <span class="prezzo"><%= data[:prezzo] %></span>
         </div>
       </div>
-      <div class="col-xs-6 col-sm-3" id="consegna_3">
-        <div class="data_consegna btn button-options" role="button" >
-          <span class="giorno">Venerdi</span>
-          <span class="numero">25</span>
-          <span class="mese">Marzo</span>
-        </div>
-        <div class="prezzo_consegna">
-          <span class="prezzo">8,00</span>
-        </div>
-      </div>
-      <div class="col-xs-6 col-sm-3" id="consegna_4">
-        <div class="data_consegna btn button-options" role="button" >
-          <span class="giorno">Lunedi</span>
-          <span class="numero">27</span>
-          <span class="mese">Marzo</span>
-        </div>
-        <div class="prezzo_consegna">
-          <span class="prezzo">7,00</span>
-        </div>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>

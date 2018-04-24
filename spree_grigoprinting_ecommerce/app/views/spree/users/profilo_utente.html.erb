@@ -6,6 +6,15 @@
     <div class="sidenav col-md-10">
       <div class="row">
 
+        <div class="col-md-10">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <h4>Account <%= @user.piva ? 'Aziendale' : 'Personale' %></h4>
+              <p>E-mail:  <%= @user.email %></p>
+            </div>
+          </div>
+        </div>
+
         <% if(@user.piva) %>
           <div class="col-md-5">
             <div class="panel panel-default">
