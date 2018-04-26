@@ -17,6 +17,7 @@ Spree::Core::Engine.add_routes do
   post '/line_item/:id/approvazione' => 'admin/line_items#approvazione'
   get '/line_item/:id/storico' => 'admin/line_items#storico'
 
+  get '/account' => 'users#profilo_utente'
   get '/account/user' => 'users#profilo_utente'
   get '/account/addresses' => 'users#profilo_indirizzi'
   get '/account/orders' => 'users#profilo_ordini_completi'

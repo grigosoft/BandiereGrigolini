@@ -1,5 +1,7 @@
 module Spree
   class PriceController < Spree::StoreController
+    before_action :converti_more_options
+
 
     def calcola_bandiera
       prezzo = Spree::CalcolatorePrezzo.calcola_bandiera(params)
@@ -14,5 +16,10 @@ module Spree
       end
     end
 
+    private
+
+    def converti_more_options
+      params[:more_options] = JSON.parse(params[:more_options], symbolize_names: true)
+    end
   end
 end

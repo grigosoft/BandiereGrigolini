@@ -5,7 +5,29 @@
     </div>
     <div class="sidenav col-md-10">
       <div class="row">
-        <%= render partial: 'spree/users/addresses_list' %>
+        <h4>Indirizzo di fatturazione</h4>
+      </div>
+      <div class="row">
+        <% if spree_current_user.fatturazione.nil? %>
+          <%= link_to 'Aggiungi un indirizzo di fatturazione', controller: :addresses, action: :new, type: 'fatt' %>
+        <% else %>
+        <div class="col-md-5">
+          <%= render partial: 'spree/users/address_show', locals: { address: @user.fatturazione, type: 'bill' } %>
+        </div>
+        <% end %>
+      </div>
+      <div class="row">
+        <h4>Indirizzi di spedizione</h4>
+      </div>
+      <div class="row">
+        <% spree_current_user.ship_addresses.each do |address| %>
+          <div class="col-md-5">
+            <%= render partial: 'spree/users/address_show', locals: { address: address, type: 'ship'} %>
+          </div>
+        <% end %>
+      </div>
+      <div class="row">
+        <%= link_to t(:add_new_shipping_address, scope: :address_book), controller: :addresses, action: :new, type: 'sped' %>
       </div>
     </div>
   </div>

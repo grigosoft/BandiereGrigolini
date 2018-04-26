@@ -1,0 +1,8 @@
+<div class="row" data-need-show="<%= need_show %>"> <!-- lato asta -->
+  <div class="col-md-3">
+    <%= label_tag(:lato_asta, "Seleziona lato asta") %>
+  </div>
+  <div class="col-md-3">
+    <%= select_tag "Lato asta", options_for_select(["Lato sinistro", "Lato destro"], "Lato sinistro"), class: "form-control" %>
+  </div>
+</div>

@@ -18,8 +18,8 @@ module Spree
     end
 
     def self.calcolo_formato_resa_consumo(params)
-      base = params[:base].to_d
-      altezza = params[:altezza].to_d
+      base = params[:more_options][:base].to_i
+      altezza = params[:more_options][:altezza].to_i
       formato = nil
       if base <= 150
         formato = "normale"

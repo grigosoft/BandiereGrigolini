@@ -64,6 +64,10 @@ function isFinitureSelezionate(){
 function setInMoreOptions(){
   var moreOptionsTag = $('#more_options');
   var moreOptionsValue = {};
+  if(!isFinitureSelezionate()){
+    moreOptionsTag.val('{}');
+    return;
+  }
   // try {
     var show_state = $('#show_state').val().split('.');
     moreOptionsValue["tessuto"] = show_state[0];
@@ -93,7 +97,7 @@ function setInMoreOptions(){
 
     moreOptionsValue["finitura"] = finitura;
     if($("input#controllo_file_accepted").val()) {
-      moreOptionsValue["extra"] = {"controllo_file":"true"}};
+      moreOptionsValue["extra"] = {"controllo_file":"true"};
     }
   // } catch(err){moreOptionsValue = {"err":err.message};}
   moreOptionsTag.val(JSON.stringify(moreOptionsValue));
@@ -120,7 +124,17 @@ $(document).ready(function(){
   // contatori su cui legare il calcola prezzo
   $(document).on("change", "#base", calcola_prezzo);
   $(document).on("change", "#altezza", calcola_prezzo);
-  $(document).on("change", "#quantity", calcola_prezzo);
+  $(document).on("change", "#quanti", calcola_prezzo);
+
+  // completamento default base/Altezza
+  $('[data-product-options="orizzontale"]').click(function(){
+    $('#base').val(150);
+    $('#altezza').val(100);
+  });
+  $('[data-product-options^="verticale"]').click(function(){
+    $('#base').val(120);
+    $('#altezza').val(400);
+  });
 
 
   $(document).click(function (e) {
@@ -128,14 +142,14 @@ $(document).ready(function(){
       $('.collapse').collapse('hide');
     }
   })
-
 });
 // funzioni ajax
 function calcola_prezzo() {
-  if(isFinitureSelezionate()) {
+  // if(isFinitureSelezionate()) {
     setInMoreOptions();
+    $('#quantity').val($('#quanti').val());
     $.ajax({
       type: "POST", url: "/price_flag", data: $("#form_prodotto").serialize() //this will enable you to use params[:periods] and params[:age] in your controller
     });
-  }
+  // }
 }

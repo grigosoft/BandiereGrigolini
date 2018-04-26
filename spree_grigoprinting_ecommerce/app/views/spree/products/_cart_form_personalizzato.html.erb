@@ -1,0 +1,48 @@
+<%= form_for :order, url: populate_orders_path, html: {id: "form_prodotto"} do |f| %>
+  <%= hidden_field_tag "variant_id", @product.master.id %>
+  <%= hidden_field_tag "quantity" %>
+  <%= hidden_field_tag "more_options" %>
+  <div class="row">
+    <div class="col-md-6 total_prezzo">
+      <% if @product.can_supply? %>
+        <div id="product-price">
+        <h4 class="product-section-title">
+          <strong><%= Spree.t(:price) %></strong>
+        </h4>
+        <div>
+          <span id="prezzo" class="lead price selling" itemprop="price" content="<%= @product.price_in(current_currency).amount.to_d %>">
+            <%= display_price(@product) %>
+          </span>
+          <span itemprop="priceCurrency" content="<%= current_currency %>"></span>
+        </div>
+
+        <% if @product.master.can_supply? %>
+          <link itemprop="availability" href="https://schema.org/InStock"/>
+        <% elsif @product.variants.empty? %>
+        <br/>
+          <span class="out-of-stock"><%= Spree.t(:out_of_stock) %></span>
+        <% end %>
+      </div>
+        <div class="add-to-cart">
+            <br/>
+            <div class="input-group">
+              <span class="input-group-btn btn-options">
+                <%= button_tag class: 'btn btn-options btn btn-options-success', id: 'add-to-cart-button', type: :submit do %>
+                 <%= Spree.t(:add_to_cart) %>
+                <% end %>
+              </span>
+            </div>
+          </div>
+      <% else %>
+        <div id="product-price">
+        <br/>
+        <div>
+          <span class="price selling" itemprop="price">
+            <%= Spree.t('product_not_available_in_this_currency') %>
+          </span>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
