@@ -21,6 +21,7 @@ module Spree
       [consegna1, consegna2, consegna3, consegna4]
     end
 
+
     private
 
     def self.crea_dato_giorno(prezzo, giorni_prod, attivo = false)

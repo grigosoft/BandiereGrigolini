@@ -79,8 +79,8 @@ function setInMoreOptions(){
     var finitura = {};
     finitura["tipo"] = show_state[2];
     // doppio ago a prescindere poi cambio se maniche (in verticale)
-    finitura["sopra"] = 'doppio_ago';
-    finitura["sotto"] = 'doppio_ago';
+    finitura["sopra"] = {'finitura': 'doppio_ago'};
+    finitura["sotto"] = {'finitura': 'doppio_ago'};
     if(show_state[1] == 'verticale'){
       if($('#Manica_superiore').val() == 'Solo sopra' || $('#Manica_superiore').val() == 'Sora e sotto'){
         finitura["sopra"] = {'finitura': 'manica', 'dettagli': $('Aperta_o_Chiusa').val()};
@@ -92,7 +92,7 @@ function setInMoreOptions(){
     if(show_state[2] == 'fettuccia'){
       finitura["sinistra"] = {'finitura':show_state[2], 'accessori': $('.active[data-product-selection="fettuccia"]').data("product-options"), 'dettagli': ''};
     }
-    finitura["destra"] = 'doppio_ago';
+    finitura["destra"] = {'finitura': 'doppio_ago'};
     finitura["angolo_opposto"] = '';
 
     moreOptionsValue["finitura"] = finitura;
