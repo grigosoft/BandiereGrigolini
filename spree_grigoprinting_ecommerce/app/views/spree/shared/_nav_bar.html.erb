@@ -1,12 +1,27 @@
-
-    <%= render partial: 'spree/shared/login_bar' %>
-    <div id="link-to-cart" class="nav_bar" data-hook>
-      <noscript>
-        <%= link_to_cart %>
-      </noscript>
-      &nbsp;
-    </div>
-    <script>Spree.fetch_cart()</script>
+<nav class="nav-container">
+  <div class="nav_bar column" id="st-trigger-effects">
+    <button data-effect="st-effect-1" class="st-effect-1">
+      <span id="icon-products" class="glyphicon glyphicon-menu-hamburger"></span>
+      <div>Prodotti</div>
+    </button>
+  </div>
+  <div class="nav_bar contacts hidden-xs">
+    <a href="#">
+      <span class="glyphicon glyphicon-link"></span>
+      <div>Contattaci</div>
+    </a>
+  </div>
+  <%= render partial: 'spree/shared/login_bar' %>
+  <div id="link-to-cart" class="nav_bar cart" data-hook="data-hook">
+    <noscript>
+      <%= link_to_cart %>
+    </noscript>
+    &nbsp;
+  </div>
+  <script>
+    Spree.fetch_cart()
+  </script>
+</nav>
 
       <!-- <nav class="col-md-6">
         <div id="main-nav-bar" class="navbar">
