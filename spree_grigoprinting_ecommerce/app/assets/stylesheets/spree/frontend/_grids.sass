@@ -1,3 +1,10 @@
+.big-content
+  margin-bottom: 80px
+  margin-top: 1rem
+  @media screen and (min-width: $screen-md)
+    margin: 1rem
+
+
 .row-form
   display: flex
   flex-wrap: wrap
@@ -24,11 +31,11 @@
   padding: 5px
   ul
     padding: 5px
-  @media screen and (min-width: 992px)
+  @media screen and (min-width: $screen-md)
     margin: auto
 
 .row_quantita
-  @media screen and (min-width: 992px)
+  @media screen and (min-width: $screen-md)
     margin-top: 100% !important
 
 .informazioni
@@ -49,14 +56,14 @@
   padding: 0 12px
   border-bottom: 1px solid #444
   width: 100%
-  @media screen and (min-width: 768px)
+  @media screen and (min-width: $screen-sm)
     h4
       float: left
     p
       float: right
 
 .calcolo_data_scadenza
-  @media screen and (min-width: 992px)
+  @media screen and (min-width: $screen-md)
     display: flex
     align-items: flex-end
     #flexquantity
@@ -95,7 +102,7 @@
     width: 100%
 .line-item
   position: relative
-  @media screen and (min-width: 992px)
+  @media screen and (min-width: $screen-md)
     display: flex
   align-items: center
   padding: 0.5rem 0
@@ -114,7 +121,7 @@
   top: 5px
   right: 0px
   text-align: right
-  @media screen and (min-width: 992px)
+  @media screen and (min-width: $screen-md)
     position: inherit !important
     top: auto
     right: auto
@@ -123,3 +130,5 @@
   margin-bottom: 10px
 .cart-item-delete
   margin-top: 10px
+button:focus
+  outline: 0

@@ -1,24 +1,83 @@
+#spree-header .nav a:hover, #spree-header .nav a:focus
+  background: none
+
 .navbar
-  overflow: hidden
+  display: flex
+  justify-content: center
+  align-items: center
   margin-bottom: 0
-  padding: 20px 0 10px 0
-  .nav_bar, .logo
-    float: left
-    text-align: center
-    width: 20%
-    text-decoration: none
-    a, button
-      width: 100%
-      padding-left: 25px
-      padding-right: 25px
-      display: block
-      &:hover
-        color: $back-link-button
-    button
-      width: 100%
+  position: inherit
+  height: 3rem
+  @media screen and (min-width: $screen-sm)
+    width: 100%
+  .logo
+    height: 100%
+    padding: 0.5rem 0
+    @media screen and (min-width: $screen-sm)
+      width: 50%
+    @media screen and (min-width: $screen-md)
+      padding: 0
+    img
+      width: auto
+      height: 100%
+  .nav-container
+    position: fixed
+    height: 40px
+    bottom: 0
+    right: 0
+    z-index: 1000
+    background: $back-full-text
+    width: 100%
+    order: 2
+    display: flex
+    border-top: 1px solid $back-link-button
+    @media screen and (min-width: $screen-sm)
+      position: relative
+      width: 50%
       border: none
-      background: inherit
-      color: $link-back-full
+    @media screen and (min-width: $screen-md)
+      height: auto
+      justify-content: flex-end
+    .nav_bar
+      text-align: center
+      text-decoration: none
+      width: 33.3333%
+      padding: 8px 0 15px 0
+      border-right: 1px solid $back-link-button
+      @media screen and (min-width: $screen-sm)
+        border: none
+      @media screen and (min-width: $screen-md)
+        padding: 0
+        width: 20%
+      &.column
+        border-right: none
+      padding
+      .glyphicon
+        font-size: 1rem
+      div
+        display: none
+        @media screen and (min-width: $screen-md)
+          display: block
+          font-size: .85rem
+          line-height: .85rem
+          padding: 0.2rem
+      &.login
+        order: 1
+      &.cart
+        order: 2
+      &.column
+        order: 3
+      a, button
+        width: 100%
+        display: block
+        color: $long-text
+        &:hover
+          color: $back-link-button
+      button
+        border: none
+        background: inherit
+
+
 
 #spree-header .nav
   .btn-primary
@@ -29,187 +88,186 @@
   display: none
 
 #spree-header
-  img
-    max-width: 100%
-    min-height: 100%
-    max-height: none
-
-#spree-header
-  margin-bottom: 1rem
-  +box-shadow(0 1px 5px #999)
+  +box-shadow(0 5px 5px #999)
   img
     display: block
-    margin: auto
-
+    @media screen and (min-width: $screen-sm)
+      display: inline
+  @media screen and (min-width: $screen-sm)
+    height: 56px
+  @media screen and (min-width: $screen-md)
+    padding: 0.6rem 0
+    height: 85px
 .h_sub_menu a
   display: block
 
 .hover_menu a
   margin: 5px
-
-html,
-body,
-.st-container,
-.st-pusher,
-.st-content
-  height: 100%
-
-.st-content
-  overflow-y: scroll
-
-.st-content,
-.st-content-inner
-  position: relative
-
-.st-container
-  position: relative
-  overflow: hidden
-
-.st-pusher
-  position: relative
-  left: 0
-  z-index: 99
-  height: 100%
-  perspective: 1000px
-  -webkit-transition: -webkit-transform 0.5s
-  transition: transform 0.5s
-  &::after
-    position: absolute
-    top: 0
-    right: 0
-    width: 0
-    height: 0
-    background: rgba(0, 0, 0, 0.2)
-    content: ""
-    opacity: 0
-    -webkit-transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s
-    transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s
-
-.st-menu-open .st-pusher::after
-  width: 100%
-  height: 100%
-  opacity: 1
-  -webkit-transition: opacity 0.5s
-  transition: opacity 0.5s
-
-.st-menu
-  position: absolute
-  top: 95px
-  left: 0
-  z-index: 100
-  visibility: hidden
-  height: 100%
-  width: 25%
-  background: tint($back-full-text, 80%)
-  -webkit-transition: all 0.5s
-  transition: all 0.5s
-  overflow: auto
-  border-right: 1px solid $back-link-button
-  +box-shadow(0 0 10px $back-link-button)
-  &::after
-    position: absolute
-    top: 0
-    right: 0
-    width: 100%
-    height: 100%
-    background: rgba(0, 0, 0, 0.2)
-    content: ""
-    opacity: 1
-    -webkit-transition: opacity 0.5s
-    transition: opacity 0.5s
-
-.st-menu-open .st-menu::after
-  width: 0
-  height: 0
-  opacity: 0
-  -webkit-transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s
-  transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s
-
-/* content style
-
-.st-menu h3
-  color: $back-full-text
-  background-color: $link-back-full
-  padding-left: 10px
-  text-transform: uppercase
-
-.st-menu a
-  display: block
-  padding: .5em .5em .5em 1.2em
-  outline: none
-  box-shadow: inset 0 -1px rgba(0, 0, 0, 0.2)
-  color: $link-back-full
-  text-shadow: 0 0 1px rgba(255, 255, 255, 0.1)
-  -webkit-transition: background 0.3s, box-shadow 0.3s
-  transition: background 0.3s, box-shadow 0.3s
-
-.st-effect-1.st-menu
-  visibility: visible
-  -webkit-transform: translate3d(-100%, 0, 0)
-  transform: translate3d(-100%, 0, 0)
-
-.st-effect-1.st-menu-open .st-effect-1.st-menu
-  visibility: visible
-  -webkit-transform: translate3d(0, 0, 0)
-  transform: translate3d(0, 0, 0)
-
-.st-effect-1.st-menu::after
-  display: none
-
-
-/* Fallback example for browsers that don't support 3D transforms (and no JS fallback)
-.no-csstransforms3d .st-pusher,
-.no-js .st-pusher
-  padding-left: 300px
-
 #spree-header
   background-color: inherit
-  border-bottom: 1px solid $link-back-full
+  border-bottom: 1px solid $back-link-button
+  @media screen and (min-width: $screen-sm)
+    border-top: 1px solid $back-link-button
   #header
     background: inherit
   .navbar
     a:focus
       background: none
       border: none
-    .nav_bar
-      & > a, & > button
-        +transition
-        +border-radius($radius)
-        line-height: inherit
-        &::after
-          content: ''
-          display: block
-          width: 0
-          height: 2px
-          background-color: $link-back-full
-          +transition-property(width)
-          +transition-duration(0.2s)
-          &:focus
-            background: none
-      &:hover
+    @media screen and (min-width: $screen-md)
+      .nav_bar
         & > a, & > button
-          color: $back-link-button
-        & > a::after, & > button::after
-          width: 100%
+          +transition
+          +border-radius($radius)
+          line-height: inherit
+          &::after
+            content: ''
+            display: block
+            width: 0
+            height: 2px
+            background-color: $back-link-button
+            +transition-property(width)
+            +transition-duration(0.2s)
+            &:focus
+              background: none
+        &:hover
+          & > a, & > button
+            color: $back-link-button
+          & > a::after, & > button::after
+            width: 100%
 
-.cart_header
-  background: $link-back-full
-  color: $back-full-text
 
-.hover_menu
-  display: none
-  z-index: 1000
-  width: 60%
-  background: $back-full-text
-  border: 1px solid $back-link-button
-  left: 20%
-  a
-    font-size: 0.8rem
-
-
-.h_header_menu:hover + .hover_menu
+.menu-container
+  +transition
   display: block
+  position: fixed
+  top: 0
+  left: 0
+  +transform(translate(-100%))
+  &.open
+    +transform(translate(0%))
+    @media screen and (min-width: $screen-sm)
+      +box-shadow(5px 1px 5px #999)
+  width: 100%
+  z-index: 9999
+  background: shade($back-full-text, 2%)
+  bottom: 40px
+  @media screen and (min-width: $screen-sm)
+    width: 40%
+    bottom: 0
+    top: 84px
+    border-right: 1px solid $back-link-button
+  @media screen and (min-width: $screen-md)
+    top: 113px
+    width: 350px
+  .st-menu
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    overflow: auto
+    ul
+      list-style: none
+      color: $long-text
+      padding: 0.6rem
+      h3
+        margin: 0
+      li
+        border-bottom: 1px solid $back-link-button
+        &:last-child
+          border-bottom: none
+      a
+        color: $long-text
+        display: block
+        padding: 0.8rem
+        font-size: 1.35rem
+        +border-radius($radius)
+        @media screen and (min-width: $screen-md)
+          font-size: inherit
+          &:hover
+            border-left: 2px solid $link-back-full
+    .contacts
+      background: $back-link-button
+      text-align: center
+      padding: 2%
+      font-weight: 400
+      a
+        color: $back-full-text
+.social
+  margin: 2rem
+  border: 1px solid $long-text
+  position: relative
+  padding: 5% 21%
+  .labelling
+    display: block
+    text-align: center
+    position: absolute
+    top: -18px
+    left: 50%
+    background: shade($back-full-text, 2%)
+    margin-left: -70px
+    width: 140px
+    padding: 5px
+  .social-icons
+    display: flex
+    justify-content: center
+  .facebook, .instagram, .twitter
+    display: inline-block
+    width: 32px
+    height: 32px
+    margin: .5rem
+    background-repeat: no-repeat, no-repeat
+    background-size: contain
+  .facebook
+    background-image: image-url("f-logo.png")
+  .instagram
+    background-image: image-url("glyph.png")
+  .twitter
+    background-image: image-url("twitter.png")
+.hidden-media-sm
+  @media screen and (min-width: $screen-sm)
+    display: none
+html.noscroll
+  overflow: hidden
+body.noscroll
+  overflow: visible
+  height: 100%
 
+//Menu Account
+.account_menu
+  z-index: 998
+  width: 100%
+  position: fixed
+  background: shade($back-full-text, 2%)
+  border: 1px solid $back-link-button
+  border-bottom-width: 0
+  bottom: 40px
+  +transition
+  +translateY(100%)
+  &.open
+    +translateY(0)
+  @media screen and (min-width: $screen-sm)
+    position: absolute
+    top: 84px
+    width: 350px
+    +translateY(0)
+    bottom: auto
+    display: none
+    border-top-width: 0
+    border-bottom-width: 1px
+    right: 26px
+    &.open
+      display: block
+  a
+    font-size: 1rem
+    display: block
+    padding: 3%
+    margin: 5px
+    text-align: center
+    color: $long-text
+    &.btn
+      color: $back-full-text
 .h_sub_menu
   position: relative
   .hover_menu
@@ -219,12 +277,37 @@ body,
 
 .h_sub_menu:hover > a
   display: block
+//fine menu account
 
-#spree-header .nav a:hover, #spree-header .nav a:focus
-  background: none
+//contacts_bar
 
-nav a
-#spree-header .nav a
-  color: $long-text
-  &.btn-default
-    color: $back-full-text
+@media screen and (min-width: $screen-sm)
+  .contacts_wrap
+    background: shade($back-full-text, 2%)
+    height: 28px
+    .contacts_bar
+      font-size: .8rem
+      p
+        padding-bottom: 0
+        margin: 0
+        .glyphicon
+          font-size: .7rem
+      .social
+        margin: 0
+        border: none
+        position: relative
+        padding: 0
+      .social-icons
+        display: flex
+        justify-content: flex-end
+        align-items: center
+      .facebook, .instagram, .twitter
+        display: inline-block
+        width: 18px
+        height: 18px
+        margin: .2rem
+        background-repeat: no-repeat, no-repeat
+        background-size: contain
+      .languages
+        text-align: center
+//fine contacts_bar

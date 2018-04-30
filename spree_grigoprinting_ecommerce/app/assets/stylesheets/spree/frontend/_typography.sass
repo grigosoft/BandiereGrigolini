@@ -87,7 +87,7 @@ a:hover
     display: block
     text-align: center
     padding: 10px 5px 10px
-    @media screen and (min-width: 992px)
+    @media screen and (min-width: $screen-md)
       margin-top: 1rem
       border: none
   &::before
@@ -181,7 +181,7 @@ label
 .cart-item-delete
   text-align: left
   font-size: 0.8rem
-  @media screen and (min-width: 992px)
+  @media screen and (min-width: $screen-md)
     text-align: center
 $mod_1_btn: 1 // mobile
 $mod_2_btn: 0.98 // desktop
@@ -197,13 +197,18 @@ $mod_2_btn: 0.98 // desktop
   position:  absolute
   font-family: $text_font_family
   font-size: .5rem
-  width: 20px
-  height: 20px
-  line-height: 20px
+  width: 15px
+  height: 15px
+  line-height: 15px
   color: $back-full-text
   +border-radius(50%)
   font-weight:  bold
-  top: -16px
+  top: -10px
+  @media screen and (min-width: $screen-sm)
+    top: -16px
+    width: 20px
+    height: 20px
+    line-height: 20px
   &.badge_cart
     background:  $back-link-button
   &.badge_account
