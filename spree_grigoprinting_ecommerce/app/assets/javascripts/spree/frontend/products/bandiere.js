@@ -87,16 +87,16 @@ function setInMoreOptions(){
       }
     }
     if(show_state[2] == 'fettuccia'){
-      finitura["sinistra"] = {'finitura':show_state[2], 'accessori': $('.active [data-product-selection="fettuccia"]').data("product-options"), 'dettagli': ''};
+      finitura["sinistra"] = {'finitura':show_state[2], 'accessori': $('.selected[data-product-selection="fettuccia"]').data("product-options"), 'dettagli': ''};
     } else if(show_state[2] == 'manica'){
-      finitura["sinistra"] = {'finitura':show_state[2], 'accessori': '', 'dettagli': $('.active [data-product-selection="manica"]').data("product-options")};
+      finitura["sinistra"] = {'finitura':show_state[2], 'accessori': '', 'dettagli': $('.selected [data-product-selection="manica"]').data("product-options")};
     }
     finitura["destra"] = {'finitura': 'doppio_ago'};
     finitura["angolo_opposto"] = '';
 
     moreOptionsValue["finitura"] = finitura;
 
-    if ($('.active [data-product-selection="data_consegna"]').length == 1) {
+    if ($('.selected[data-product-selection="data_consegna"]').length == 1) {
       moreOptionsValue["consegna"] = $(this)[0].data('product-options');
     }
     if($("input#controllo_file_accepted").val()) {

@@ -20,7 +20,7 @@
       <% @consegna = Spree::CalcolatoreConsegna.default if @consegna.nil? %>
       <% @consegna.each_with_index do |data, k|%>
       <div class="col-xs-6 col-sm-3">
-        <div class="data_consegna btn button-options<%= ' unactive' if data[:attivo] == 'false' %>"  role="button"  id="consegna_<%=k%>" data-product-selection="data_consegna">
+        <div class="data_consegna btn button-options<%= ' unactive' if data[:attivo] == 'false' %>"  role="button"  id="consegna_<%=k%>" data-product-selection="data_consegna" data-product-options="<%=k%>">
           <span class="giorno"><%= Spree.t(data[:giorno].downcase) %></span>
           <span class="numero"><%= data[:numero] %></span>
           <span class="mese"><%= Spree.t(data[:mese].downcase) %></span>
