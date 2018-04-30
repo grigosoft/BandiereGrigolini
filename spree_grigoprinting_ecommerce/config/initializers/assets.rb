@@ -7,7 +7,6 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.paths << Emoji.images_path
 # Add Yarn node_modules folder to the asset load path.
 Rails.application.config.assets.paths << Rails.root.join('node_modules')
-Rails.application.config.assets.precompile += %w( classie.js )
 Rails.application.config.assets.precompile += %w( sideBar.js )
 Rails.application.config.assets.precompile += %w( spree/frontend/products/bandiere.js )
 Rails.application.config.assets.precompile += %w( spree/frontend/products/quantyty_and_date.js )
