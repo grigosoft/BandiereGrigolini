@@ -3,13 +3,11 @@ module Spree
 
     delegate :personalizzabile, to: :product
 
-    def identifica_img(str = "")
+    def identifica_img(str = '')
       images.each do |i|
-        if(i.identificativo == str)
-          return i
-        end
+        return i if i.identificativo == str
       end
-      return nil
+      nil
     end
   end
 end

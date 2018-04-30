@@ -1,29 +1,15 @@
 module Spree
   UsersController.class_eval do
     before_action :ceck_old_password, only: :update
-
-    # def modifica_password
-    #   load_user
-    # end
-    #
-    # def modifica_email
-    #   load_user
-    # end
-    #
-    # def modifica_dati_azienda
-    #   load_user
-    # end
+    prepend_before_action :load_user, only: [:profilo_utente, :profilo_indirizzi, :profilo_ordini_completi]
 
     def profilo_utente
-      load_user
     end
 
     def profilo_indirizzi
-      load_user
     end
 
     def profilo_ordini_completi
-      load_user
       @orders = @user.orders
     end
 
@@ -32,8 +18,8 @@ module Spree
       params.require(:user).permit(Spree::PermittedAttributes.user_attributes,
                                   :piva, :cf, :ragione_sociale)
     end
-
     def load_user
+      redirect_to login_path if spree_current_user.nil?
       @user ||= spree_current_user
     end
 

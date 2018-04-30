@@ -7,9 +7,9 @@ module Spree
       prezzo = Spree::CalcolatorePrezzo.calcola_bandiera(params)
       # genera consegne
       @consegna = Spree::CalcolatoreConsegna.calcola_bandiera(prezzo)
-
+      @quanti = params[:quantity]
       respond_to do |format|
-        format.js{}  #this will make rails look for a file named calculate_flag.js.erb in your views
+        format.js {} # this will make rails look for a file named calcola_bandiera.js.erb in your views
       end
     end
 

@@ -11,6 +11,9 @@
             <div class="panel-body">
               <h4>Account <%= @user.piva ? 'Aziendale' : 'Personale' %></h4>
               <p>E-mail:  <%= @user.email %></p>
+              <p>
+                <%= link_to Spree.t(:logout),"/logout", :class => 'btn btn-primary' %>
+              </p>
             </div>
           </div>
         </div>

@@ -11,7 +11,6 @@ module Spree
         costo_stampa = 7.0/100; #ml
       end
 
-      puts params[:more_options]
       prezzo = costo_stampa * (dati[:consumo].to_d) / (params[:quantity].to_d)
       #return Spree::Money.new(params[:base].to_i || 0, currency: @currency)
       { prezzo: prezzo, dati: dati, giorni: calcola_giorni_produzione(dati) }
@@ -41,16 +40,19 @@ module Spree
     private
 
     def self.calcola_giorni_produzione (dati)
-      1 + (dati[:consumo] / 50).to_i
+      1 + (dati[:consumo] / 5000).to_i
     end
 
     def self.verifica_params_bandiera_personalizzata (params)
       if params[:quantity].nil? ||
+         params[:quantity].to_i <= 0 ||
          params[:more_options].nil? ||
          params[:more_options][:tessuto].nil? ||
          params[:more_options][:orientamento].nil? ||
          params[:more_options][:base].nil? ||
+         params[:more_options][:base].to_d <= 0 ||
          params[:more_options][:altezza].nil? ||
+         params[:more_options][:altezza].to_d <= 0 ||
          params[:more_options][:lato_asta].nil? ||
          params[:more_options][:finitura].nil? ||
          params[:more_options][:finitura][:tipo].nil? ||
@@ -63,6 +65,9 @@ module Spree
          params[:more_options][:finitura][:destra].nil? ||
          params[:more_options][:finitura][:destra][:finitura].nil?
 
+        puts "pippoooooooooo false"
+        puts params[:more_options]
+        puts params[:more_options][:finitura][:sopra][:finitura]
         return false
       end
       true

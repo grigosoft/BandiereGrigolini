@@ -5,7 +5,7 @@
 
 <div class="row">
     <div class="col-md-9 col-md-offset-3">
-      <p class="in_product_text"> Le proponiamo 4 opzioni di prezzo con le rispettive date di consegna per dare priorita al suo ordine in base alle sue esigienze </p>
+      <p class="in_product_text">Le proponiamo 4 opzioni di prezzo con le rispettive date di consegna per dare priorita al suo ordine in base alle sue esigienze </p>
       <p class="in_product_text">Gli ordini verranno spediti via corriere per tanto, essendo un soggetto terzo, <em>le date sono indicative</em> e il 99% di essi arriveranno entro la data stimata. </p>
       <p class="in_product_text">In caso avesse bisogno di aiuto non esiti a contattarci per quasiasi informazione o aiuto per completare il suo ordine</p>
     </div>
@@ -13,14 +13,14 @@
 <div class="row calcolo_data_scadenza">
   <div class="col-md-3" id="flexquantity">
         <%= label_tag(:quantita, "Quantita")%>
-        <%= number_field_tag :quanti, 1, class: 'quntita form-control', min: 1 %>
+        <%= number_field_tag :quanti, @quanti, class: 'quntita form-control', min: 1 %>
   </div>
   <div class="col-md-9">
-    <div class="row-form">
+    <div class="row-form date_consegna">
       <% @consegna = Spree::CalcolatoreConsegna.default if @consegna.nil? %>
-      <% @consegna.each_with_index do |data,k|%>
-      <div class="col-xs-6 col-sm-3" id="consegna_<%=k%>">
-        <div class="data_consegna btn button-options<%= ' unactive' if data[:attivo] == 'false' %>"  role="button" >
+      <% @consegna.each_with_index do |data, k|%>
+      <div class="col-xs-6 col-sm-3">
+        <div class="data_consegna btn button-options<%= ' unactive' if data[:attivo] == 'false' %>"  role="button"  id="consegna_<%=k%>" data-product-selection="data_consegna">
           <span class="giorno"><%= Spree.t(data[:giorno].downcase) %></span>
           <span class="numero"><%= data[:numero] %></span>
           <span class="mese"><%= Spree.t(data[:mese].downcase) %></span>
@@ -33,3 +33,5 @@
     </div>
   </div>
 </div>
+
+<%= javascript_include_tag "spree/frontend/products/quantyty_and_date.js" %>

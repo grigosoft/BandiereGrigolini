@@ -23,9 +23,6 @@ function bindSelezioniShow(){
     calcola_prezzo();
   });
 }
-function bindSelezioni(){
-
-}
 function showPartialFromState(){
   var visibili = $('#show_state').val().split('.');
   var visibiliOld = $('#show_state_old').val().split('.');
@@ -90,12 +87,18 @@ function setInMoreOptions(){
       }
     }
     if(show_state[2] == 'fettuccia'){
-      finitura["sinistra"] = {'finitura':show_state[2], 'accessori': $('.active[data-product-selection="fettuccia"]').data("product-options"), 'dettagli': ''};
+      finitura["sinistra"] = {'finitura':show_state[2], 'accessori': $('.active [data-product-selection="fettuccia"]').data("product-options"), 'dettagli': ''};
+    } else if(show_state[2] == 'manica'){
+      finitura["sinistra"] = {'finitura':show_state[2], 'accessori': '', 'dettagli': $('.active [data-product-selection="manica"]').data("product-options")};
     }
     finitura["destra"] = {'finitura': 'doppio_ago'};
     finitura["angolo_opposto"] = '';
 
     moreOptionsValue["finitura"] = finitura;
+
+    if ($('.active [data-product-selection="data_consegna"]').length == 1) {
+      moreOptionsValue["consegna"] = $(this)[0].data('product-options');
+    }
     if($("input#controllo_file_accepted").val()) {
       moreOptionsValue["extra"] = {"controllo_file":"true"};
     }
@@ -103,14 +106,9 @@ function setInMoreOptions(){
   moreOptionsTag.val(JSON.stringify(moreOptionsValue));
 }
 
-function controllaDati(){
-
-}
-
 $(document).ready(function(){
   // bind gruppi di scelta
   bindSelezioniShow();
-  bindSelezioni('');
   // bindWithActive('.scelta_tessuto');
 
   // pagina appena caricata nascondo personalizzazioni

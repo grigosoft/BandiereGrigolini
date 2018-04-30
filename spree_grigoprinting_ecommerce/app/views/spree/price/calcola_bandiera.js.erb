@@ -1,1 +1,2 @@
-$("div.consegna").html("<%= escape_javascript(render(:partial=>'spree/products/custom/shared/quantity_and_date')).html_safe %>")
+var html = "<%= escape_javascript(render(:partial=>'spree/products/custom/shared/quantity_and_date')).html_safe %>";
+$("div.consegna").html(html);
