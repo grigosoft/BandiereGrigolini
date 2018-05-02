@@ -9,15 +9,14 @@ module Spree
       if more_options
         more_opt_h = JSON.parse(more_options, symbolize_names: true)
         # calcolo nuovo prezzo se non salvato (prodotto nel carrello)
-        puts more_opt_h
-        if more_opt_h[:prezzo].nil? #&& !more_opt_h[:consegna].nil?
+        if more_opt_h[:prezzo].nil? && !more_opt_h[:consegna].nil?
           # aggiungo nei parametri la quantita per il ricalcolo del prezzo
           more_opt_h[:quantity] = quantity
           if more_opt_h[:prodotto_personalizzato] == 'bandiera_personalizzata'
-            price = Spree::CalcolatorePrezzo.calcola_bandiera(more_opt_h)
-            variant.price = Spree::CalcolatoreConsegna.calcola_bandiera(price)[more_opt_h[:consegna].to_i]
+            prezzo = Spree::CalcolatorePrezzo.calcola_bandiera(more_opt_h)
+            variant.price = Spree::CalcolatoreConsegna.calcola_bandiera(prezzo)[more_opt_h[:consegna].to_i][:prezzo]
           end
-        elsif !more_opt_h[:prezzo].nil?
+        elsif !more_opt_h[:prezzo].nil? # forse non necessario, non dovrebbe mai richiamare questo metodo dopo che l'ordine ha fatto il ceckout!
           variant.price = more_opt_h[:prezzo]
         end
       end
@@ -29,12 +28,20 @@ module Spree
       desc = variant.description
       if more_options
         more_opt_h = JSON.parse(more_options, symbolize_names: true)
-        if more_opt_h[:prodotto_personalizzato] && more_opt_h[:prodotto_personalizzato] == "bandiera_personalizzata"
-          desc = 'in nautico 110g cm ' + more_opt_h[:base] +
-                 'x' + more_opt_h[:altezza] + "\nFiniture: varie"
+        if more_opt_h[:prodotto_personalizzato] == 'bandiera_personalizzata'
+          desc = 'in <b>%{tessuto}</b> cm<b>%{base}x%{altezza}</b>, %{orientamento},\n' %
+                 more_opt_h
+
+          prezzo = Spree::CalcolatorePrezzo.calcola_bandiera(more_opt_h)
+          cosnsegna = Spree::CalcolatoreConsegna.calcola_bandiera(prezzo)[more_opt_h[:consegna].to_i]
+
+          desc += '\nNome lavoro: <b>%{nome}</b>\nConsegna prevista <b>%{g} %{n} %{m}</b>' % { g: cosnsegna[:giorno],
+                                                         n: cosnsegna[:numero],
+                                                         m: cosnsegna[:mese],
+                                                         nome: more_opt_h[:nome]}
         end
       end
-      desc
+      desc.gsub('\n', '</br>')
     end
 
     def add_storico_files(azione="", info="")

@@ -27,7 +27,7 @@ module Spree
     def self.crea_dato_giorno(prezzo, giorni_prod, attivo = false)
       data_consegna = giorni_prod.business_day.from_now
       consegna = {}
-      consegna[:prezzo] = Spree::Money.new(prezzo || 0, currency: @currency)
+      consegna[:prezzo] = prezzo # Spree::Money.new(prezzo || 0, currency: @currency)
       consegna[:giorno] = data_consegna.strftime("%A")
       consegna[:numero] = data_consegna.day
       consegna[:mese] = data_consegna.strftime("%B")

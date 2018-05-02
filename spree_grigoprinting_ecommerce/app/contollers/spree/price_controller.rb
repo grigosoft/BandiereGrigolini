@@ -4,7 +4,7 @@ module Spree
 
 
     def calcola_bandiera
-      prezzo = Spree::CalcolatorePrezzo.calcola_bandiera(params)
+      prezzo = Spree::CalcolatorePrezzo.calcola_bandiera(params[:more_options])
       # genera consegne
       @consegna = Spree::CalcolatoreConsegna.calcola_bandiera(prezzo)
       @quanti = params[:quantity]
@@ -17,6 +17,7 @@ module Spree
 
     def converti_more_options
       params[:more_options] = JSON.parse(params[:more_options], symbolize_names: true)
+      params[:more_options][:quantity] = params[:quantity]
     end
   end
 end

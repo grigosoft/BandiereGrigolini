@@ -18,7 +18,7 @@
         </span>
       <% end %>
       <span class="line-item-description" data-hook="line_item_description">
-        <%= line_item_description_text(line_item.description) %>
+        <%= line_item.description.html_safe %>
       </span>
     </div>
     <div class="text-primary cart-item-pric col-md-1" data-hook="cart_item_price">

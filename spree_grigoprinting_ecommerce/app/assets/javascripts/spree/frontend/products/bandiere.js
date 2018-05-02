@@ -104,6 +104,11 @@ function setInMoreOptions(){
     }
   // } catch(err){moreOptionsValue = {"err":err.message};}
   moreOptionsTag.val(JSON.stringify(moreOptionsValue));
+  setTotalPrice();
+}
+function setTotalPrice(){
+  // controllo se devo metterlo
+  $('#prezzo').val('1');
 }
 
 $(document).ready(function(){

@@ -17,8 +17,8 @@ module Spree
     end
 
     def self.calcolo_formato_resa_consumo(parametri)
-      base = parametri[:more_options][:base].to_i
-      altezza = parametri[:more_options][:altezza].to_i
+      base = parametri[:base].to_i
+      altezza = parametri[:altezza].to_i
       formato = nil
       if base <= 150
         formato = "normale"
@@ -46,24 +46,23 @@ module Spree
     def self.verifica_parametri_bandiera_personalizzata(parametri)
       if parametri[:quantity].nil? ||
          parametri[:quantity].to_i <= 0 ||
-         parametri[:more_options].nil? ||
-         parametri[:more_options][:tessuto].nil? ||
-         parametri[:more_options][:orientamento].nil? ||
-         parametri[:more_options][:base].nil? ||
-         parametri[:more_options][:base].to_d <= 0 ||
-         parametri[:more_options][:altezza].nil? ||
-         parametri[:more_options][:altezza].to_d <= 0 ||
-         parametri[:more_options][:lato_asta].nil? ||
-         parametri[:more_options][:finitura].nil? ||
-         parametri[:more_options][:finitura][:tipo].nil? ||
-         parametri[:more_options][:finitura][:sopra].nil? ||
-         parametri[:more_options][:finitura][:sopra][:finitura].nil? ||
-         parametri[:more_options][:finitura][:sotto].nil? ||
-         parametri[:more_options][:finitura][:sotto][:finitura].nil? ||
-         parametri[:more_options][:finitura][:sinistra].nil? ||
-         parametri[:more_options][:finitura][:sinistra][:finitura].nil? ||
-         parametri[:more_options][:finitura][:destra].nil? ||
-         parametri[:more_options][:finitura][:destra][:finitura].nil?
+         parametri[:tessuto].nil? ||
+         parametri[:orientamento].nil? ||
+         parametri[:base].nil? ||
+         parametri[:base].to_d <= 0 ||
+         parametri[:altezza].nil? ||
+         parametri[:altezza].to_d <= 0 ||
+         parametri[:lato_asta].nil? ||
+         parametri[:finitura].nil? ||
+         parametri[:finitura][:tipo].nil? ||
+         parametri[:finitura][:sopra].nil? ||
+         parametri[:finitura][:sopra][:finitura].nil? ||
+         parametri[:finitura][:sotto].nil? ||
+         parametri[:finitura][:sotto][:finitura].nil? ||
+         parametri[:finitura][:sinistra].nil? ||
+         parametri[:finitura][:sinistra][:finitura].nil? ||
+         parametri[:finitura][:destra].nil? ||
+         parametri[:finitura][:destra][:finitura].nil?
 
         return false
       end

@@ -13,6 +13,7 @@
 <div class="row calcolo_data_scadenza">
   <div class="col-md-3" id="flexquantity">
         <%= label_tag(:quantita, "Quantita")%>
+        <%= @quanti = 1 if @quanti.nil? %>
         <%= number_field_tag :quanti, @quanti, class: 'quntita form-control', min: 1 %>
   </div>
   <div class="col-md-9">
@@ -26,7 +27,7 @@
           <span class="mese"><%= Spree.t(data[:mese].downcase) %></span>
         </div>
         <div class="prezzo_consegna<%= ' unactive' if data[:attivo] == 'false' %>">
-          <span class="prezzo"><%= data[:prezzo] %></span>
+          <span class="prezzo"><%= Spree::Money.new(data[:prezzo] || 0, currency: @currency) %></span>
         </div>
       </div>
       <% end %>
