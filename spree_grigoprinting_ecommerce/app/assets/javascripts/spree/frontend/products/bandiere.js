@@ -19,7 +19,7 @@ function bindSelezioniShow(){
     $('#show_state').val(new_state);
     showPartialFromState();
     setActiveFromState();
-    controllaDati();
+    // controllaDati();
     calcola_prezzo();
   });
 }
@@ -62,11 +62,12 @@ function setInMoreOptions(){
   var moreOptionsTag = $('#more_options');
   var moreOptionsValue = {};
   if(!isFinitureSelezionate()){
-    moreOptionsTag.val('{}');
+    moreOptionsTag.val('{"prodotto_personalizzato":"bandiera_personalizzata"}');
     return;
   }
   // try {
     var show_state = $('#show_state').val().split('.');
+    moreOptionsValue["prodotto_personalizzato"] = 'bandiera_personalizzata';
     moreOptionsValue["tessuto"] = show_state[0];
     moreOptionsValue["orientamento"] = show_state[1];
     moreOptionsValue["nome"] = $('#name').val();
@@ -96,9 +97,8 @@ function setInMoreOptions(){
 
     moreOptionsValue["finitura"] = finitura;
 
-    if ($('.selected[data-product-selection="data_consegna"]').length == 1) {
-      moreOptionsValue["consegna"] = $(this)[0].data('product-options');
-    }
+    moreOptionsValue["consegna"] = $('.selected[data-product-selection="data_consegna"]').data('product-options');
+
     if($("input#controllo_file_accepted").val()) {
       moreOptionsValue["extra"] = {"controllo_file":"true"};
     }

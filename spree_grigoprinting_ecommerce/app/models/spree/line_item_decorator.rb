@@ -7,11 +7,18 @@ module Spree
     def update_price
       # lo cambio dentro VARIANT se personalizzato
       if more_options
-        more_opt_h = JSON.parse(more_options, {:symbolize_names => true})
-        # aggiungo nei parametri la quantita per il ricalcolo del prezzo
-        more_opt_h[:quantity] = quantity
-        if more_opt_h && more_opt_h[:prodotto_personalizzato] && more_opt_h[:prodotto_personalizzato] == "bandiera_personalizzata"
-          variant.price = Spree::CalcolatorePrezzo.calcola_bandiera(more_opt_h).to_d
+        more_opt_h = JSON.parse(more_options, symbolize_names: true)
+        # calcolo nuovo prezzo se non salvato (prodotto nel carrello)
+        puts more_opt_h
+        if more_opt_h[:prezzo].nil? #&& !more_opt_h[:consegna].nil?
+          # aggiungo nei parametri la quantita per il ricalcolo del prezzo
+          more_opt_h[:quantity] = quantity
+          if more_opt_h[:prodotto_personalizzato] == 'bandiera_personalizzata'
+            price = Spree::CalcolatorePrezzo.calcola_bandiera(more_opt_h)
+            variant.price = Spree::CalcolatoreConsegna.calcola_bandiera(price)[more_opt_h[:consegna].to_i]
+          end
+        elsif !more_opt_h[:prezzo].nil?
+          variant.price = more_opt_h[:prezzo]
         end
       end
 
@@ -21,10 +28,10 @@ module Spree
     def description
       desc = variant.description
       if more_options
-        more_opt_h = JSON.parse(more_options, {:symbolize_names => true})
-        if more_opt_h && more_opt_h[:prodotto_personalizzato] && more_opt_h[:prodotto_personalizzato] == "bandiera_personalizzata"
-          desc = "in nautico 110g cm "+more_opt_h[:base] +
-              "x" + more_opt_h[:altezza] + "\nFiniture: varie"
+        more_opt_h = JSON.parse(more_options, symbolize_names: true)
+        if more_opt_h[:prodotto_personalizzato] && more_opt_h[:prodotto_personalizzato] == "bandiera_personalizzata"
+          desc = 'in nautico 110g cm ' + more_opt_h[:base] +
+                 'x' + more_opt_h[:altezza] + "\nFiniture: varie"
         end
       end
       desc
@@ -36,7 +43,7 @@ module Spree
       new_row[:info] = info
       new_row[:timestamp] = Time.now
       storico = storico_files_decoded
-      if storico != nil
+      if !storico.nil?
         storico.push(new_row)
       else
         storico = [new_row]
@@ -45,32 +52,23 @@ module Spree
       save!
     end
 
-
-
     def stato_files
       storico = storico_files_decoded
-      if !storico.nil? && storico.last[:azione] == 'approvato'
-        return 'approvato'
-      elsif !storico.nil? && storico.last[:azione] == 'disapprovato'
-        return 'disapprovato'
-      end
+      return 'approvato' if !storico.nil? && storico.last[:azione] == 'approvato'
+      return 'disapprovato' if !storico.nil? && storico.last[:azione] == 'disapprovato'
       'da_approvare'
     end
 
     def file_approvati?
       storico = storico_files_decoded
-      if !storico.nil? && storico.last[:azione] == 'approvato'
-        return true
-      end
+      return true if !storico.nil? && storico.last[:azione] == 'approvato'
       false
     end
 
-    #private
+    # private
 
     def storico_files_decoded
-      unless storico_files.nil?
-        return JSON.parse(storico_files, symbolize_names: true)
-      end
+      return JSON.parse(storico_files, symbolize_names: true) unless storico_files.nil?
       nil
     end
 
