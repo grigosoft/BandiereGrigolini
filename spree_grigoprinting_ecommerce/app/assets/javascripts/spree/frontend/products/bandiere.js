@@ -108,7 +108,7 @@ function setInMoreOptions(){
 }
 function setTotalPrice(){
   // controllo se devo metterlo
-  $('#prezzo').val('1');
+  $('#prezzo').html('1');
 }
 
 $(document).ready(function(){

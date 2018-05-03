@@ -1,13 +1,13 @@
 <div class="container" data-hook="account_container">
   <div class="row">
     <div class="sidenav col-md-2">
-      <%= render 'spree/users/profilo_tabs', current: :ordini_completi %>
+      <%= render 'spree/users/profilo_tabs', current: :ordini_non_completi %>
     </div>
     <div class="sidenav col-md-10">
       <div class="row">
         <div data-hook="account_my_orders" class="account-my-orders">
 
-          <h3><%= 'Ordini Completati' %></h3>
+          <h3><%= 'Ordini in corso' %></h3>
           <% if @orders.present? %>
             <table class="table table-striped order-summary">
               <thead class="active">
