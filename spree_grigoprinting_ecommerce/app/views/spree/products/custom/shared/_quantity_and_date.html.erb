@@ -26,8 +26,8 @@
           <span class="numero"><%= data[:numero] %></span>
           <span class="mese"><%= Spree.t(data[:mese].downcase) %></span>
         </div>
-        <div class="prezzo_consegna<%= ' unactive' if data[:attivo] == 'false' %>">
-          <span class="prezzo"><%= Spree::Money.new(data[:prezzo] || 0, currency: @currency) %></span>
+        <div class="prezzo_consegna<%= ' unactive' if data[:attivo] == 'false' %>" id="prezzo_<%=k%>">
+          <span class="prezzo" content="<%= data[:prezzo] %>"><%= Spree::Money.new(data[:prezzo] || 0, currency: @currency) %></span>
         </div>
       </div>
       <% end %>

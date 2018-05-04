@@ -99,16 +99,58 @@ function setInMoreOptions(){
 
     moreOptionsValue["consegna"] = $('.selected[data-product-selection="data_consegna"]').data('product-options');
 
-    if($("input#controllo_file_accepted").val()) {
-      moreOptionsValue["extra"] = {"controllo_file":"true"};
+    moreOptionsValue["extra"] = {};
+    if($("input#controllo_file_accepted").prop( "checked" )) {
+      moreOptionsValue["extra"]['controllo_file'] = "true";
+    }
+    if($("input#impaginazione_accepted").prop( "checked" )) {
+      moreOptionsValue["extra"]['impaginazione_file'] = "true";
+    }
+    if($("input#vettorializzazione_accepted").prop( "checked" )) {
+      moreOptionsValue["extra"]['vettorializzazione_file'] = "true";
     }
   // } catch(err){moreOptionsValue = {"err":err.message};}
   moreOptionsTag.val(JSON.stringify(moreOptionsValue));
   setTotalPrice();
 }
 function setTotalPrice(){
-  // controllo se devo metterlo
-  $('#prezzo').html('1');
+  var moreOptions = JSON.parse($('#more_options').val());
+  var prezzoCad = $('#prezzo_'+moreOptions['consegna']+'>.prezzo').attr('content');
+  var quantity = $('#quantity').val();
+  var tot = prezzoCad*quantity;
+
+  if($("input#controllo_file_accepted").prop( "checked" )) {
+    tot += 4;
+  }
+  if($("input#impaginazione_accepted").prop( "checked" )) {
+    tot += 6;
+  }
+  if($("input#vettorializzazione_accepted").prop( "checked" )) {
+    tot += 10;
+  }
+
+  tot = tot.toFixed(2);
+  $('#prezzo').html('€'+tot);
+}
+function selezionaExtra(){
+  var $this = $(this);
+  if($this.is("input#vettorializzazione_accepted") && $("input#vettorializzazione_accepted").prop( "checked" )) {
+    $("input#vettorializzazione_accepted").prop( "checked", true );
+    $("input#impaginazione_accepted").prop( "checked", true );
+    $("input#controllo_file_accepted").prop( "checked", true );
+  } else if($this.is("input#impaginazione_accepted") && $("input#impaginazione_accepted").prop( "checked" )) {
+    $("input#vettorializzazione_accepted").prop( "checked", false );
+    $("input#impaginazione_accepted").prop( "checked", true );
+    $("input#controllo_file_accepted").prop( "checked", true );
+  } else if($this.is("input#controllo_file_accepted") && $("input#controllo_file_accepted").prop( "checked" )) {
+    $("input#vettorializzazione_accepted").prop( "checked", false );
+    $("input#impaginazione_accepted").prop( "checked", false );
+    $("input#controllo_file_accepted").prop( "checked", true );
+  } else {
+    $("input#vettorializzazione_accepted").prop( "checked", false );
+    $("input#impaginazione_accepted").prop( "checked", false );
+    $("input#controllo_file_accepted").prop( "checked", false );
+  }
 }
 
 $(document).ready(function(){
@@ -128,6 +170,12 @@ $(document).ready(function(){
   $(document).on("change", "#base", calcola_prezzo);
   $(document).on("change", "#altezza", calcola_prezzo);
   $(document).on("change", "#quanti", calcola_prezzo);
+  $(document).on("change", "input#controllo_file_accepted", setInMoreOptions);
+  $(document).on("change", "input#impaginazione_accepted", setInMoreOptions);
+  $(document).on("change", "input#vettorializzazione_accepted", setInMoreOptions);
+  $(document).on("click", "input#controllo_file_accepted", selezionaExtra);
+  $(document).on("click", "input#impaginazione_accepted", selezionaExtra);
+  $(document).on("click", "input#vettorializzazione_accepted", selezionaExtra);
 
   // completamento default base/Altezza
   $('[data-product-options="orizzontale"]').click(function(){
@@ -154,5 +202,6 @@ function calcola_prezzo() {
     $.ajax({
       type: "POST", url: "/price_flag", data: $("#form_prodotto").serialize() //this will enable you to use params[:periods] and params[:age] in your controller
     });
+    setTotalPrice();
   // }
 }
