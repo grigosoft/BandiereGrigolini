@@ -6,9 +6,8 @@ Spree::Core::Engine.add_routes do
 
   # pagine statiche
   get '/home' => 'static#home'
-  get '/contatti' => 'static#contatti'
-  get '/fedelta' => 'static#fedelta'
-  get '/home' => 'static#home'
+  get '/contacts' => 'static#contatti'
+  get '/fidelity' => 'static#fedelta'
   get '/privacy' => 'static#privacy'
   get '/tec' => 'static#tec'
 
@@ -20,7 +19,8 @@ Spree::Core::Engine.add_routes do
   get '/account' => 'users#profilo_utente'
   get '/account/user' => 'users#profilo_utente'
   get '/account/addresses' => 'users#profilo_indirizzi'
-  get '/account/orders' => 'users#profilo_ordini_completi'
+  get '/account/orders' => 'users#profilo_ordini_non_completi'
+  get '/account/orders_complete' => 'users#profilo_ordini_completi'
   # get '/account/orders/:id' => 'orders#show'
   # get '/account/password/edit' => 'users#modifica_password'
   # get '/account/email/edit' => 'users#modifica_email'

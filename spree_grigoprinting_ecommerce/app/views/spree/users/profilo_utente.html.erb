@@ -22,6 +22,7 @@
           <div class="col-md-5">
             <div class="panel panel-default">
               <div class="panel-body">
+                <h4>Dati azienda</h4>
                 <%= render :partial => 'spree/shared/error_messages', :locals => { :target => @user } %>
                 <%= form_for Spree::User.new, :as => @user, :url => spree.user_path(@user), :method => :put do |f| %>
                   <fieldset id="password-credentials">

@@ -1,8 +1,8 @@
 <% account_link = [{text:"Modifica dati personali", url:"/account/user", icon:"user", current: :utente},
                    {text:"Modifica indirizzi", url:"/account/addresses", icon:"road", current: :indirizzi},
                    {text:"Metodi di pagamento", url:"#", icon:"credit-card", current: :pagamento},
-                   {text:"Ordini in corso", url:"#", icon:"file", current: :ordini},
-                   {text:"Ordini completi", url:"/account/orders", icon:"success", current: :ordini_completi}]%>
+                   {text:"Ordini in corso", url:"/account/orders", icon:"file", current: :ordini_non_completi},
+                   {text:"Ordini completi", url:"/account/orders_complete", icon:"success", current: :ordini_completi}]%>
 
 
 <ul class="nav nav-pills nav-stacked">
