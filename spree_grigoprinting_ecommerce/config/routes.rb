@@ -6,9 +6,8 @@ Spree::Core::Engine.add_routes do
 
   # pagine statiche
   get '/home' => 'static#home'
-  get '/contatti' => 'static#contatti'
-  get '/fedelta' => 'static#fedelta'
-  get '/home' => 'static#home'
+  get '/contacts' => 'static#contatti'
+  get '/fidelity' => 'static#fedelta'
   get '/privacy' => 'static#privacy'
   get '/tec' => 'static#tec'
 
