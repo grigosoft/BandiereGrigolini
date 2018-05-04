@@ -9,8 +9,16 @@ function resetMenu(){
 
     $(document).ready(function() {
         $(document).on("click", function (e) {
+          var elem = e.target;
+          // filtro i click derivanti dall'accaunt menu
+          while (elem != null){
+            if($(elem).is('div.account_menu') || $(elem).is('div.menu-container')){
+              return;
+            }
+            elem = elem.parentElement;
+          }
           if ($(e.target).is('.account') === false) {
-            resetMenu()
+            resetMenu();
           }
         });
         $('.st-effect-1').click(function(e) {
