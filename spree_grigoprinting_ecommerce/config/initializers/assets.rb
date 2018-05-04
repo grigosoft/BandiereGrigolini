@@ -16,3 +16,6 @@ Rails.application.config.assets.precompile += %w( spree/frontend/products/quanty
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 Rails.application.config.assets.precompile +=
   %w(*.png *.jpg *.jpeg *.gif bandiera_personalizzata/*.png)
+Rails.application.config.assets.enabled = true
+Rails.application.config.assets.paths << Rails.root.join("app", "assets", "fonts")
+Rails.application.config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
