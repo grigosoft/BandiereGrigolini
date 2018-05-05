@@ -1,14 +1,14 @@
 <div class="login nav_bar">
   <% if spree_current_user %>
     <button id="link-to-login" class="account h_sub_menu" class="h_header_menu account">
-      <span id="icon-account" class="glyphicon glyphicon-user"><span class='badge_account badges'>1</span></span>
+      <span id="icon-account" class="grigo-icons grigo-account"><span class='badge_account badges'>1</span></span>
        <div class=''><%= Spree.t(:my_account) %></div>
     </button>
 
     <!-- <li><%= link_to Spree.t(:logout), spree.logout_path %></li> -->
   <% else %>
       <button id="link-to-login" class="account h_sub_menu" class="h_header_menu account">
-        <span id="icon-account" class="glyphicon glyphicon-user"></span>
+        <span id="icon-account" class="grigo-icons grigo-account"></span>
         <div><%= Spree.t(:login) %></div>
       </button>
 
