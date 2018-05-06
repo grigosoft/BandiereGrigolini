@@ -11,7 +11,7 @@ function bindSelezioniShow(){
       new_state[active.data("product-show")-1] = active.data("product-options");
       new_state = new_state.join('.');
     } else {
-      for(var i=0;i<active.data('product-show')-1; i++){
+      for(var i=0; i<active.data('product-show')-1; i++){
         new_state += old_state[i]+'.';
       }
       new_state += active.data('product-options');
@@ -115,7 +115,10 @@ function setInMoreOptions(){
 }
 function setTotalPrice(){
   var moreOptions = JSON.parse($('#more_options').val());
-  var prezzoCad = $('#prezzo_'+moreOptions['consegna']+'>.prezzo').attr('content');
+  var prezzoCad = 0;
+  if (moreOptions['consegna'] != null){
+    prezzoCad = $('#prezzo_'+moreOptions['consegna']+'>.prezzo').attr('content');
+  }
   var quantity = $('#quantity').val();
   var tot = prezzoCad*quantity;
 
@@ -131,26 +134,6 @@ function setTotalPrice(){
 
   tot = tot.toFixed(2);
   $('#prezzo').html('€'+tot);
-}
-function selezionaExtra(){
-  var $this = $(this);
-  if($this.is("input#vettorializzazione_accepted") && $("input#vettorializzazione_accepted").prop( "checked" )) {
-    $("input#vettorializzazione_accepted").prop( "checked", true );
-    $("input#impaginazione_accepted").prop( "checked", true );
-    $("input#controllo_file_accepted").prop( "checked", true );
-  } else if($this.is("input#impaginazione_accepted") && $("input#impaginazione_accepted").prop( "checked" )) {
-    $("input#vettorializzazione_accepted").prop( "checked", false );
-    $("input#impaginazione_accepted").prop( "checked", true );
-    $("input#controllo_file_accepted").prop( "checked", true );
-  } else if($this.is("input#controllo_file_accepted") && $("input#controllo_file_accepted").prop( "checked" )) {
-    $("input#vettorializzazione_accepted").prop( "checked", false );
-    $("input#impaginazione_accepted").prop( "checked", false );
-    $("input#controllo_file_accepted").prop( "checked", true );
-  } else {
-    $("input#vettorializzazione_accepted").prop( "checked", false );
-    $("input#impaginazione_accepted").prop( "checked", false );
-    $("input#controllo_file_accepted").prop( "checked", false );
-  }
 }
 
 $(document).ready(function(){
@@ -173,9 +156,6 @@ $(document).ready(function(){
   $(document).on("change", "input#controllo_file_accepted", setInMoreOptions);
   $(document).on("change", "input#impaginazione_accepted", setInMoreOptions);
   $(document).on("change", "input#vettorializzazione_accepted", setInMoreOptions);
-  $(document).on("click", "input#controllo_file_accepted", selezionaExtra);
-  $(document).on("click", "input#impaginazione_accepted", selezionaExtra);
-  $(document).on("click", "input#vettorializzazione_accepted", selezionaExtra);
 
   // completamento default base/Altezza
   $('[data-product-options="orizzontale"]').click(function(){
