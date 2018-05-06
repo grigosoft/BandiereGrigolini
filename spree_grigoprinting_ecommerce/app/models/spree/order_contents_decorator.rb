@@ -28,6 +28,15 @@ module Spree
       end
       line_item.target_shipment = options[:shipment] if options.key? :shipment
       line_item.save!
+
+      # se presenti prodotti servizi_extra li aggiungo come line item figli
+      if options[:more_options] && options[:more_options][:extra]
+        options[:more_options][:extra].each do |k,_v|
+          var = Spree::Variant.find(options[:more_options][:extra][k.to_sym])
+          add_to_line_item(var, 1, more_options: {}) if var
+        end
+      end
+
       line_item
     end
 

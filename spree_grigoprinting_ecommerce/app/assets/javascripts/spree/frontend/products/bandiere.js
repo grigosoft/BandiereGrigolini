@@ -100,14 +100,12 @@ function setInMoreOptions(){
     moreOptionsValue["consegna"] = $('.selected[data-product-selection="data_consegna"]').data('product-options');
 
     moreOptionsValue["extra"] = {};
-    if($("input#controllo_file_accepted").prop( "checked" )) {
-      moreOptionsValue["extra"]['controllo_file'] = "true";
-    }
-    if($("input#impaginazione_accepted").prop( "checked" )) {
-      moreOptionsValue["extra"]['impaginazione_file'] = "true";
-    }
     if($("input#vettorializzazione_accepted").prop( "checked" )) {
-      moreOptionsValue["extra"]['vettorializzazione_file'] = "true";
+      moreOptionsValue["extra"]['grafica'] = $("input#vettorializzazione_accepted").attr('variant_id');
+    } else if($("input#impaginazione_accepted").prop( "checked" )) {
+      moreOptionsValue["extra"]['grafica'] = $("input#impaginazione_accepted").attr('variant_id');
+    } else if($("input#controllo_file_accepted").prop( "checked" )) {
+      moreOptionsValue["extra"]['grafica'] = $("input#controllo_file_accepted").attr('variant_id');
     }
   // } catch(err){moreOptionsValue = {"err":err.message};}
   moreOptionsTag.val(JSON.stringify(moreOptionsValue));
@@ -153,9 +151,9 @@ $(document).ready(function(){
   $(document).on("change", "#base", calcola_prezzo);
   $(document).on("change", "#altezza", calcola_prezzo);
   $(document).on("change", "#quanti", calcola_prezzo);
-  $(document).on("change", "input#controllo_file_accepted", setInMoreOptions);
-  $(document).on("change", "input#impaginazione_accepted", setInMoreOptions);
-  $(document).on("change", "input#vettorializzazione_accepted", setInMoreOptions);
+  // $(document).on("change", "input#controllo_file_accepted", setInMoreOptions);
+  // $(document).on("change", "input#impaginazione_accepted", setInMoreOptions);
+  // $(document).on("change", "input#vettorializzazione_accepted", setInMoreOptions);
 
   // completamento default base/Altezza
   $('[data-product-options="orizzontale"]').click(function(){

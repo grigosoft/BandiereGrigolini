@@ -1,6 +1,6 @@
 module Spree
   OrdersController.class_eval do
-    before_action :add_more_options_to_options, only: [:populate]
+    before_action :add_more_options_to_options, only: :populate
 
     def add_more_options_to_options
       params[:options] = {} if params[:options].nil?
