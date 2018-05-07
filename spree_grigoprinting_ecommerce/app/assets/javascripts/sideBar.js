@@ -1,8 +1,8 @@
 function resetMenu(){
   $(".open").removeClass("open");
   $("html.noscroll, body.noscroll").removeClass("noscroll");
-  $('#icon-products, #icon-account').removeClass("glyphicon-remove");
-  $('#icon-products').addClass("glyphicon-menu-hamburger");
+  $('#icon-products, #icon-account').removeClass("grigo-close");
+  $('#icon-products').addClass("grigo-hamburger");
   $('#icon-account').addClass("glyphicon-user");
 }
 (function($) {
@@ -29,7 +29,7 @@ function resetMenu(){
             $('.menu-container').toggleClass('open');
             $(this).children().first().toggleClass('open');
             $('html, body').toggleClass('noscroll');
-            $('#icon-products').toggleClass("glyphicon-menu-hamburger glyphicon-remove");
+            $('#icon-products').toggleClass("grigo-hamburger grigo-close");
             e.stopPropagation();
         });
         $('.account').click(function(e) {
@@ -39,7 +39,7 @@ function resetMenu(){
             }
             $('.account_menu').toggleClass('open');
             $('html, body').toggleClass('noscroll');
-            $('#icon-account').toggleClass("glyphicon-user glyphicon-remove");
+            $('#icon-account').toggleClass("glyphicon-user grigo-close");
             e.stopPropagation();
         });
 

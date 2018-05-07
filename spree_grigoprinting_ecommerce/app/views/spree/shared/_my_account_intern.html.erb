@@ -1,13 +1,10 @@
-
-  <%= link_to Spree.t(:my_account), spree.account_path %>
-  <%= link_to Spree.t(:my_account), spree.account_path %>
-
 <% if spree_current_user %>
+  <%= link_to Spree.t(:my_account), spree.account_path %>
   <%= link_to Spree.t(:logout), spree.logout_path %>
 <% else %>
+<div class="login_header container">
   <%= render partial: 'spree/shared/login' %>
-  <!-- <%= link_to Spree.t(:login), spree.login_path, class: "btn btn-primary" %> -->
-  <%= link_to Spree.t(:create_a_new_account), spree.signup_path, class: "link_to_sigup" %>
+</div>
 <% end %>
 
 

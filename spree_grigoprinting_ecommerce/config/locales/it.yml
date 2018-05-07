@@ -4,6 +4,8 @@ it:
       tax_rates:
         excluding_tax: Tasse escluse
     my_account: Account
+    login: Accedi
+    create_a_new_account: Registrati
     # mesi
     january: Gennaio
     february: Febbraio
