@@ -33,7 +33,9 @@ module Spree
       if options[:more_options] && options[:more_options][:extra]
         options[:more_options][:extra].each do |k, _v|
           var = Spree::Variant.find(options[:more_options][:extra][k.to_sym])
-          add_to_line_item(var, 1, more_options: {}) if var
+          figlio = add_to_line_item(var, 1, more_options: {}) if var
+          figlio.padre_id = line_item.id
+          figlio.save!
         end
       end
 
