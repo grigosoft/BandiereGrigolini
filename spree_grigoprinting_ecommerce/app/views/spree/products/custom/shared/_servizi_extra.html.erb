@@ -11,7 +11,7 @@
   <div class="col-md-9 col-md-offset-3">
     <div class="row controllo_file">
       <div class="col-sm-2">
-        <%= check_box("controllo_file", "accepted", { :class => 'controllo_file' }, "si", "no") %>
+        <%= check_box("controllo_file", "accepted", { class: 'controllo_file', variant_id: 31 }, "si", "no") %>
       </div>
       <div class="col-sm-6">
         <p>
@@ -53,7 +53,7 @@
     </div>
     <div class="row controllo_file">
       <div class="col-sm-2">
-        <%= check_box("impaginazione", "accepted", { :class => 'impaginazionee' }, "si", "no") %>
+        <%= check_box("impaginazione", "accepted", { class: 'impaginazionee', variant_id: 32 }, "si", "no") %>
       </div>
       <div class="col-sm-6">
         <p>
@@ -62,7 +62,7 @@
       </div>
       <div class="col-sm-2">
         <p>
-          <strong>€10,00</strong>
+          <strong>€6,00</strong>
         </p>
       </div>
       <div class="col-sm-2">
@@ -81,7 +81,7 @@
     </div>
     <div class="row controllo_file">
       <div class="col-sm-2">
-        <%= check_box("vettorializzazione", "accepted", { :class => 'vettorializzazione' }, "si", "no") %>
+        <%= check_box("vettorializzazione", "accepted", { class: 'vettorializzazione', variant_id: 33 }, "si", "no") %>
       </div>
       <div class="col-sm-6">
         <p>
@@ -90,7 +90,7 @@
       </div>
       <div class="col-sm-2">
         <p>
-          <strong>€20,00</strong>
+          <strong>€10,00</strong>
         </p>
       </div>
       <div class="col-sm-2">
@@ -110,3 +110,32 @@
     </div>
   </div>
 </div>
+
+<script>
+  function selezionaExtra(){
+    var $this = $(this);
+    if($this.is("input#vettorializzazione_accepted") && $("input#vettorializzazione_accepted").prop( "checked" )) {
+      $("input#vettorializzazione_accepted").prop( "checked", true );
+      $("input#impaginazione_accepted").prop( "checked", true );
+      $("input#controllo_file_accepted").prop( "checked", true );
+    } else if($this.is("input#impaginazione_accepted") && $("input#impaginazione_accepted").prop( "checked" )) {
+      $("input#vettorializzazione_accepted").prop( "checked", false );
+      $("input#impaginazione_accepted").prop( "checked", true );
+      $("input#controllo_file_accepted").prop( "checked", true );
+    } else if($this.is("input#controllo_file_accepted") && $("input#controllo_file_accepted").prop( "checked" )) {
+      $("input#vettorializzazione_accepted").prop( "checked", false );
+      $("input#impaginazione_accepted").prop( "checked", false );
+      $("input#controllo_file_accepted").prop( "checked", true );
+    } else {
+      $("input#vettorializzazione_accepted").prop( "checked", false );
+      $("input#impaginazione_accepted").prop( "checked", false );
+      $("input#controllo_file_accepted").prop( "checked", false );
+    }
+    setInMoreOptions();
+  }
+  $(document).ready(function(){
+    $(document).on("click", "input#controllo_file_accepted", selezionaExtra);
+    $(document).on("click", "input#impaginazione_accepted", selezionaExtra);
+    $(document).on("click", "input#vettorializzazione_accepted", selezionaExtra);
+  });
+</script>

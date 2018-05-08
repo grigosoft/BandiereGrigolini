@@ -1,10 +1,18 @@
 $(document).ready(function(){
 
   // carica da more options la selezione
-  var moreOptions = JSON.parse($('#more_options').val());
-  var consegna = moreOptions['consegna'];
-  if(consegna != null){
-    $('#consegna_'+consegna).addClass('selected');
+  try {
+    var moreOptions = JSON.parse($('#more_options').val());
+    var consegna = moreOptions['consegna'];
+    if(consegna != null){
+      $('#consegna_'+consegna).addClass('selected');
+    } else {
+      $('.selected[data-product-selection="data_consegna"]').removeClass('selected');
+      $('#consegna_3').addClass('selected');
+    }
+  } catch(err) {
+    $('.selected[data-product-selection="data_consegna"]').removeClass('selected');
+    $('#consegna_3').addClass('selected');
   }
 
 
