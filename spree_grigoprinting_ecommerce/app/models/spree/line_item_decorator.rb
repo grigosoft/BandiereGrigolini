@@ -2,6 +2,9 @@ module Spree
   LineItem.class_eval do
     has_many :upload, class_name: 'Spree::Upload'
 
+    belongs_to :padre, class_name: 'Spree::LineItem'
+    has_many :figli, class_name: 'Spree::LineItem', foreign_key: 'padre_id', dependent: :destroy
+
     delegate :personalizzabile, to: :variant
 
     def update_price
