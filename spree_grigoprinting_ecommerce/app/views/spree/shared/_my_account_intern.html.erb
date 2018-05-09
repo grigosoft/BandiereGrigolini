@@ -2,11 +2,7 @@
   <%= link_to Spree.t(:my_account), spree.account_path %>
   <%= link_to Spree.t(:logout), spree.logout_path %>
 <% else %>
-<div class="login_header container">
+<div class="login_header container-fluid">
   <%= render partial: 'spree/shared/login' %>
 </div>
 <% end %>
-
-
-<!-- Log/out  -->
-<!-- <li><%= link_to Spree.t(:logout), spree.logout_path %></li> -->

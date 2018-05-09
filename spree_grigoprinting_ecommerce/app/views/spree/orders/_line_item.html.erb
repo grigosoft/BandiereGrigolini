@@ -2,7 +2,7 @@
 <% if line_item.padre.nil?  %>
   <div class="line-item row-form">
     <%= order_form.fields_for :line_items, line_item do |item_form| %>
-      <div class="row-form">
+      <div class="col-md-12">
         <div class="cart-item-image col-xs-3 col-md-1" data-hook="cart_item_image">
           <% if variant.images.length == 0 %>
             <%= link_to small_image(variant.product), variant.product %>
@@ -39,7 +39,7 @@
     <% line_item.figli.each do |figlio| %>
       <% variant = figlio.variant %>
       <%= order_form.fields_for :line_items, figlio do |item_form| %>
-        <div class="row-form">
+        <div class="col-md-12">
           <div class="cart-item-image col-xs-3 col-md-1 col-md-offset-1" data-hook="cart_item_image">
             <% if variant.images.length == 0 %>
               <%= link_to small_image(variant.product), variant.product %>
@@ -63,14 +63,12 @@
             <%= figlio.single_money.to_html %>
           </div>
           <div class="cart-item-quantity col-xs-6 col-md-1" data-hook="cart_item_quantity" valign="center">
-            <%= item_form.number_field :quantity, min: 0, class: "form-control line_item_quantity", size: 5 %>
+            <%= figlio.quantity %>
           </div>
           <div class="text-primary cart-item-total col-xs-6 col-md-2" data-hook="cart_item_total">
             <%= figlio.display_amount.to_html unless figlio.quantity.nil? %>
           </div>
-          <div class="cart-item-delete col-xs-12 col-md-1" data-hook="cart_item_delete">
-            <%= link_to content_tag(:span, '', class: 'glyphicon glyphicon-trash'), '#', class: 'delete', id: "delete_#{dom_id(figlio)}" %>
-          </div>
+          <div class="cart-item-delete col-xs-12 col-md-1" data-hook="cart_item_delete"></div>
         </div>
       <% end %>
     <% end %>

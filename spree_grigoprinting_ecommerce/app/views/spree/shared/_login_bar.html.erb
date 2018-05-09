@@ -2,18 +2,18 @@
   <% if spree_current_user %>
     <button id="link-to-login" class="account h_sub_menu" class="h_header_menu account">
       <span id="icon-account" class="grigo-icons grigo-account"><span class='badge_account badges'>1</span></span>
-       <div class=''><%= Spree.t(:my_account) %></div>
+       <div  class="nav_bar_text"><%= Spree.t(:my_account) %></div>
+       <div class="account_menu">
+         <%= render partial: 'spree/shared/my_account_intern' %>
+       </div>
     </button>
-
-    <!-- <li><%= link_to Spree.t(:logout), spree.logout_path %></li> -->
   <% else %>
       <button id="link-to-login" class="account h_sub_menu" class="h_header_menu account">
         <span id="icon-account" class="grigo-icons grigo-account"></span>
-        <div><%= Spree.t(:login) %></div>
+        <div class="nav_bar_text"><%= Spree.t(:login) %></div>
       </button>
-
+      <div class="account_menu">
+        <%= render partial: 'spree/shared/my_account_intern' %>
+      </div>
   <% end %>
 </div>
-
- <!-- href="<%= spree.login_path %>"
-  href="<%= spree.account_path %>"  -->

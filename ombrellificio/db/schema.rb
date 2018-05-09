@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180406154007) do
+ActiveRecord::Schema.define(version: 20180509075851) do
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
@@ -173,21 +173,22 @@ ActiveRecord::Schema.define(version: 20180406154007) do
     t.integer "variant_id"
     t.integer "order_id"
     t.integer "quantity", null: false
-    t.decimal "price", precision: 10, scale: 2, null: false
+    t.decimal "price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "currency"
-    t.decimal "cost_price", precision: 10, scale: 2
+    t.decimal "cost_price"
     t.integer "tax_category_id"
-    t.decimal "adjustment_total", precision: 10, scale: 2, default: "0.0"
-    t.decimal "additional_tax_total", precision: 10, scale: 2, default: "0.0"
-    t.decimal "promo_total", precision: 10, scale: 2, default: "0.0"
-    t.decimal "included_tax_total", precision: 10, scale: 2, default: "0.0", null: false
-    t.decimal "pre_tax_amount", precision: 12, scale: 4, default: "0.0", null: false
-    t.decimal "taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
-    t.decimal "non_taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
+    t.decimal "adjustment_total", default: "0.0"
+    t.decimal "additional_tax_total", default: "0.0"
+    t.decimal "promo_total", default: "0.0"
+    t.decimal "included_tax_total", default: "0.0", null: false
+    t.decimal "pre_tax_amount", default: "0.0", null: false
+    t.decimal "taxable_adjustment_total", default: "0.0", null: false
+    t.decimal "non_taxable_adjustment_total", default: "0.0", null: false
     t.string "more_options"
     t.string "storico_files"
+    t.integer "padre_id"
     t.index ["order_id"], name: "index_spree_line_items_on_order_id"
     t.index ["tax_category_id"], name: "index_spree_line_items_on_tax_category_id"
     t.index ["variant_id"], name: "index_spree_line_items_on_variant_id"
@@ -342,8 +343,31 @@ ActiveRecord::Schema.define(version: 20180406154007) do
     t.index ["property_id"], name: "index_spree_product_properties_on_property_id"
   end
 
-# Could not dump table "spree_products" because of following StandardError
-#   Unknown type 'bool' for column 'personalizzabile'
+  create_table "spree_products", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.text "description"
+    t.datetime "available_on"
+    t.datetime "deleted_at"
+    t.string "slug"
+    t.text "meta_description"
+    t.string "meta_keywords"
+    t.integer "tax_category_id"
+    t.integer "shipping_category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "promotionable", default: true
+    t.string "meta_title"
+    t.datetime "discontinue_on"
+    t.decimal "personalizzabile", default: "0.0"
+    t.string "partial"
+    t.index ["available_on"], name: "index_spree_products_on_available_on"
+    t.index ["deleted_at"], name: "index_spree_products_on_deleted_at"
+    t.index ["discontinue_on"], name: "index_spree_products_on_discontinue_on"
+    t.index ["name"], name: "index_spree_products_on_name"
+    t.index ["shipping_category_id"], name: "index_spree_products_on_shipping_category_id"
+    t.index ["slug"], name: "index_spree_products_on_slug", unique: true
+    t.index ["tax_category_id"], name: "index_spree_products_on_tax_category_id"
+  end
 
   create_table "spree_products_taxons", force: :cascade do |t|
     t.integer "product_id"
