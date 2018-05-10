@@ -94,8 +94,7 @@
     color: $back-full-text
     &:hover, &:focus
       background: tint($back-link-button, 10%)
-.hover_menu
-  display: none
+
 
 #spree-header
   +box-shadow(0 5px 5px #999)
@@ -107,12 +106,6 @@
   //   height: 56px
   @media screen and (min-width: $screen-md)
     padding: 0.6rem 0
-    // height: 85px
-.h_sub_menu a
-  display: block
-
-.hover_menu a
-  margin: 5px
 #spree-header
   background-color: inherit
   border-bottom: 1px solid $back-link-button
@@ -254,6 +247,7 @@ body.noscroll
   width: 100%
   right: -100%
   bottom: 40px
+  display: none
   @media screen and (max-width: 767px) and (orientation: landscape)
     width: 90%
     left: -100%
@@ -262,8 +256,10 @@ body.noscroll
     position: absolute
     right: 50%
     width: 350px
+    top: 90px
   &.open
     right: 0
+    display: block
     @media screen and (max-width: 767px) and (orientation: landscape)
       left: 0
   .login_header
@@ -273,15 +269,12 @@ body.noscroll
     background: shade($back-full-text, 2%)
     border-top: 1px solid $back-link-button
     border-bottom-width: 0
-    @media screen and (max-width: 767px) and (orientation: landscape)
-
     @media screen and (min-width: $screen-sm)
       // top: 84px
       right: -50%
       width: 350px
-      display: none
       border-top-width: 0
-      border-bottom-width: 1px
+      border: 1px solid $back-link-button
     a
       display: block
       text-align: center

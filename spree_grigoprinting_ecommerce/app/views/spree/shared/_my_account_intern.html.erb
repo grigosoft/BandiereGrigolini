@@ -1,6 +1,8 @@
 <% if spree_current_user %>
+<div class="login_header container-fluid">
   <%= link_to Spree.t(:my_account), spree.account_path %>
   <%= link_to Spree.t(:logout), spree.logout_path %>
+</div>
 <% else %>
 <div class="login_header container-fluid">
   <%= render partial: 'spree/shared/login' %>
