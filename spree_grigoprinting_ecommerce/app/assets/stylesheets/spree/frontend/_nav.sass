@@ -236,10 +236,14 @@
     display: none
 html.noscroll
   overflow: hidden
+  height: 100%
+  @media screen and (min-width: $screen-sm)
+    overflow: auto
 body.noscroll
   overflow: visible
   height: 100%
-
+  @media screen and (min-width: $screen-sm)
+    overflow: auto
 //Menu Account
 .account_menu
   position: fixed
@@ -260,6 +264,8 @@ body.noscroll
   &.open
     right: 0
     display: block
+    @media screen and (min-width: $screen-sm)
+      right: 50%
     @media screen and (max-width: 767px) and (orientation: landscape)
       left: 0
   .login_header
