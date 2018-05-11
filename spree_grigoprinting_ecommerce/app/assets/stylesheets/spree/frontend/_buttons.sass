@@ -1,3 +1,21 @@
+
+.btn
+  +border-radius(50%)
+  +transition
+.btn-primary
+  background-color: $back-link-button
+  color: $back-full-text
+  &:hover, &:focus
+    background: tint($back-link-button, 10%)
+    color: $back-full-text
+
+.btn-cart
+  width: 100%
+.pull-right-btn
+  @media screen and (min-width: $screen-md)
+    float: right !important
+
+//bottoni interni al prodotto
 .button-options
   display: block
   +transition
@@ -6,6 +24,7 @@
   +border-radius($radius)
   padding: 0
   overflow: hidden
+  margin: 0.5rem auto
   &:hover
     border: 1px solid $back-link-button
     text-decoration: none
@@ -33,20 +52,43 @@
 
 
 .informazioni
-  background-color: $back-full-text
+  background-color: shade($back-full-text, 5%)
   +border-radius($radius)
-.btn
-  +border-radius($radius)
-  +transition
-.btn-primary
-  background-color: $back-link-button
-  color: $back-full-text
-  &:hover, &:focus
-    background: tint($back-link-button, 10%)
-    color: $back-full-text
 
-.btn-cart
-  width: 100%
-.pull-right-btn
-  @media screen and (min-width: $screen-md)
-    float: right !important
+.selected
+  border: 1px solid $back-link-button
+  +box-shadow(0 0 5px $back-link-button)
+
+//button add to cart
+#add-to-cart-button
+  font-family: $h-font-family
+  float: right
+  @include fluid-type($min_width, $max_width, $min_font, $min_font)
+  font-weight: 700
+  +transition
+  +border-radius($radius)
+  border: 1px solid $back-full-text
+  &::before
+    +transition
+    font-family: "Glyphicons Halflings"
+    content: "\e116"
+    display:  inline-block
+    background: $back-full-text
+    position: absolute
+    top: 0
+    bottom: 0
+    width: 40px
+    left: -35px
+    border: 1px solid $back-link-button
+    +border-radius($radius)
+    color: $back-link-button
+    vertical-align:  middle
+    padding: 5px
+  &:hover
+    border-color: $back-link-button
+    color: $back-link-button
+    background-color: $back-full-text
+  &:hover::before
+    color: $back-full-text
+    background: $back-link-button
+    border-color: $back-full-text
