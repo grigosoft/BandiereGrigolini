@@ -1,13 +1,10 @@
 .container-fluid
-  @media screen and (max-width: 767px) and (orientation: landscape)
+  @media screen and (max-width: 767px) and (orientation: landscape) and (min-aspect-ratio: 13/9)
     width: 90%
     margin-right: 10%
 .big-content
   margin-bottom: 80px
   margin-top: 1rem
-  @media screen and (min-width: $screen-md)
-    margin: 1rem
-
 
 .row-form
   display: flex
@@ -53,6 +50,7 @@
 
 .form-control
   height: auto
+  margin: 0.5rem auto
 
 .riepilogo_interno
   float:  left
@@ -70,8 +68,8 @@
   @media screen and (min-width: $screen-md)
     display: flex
     align-items: flex-end
-    #flexquantity
-      margin: 1rem auto
+    #flexquantity .form-control
+      margin-bottom: 0
 
 .title_section
   span
@@ -136,3 +134,8 @@
   margin-top: 10px
 button:focus
   outline: 0
+.prezzo_consegna
+  margin-top: 0.8rem
+
+.controllo_file
+  margin: 0.5rem 0

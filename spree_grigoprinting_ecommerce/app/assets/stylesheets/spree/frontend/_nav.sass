@@ -31,7 +31,7 @@
     order: 2
     display: flex
     border-top: 1px solid $back-link-button
-    @media screen and (max-width: 767px) and (orientation: landscape)
+    @media screen and (max-width: 767px) and (orientation: landscape) and (min-aspect-ratio: 13/9)
       width: 10%
       height: 100%
       border-top: none
@@ -51,7 +51,7 @@
       width: 33.3333%
       padding: 8px 0 15px 0
       border-right: 1px solid $back-link-button
-      @media screen and (max-width: 767px) and (orientation: landscape)
+      @media screen and (max-width: 767px) and (orientation: landscape) and (min-aspect-ratio: 13/9)
         width: 100%
         border-right: none
       @media screen and (min-width: $screen-sm)
@@ -78,7 +78,7 @@
         width: 100%
         display: block
         color: $long-text
-        @media screen and (max-width: 767px) and (orientation: landscape)
+        @media screen and (max-width: 767px) and (orientation: landscape) and (min-aspect-ratio: 13/9)
           // padding: 25% 0
         &:hover
           color: $back-link-button
@@ -154,7 +154,7 @@
   z-index: 9999
   background: shade($back-full-text, 2%)
   bottom: 40px
-  @media screen and (max-width: 767px) and (orientation: landscape)
+  @media screen and (max-width: 767px) and (orientation: landscape) and (min-aspect-ratio: 13/9)
     bottom: 0
     width: 90%
   @media screen and (min-width: $screen-sm)
@@ -252,7 +252,7 @@ body.noscroll
   bottom: 40px
   visibility: hidden
   opacity: 0
-  @media screen and (max-width: 767px) and (orientation: landscape)
+  @media screen and (max-width: 767px) and (orientation: landscape) and (min-aspect-ratio: 13/9)
     width: 90%
     left: -100%
     bottom: 0
@@ -265,7 +265,7 @@ body.noscroll
     right: 0
     visibility: visible
     opacity: 1
-    @media screen and (max-width: 767px) and (orientation: landscape)
+    @media screen and (max-width: 767px) and (orientation: landscape) and (min-aspect-ratio: 13/9)
       left: 0
     @media screen and (min-width: $screen-sm)
       right: 50%

@@ -5,8 +5,8 @@
             locals: { product: @product } %>
 
 <% cache cache_key_for_product do %>
-  <div data-hook="product_show" class="row" itemscope itemtype="https://schema.org/Product">
-    <div class="col-md-12 col-sm-12" data-hook="product_left_part">
+  <div data-hook="product_show" itemscope itemtype="https://schema.org/Product">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2" data-hook="product_left_part">
       <div data-hook="product_left_part_wrap">
         <div id="product-images" data-hook="product_images">
           <div id="main-image" class="panel panel-default" data-hook>
@@ -29,7 +29,7 @@
       </div>
     </div>
 
-    <div class="col-md-8 col-sm-12" data-hook="product_right_part">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2" data-hook="product_right_part">
       <div data-hook="product_right_part_wrap">
         <div id="product-description" data-hook="product_description">
           <h1 class="product-title" itemprop="name"><%= @product.name %></h1>
@@ -39,14 +39,16 @@
           </div>
 
           <div id="cart-form" data-hook="cart_form">
+            <div class="row" id="inside-product-cart-form" data-hook="inside_product_cart_form" itemprop="offers" itemscope="itemscope" itemtype="https://schema.org/Offer">
             <% if @product.personalizzabile == 't' || @product.personalizzabile == 'true' || @product.personalizzabile > 0 %>
-              <div class="row" id="inside-product-cart-form" data-hook="inside_product_cart_form" itemprop="offers" itemscope="itemscope" itemtype="https://schema.org/Offer">
+
                 <%= render partial: "spree/products/custom/#{@product.partial}" %>
                 <%= render partial: "cart_form_personalizzato" %>
-              </div>
+
             <% else %>
               <%= render partial: "cart_form" %>
             <% end %>
+            </div>
           </div>
         </div>
 
@@ -55,7 +57,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-2 hidden-xs hidden-sm" data-hook="product-status">
+    <div class="col-sm-2 hidden-xs" data-hook="product-status">
       <%= render partial: 'spree/products/custom/shared/riepilogo_prezzo' %>
     </div>
   </div>
