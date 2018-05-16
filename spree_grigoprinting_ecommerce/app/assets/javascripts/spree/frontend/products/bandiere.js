@@ -171,7 +171,7 @@ $(document).ready(function(){
     $('#altezza').val(400);
   });
 
-  $(document).on("change", "#name", aggiornaNomeLavorazione());
+  $('#name').change(aggiornaNomeLavorazione); /// funziona solo alla perdita di focus
 
   $(document).click(function (e) {
     if (!$(e.target).is('.button-options')) {
