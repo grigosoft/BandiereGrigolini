@@ -50,7 +50,7 @@ function setActiveFromState(){
   // metto quelli presenti
   var visibili = $('#show_state').val().split('.');
   for(var i in visibili){
-    $("[data-product-options='{}']".replace('{}', visibili[i])).addClass('selected');
+    $("[data-product-options^='{}']".replace('{}', visibili[i])).addClass('selected');
   }
 }
 // funzione che riconosce se sono stati fatte tutte le scelte relative alla finitura
