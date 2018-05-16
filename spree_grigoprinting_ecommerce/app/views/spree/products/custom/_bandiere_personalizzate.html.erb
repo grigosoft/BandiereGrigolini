@@ -1,21 +1,6 @@
 <%= hidden_field_tag "show_state_old", '' %>
 <%= hidden_field_tag "show_state", '' %>
 
-<<<<<<< HEAD
-<% if @product.price_in(current_currency) && !@product.price.nil? %>
-  <div data-hook="product_price" class="col-md-12 ">
-    <div class="preventivo configurazione">
-      <h3 class="title_section row">
-        <span class="col-sm-3 title_number">01</span>
-        <span class="col-sm-9 title_header">Crea il tuo preventivo</span>
-      </h3>
-      <div class="row">
-        <div class="col-md-9 col-md-offset-3">
-          <p class="in_product_text">Seguendo questi semplici passi creerai un preventivo basato sulle tue esigienze, personalizza il prodotto in base alle tue necessit&agrave;</p>
-          <p class="in_product_text">Potrai seguire i nostri semplici step oppure personalizzare completamete la tua bandiera.</p>
-          <p class="in_product_text">Se hai dubbi o domande non esitare a contattarci</p>
-        </div>
-=======
 <h3 class="title_section row">
   <span class="col-sm-3 col-xs-12 title_number">01</span>
   <span class="col-sm-9">Crea il tuo preventivo</span>
@@ -40,7 +25,6 @@
           <%= image_tag("bandiera_personalizzata/nautico.png", alt: "Tessuto nautico 110g/m") %>
           <p>Nautico</p>
         </a>
->>>>>>> 89a99f32c0bca097332fcf89e9c3aaf5b6c8569a
       </div>
       <div class="col-xs-6 col-sm-3">
         <a href="#ponge" class="button-options" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="ponge" data-product-show="1" data-product-options="pongè" data-product-selection="tessuto">
@@ -269,44 +253,6 @@
             <li>Occhielli ogni 50cm</li>
           </ul>
         </div>
-<<<<<<< HEAD
-      </div>
-
-      <div class="caricamento_file"></div>
-      <div class="preventivo consegna">
-        <%= render partial: 'spree/products/custom/shared/quantity_and_date' %>
-      </div>
-
-      <div class="preventivo extra">
-        <%= render partial: 'spree/products/custom/shared/servizi_extra' %>
-      </div>
-      <div class="preventivo riepilogo">
-        <h3 class="title_section row">
-          <span class="col-sm-3 title_number">04</span>
-          <span class="col-sm-9 title_header">Riepilogo</span>
-        </h3>
-        <div class="col-md-9 col-md-offset-3">
-          <div class="row">
-            <div class="riepilogo_interno nome_lavoro">
-              <h4>
-                <strong>Nome Lavoro</strong>
-              </h4>
-              <p id="nome_lavoro">Lavorazione</p>
-            </div>
-            <div class="riepilogo_interno quantita">
-              <h4>
-                <strong>Quantit&agrave;</strong>
-              </h4>
-              <p id="quantita">100</p>
-            </div>
-            <div class="riepilogo_interno giorno_di_consegna">
-              <h4>
-                <strong>Giorno di Consegna</strong>
-              </h4>
-              <p id="giorno_di_consegna">25 Marzo</p>
-            </div>
-          </div>
-=======
         <div class="col-md-12 alert-info collapse" id="moschettoni">
           <a class="btn" href="#moschettoni" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="moschettoni">x</a>
           <ul>
@@ -320,7 +266,6 @@
             <li>Fettuccia di rinforzo</li>
             <li>Laccetti ogni 50cm</li>
           </ul>
->>>>>>> 89a99f32c0bca097332fcf89e9c3aaf5b6c8569a
         </div>
       </div>
     </div>
