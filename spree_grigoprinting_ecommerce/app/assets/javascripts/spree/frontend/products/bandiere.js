@@ -131,7 +131,13 @@ function setTotalPrice(){
   }
 
   tot = tot.toFixed(2);
-  $('#prezzo').html('€'+tot);
+  $('#prezzo').html('€ '+tot);
+  $('#lbl_quantita').html(quantity+' pz');
+  aggiornaNomeLavorazione();
+  $('#lbl_giorno_di_consegna').html($('.selected.data_consegna').html());
+}
+function aggiornaNomeLavorazione(){
+  $('#lbl_nome_lavoro').html($('#name').val());
 }
 
 $(document).ready(function(){
@@ -165,6 +171,7 @@ $(document).ready(function(){
     $('#altezza').val(400);
   });
 
+  $(document).on("change", "#name", aggiornaNomeLavorazione());
 
   $(document).click(function (e) {
     if (!$(e.target).is('.button-options')) {
