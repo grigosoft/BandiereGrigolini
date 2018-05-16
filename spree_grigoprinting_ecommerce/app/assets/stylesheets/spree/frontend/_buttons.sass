@@ -1,13 +1,13 @@
-
 .btn
-  +border-radius(50%)
+  +border-radius(1rem)
   +transition
+  border: none
 .btn-primary
-  background-color: $back-link-button
+  background: $gradient-bg
   color: $back-full-text
-  &:hover, &:focus
-    background: tint($back-link-button, 10%)
-    color: $back-full-text
+  // &:hover, &:focus
+  //   background: tint($back-link-button, 10%)
+  //   color: $back-full-text
 
 .btn-cart
   width: 100%
@@ -20,11 +20,11 @@
   display: block
   +transition
   color: $back-link-button
-  border: 1px solid $back-full-text
+  border: 1px solid $link-back-full
   +border-radius($radius)
-  padding: 0
   overflow: hidden
   margin: 0.5rem auto
+  padding: 0
   &:hover
     border: 1px solid $back-link-button
     text-decoration: none
@@ -37,9 +37,9 @@
     padding: 2px
     +transition
     &:hover
-      transform: scale(1.2)
+      transform: scale(1.05)
   p, ul, h5
-    background-color: $back-full-text
+    background-color: shade($back-full-text, 10%)
     margin: 0
     padding: 5px
     text-align: center
@@ -65,30 +65,18 @@
   float: right
   @include fluid-type($min_width, $max_width, $min_font, $min_font)
   font-weight: 700
+  padding: 0.8rem 1.5rem
+  +border-radius(2rem)
   +transition
-  +border-radius($radius)
-  border: 1px solid $back-full-text
+  background-size: 200% auto
+  background-image: linear-gradient(to right, $back-link-button 0%, $link-back-full 51%, $back-link-button 100%)
+  margin: 1rem 0
   &::before
     +transition
-    font-family: "Glyphicons Halflings"
-    content: "\e116"
+    font-family: "icomoon"
+    content: "\e903"
     display:  inline-block
-    background: $back-full-text
-    position: absolute
-    top: 0
-    bottom: 0
-    width: 40px
-    left: -35px
-    border: 1px solid $back-link-button
-    +border-radius($radius)
-    color: $back-link-button
     vertical-align:  middle
-    padding: 5px
+    font-size: 1.2rem
   &:hover
-    border-color: $back-link-button
-    color: $back-link-button
-    background-color: $back-full-text
-  &:hover::before
-    color: $back-full-text
-    background: $back-link-button
-    border-color: $back-full-text
+    background-position: right center

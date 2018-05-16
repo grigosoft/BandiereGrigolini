@@ -24,14 +24,11 @@
         <% end %>
       </div>
         <div class="add-to-cart">
-            <br/>
-            <div class="input-group">
-              <span class="input-group-btn btn-options">
-                <%= button_tag class: 'btn btn-options btn btn-options-success', id: 'add-to-cart-button', type: :submit do %>
+
+                <%= button_tag class: 'btn btn-primary btn-options-success', id: 'add-to-cart-button', type: :submit do %>
                  <%= Spree.t(:add_to_cart) %>
                 <% end %>
-              </span>
-            </div>
+              
           </div>
       <% else %>
         <div id="product-price">

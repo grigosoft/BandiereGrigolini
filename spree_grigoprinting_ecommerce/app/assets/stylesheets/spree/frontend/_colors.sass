@@ -4,12 +4,14 @@ a
   color: $link-back-full
 
 .title_section
-  color: $back-full-text
-  background-color: $link-back-full
-  border: 1px solid $link-back-full
+  .title_header
+    color: $back-full-text
+    background: $gradient-bg
+    +border-radius(0 1rem 1rem 0)
   .title_number
-    background-color: $back-full-text
+    background: $gradient-white-bg
     color: $back-link-button
+    +border-radius(1rem 0 0 1rem)
 
 hr
   border-top: 1px dashed +shade($back-full-text, 40%)
@@ -43,10 +45,6 @@ hr
   border: 1px solid shade($positive, 40%)
   hr
     border-top-color: shade($positive, 40%)
-
-#add-to-cart-button
-  background-color: $back-link-button
-  color: $back-full-text
 
 .info-panel
   p
