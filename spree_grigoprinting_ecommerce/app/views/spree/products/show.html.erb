@@ -41,10 +41,10 @@
           <div id="cart-form" data-hook="cart_form">
             <div class="row" id="inside-product-cart-form" data-hook="inside_product_cart_form" itemprop="offers" itemscope="itemscope" itemtype="https://schema.org/Offer">
             <% if @product.personalizzabile == 't' || @product.personalizzabile == 'true' || @product.personalizzabile > 0 %>
-
+              <div class="col-xs-12">
                 <%= render partial: "spree/products/custom/#{@product.partial}" %>
+              </div>
                 <%= render partial: "cart_form_personalizzato" %>
-
             <% else %>
               <%= render partial: "cart_form" %>
             <% end %>

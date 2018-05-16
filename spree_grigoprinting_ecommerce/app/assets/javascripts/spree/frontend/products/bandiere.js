@@ -143,7 +143,6 @@ function aggiornaNomeLavorazione(){
 $(document).ready(function(){
   // bind gruppi di scelta
   bindSelezioniShow();
-  // bindWithActive('.scelta_tessuto');
 
   // pagina appena caricata nascondo personalizzazioni
   $('[data-need-show]').addClass('hidden');

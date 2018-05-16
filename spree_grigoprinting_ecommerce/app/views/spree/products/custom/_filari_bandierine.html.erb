@@ -1,0 +1,80 @@
+<%= hidden_field_tag "show_state_old", '' %>
+<%= hidden_field_tag "show_state", '' %>
+
+<h3 class="title_section row">
+  <span class="col-sm-3 col-xs-12 title_number">01</span>
+  <span class="col-sm-9">Crea il tuo preventivo</span>
+</h3>
+<div class="row">
+  <div class="col-md-9 col-md-offset-3">
+    <p class="in_product_text">Seguendo questi semplici passi creerai un preventivo basato sulle tue esigienze, personalizza il prodotto in base alle tue necessit&agrave;</p>
+    <p class="in_product_text">Potrai seguire i nostri semplici step oppure personalizzare completamete la tua bandiera.</p>
+    <p class="in_product_text">Se hai dubbi o domande non esitare a contattarci</p>
+  </div>
+</div>
+<%= render partial: 'spree/products/custom/shared/nome' %>
+<hr>
+<div class="row"> <!-- formato -->
+  <div class="col-md-3">
+    <%= label_tag(:formato, "Formato") %>
+  </div>
+  <div class="col-md-9">
+    <div class="selezione_orientamento row-form">
+      <div class="col-xs-6 col-sm-3">
+        <a class="button-options" role="button" data-product-show="1" data-product-options="triangolare" data-product-selection="formato">
+          <%= image_tag("bandiera_personalizzata/horizontal.svg", alt: "Bandierina triangolare") %>
+          <p>Triangolare</p>
+        </a>
+      </div>
+      <div class="col-xs-6 col-sm-3">
+        <a class="button-options" role="button" data-product-show="1" data-product-options="rettangolare" data-product-selection="formato">
+          <%= image_tag("bandiera_personalizzata/vertical.svg", alt: "Bandierina rettangolare") %>
+          <p>Rettangolare</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+<div class="row"> <!-- misura -->
+  <div class="col-md-3" data-need-show="triangolare">
+    <%= label_tag(:misura_bandierine, "Misura bandierine") %>
+  </div>
+  <div class="col-md-3" data-need-show="rettangolare">
+    <%= select_tag "misura_bandierine", options_for_select(["Lato sinistro", "Lato destro"], "Lato sinistro"), class: "form-control" %>
+  </div>
+</div>
+
+<div class="caricamento_file"></div>
+
+<%= render partial: 'spree/products/custom/shared/quantity_and_date' %>
+<%= render partial: 'spree/products/custom/shared/servizi_extra' %>
+
+<h3 class="title_section row">
+  <span class="col-sm-3 col-xs-12 title_number">04</span>
+  <span class="col-sm-9">Riepilogo</span>
+</h3>
+<div class="col-md-9 col-md-offset-3">
+  <div class="row">
+    <div class="riepilogo_interno nome_lavoro">
+      <h4>
+        <strong>Nome Lavoro</strong>
+      </h4>
+      <p id="lbl_nome_lavoro">Lavorazione</p>
+    </div>
+    <div class="riepilogo_interno quantita">
+      <h4>
+        <strong>Quantit&agrave;</strong>
+      </h4>
+      <p id="lbl_quantita">1</p>
+    </div>
+    <div class="riepilogo_interno giorno_di_consegna">
+      <h4>
+        <strong>Giorno di Consegna</strong>
+      </h4>
+      <p id="lbl_giorno_di_consegna"></p>
+    </div>
+  </div>
+</div>
+
+<%= javascript_include_tag "spree/frontend/products/filari" %>
