@@ -97,7 +97,7 @@ function setInMoreOptions(){
 
     moreOptionsValue["finitura"] = finitura;
 
-    moreOptionsValue["consegna"] = $('.selected[data-product-selection="data_consegna"]').data('product-options');
+    moreOptionsValue["consegna"] = $('.selected[data-date-selection="data_consegna"]').data('date-options');
 
     moreOptionsValue["extra"] = {};
     if($("input#vettorializzazione_accepted").prop( "checked" )) {
@@ -115,21 +115,22 @@ function setTotalPrice(){
   var moreOptions = JSON.parse($('#more_options').val());
   var prezzoCad = 0;
   if (moreOptions['consegna'] != null){
-    prezzoCad = $('#prezzo_'+moreOptions['consegna']+'>.prezzo').attr('content');
+    prezzoCad = $('#consegna_'+moreOptions['consegna']).attr('prezzo');
+  } else {
+    prezzoCad = $('#consegna_3').attr('prezzo');
   }
   var quantity = $('#quantity').val();
   var tot = prezzoCad*quantity;
 
   if($("input#controllo_file_accepted").prop( "checked" )) {
-    tot += 4;
+    tot += parseFloat($("input#controllo_file_accepted").attr('prezzo'));
   }
   if($("input#impaginazione_accepted").prop( "checked" )) {
-    tot += 6;
+    tot += parseFloat($("input#impaginazione_accepted").attr('prezzo'));
   }
   if($("input#vettorializzazione_accepted").prop( "checked" )) {
-    tot += 10;
+    tot += parseFloat($("input#vettorializzazione_accepted").attr('prezzo'));
   }
-
   tot = tot.toFixed(2);
   $('#prezzo').html('€ '+tot);
   $('#lbl_quantita').html(quantity+' pz');

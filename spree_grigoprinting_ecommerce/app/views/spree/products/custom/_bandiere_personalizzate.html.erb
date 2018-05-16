@@ -273,8 +273,9 @@
 </div>
 
 <div class="caricamento_file"></div>
-
-<%= render partial: 'spree/products/custom/shared/quantity_and_date' %>
+<div class="consegna">
+  <%= render partial: 'spree/products/custom/shared/quantity_and_date' %>
+</div>
 <%= render partial: 'spree/products/custom/shared/servizi_extra' %>
 
 <h3 class="title_section row">
@@ -283,24 +284,30 @@
 </h3>
 <div class="col-md-9 col-md-offset-3">
   <div class="row">
-    <div class="riepilogo_interno nome_lavoro">
+    <div class="riepilogo_interno">
       <h4>
         <strong>Nome Lavoro</strong>
       </h4>
       <p id="lbl_nome_lavoro">Lavorazione</p>
     </div>
-    <div class="riepilogo_interno quantita">
+    <div class="riepilogo_interno">
       <h4>
         <strong>Quantit&agrave;</strong>
       </h4>
       <p id="lbl_quantita">1</p>
     </div>
-    <div class="riepilogo_interno giorno_di_consegna">
+    <div class="riepilogo_interno">
       <h4>
         <strong>Giorno di Consegna</strong>
       </h4>
       <p id="lbl_giorno_di_consegna"></p>
     </div>
+    <!-- <div class="riepilogo_interno">
+      <h4>
+        <strong>Prezzo complessivo</strong>
+      </h4>
+      <p id="lbl_prezzo"></p>
+    </div> -->
   </div>
 </div>
 

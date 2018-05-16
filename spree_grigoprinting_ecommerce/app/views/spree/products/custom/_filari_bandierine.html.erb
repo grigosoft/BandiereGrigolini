@@ -37,11 +37,14 @@
 </div>
 <hr>
 <div class="row"> <!-- misura -->
-  <div class="col-md-3" data-need-show="triangolare">
+  <div class="col-md-3">
     <%= label_tag(:misura_bandierine, "Misura bandierine") %>
   </div>
-  <div class="col-md-3" data-need-show="rettangolare">
+  <div class="col-md-3" data-need-show="triangolare">
     <%= select_tag "misura_bandierine", options_for_select(["Lato sinistro", "Lato destro"], "Lato sinistro"), class: "form-control" %>
+  </div>
+  <div class="col-md-3" data-need-show="rettangolare">
+    <%= select_tag "misura_bandierine",  class: "form-control" %>
   </div>
 </div>
 
