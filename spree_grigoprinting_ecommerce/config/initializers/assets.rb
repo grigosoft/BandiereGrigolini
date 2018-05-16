@@ -10,6 +10,7 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 Rails.application.config.assets.precompile += %w( sideBar.js )
 Rails.application.config.assets.precompile += %w( spree/frontend/products/bandiere.js )
 Rails.application.config.assets.precompile += %w( spree/frontend/products/quantyty_and_date.js )
+Rails.application.config.assets.precompile += %w( spree/frontend/products/filari.js )
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.

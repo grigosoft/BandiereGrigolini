@@ -3,7 +3,7 @@
   <%= hidden_field_tag "quantity" %>
   <%= hidden_field_tag "more_options" %>
   <div class="row">
-    <div class="col-md-6 total_prezzo">
+    <div class="col-md-6 total_prezzo" data-hook="product_price">
       <% if @product.can_supply? %>
         <div id="product-price">
         <h4 class="product-section-title">

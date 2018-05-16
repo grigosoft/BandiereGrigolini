@@ -50,7 +50,7 @@ function setActiveFromState(){
   // metto quelli presenti
   var visibili = $('#show_state').val().split('.');
   for(var i in visibili){
-    $("[data-product-options='{}']".replace('{}', visibili[i])).addClass('selected');
+    $("[data-product-options^='{}']".replace('{}', visibili[i])).addClass('selected');
   }
 }
 // funzione che riconosce se sono stati fatte tutte le scelte relative alla finitura
@@ -97,7 +97,7 @@ function setInMoreOptions(){
 
     moreOptionsValue["finitura"] = finitura;
 
-    moreOptionsValue["consegna"] = $('.selected[data-product-selection="data_consegna"]').data('product-options');
+    moreOptionsValue["consegna"] = $('.selected[data-date-selection="data_consegna"]').data('date-options');
 
     moreOptionsValue["extra"] = {};
     if($("input#vettorializzazione_accepted").prop( "checked" )) {
@@ -115,29 +115,35 @@ function setTotalPrice(){
   var moreOptions = JSON.parse($('#more_options').val());
   var prezzoCad = 0;
   if (moreOptions['consegna'] != null){
-    prezzoCad = $('#prezzo_'+moreOptions['consegna']+'>.prezzo').attr('content');
+    prezzoCad = $('#consegna_'+moreOptions['consegna']).attr('prezzo');
+  } else {
+    prezzoCad = $('#consegna_3').attr('prezzo');
   }
   var quantity = $('#quantity').val();
   var tot = prezzoCad*quantity;
 
   if($("input#controllo_file_accepted").prop( "checked" )) {
-    tot += 4;
+    tot += parseFloat($("input#controllo_file_accepted").attr('prezzo'));
   }
   if($("input#impaginazione_accepted").prop( "checked" )) {
-    tot += 6;
+    tot += parseFloat($("input#impaginazione_accepted").attr('prezzo'));
   }
   if($("input#vettorializzazione_accepted").prop( "checked" )) {
-    tot += 10;
+    tot += parseFloat($("input#vettorializzazione_accepted").attr('prezzo'));
   }
-
   tot = tot.toFixed(2);
-  $('#prezzo').html('€'+tot);
+  $('#prezzo').html('€ '+tot);
+  $('#lbl_quantita').html(quantity+' pz');
+  aggiornaNomeLavorazione();
+  $('#lbl_giorno_di_consegna').html($('.selected.data_consegna').html());
+}
+function aggiornaNomeLavorazione(){
+  $('#lbl_nome_lavoro').html($('#name').val());
 }
 
 $(document).ready(function(){
   // bind gruppi di scelta
   bindSelezioniShow();
-  // bindWithActive('.scelta_tessuto');
 
   // pagina appena caricata nascondo personalizzazioni
   $('[data-need-show]').addClass('hidden');
@@ -165,6 +171,7 @@ $(document).ready(function(){
     $('#altezza').val(400);
   });
 
+  $('#name').change(aggiornaNomeLavorazione); /// funziona solo alla perdita di focus
 
   $(document).click(function (e) {
     if (!$(e.target).is('.button-options')) {
