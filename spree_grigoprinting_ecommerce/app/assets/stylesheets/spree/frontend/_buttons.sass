@@ -44,7 +44,8 @@
     padding: 5px
     text-align: center
     z-index: 1000
-
+  &.data_consegna
+    padding: 5px
 .button-options.unactive
   cursor: not-allowed
   &:hover
@@ -53,7 +54,7 @@
 
 .informazioni
   background-color: shade($back-full-text, 5%)
-  +border-radius($radius)
+  +border-radius(1rem)
 
 .selected
   border: 1px solid $back-link-button
@@ -80,3 +81,19 @@
     font-size: 1.2rem
   &:hover
     background-position: right center
+
+// select
+//   +appearance(none)
+//   appearance: none
+// .grigo_select_form
+//   position: relative
+//   &::after
+//     content: "\e911"
+//     font-family: "icomoon"
+//     position: absolute
+//     right: 0
+//     top: 0
+//     z-index: 1
+//     width: 10%
+//     height: 100%
+//     pointer-events: none
