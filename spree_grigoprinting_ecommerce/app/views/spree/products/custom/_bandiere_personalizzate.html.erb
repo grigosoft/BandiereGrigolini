@@ -188,7 +188,7 @@
       <div class="col-md-3">
         <%= label_tag(:manica_superiore, "Vuoi le maniche nei lati corti")%>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-3 grigo_select_form">
         <%= select_tag "Manica superiore", options_for_select(["No", "Solo sopra", "Solo sotto", "Sopra e sotto"], "No"), class: "form-control" %>
       </div>
     </div>
@@ -196,7 +196,7 @@
       <div class="col-md-3">
         <%= label_tag(:aperta_o_chiusa, "Vuoi la manica aperta o chiusa")%>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-3 grigo_select_form">
         <%= select_tag "Aperta o Chiusa", options_for_select(["Aperta", "Chiusa"], "Aperta"), class: "form-control" %>
       </div>
     </div>
