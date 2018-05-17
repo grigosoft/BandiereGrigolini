@@ -97,7 +97,7 @@ function setInMoreOptions(){
 
     moreOptionsValue["finitura"] = finitura;
 
-    moreOptionsValue["consegna"] = $('.selected[data-date-selection="data_consegna"]').data('date-options');
+    moreOptionsValue["consegna"] = $('.selected[data-date-selection]').data('date-options');
 
     moreOptionsValue["extra"] = {};
     if($("input#vettorializzazione_accepted").prop( "checked" )) {
