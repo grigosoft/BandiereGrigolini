@@ -3,12 +3,12 @@
 
 <h3 class="title_section row">
   <span class="col-sm-3 col-xs-12 title_number">01</span>
-  <span class="col-sm-9">Crea il tuo preventivo</span>
+  <span class="col-sm-9 title_header">Crea il tuo preventivo</span>
 </h3>
 <div class="row">
   <div class="col-md-9 col-md-offset-3">
     <p class="in_product_text">Seguendo questi semplici passi creerai un preventivo basato sulle tue esigienze, personalizza il prodotto in base alle tue necessit&agrave;</p>
-    <p class="in_product_text">Potrai seguire i nostri semplici step oppure personalizzare completamete la tua bandiera.</p>
+    <p class="in_product_text">Potrai seguire i nostri semplici step oppure personalizzare completamete il tuo filare.</p>
     <p class="in_product_text">Se hai dubbi o domande non esitare a contattarci</p>
   </div>
 </div>
@@ -47,6 +47,47 @@
     <%= select_tag "misura_bandierine",  class: "form-control" %>
   </div>
 </div>
+<div class="row"> <!-- lunghezza -->
+  <div class="col-md-3">
+    <%= label_tag(:lunghezza, "Lunghezza") %>
+  </div>
+  <div class="col-md-3">
+    <%= number_field_tag :lunghezza, 10, class: 'title form-control', min: 3, max: 20 %>
+  </div>
+  <div class="col-md-6">
+    5 bandierine a filare
+  </div>
+</div>
+<hr>
+<div class="row"> <!-- scelta colori -->
+  <div class="col-md-3">
+    <%= label_tag(:colori, "Scegli i tuoi colori") %>
+  </div>
+  <div class="col-md-9">
+    <div class="selezione_orientamento row-form">
+      <% colori = ['Rosso','Blu','giallo','verde','cyan','arancio','nero','bianco','personalizzata'] %>
+      <% colori.each do |colore| %>
+        <div class="col-xs-3 col-md-2">
+          <a class="button-options" role="button">
+            <%= image_tag("filari/bandierina_#{colore.downcase}.svg", alt: "Bandierina #{colore.downcase}", draggable: true, ondragstart: "drag(event)", colore: colore.downcase) %>
+            <p><%= colore %></p>
+          </a>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="row"> <!-- colori scelti -->
+  <div class="col-md-3">
+    <%= label_tag(:colori_scelti, "Trascina qui i tuoi colori") %>
+  </div>
+  <div class="col-md-9">
+    <div class="selezione_orientamento row-form">
+      <div id="colori_scelti" ondrop="drop(event)" ondragover="allowDrop(event)" style="width:100%; height:100px; background-color:#e6e6e6;">
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="caricamento_file"></div>
 
@@ -55,7 +96,7 @@
 
 <h3 class="title_section row">
   <span class="col-sm-3 col-xs-12 title_number">04</span>
-  <span class="col-sm-9">Riepilogo</span>
+  <span class="col-sm-9 title_header">Riepilogo</span>
 </h3>
 <div class="col-md-9 col-md-offset-3">
   <div class="row">
@@ -79,5 +120,8 @@
     </div>
   </div>
 </div>
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.8.17/jquery-ui.min.js"></script>
 
+<%= javascript_include_tag "jquery.ui.touch-punch.min" %>
 <%= javascript_include_tag "spree/frontend/products/filari" %>

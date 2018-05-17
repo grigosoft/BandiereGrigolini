@@ -18,17 +18,18 @@ $(document).ready(function(){
 });
 
 function caricaConsegnaDaMoreOptions(){
-  $('.selected[data-date-selection="data_consegna"]').removeClass('selected');
   try {
     var moreOptions = JSON.parse($('#more_options').val());
     var consegna = moreOptions['consegna'];
     if(consegna != null){
+      $('.selected[data-date-selection="data_consegna"]').removeClass('selected');
       $('#consegna_'+consegna).addClass('selected');
       return;
     }
   } catch(err) {}
   // default conegna price_including_vat_for
-  $('#consegna_3').addClass('selected');
+  $('.selected[data-date-selection="data_consegna"]').removeClass('selected');
+  // $('#consegna_3').addClass('selected');
   // riferimento a funzione in bandiere.js
-  setInMoreOptions();
+  // setInMoreOptions();
 }
