@@ -1,6 +1,6 @@
-<div class="nome lavorazione row ">
+<div class="row">
   <div class="col-md-3">
-    <%= label_tag(:lavorazione, "Assegna un nome alla lavorazione")%>
+    <%= label_tag(:nome, "Assegna un nome alla lavorazione")%>
   </div>
   <div class="col-md-3">
       <%= text_field_tag 'name', nil, size: 25, maxlength: 25, class: "form-control" %>
@@ -11,3 +11,5 @@
     <p class="bg-danger">Il nome della lavorazione non pu&ograve; essere vuoto</p>
   </div>
 </div>
+
+<%= javascript_include_tag "spree/frontend/products/nome.js" %>
