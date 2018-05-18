@@ -26,6 +26,9 @@ function generaFilare(){
   }
   $('#filare_generato').attr('style',"width: "+maxBandierine*50+'px')
   $('#filare_generato').html(filare);
+
+  // clear stili clonati
+  $('#colori_scelti>div').attr('style','')
 }
 //
 // // drag and drop
