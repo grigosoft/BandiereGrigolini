@@ -1,7 +1,19 @@
 $(document).ready(function(){
+  prodotto.toMoreOptions.push(function(){
+    prodotto.moreOptions["consegna"] = $('.selected[data-date-selection]').data('date-options');
+  });
+  prodotto.prezzo.push(function(){// le butta dentro piu volte, ogni volta che rirenderizza il partial
+    var prezzoCad = 0;
+    if (prodotto.moreOptions['consegna'] != null){
+      prezzoCad = $('#consegna_'+prodotto.moreOptions['consegna']).attr('prezzo');
+    }
+    var quantity = $('#quanti').val();
+    return prezzoCad*quantity;
+  });
+
 
   // carica da more options la selezione
-  caricaConsegnaDaMoreOptions();
+  // caricaConsegnaDaMoreOptions();
 
 
   // selezione data consegna
@@ -12,8 +24,8 @@ $(document).ready(function(){
     }
     $('.selected[data-date-selection="data_consegna"]').removeClass('selected');
     questo.addClass('selected');
-    // riferimento a funzione in bandiere.js
-    setInMoreOptions();
+
+    prodotto.fireToMoreOptions();
   });
 });
 

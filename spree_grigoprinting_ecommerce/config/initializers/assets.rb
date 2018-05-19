@@ -17,6 +17,7 @@ Rails.application.config.assets.precompile += %w( spree/frontend/products/riepil
 Rails.application.config.assets.precompile += %w( spree/frontend/products/servizi_extra.js )
 Rails.application.config.assets.precompile += %w( spree/frontend/products/soggetti.js )
 # prodotti
+Rails.application.config.assets.precompile += %w( spree/frontend/products/prodotto_personalizzato.js )
 Rails.application.config.assets.precompile += %w( spree/frontend/products/bandiere.js )
 Rails.application.config.assets.precompile += %w( spree/frontend/products/filari.js )
 Rails.application.config.assets.precompile += %w( jquery.ui.touch-punch.min.js )
