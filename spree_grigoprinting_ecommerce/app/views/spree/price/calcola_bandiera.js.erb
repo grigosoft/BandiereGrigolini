@@ -1,2 +1,5 @@
-var html = "<%= escape_javascript(render(:partial=>'spree/products/custom/shared/quantity_and_date')).html_safe %>";
-$("div.consegna").html(html);
+// var html = "<%= escape_javascript(render(:partial=>'spree/products/custom/shared/quantity_and_date')).html_safe %>";
+// $("div.consegna").html(html);
+
+var json = '<%= @consegna.to_json %>'.replace(/\&quot;/g,'"');
+caricaDate(json);

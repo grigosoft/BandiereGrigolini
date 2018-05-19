@@ -16,7 +16,12 @@ var Prodotto = function(){
     this.fireVisualizza();
   }
   this.fireFromMoreOptions = function(){
-    this.moreOptions = JSON.parse($('#more_options').val());
+    try {
+      this.moreOptions = JSON.parse($('#more_options').val());
+    } catch (err) {
+      this.moreOptions = {};
+      $('#more_options').val('{}');
+    }
     for(var i=0; i<this.fromMoreOptions.length; i++){
       this.fromMoreOptions[i]();
     }
@@ -31,7 +36,6 @@ var Prodotto = function(){
     var prezzo = 0;
     for(var i=0; i<this.prezzo.length; i++){
       prezzo += this.prezzo[i]();
-      alert(i+' '+prezzo);
     }
     return prezzo.toFixed(2);
   }

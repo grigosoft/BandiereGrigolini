@@ -1,6 +1,6 @@
 function setInMoreOptions(){
     var show_state = $('#show_state').val().split('.');
-    this.moreOptions["prodotto_personalizzato"] = "bandiera_personalizzata";
+    prodotto.moreOptions["prodotto_personalizzato"] = "bandiera_personalizzata";
     prodotto.moreOptions["tessuto"] = show_state[0];
     prodotto.moreOptions["orientamento"] = show_state[1];
     var finitura = {};
@@ -123,7 +123,9 @@ function setActiveFromState(){
 function richiedi_prezzo() {
   $('#quantity').val($('#quanti').val());
   $.ajax({
-    type: "POST", url: "/price_flag", data: $("#form_prodotto").serialize() //this will enable you to use params[:periods] and params[:age] in your controller
+    type: "POST",
+    url: "/price_flag",
+    data: $("#form_prodotto").serialize() //this will enable you to use params[:periods] and params[:age] in your controller
   });
   prodotto.fireVisualizza();
 }
