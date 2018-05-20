@@ -1,6 +1,7 @@
 function setInMoreOptions(){
     var show_state = $('#show_state').val().split('.');
     prodotto.moreOptions["prodotto_personalizzato"] = "bandiera_personalizzata";
+    prodotto.moreOptions["show_state"] = show_state.join('.');
     prodotto.moreOptions["tessuto"] = show_state[0];
     prodotto.moreOptions["orientamento"] = show_state[1];
     var finitura = {};
@@ -65,25 +66,29 @@ $(document).ready(function(){
 
 function bindSelezioniShow(){
   $('[data-product-selection]').click(function(){
-    var active = $(this);
+    var questo = $(this);
     // aggiorno show_state
     var old_state = $('#show_state').val();
     $('#show_state_old').val(old_state);
     old_state = old_state.split('.');
     var new_state = "";
-    if(active.data("product-selection") == 'tessuto'){ // il cambio dei tessuti non resetta la cascata di show
+    if(questo.data("product-selection") == 'tessuto'){ // il cambio dei tessuti non resetta la cascata di show
       new_state = old_state;
-      new_state[active.data("product-show")-1] = active.data("product-options");
+      new_state[questo.data("product-show")-1] = questo.data("product-options");
       new_state = new_state.join('.');
     } else {
-      for(var i=0; i<active.data('product-show')-1; i++){
+      for(var i=0; i<questo.data('product-show')-1; i++){
         new_state += old_state[i]+'.';
       }
-      new_state += active.data('product-options');
+      new_state += questo.data('product-options');
     }
     $('#show_state').val(new_state);
+
     showPartialFromState();
     setActiveFromState();
+
+    prodotto.fireToMoreOptions();
+
     // controllaDati();
     richiedi_prezzo();
   });

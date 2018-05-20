@@ -45,7 +45,11 @@ module Spree
 
     def self.verifica_parametri_bandiera_personalizzata(parametri)
       if parametri[:quantity].nil? ||
-         parametri[:quantity].to_i <= 0 ||
+         parametri[:quantity].to_i < 0 ||
+         parametri[:soggetti].nil? ||
+         parametri[:soggetti].to_i < 0 ||
+         parametri[:show_state].nil? ||
+         parametri[:show_state].split('.').length != 4 ||
          parametri[:tessuto].nil? ||
          parametri[:orientamento].nil? ||
          parametri[:base].nil? ||

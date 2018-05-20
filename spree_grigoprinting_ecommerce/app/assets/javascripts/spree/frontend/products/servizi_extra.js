@@ -29,6 +29,9 @@ $(document).ready(function(){
 
   prodotto.toMoreOptions.push(toMoreOptions);
   prodotto.prezzo.push(prezzo);
+  prodotto.visualizza.push(function(){
+    $('#lbl_soggeti_in_extra').html(' x'+$('#soggetti').val());
+  });
 });
 
 // funzioni vi visibilita
