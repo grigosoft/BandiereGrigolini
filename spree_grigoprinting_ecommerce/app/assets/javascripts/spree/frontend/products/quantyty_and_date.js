@@ -1,4 +1,4 @@
-function caricaConsegnaDaMoreOptions(){
+function qad_fromMoreOptions(){
   var consegna = prodotto.moreOptions['consegna'];
   if(consegna != null){
     $('.selected[data-date-selection="data_consegna"]').removeClass('selected');
@@ -13,7 +13,7 @@ $(document).ready(function(){
     prodotto.moreOptions["consegna"] = $('.selected[data-date-selection]').data('date-options');
     $('#quantity').val($('#quanti').val());
   });
-  prodotto.fromMoreOptions.push(caricaConsegnaDaMoreOptions);
+  prodotto.fromMoreOptions.push(qad_fromMoreOptions);
   prodotto.prezzo.push(function(){
     var prezzoCad = 0;
     if (prodotto.moreOptions['consegna'] != null){
@@ -51,4 +51,5 @@ function caricaDate(json){
       $('#consegna_'+i).addClass('unactive');
     }
   }
+  qad_fromMoreOptions();// riseleziono data da more options
 }

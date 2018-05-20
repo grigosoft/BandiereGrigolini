@@ -1,4 +1,4 @@
-function setInMoreOptions(){
+function toMoreOptions(){
     var show_state = $('#show_state').val().split('.');
     prodotto.moreOptions["prodotto_personalizzato"] = "bandiera_personalizzata";
     prodotto.moreOptions["show_state"] = show_state.join('.');
@@ -10,10 +10,10 @@ function setInMoreOptions(){
     finitura["sopra"] = {'finitura': 'doppio_ago'};
     finitura["sotto"] = {'finitura': 'doppio_ago'};
     if(show_state[1] == 'verticale'){
-      if($('#Manica_superiore').val() == 'Solo sopra' || $('#Manica_superiore').val() == 'Sora e sotto'){
+      if($('#Manica_superiore').val() == 'Solo sopra' || $('#Manica_superiore').val() == 'Sopra e sotto'){
         finitura["sopra"] = {'finitura': 'manica', 'dettagli': $('Aperta_o_Chiusa').val()};
       }
-      if($('#Manica_superiore').val() == 'Solo sotto' || $('#Manica_superiore').val() == 'Sora e sotto'){
+      if($('#Manica_superiore').val() == 'Sopra e sotto'){
         finitura["sotto"] = {'finitura': 'manica', 'dettagli': $('#Aperta_o_Chiusa').val()};
       }
     }
@@ -27,8 +27,25 @@ function setInMoreOptions(){
 
     prodotto.moreOptions["finitura"] = finitura;
 }
+function fromMoreOptions(){
+  if(prodotto.moreOptions["show_state"] != null){
+    $('#show_state').val(prodotto.moreOptions["show_state"]);
+  }
+  var finitura = prodotto.moreOptions["finitura"];
+  if(finitura["sotto"] != null && finitura["sotto"]['finitura'] == 'manica'){
+    $('#Manica_superiore').val('Sopra e sotto');
+    $('#Aperta_o_Chiusa').val(finitura["sotto"]['finitura']['dettagli']);
+  } else if(finitura["sopra"] != null && finitura["sopra"]['finitura'] == 'manica'){
+    $('#Manica_superiore').val('Sopra');
+    $('#Aperta_o_Chiusa').val(finitura["sopra"]['finitura']['dettagli']);
+  } else {
+    $('#Manica_superiore').val('No');
+  }
+
+}
 $(document).ready(function(){
-  prodotto.toMoreOptions.push(setInMoreOptions);
+  prodotto.toMoreOptions.push(toMoreOptions);
+  prodotto.fromMoreOptions.push(fromMoreOptions);
   prodotto.fireFromMoreOptions();
 
   // bind gruppi di scelta
