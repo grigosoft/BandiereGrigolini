@@ -7,8 +7,19 @@ var Prodotto = function(){
   this.visualizza = [];
   this.prezzo = [];
   // metodi
+  this.fireVisualizza = function(){
+    if(this.visualizza == null){
+      this.visualizza = [];
+    }
+    for(var i=0; i<this.visualizza.length; i++){
+      this.visualizza[i]();
+    }
+  }
   this.fireToMoreOptions = function(){
     this.moreOptions = {};
+    if(this.toMoreOptions == null){
+      this.toMoreOptions = [];
+    }
     for(var i=0; i<this.toMoreOptions.length; i++){
       this.toMoreOptions[i]();
     }
@@ -22,15 +33,13 @@ var Prodotto = function(){
       this.moreOptions = {};
       $('#more_options').val('{}');
     }
+    if(this.fromMoreOptions == null){
+      this.fromMoreOptions = [];
+    }
     for(var i=0; i<this.fromMoreOptions.length; i++){
       this.fromMoreOptions[i]();
     }
     this.fireVisualizza();
-  }
-  this.fireVisualizza = function(){
-    for(var i=0; i<this.visualizza.length; i++){
-      this.visualizza[i]();
-    }
   }
   this.getPrezzo = function(){
     var prezzo = 0;
