@@ -63,15 +63,23 @@
   </div>
   <div class="col-md-9">
     <div class="row-form" id ="scegli_colori">
-      <% colori = ['Rosso','Blu','giallo','verde','cyan','arancio','nero','bianco','personalizzata'] %>
-      <% colori.each do |colore| %>
-        <div class="draggable col-xs-3 col-md-2">
-          <a class="button-options" role="button">
-            <%= image_tag("filari/bandierina_#{colore.downcase}.svg", alt: "Bandierina #{colore.downcase}", colore: colore.downcase) %>
-            <p><%= colore %></p>
-          </a>
-        </div>
-      <% end %>
+      <div class="hide" id="bandierina_personalizzata">
+        <%= render :partial => 'svg/bandierina_personalizzata' %>
+      </div>
+      <div class="hide" id="bandierina_piatta">
+        <%= render :partial => 'svg/bandierina_piatta' %>
+      </div>
+      <!-- <div id="aggiungi_bandierina_personalizzata" class="col-xs-3 col-md-2">
+        <a class="button-options" role="button">
+          <object data="app/asset/images/filari/bandierina_nero.svg" type="image/svg+xml">test</object>
+          <p>test</p>
+        </a>
+      </div> -->
+      <div id="aggiungi_bandierina_personalizzata" class="col-xs-3 col-md-2">
+        <a class="button-options" role="button">
+          <p>Aggiungi bandierina personalizzata</p>
+        </a>
+      </div>
     </div>
     <div class="row-form">
       <div class="col-xs-12" style="height:150px; background-color:#e6e6e6; overflow-x:auto">
