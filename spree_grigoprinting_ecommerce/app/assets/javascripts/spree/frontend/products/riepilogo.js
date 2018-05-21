@@ -1,0 +1,11 @@
+$(document).ready(function(){
+  prodotto.visualizza.push(function(){
+    $('#lbl_nome_lavoro').html($('#name').val());
+    $('#lbl_soggetti').html($('#soggetti').val());
+    $('#lbl_quantita').html($('#quanti').val());
+    $('#lbl_giorno_di_consegna').html($('.selected.data_consegna').html());
+  });
+  prodotto.visualizza.push(function(){
+    $('#prezzo').html('€'+prodotto.getPrezzo());
+  });
+});
