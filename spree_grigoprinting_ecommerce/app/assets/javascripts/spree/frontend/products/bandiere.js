@@ -32,6 +32,9 @@ function fromMoreOptions(){
     $('#show_state').val(prodotto.moreOptions["show_state"]);
   }
   var finitura = prodotto.moreOptions["finitura"];
+  if (finitura == null){
+    finitura = {};
+  }
   if(finitura["sotto"] != null && finitura["sotto"]['finitura'] == 'manica'){
     $('#Manica_superiore').val('Sopra e sotto');
     $('#Aperta_o_Chiusa').val(finitura["sotto"]['finitura']['dettagli']);

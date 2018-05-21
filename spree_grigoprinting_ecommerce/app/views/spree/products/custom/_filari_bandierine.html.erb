@@ -63,15 +63,26 @@
   </div>
   <div class="col-md-9">
     <div class="row-form" id ="scegli_colori">
-      <% colori = ['Rosso','Blu','giallo','verde','cyan','arancio','nero','bianco','personalizzata'] %>
+      <!-- <div class="hide">
+        <%= image_tag("filari/bandierina_piatta.svg", alt: "bandierina piatta", id:"bandierina_piatta" ) %>
+      </div>
+      <div class="hide">
+        <%= image_tag("filari/bandierina_personalizzata.svg", alt: "bandierina personalizzata", id:"bandierina_personalizzata" ) %>
+      </div> -->
+      <% colori = ['Rosso','Blu','giallo','verde','cyan','arancio','nero','bianco'] %>
+      <% file_path = "app/assets/images/filari/bandierina_piatta.svg" %>
       <% colori.each do |colore| %>
-        <div class="draggable col-xs-3 col-md-2">
-          <a class="button-options" role="button">
-            <%= image_tag("filari/bandierina_#{colore.downcase}.svg", alt: "Bandierina #{colore.downcase}", colore: colore.downcase) %>
-            <p><%= colore %></p>
-          </a>
+        <div class="draggable col-xs-3 col-md-2 button-options" role="button" id="colore_<%= colore.downcase %>">
+          
+          <p><%= colore %></p>
         </div>
       <% end %>
+      <div id="aggiungi_bandierina_personalizzata" class="col-xs-3 col-md-2">
+        <a class="button-options" role="button">
+          <!-- <%= image_tag("filari/bandierina_piatta.svg", alt: "Aggiungi nuovo soggetto, bandierina personalizzata") %> -->
+          <p>Aggiungi bandierina personalizzata</p>
+        </a>
+      </div>
     </div>
     <div class="row-form">
       <div class="col-xs-12" style="height:150px; background-color:#e6e6e6; overflow-x:auto">

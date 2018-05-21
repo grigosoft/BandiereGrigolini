@@ -73,19 +73,31 @@ $(document).ready(function(){
     $(this).addClass('selected');
     prodotto.fireToMoreOptions();
   });
+  // aggiungi soggetto personalizzato
+  $('#aggiungi_bandierina_personalizzata').click(function(){
 
+  });
+  // crea bandierine
+  var filePiatto = $('#bandierina_piatta').attr('href');
+  var colori = [['Rosso','#ff0000'],'Blu','giallo','verde','cyan','arancio','nero','bianco'];
+  for(var i=0; i<colori.length; i++) {
+    creaSvgPiatto(filePiatto, colori[i][1], colori[i][0]);
+  }
 });
 
-
+function creaSvgPiatto(file, colore, nome){
+  var head = '<div class="draggable col-xs-3 col-md-2 button-options" role="button">';
+  var foot = '<p>'+nome+'</p></div>';
+  var svg = $('#bandierina_piatta').svg();
+  alert(svg);
+  
+}
 function generaFilare(){
   var i;
-  if(prodotto.moreOptions['sequenza_colori'] != null) {
+  if(prodotto.moreOptions['sequenza_colori'] == null || prodotto.moreOptions['sequenza_colori'].length == 0) {
     return;
   }
   var listaColori = prodotto.moreOptions['sequenza_colori'].split('.');
-  if(listaColori.length == 0){
-    return;
-  }
   var filare = '';
   var maxBandierine = 30;
   var iColore;
