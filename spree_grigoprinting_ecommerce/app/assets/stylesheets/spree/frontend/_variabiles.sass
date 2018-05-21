@@ -40,8 +40,15 @@ $link-back-full: #8EA8B4
 $long-text: #29353B
 $warning: rgba(254, 235, 147, 1)
 $success: rgba(0, 235, 147, 1)
-$gradient-bg: linear-gradient(40deg, $back-link-button, $link-back-full)
-$gradient-white-bg: linear-gradient(40deg, #f4f4f4, #fff)
+//gradient background
+$default-gradient: linear-gradient(40deg, #f4f4f4, tint(#f4f4f4, 25%))
+$primary-gradient: linear-gradient(40deg, $back-link-button, tint($back-link-button, 25%))
+$secondary-gradient: linear-gradient(40deg, $link-back-full, tint($link-back-full, 25%))
+$success-gradient: linear-gradient(40deg, $success, tint($success, 25%))
+$allert-gradient: linear-gradient(40deg, $allert, tint($allert, 25%))
+$warning-gradient: linear-gradient(40deg, $warning, tint($warning, 25%))
+$long-text-gradient: linear-gradient(40deg, $long-text, tint($long-text, 25%))
+
 $brand-primary: #08415c
 $testo: #29353B
 $background: #ffffff

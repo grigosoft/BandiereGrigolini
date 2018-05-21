@@ -13,7 +13,7 @@
   </div>
 </div>
 <%= render partial: 'spree/products/custom/shared/nome' %>
-<%= render partial: 'spree/products/custom/shared/soggetto' %>
+<%= render partial: 'spree/products/custom/shared/soggetti' %>
 <hr>
 <div class="forma row">
   <div class="col-md-3">
@@ -24,13 +24,13 @@
       <div class="col-xs-6 col-sm-3">
         <a href="mod_goccia" class="button-options" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="mod_goccia" data-product-show="1" data-product-options="mod_goccia" data-product-selection="modello">
           <%= image_tag("bandiera_personalizzata/nautico.png", alt: "Tessuto nautico 110g/m") %>
-          <p>Mod Goccia</p>
+          <p>Mod. Goccia</p>
         </a>
       </div>
       <div class="col-xs-6 col-sm-3">
         <a href="mod_vela" class="button-options" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="mod_vela" data-product-show="1" data-product-options="mod_vela" data-product-selection="modello">
           <%= image_tag("bandiera_personalizzata/ponge.png", alt: "Tessuto Ponge 90g/m") %>
-          <p>Mod Vela</p>
+          <p>Mod. Vela</p>
         </a>
       </div>
     </div>
@@ -70,228 +70,65 @@
     </div>
   </div>
 </div>
-<hr data-need-show="">
-<div class="row" data-need-show=""> <!-- orientamento -->
+<hr>
+<div class="struttura row"> <!-- orientamento -->
   <div class="col-md-3">
-    <%= label_tag(:formato, "Formato") %>
+    <%= label_tag(:formato, "Struttura") %>
   </div>
   <div class="col-md-9">
-    <div class="selezione_orientamento row-form">
+    <div class="row-form">
       <div class="col-xs-6 col-sm-3">
-        <a class="button-options" role="button" data-product-show="2" data-product-options="orizzontale" data-product-selection="orientamento">
+        <a class="button-options" role="button" data-product-show="2" data-product-options="si" data-product-selection="si">
           <%= image_tag("bandiera_personalizzata/horizontal.svg", alt: "Bandiera personalizzata Orizzontale") %>
-          <p>Orizzontale</p>
+          <p>Struttura completa</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+<div class="basi row"> <!-- orientamento -->
+  <div class="col-md-3">
+    <%= label_tag(:formato, "Seleziona la base") %>
+  </div>
+  <div class="col-md-9">
+    <div class="row-form">
+      <div class="col-xs-6 col-sm-3">
+        <a class="button-options" role="button" data-product-show="2" data-product-options="base_a_croce" data-product-selection="base_a_croce">
+          <%= image_tag("bandiera_personalizzata/horizontal.svg", alt: "Bandiera personalizzata Orizzontale") %>
+          <p>Base a croce</p>
         </a>
       </div>
       <div class="col-xs-6 col-sm-3">
-        <a class="button-options" role="button" data-product-show="2" data-product-options="verticale.fettuccia" data-product-selection="orientamento">
+        <a class="button-options" role="button" data-product-show="2" data-product-options="base_quadra_metallo" data-product-selection="base_quadra_metallo">
           <%= image_tag("bandiera_personalizzata/vertical.svg", alt: "Bandiera personalizzata Verticale") %>
-          <p>Verticale</p>
+          <p>Base in metallo</p>
+        </a>
+      </div>
+      <div class="col-xs-6 col-sm-3">
+        <a class="button-options" role="button" data-product-show="2" data-product-options="puntale" data-product-selection="puntale">
+          <%= image_tag("bandiera_personalizzata/horizontal.svg", alt: "Bandiera personalizzata Orizzontale") %>
+          <p>Puntale</p>
+        </a>
+      </div>
+      <div class="col-xs-6 col-sm-3">
+        <a class="button-options" role="button" data-product-show="2" data-product-options="base_riempibile" data-product-selection="base_riempibile">
+          <%= image_tag("bandiera_personalizzata/vertical.svg", alt: "Bandiera personalizzata Verticale") %>
+          <p>Base riempibile 19L</p>
         </a>
       </div>
     </div>
   </div>
 </div>
-<hr data-need-show="orizzontale verticale">
-<%= render partial: 'spree/products/custom/shared/base_altezza', locals: { need_show: "orizzontale verticale" } %>
-<hr data-need-show="orizzontale verticale">
-<%= render partial: 'spree/products/custom/shared/lato_asta', locals: { need_show: "orizzontale verticale" } %>
-<hr data-need-show="orizzontale verticale">
-<div class="row" data-need-show="orizzontale"> <!-- scelta_finitura_lato_asta -->
-  <div class="col-md-3">
-    <%= label_tag(:seleziona_finitura, "Seleziona finitura")%>
-  </div>
-  <div class="col-md-9">
-    <div class="row-form">
-      <div class="col-xs-6 col-sm-3">
-        <div class="button-options" role="button" data-product-show="3" data-product-options="manica" data-product-selection="finitura_lato_asta">
-          <!--nascondo se verticale-->
-          <%= image_tag("bandiera_personalizzata/manica.svg", alt: "Bandiera personalizzata con manica lato asta") %>
-          <p>Manica</p>
-        </div>
-      </div>
-      <div class="col-xs-6 col-sm-3">
-        <div class="button-options" role="button" data-product-show="3" data-product-options="fettuccia" data-product-selection="finitura_lato_asta">
-          <!--nascondo se orizzontale-->
-          <%= image_tag("bandiera_personalizzata/fettuccia.svg", alt: "Bandiera personalizzata con fettuccia di rinforzo") %>
-          <p>Fettuccia</p>
-        </div>
-      </div>
-      <div class="col-xs-6 col-sm-3 hidden">
-        <div class="button-options" role="button" data-product-show="3" data-product-options="personalizzata" data-product-selection="finitura_lato_asta">
-          <!-- sempre visibile -->
-          <img src="" alt="personalizzata">
-          <p>Personalizzata</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row" data-need-show="manica">
-  <!-- Nascosta se fettuccia -->
-  <div class="col-md-3">
-    <%= label_tag(:seleziona_tipo_manica, "Seleziona tipo manica")%>
-  </div>
-  <div class="col-md-9">
-    <div class="row-form">
-      <div class="col-xs-6 col-sm-3">
-        <a href="#chiusa" class="button-options" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="chiusa" data-product-show="4" data-product-options="chiusa" data-product-selection="manica">
-          <%= image_tag("bandiera_personalizzata/manica_chiusa.svg", alt: "Bandiera orizzontale con manica chiusa e laccetto sotto") %>
-          <p>Chiusa</p>
-        </a>
-      </div>
-      <div class="col-xs-6 col-sm-3">
-        <a href="#aperta" class="button-options" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="aperta" data-product-show="4" data-product-options="aperta" data-product-selection="manica">
-          <%= image_tag("bandiera_personalizzata/manica_aperta.svg", alt: "Bandiera orizzontale con manica aperta, laccetto sotto e laccetto sopra") %>
-          <p>Aperta</p>
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-9 col-md-offset-3">
-    <div class="col-md-12 alert-info collapse" id="chiusa">
-      <a class="btn" href="#chiusa" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="chiusa">x</a>
-      <ul>
-        <li>Manica chiusa sopra</li>
-        <li>Laccetti sotto</li>
-      </ul>
-    </div>
-    <div class="col-md-12 alert-info collapse" id="aperta">
-      <a class="btn" href="#aperta" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="aperta">x</a>
-      <ul>
-        <li>Manica aperta sopra e sotto</li>
-        <li>Laccetti sopra</li>
-        <li>Laccetti sotto</li>
-      </ul>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <!-- Nascosta se manica -->
-  <div class="col-md-12" data-need-show="verticale.fettuccia">
-    <div class="row">
-      <div class="col-md-3">
-        <%= label_tag(:manica_superiore, "Vuoi le maniche nei lati corti")%>
-      </div>
-      <div class="col-md-3 grigo_select_form">
-        <%= select_tag "Manica superiore", options_for_select(["No", "Solo sopra", "Solo sotto", "Sopra e sotto"], "No"), class: "form-control" %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-3">
-        <%= label_tag(:aperta_o_chiusa, "Vuoi la manica aperta o chiusa")%>
-      </div>
-      <div class="col-md-3 grigo_select_form">
-        <%= select_tag "Aperta o Chiusa", options_for_select(["Aperta", "Chiusa"], "Aperta"), class: "form-control" %>
-      </div>
-    </div>
-  </div>
 
-  <div class="col-md-12" data-need-show="fettuccia">
-    <div class="row">
-      <div class="col-md-3">
-        <%= label_tag(:seleziona_tipo_fettuccia, "Seleziona finitura fettuccia")%>
-      </div>
-      <div class="col-md-9">
-        <div class="row-form">
-          <div class="col-xs-6 col-sm-3" data-need-show="orizzontale.fettuccia">
-            <a href="#cappio" class="button-options" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="cappio" data-product-show="4" data-product-options="cappio" data-product-selection="fettuccia">
-              <!-- nascosto se verticale -->
-              <%= image_tag("bandiera_personalizzata/cappio.svg", alt: "Bandiera con fettuccia di rinforzo, cappio superiore e cordino inferiore") %>
-              <p>Cappio e cordino</p>
-            </a>
-          </div>
-          <div class="col-xs-6 col-sm-3 correct_occhielli">
-            <a href="#occhielli" class="button-options" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="occhielli" data-product-show="4" data-product-options="occhielli" data-product-selection="fettuccia">
-
-              <%= image_tag("bandiera_personalizzata/occhielli.svg", alt: "Bandiera con fettuccia di rinforzo e occhielli") %>
-              <p>Occhielli</p>
-            </a>
-          </div>
-          <div class="col-xs-6 col-sm-3">
-            <a href="#moschettoni" class="button-options" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="moschettoni" data-product-show="4" data-product-options="moschettoni" data-product-selection="fettuccia">
-              <%= image_tag("bandiera_personalizzata/moschettoni.svg", alt: "Bandiera con fettuccia di rinforzo e moschettoni") %>
-              <p>Moschettoni</p>
-            </a>
-          </div>
-          <div class="col-xs-6 col-sm-3">
-            <a href="#laccetti" class="button-options" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="laccetti" data-product-show="4" data-product-options="laccetti" data-product-selection="fettuccia">
-              <%= image_tag("bandiera_personalizzata/laccetti.svg", alt: "Bandiera con fettuccia di rinforzo e laccetti") %>
-              <p>Laccetti</p>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-9 col-md-offset-3">
-        <div class="col-md-12 alert-info collapse" id="cappio">
-          <a class="btn" href="#cappio" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="cappio">x</a>
-          <ul>
-            <li>Fettuccia di rinforzo</li>
-            <li>Cappio superiore</li>
-            <li>Cordino inferiore</li>
-          </ul>
-        </div>
-        <div class="col-md-12 alert-info collapse" id="occhielli">
-          <a class="btn" href="#occhielli" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="occhielli">x</a>
-          <ul>
-            <li>Fettuccia di rinforzo</li>
-            <li>Occhielli ogni 50cm</li>
-          </ul>
-        </div>
-        <div class="col-md-12 alert-info collapse" id="moschettoni">
-          <a class="btn" href="#moschettoni" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="moschettoni">x</a>
-          <ul>
-            <li>Fettuccia di rinforzo</li>
-            <li>Moschettoni ogni 50cm</li>
-          </ul>
-        </div>
-        <div class="col-md-12 alert-info collapse" id="laccetti">
-          <a class="btn" href="#laccetti" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="laccetti">x</a>
-          <ul>
-            <li>Fettuccia di rinforzo</li>
-            <li>Laccetti ogni 50cm</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 <div class="consegna">
   <%= render partial: 'spree/products/custom/shared/quantity_and_date' %>
 </div>
-<%= render partial: 'spree/products/custom/shared/servizi_extra' %>
-
-<h3 class="title_section row">
-  <span class="col-sm-3 col-xs-12 title_number">04</span>
-  <span class="col-sm-9 title_header">Riepilogo</span>
-</h3>
-<div class="col-md-9 col-md-offset-3">
-  <div class="row">
-    <div class="riepilogo_interno">
-      <h4>
-        <strong>Nome Lavoro</strong>
-      </h4>
-      <p id="lbl_nome_lavoro">Lavorazione</p>
-    </div>
-    <div class="riepilogo_interno">
-      <h4>
-        <strong>Quantit&agrave;</strong>
-      </h4>
-      <p id="lbl_quantita">1</p>
-    </div>
-    <div class="riepilogo_interno">
-      <h4>
-        <strong>Giorno di Consegna</strong>
-      </h4>
-      <p id="lbl_giorno_di_consegna"></p>
-    </div>
-    <!-- <div class="riepilogo_interno">
-      <h4>
-        <strong>Prezzo complessivo</strong>
-      </h4>
-      <p id="lbl_prezzo"></p>
-    </div> -->
-  </div>
+<div class="servizi_extra">
+  <%= render partial: 'spree/products/custom/shared/servizi_extra' %>
+</div>
+<div class="riepilogo">
+  <%= render partial: 'spree/products/custom/shared/riepilogo' %>
 </div>
 
 <%= javascript_include_tag "spree/frontend/products/bandiere" %>

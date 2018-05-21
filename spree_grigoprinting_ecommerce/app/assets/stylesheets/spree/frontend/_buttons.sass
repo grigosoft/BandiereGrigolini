@@ -1,14 +1,52 @@
 .btn
-  +border-radius(1rem)
+  font-family: $h-font-family
+  +border-radius(2rem)
   +transition
+  @include fluid-type($min_width, $max_width, $min_font, $min_font)
   border: none
-.btn-primary
-  background: $gradient-bg
-  color: $back-full-text
-  // &:hover, &:focus
-  //   background: tint($back-link-button, 10%)
-  //   color: $back-full-text
-
+  font-weight: 700
+  background: $default-gradient
+  margin: 0.5rem 0
+  padding: .4rem .8rem
+  +box-shadow(0 0.1rem 0.1rem #999)
+  &:active
+    +box-shadow(inset 0 0.1rem 0.1rem rgba(0, 0, 0, 0.5))
+  &.btn-primary
+    background: $primary-gradient
+    color: $back-full-text
+    +box-shadow(0 0.1rem 0.1rem shade($back-link-button, 25%))
+    &:active
+      +box-shadow(inset 0 0.1rem 0.1rem rgba(0, 0, 0, 0.5))
+  &.btn-secondary
+    background: $secondary-gradient
+    color: $back-full-text
+    +box-shadow(0 0.1rem 0.1rem shade($link-back-full, 25%))
+    &:active
+      +box-shadow(inset 0 0.1rem 0.1rem rgba(0, 0, 0, 0.5))
+  &.btn-success
+    background: $success-gradient
+    color: $back-full-text
+    +box-shadow(0 0.1rem 0.1rem shade($success, 25%))
+    &:active
+      +box-shadow(inset 0 0.1rem 0.1rem rgba(0, 0, 0, 0.5))
+  &.btn-allert
+    background: $allert-gradient
+    color: $back-full-text
+    +box-shadow(0 0.1rem 0.1rem shade($allert, 25%))
+    &:active
+      +box-shadow(inset 0 0.1rem 0.1rem rgba(0, 0, 0, 0.5))
+  &.btn-warning
+    background: $warning-gradient
+    color: shade($warning, 50%)
+    +box-shadow(0 0.1rem 0.1rem shade($warning, 25%))
+    &:active
+      +box-shadow(inset 0 0.1rem 0.1rem rgba(0, 0, 0, 0.5))
+  &.btn-dark
+    background: $long-text-gradient
+    color: $back-full-text
+    +box-shadow(0 0.1rem 0.1rem shade($long-text, 25%))
+    &:active
+      +box-shadow(inset 0 0.1rem 0.1rem rgba(0, 0, 0, 0.125))
 .btn-cart
   width: 100%
 .pull-right-btn
@@ -62,24 +100,14 @@
 
 //button add to cart
 #add-to-cart-button
-  font-family: $h-font-family
   float: right
-  @include fluid-type($min_width, $max_width, $min_font, $min_font)
-  font-weight: 700
-  padding: 0.8rem 1.5rem
-  +border-radius(2rem)
-  +transition
-  background-size: 200% auto
-  background-image: linear-gradient(to right, $back-link-button 0%, $link-back-full 51%, $back-link-button 100%)
-  margin: 1rem 0
   &::before
     font-family: "icomoon"
     content: "\e903"
     display:  inline-block
     vertical-align:  middle
     font-size: 1.2rem
-  &:hover
-    background-position: right center
+
 
 // select
 //   +appearance(none)
