@@ -16,7 +16,7 @@
   <%= render partial: 'spree/products/custom/shared/quantity_and_date' %>
 </div>
 <div class="riepilogo">
-  <%= render partial: 'spree/products/custom/shared/riepilogo' %>
+  <%= render partial: 'spree/products/custom/shared/riepilogo', locals:{ numero:3 }%>
 </div>
 
 <%= javascript_include_tag "spree/frontend/products/bandiere_istituzionali" %>
