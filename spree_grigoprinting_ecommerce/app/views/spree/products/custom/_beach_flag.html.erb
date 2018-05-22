@@ -14,21 +14,22 @@
 </div>
 <%= render partial: 'spree/products/custom/shared/nome' %>
 <%= render partial: 'spree/products/custom/shared/soggetti' %>
+<%= render partial: 'spree/products/custom/shared/lato_asta', locals: { need_show: "" } %>
 <hr>
 <div class="forma row">
   <div class="col-md-3">
-    <%= label_tag(:tessuti, "Seleziona forma")%>
+    <%= label_tag(:modello, "Seleziona forma")%>
   </div>
   <div class="col-md-9">
     <div class="row-form">
       <div class="col-xs-6 col-sm-3">
-        <a href="mod_goccia" class="button-options" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="mod_goccia" data-product-show="1" data-product-options="mod_goccia" data-product-selection="modello">
+        <a href="mod_goccia" class="button-options" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="mod_goccia" data-product-options="goccia" data-product-radio="modello">
           <%= image_tag("bandiera_personalizzata/nautico.png", alt: "Tessuto nautico 110g/m") %>
           <p>Mod. Goccia</p>
         </a>
       </div>
       <div class="col-xs-6 col-sm-3">
-        <a href="mod_vela" class="button-options" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="mod_vela" data-product-show="1" data-product-options="mod_vela" data-product-selection="modello">
+        <a href="mod_vela" class="button-options" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="mod_vela" data-product-options="vela" data-product-radio="modello">
           <%= image_tag("bandiera_personalizzata/ponge.png", alt: "Tessuto Ponge 90g/m") %>
           <p>Mod. Vela</p>
         </a>
@@ -39,31 +40,31 @@
 <hr>
 <div class="misura row">
   <div class="col-md-3">
-    <%= label_tag(:tessuti, "Seleziona la misura")%>
+    <%= label_tag(:misura, "Seleziona la misura")%>
   </div>
   <div class="col-md-9">
     <div class="row-form">
       <div class="col-xs-6 col-sm-3">
-        <a href="misura_s" class="button-options" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="misura_s" data-product-show="1" data-product-options="misura_s" data-product-selection="misura">
-          <%= image_tag("bandiera_personalizzata/nautico.png", alt: "Tessuto nautico 110g/m") %>
+        <a href="misura_s" class="button-options" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="misura_s"data-product-options="S.39" data-product-radio="misura">
+          <%= image_tag("bandiera_personalizzata/nautico.png", alt: "Beach flag misura S") %>
           <p>Small</p>
         </a>
       </div>
       <div class="col-xs-6 col-sm-3">
-        <a href="misura_m" class="button-options" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="misura_m" data-product-show="1" data-product-options="misura_m" data-product-selection="misura">
-          <%= image_tag("bandiera_personalizzata/ponge.png", alt: "Tessuto Ponge 90g/m") %>
+        <a href="misura_m" class="button-options" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="misura_m" data-product-options="M.40" data-product-radio="misura">
+          <%= image_tag("bandiera_personalizzata/ponge.png", alt: "Beach flag misura M") %>
           <p>Medium</p>
         </a>
       </div>
       <div class="col-xs-6 col-sm-3">
-        <a href="misura_l" class="button-options" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="misura_l" data-product-show="1" data-product-options="misura_l" data-product-selection="misura">
-          <%= image_tag("bandiera_personalizzata/forato.png", alt: "Tessuto forato 110g/m") %>
+        <a href="misura_l" class="button-options" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="misura_l" data-product-options="L.41" data-product-radio="misura">
+          <%= image_tag("bandiera_personalizzata/forato.png", alt: "Beach flag misura L") %>
           <p>Large</p>
         </a>
       </div>
       <div class="col-xs-6 col-sm-3">
-        <a href="misura_xl" class="button-options" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="misura_xl" data-product-show="1" data-product-options="misura_xl" data-product-selection="misura">
-          <%= image_tag("bandiera_personalizzata/retato.png", alt: "Tessuto retato 110g/m") %>
+        <a href="misura_xl" class="button-options" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="misura_xl" data-product-options="XL.42" data-product-radio="misura">
+          <%= image_tag("bandiera_personalizzata/retato.png", alt: "Beach flag misura XL") %>
           <p>Extra Large</p>
         </a>
       </div>
@@ -73,13 +74,13 @@
 <hr>
 <div class="struttura row"> <!-- orientamento -->
   <div class="col-md-3">
-    <%= label_tag(:formato, "Struttura") %>
+    <%= label_tag(:struttura, "Struttura") %>
   </div>
   <div class="col-md-9">
     <div class="row-form">
       <div class="col-xs-6 col-sm-3">
-        <a class="button-options" role="button" data-product-show="2" data-product-options="si" data-product-selection="si">
-          <%= image_tag("bandiera_personalizzata/horizontal.svg", alt: "Bandiera personalizzata Orizzontale") %>
+        <a class="button-options" role="button" data-product-options="" data-product-check="struttura">
+          <%= image_tag("bandiera_personalizzata/horizontal.svg", alt: "Struttura Beach Flag") %>
           <p>Struttura completa</p>
         </a>
       </div>
@@ -89,30 +90,30 @@
 <hr>
 <div class="basi row"> <!-- orientamento -->
   <div class="col-md-3">
-    <%= label_tag(:formato, "Seleziona la base") %>
+    <%= label_tag(:basi, "Seleziona la base") %>
   </div>
   <div class="col-md-9">
     <div class="row-form">
       <div class="col-xs-6 col-sm-3">
-        <a class="button-options" role="button" data-product-show="2" data-product-options="base_a_croce" data-product-selection="base_a_croce">
+        <a class="button-options" role="button" data-product-options="35" data-product-check="base">
           <%= image_tag("bandiera_personalizzata/horizontal.svg", alt: "Bandiera personalizzata Orizzontale") %>
           <p>Base a croce</p>
         </a>
       </div>
       <div class="col-xs-6 col-sm-3">
-        <a class="button-options" role="button" data-product-show="2" data-product-options="base_quadra_metallo" data-product-selection="base_quadra_metallo">
+        <a class="button-options" role="button" data-product-options="36" data-product-check="base">
           <%= image_tag("bandiera_personalizzata/vertical.svg", alt: "Bandiera personalizzata Verticale") %>
           <p>Base in metallo</p>
         </a>
       </div>
       <div class="col-xs-6 col-sm-3">
-        <a class="button-options" role="button" data-product-show="2" data-product-options="puntale" data-product-selection="puntale">
+        <a class="button-options" role="button" data-product-options="37" data-product-check="base">
           <%= image_tag("bandiera_personalizzata/horizontal.svg", alt: "Bandiera personalizzata Orizzontale") %>
           <p>Puntale</p>
         </a>
       </div>
       <div class="col-xs-6 col-sm-3">
-        <a class="button-options" role="button" data-product-show="2" data-product-options="base_riempibile" data-product-selection="base_riempibile">
+        <a class="button-options" role="button" data-product-options="38" data-product-check="base">
           <%= image_tag("bandiera_personalizzata/vertical.svg", alt: "Bandiera personalizzata Verticale") %>
           <p>Base riempibile 19L</p>
         </a>

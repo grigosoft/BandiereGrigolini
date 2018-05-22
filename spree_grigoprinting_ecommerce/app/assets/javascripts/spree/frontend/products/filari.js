@@ -19,6 +19,14 @@ function f_toMoreOptions(){
   generaFilare();
 }
 function f_fromMoreOptions(){
+  $('a.selected[data-product-selection="formato"]').removeClass('selected');
+  $('a[data-product-options="'+prodotto.moreOptions['formato']+'"]').addClass('selected');
+  if (prodotto.moreOptions['soggetti'] != null){
+    for(var i=0; i<prodotto.moreOptions['soggetti'].length; i++){
+      $("#scegli_colori").insertAt($("#scegli_colori").children().length-1, creaSvgPersonalizzato());
+    }
+    rendiDraggable("#scegli_colori>.draggable");
+  }
   $('#colori_scelti').html('');
   if (prodotto.moreOptions['sequenza_colori'] != null){
     var colori_scelti = prodotto.moreOptions['sequenza_colori'].split('.');
@@ -26,6 +34,7 @@ function f_fromMoreOptions(){
       $('#colori_scelti').append($('#scegli_colori>div[colore="'+colori_scelti[i]+'"]').clone());
     }
   }
+
 }
 function f_visualiza(){
   var select_misura = $('select#misura_bandierine');
@@ -56,7 +65,6 @@ $(document).ready(function(){
   prodotto.toMoreOptions.push(f_toMoreOptions);
   prodotto.fromMoreOptions.push(f_fromMoreOptions);
   prodotto.visualizza.push(f_visualiza);
-  prodotto.fireFromMoreOptions();
 
   // selezioni
   $('[data-product-selection="formato"]').click(function(){
@@ -81,6 +89,8 @@ $(document).ready(function(){
     update: function(){prodotto.fireToMoreOptions()}
   });
   rendiDraggable("#scegli_colori>.draggable");
+
+  prodotto.fireFromMoreOptions();
 });
 function rendiDraggable(sel){
   $( sel ).draggable({
