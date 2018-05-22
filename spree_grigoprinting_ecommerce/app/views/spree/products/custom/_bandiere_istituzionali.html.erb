@@ -1,1 +1,26 @@
-istituzionali
+<%= hidden_field_tag "show_state_old", '' %>
+<%= hidden_field_tag "show_state", '' %>
+
+<h3 class="title_section row">
+  <span class="col-sm-3 col-xs-12 title_number">01</span>
+  <span class="col-sm-9 title_header">Crea il tuo preventivo</span>
+</h3>
+<div class="row">
+  <div class="col-md-9 col-md-offset-3">
+    <p class="in_product_text">Seguendo questi semplici passi creerai un preventivo basato sulle tue esigienze, personalizza il prodotto in base alle tue necessit&agrave;</p>
+    <p class="in_product_text">Potrai seguire i nostri semplici step oppure personalizzare completamete la tua bandiera.</p>
+    <p class="in_product_text">Se hai dubbi o domande non esitare a contattarci</p>
+  </div>
+</div>
+
+<div class="consegna">
+  <%= render partial: 'spree/products/custom/shared/quantity_and_date' %>
+</div>
+<div class="servizi_extra">
+  <%= render partial: 'spree/products/custom/shared/servizi_extra' %>
+</div>
+<div class="riepilogo">
+  <%= render partial: 'spree/products/custom/shared/riepilogo' %>
+</div>
+
+<%= javascript_include_tag "spree/frontend/products/bandiere_istituzionali" %>
