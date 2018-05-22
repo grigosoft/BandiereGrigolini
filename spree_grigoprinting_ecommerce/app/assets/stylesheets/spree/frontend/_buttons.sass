@@ -1,4 +1,4 @@
-.btn
+.btn, .nav_bar a.btn
   font-family: $h-font-family
   +border-radius(2rem)
   +transition
@@ -9,6 +9,7 @@
   margin: 0.5rem 0
   padding: .4rem .8rem
   +box-shadow(0 0.1rem 0.1rem #999)
+  color: $back-full-text
   &:active
     background: $default-gradient
     +box-shadow(inset 0 0.1rem 0.1rem rgba(0, 0, 0, 0.5))
@@ -24,6 +25,8 @@
     +box-shadow(0 0.1rem 0.1rem shade($link-back-full, 25%))
     &:active
       +box-shadow(inset 0 0.1rem 0.1rem rgba(0, 0, 0, 0.5))
+    &:hover
+      color: $back-full-text
   &.btn-success
     background: $success-gradient
     color: $back-full-text

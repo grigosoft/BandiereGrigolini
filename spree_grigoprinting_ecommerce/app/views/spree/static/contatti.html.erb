@@ -1,1 +1,29 @@
-contatti
+<div class="container">
+  <div class="row">
+    <h2 class="col-xs-12"><%= Spree.t(:contacts)%></h2>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12" id="map">
+
+    </div>
+    <script>
+      function initMap() {
+        var uluru = {lat: -25.363, lng: 131.044};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACcHToZ8S-Mem1QHACY8GRm5jRa2Jc_qE&callback=initMap">
+    </script>
+
+  </div>
+</div>

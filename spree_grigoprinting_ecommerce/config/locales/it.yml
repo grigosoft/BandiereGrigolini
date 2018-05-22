@@ -3,6 +3,7 @@ it:
     adjustment_labels:
       tax_rates:
         excluding_tax: Tasse escluse
+    contacts: contatti
     my_account: Account
     login: Accedi
     create_a_new_account: Registrati

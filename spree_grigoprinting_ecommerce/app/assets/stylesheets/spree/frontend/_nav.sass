@@ -278,6 +278,13 @@ body.noscroll
     border-bottom-width: 0
     +border-radius($radius)
     +box-shadow(0 -5px 5px #999)
+    .buttons
+      width: 48%
+      margin: 1%
+      float: left
+    .reset_password
+      font-size: .85rem
+      font-weight: 400
     @media screen and (min-width: $screen-sm)
       // top: 84px
       right: -50%
@@ -286,13 +293,12 @@ body.noscroll
       border: 1px solid $back-link-button
       +box-shadow(0 5px 5px #999)
     a
-      display: block
+      display: inline-block
+      width: auto
       text-align: center
       color: $long-text
     .account_link
       text-align: center
-      .new_account, .reset_password
-        display: inline
 //fine menu account
 
 //contacts_bar
