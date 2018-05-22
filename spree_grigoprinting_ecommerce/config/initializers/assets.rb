@@ -21,6 +21,7 @@ Rails.application.config.assets.precompile += %w( spree/frontend/products/prodot
 Rails.application.config.assets.precompile += %w( spree/frontend/products/bandiere.js )
 Rails.application.config.assets.precompile += %w( spree/frontend/products/beach_flag.js )
 Rails.application.config.assets.precompile += %w( spree/frontend/products/filari.js )
+Rails.application.config.assets.precompile += %w( spree/frontend/products/bandiere_istituzionali.js )
 Rails.application.config.assets.precompile += %w( jquery.ui.touch-punch.min.js )
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
