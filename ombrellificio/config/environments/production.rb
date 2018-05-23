@@ -88,5 +88,11 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-  
+
+
+    # Spree::PrintInvoice::Config.set(logo_path: '/path/to/public/images/company-logo.png')
+    Spree::PrintInvoice::Config.set(next_number: [1])
+    Spree::PrintInvoice::Config.set(store_pdf: true) # Default: false
+    Spree::PrintInvoice::Config.set(storage_path: 'pdfs/orders') # Default: tmp/order_prints
+
 end
