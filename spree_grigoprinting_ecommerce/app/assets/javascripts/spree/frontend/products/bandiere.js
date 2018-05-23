@@ -49,6 +49,7 @@ function fromMoreOptions(){
 $(document).ready(function(){
   prodotto.toMoreOptions.push(toMoreOptions);
   prodotto.fromMoreOptions.push(fromMoreOptions);
+  prodotto.remote_prezzo = richiedi_prezzo;
   prodotto.fireFromMoreOptions();
 
   // bind gruppi di scelta
@@ -60,12 +61,12 @@ $(document).ready(function(){
   showPartialFromState();
   setActiveFromState();
 
-  richiedi_prezzo();
+  // richiedi_prezzo();
 
   // contatori su cui legare il calcola prezzo
-  $(document).on("change", "#base", richiedi_prezzo);
-  $(document).on("change", "#altezza", richiedi_prezzo);
-  $(document).on("change", "#quanti", richiedi_prezzo);
+  // $(document).on("change", "#base", richiedi_prezzo);
+  // $(document).on("change", "#altezza", richiedi_prezzo);
+  // $(document).on("change", "#quanti", richiedi_prezzo);
 
   // completamento default base/Altezza
   $('[data-product-options="orizzontale"]').click(function(){
@@ -110,7 +111,7 @@ function bindSelezioniShow(){
     prodotto.fireToMoreOptions();
 
     // controllaDati();
-    richiedi_prezzo();
+    // richiedi_prezzo();
   });
 }
 function showPartialFromState(){

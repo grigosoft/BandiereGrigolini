@@ -13,6 +13,26 @@ module Spree
         # format.json { @consegna.to_json }
       end
     end
+    def calcola_beachflag
+      prezzo = Spree::CalcolatorePrezzo.calcola_beachflag(params[:more_options])
+      # genera consegne
+      @consegna = Spree::CalcolatoreConsegna.calcola_bandiera(prezzo)
+      localizza_date # traduce gia i giorni e i mesi
+      respond_to do |format|
+        format.js {} # this will make rails look for a file named calcola_bandiera.js.erb in your views
+        # format.json { @consegna.to_json }
+      end
+    end
+    def calcola_filari
+      prezzo = Spree::CalcolatorePrezzo.calcola_filari(params[:more_options])
+      # genera consegne
+      @consegna = Spree::CalcolatoreConsegna.calcola_bandiera(prezzo)
+      localizza_date # traduce gia i giorni e i mesi
+      respond_to do |format|
+        format.js {} # this will make rails look for a file named calcola_bandiera.js.erb in your views
+        # format.json { @consegna.to_json }
+      end
+    end
 
     private
 

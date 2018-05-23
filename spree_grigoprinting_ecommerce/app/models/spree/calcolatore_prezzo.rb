@@ -5,10 +5,11 @@ module Spree
       return nil unless verifica_parametri_bandiera_personalizzata(parametri)
       # calcolo del prezzo
       dati = calcolo_formato_resa_consumo(parametri)
+      costo_stampa = 0
       if dati[:formato] == "grande"
-        costo_stampa = 14.0/100; #ml
+        costo_stampa += 14.0/100; #ml
       else
-        costo_stampa = 7.0/100; #ml
+        costo_stampa += 7.0/100; #ml
       end
 
       prezzo = costo_stampa * (dati[:consumo].to_d) / (parametri[:quantity].to_d)
@@ -28,14 +29,33 @@ module Spree
         end
       end
       max = 150
-      if formato == "grande"
-        max = 300
-      end
+      max = 300 if formato == "grande"
+
       resa = (max / base).to_i
       consumo = parametri[:quantity].to_i * altezza / resa
       { resa: resa, formato: formato, consumo: consumo }
     end
 
+    def self.calcola_beachflag(parametri)
+      # return nil unless verifica_parametri_bandiera_personalizzata(parametri)
+      # calcolo del prezzo
+      # dati = calcolo_formato_resa_consumo(parametri)
+      dati[:consumo] = 1
+
+      prezzo = costo_stampa * (dati[:consumo].to_d) / (parametri[:quantity].to_d)
+      #return Spree::Money.new(parametri[:base].to_i || 0, currency: @currency)
+      { prezzo: prezzo, dati: dati, giorni: 1 }
+    end
+    def self.calcola_filari(parametri)
+      # return nil unless verifica_parametri_bandiera_personalizzata(parametri)
+      # calcolo del prezzo
+      # dati = calcolo_formato_resa_consumo(parametri)
+      dati[:consumo] = 1
+
+      prezzo = costo_stampa * (dati[:consumo].to_d) / (parametri[:quantity].to_d)
+      #return Spree::Money.new(parametri[:base].to_i || 0, currency: @currency)
+      { prezzo: prezzo, dati: dati, giorni: 1 }
+    end
 
     # private
 

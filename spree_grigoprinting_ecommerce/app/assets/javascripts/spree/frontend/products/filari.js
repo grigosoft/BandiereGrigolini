@@ -65,6 +65,7 @@ $(document).ready(function(){
   prodotto.toMoreOptions.push(f_toMoreOptions);
   prodotto.fromMoreOptions.push(f_fromMoreOptions);
   prodotto.visualizza.push(f_visualiza);
+  prodotto.remote_prezzo = richiedi_prezzo;
 
   // selezioni
   $('[data-product-selection="formato"]').click(function(){
@@ -134,4 +135,16 @@ function generaFilare(){
     // clear stili clonati
     $('#colori_scelti>div').attr('style','')
   }
+}
+
+
+// funzioni ajax
+function richiedi_prezzo() {
+  $('#quantity').val($('#quanti').val());
+  $.ajax({
+    type: "POST",
+    url: "/price_filari",
+    data: $("#form_prodotto").serialize() //this will enable you to use params[:periods] and params[:age] in your controller
+  });
+  prodotto.fireVisualizza();
 }

@@ -34,6 +34,7 @@ $(document).ready(function(){
 
     prodotto.fireToMoreOptions();
   });
+  $('#quanti').change(function(){prodotto.fireToMoreOptions();});
 });
 
 function caricaDate(json){

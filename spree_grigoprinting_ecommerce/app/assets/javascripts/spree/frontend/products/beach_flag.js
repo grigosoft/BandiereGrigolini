@@ -38,6 +38,7 @@ function bf_fromMoreOptions(){
 $(document).ready(function(){
   prodotto.toMoreOptions.push(bf_toMoreOptions);
   prodotto.fromMoreOptions.push(bf_fromMoreOptions);
+  prodotto.remote_prezzo = richiedi_prezzo;
 
   prodotto.fireFromMoreOptions();
 
@@ -49,3 +50,15 @@ $(document).ready(function(){
     prodotto.fireToMoreOptions();
   });
 });
+
+
+// funzioni ajax
+function richiedi_prezzo() {
+  $('#quantity').val($('#quanti').val());
+  $.ajax({
+    type: "POST",
+    url: "/price_beachflag",
+    data: $("#form_prodotto").serialize() //this will enable you to use params[:periods] and params[:age] in your controller
+  });
+  prodotto.fireVisualizza();
+}
