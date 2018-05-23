@@ -40,9 +40,10 @@ module Spree
       # return nil unless verifica_parametri_bandiera_personalizzata(parametri)
       # calcolo del prezzo
       # dati = calcolo_formato_resa_consumo(parametri)
+      dati = {}
       dati[:consumo] = 1
 
-      prezzo = costo_stampa * (dati[:consumo].to_d) / (parametri[:quantity].to_d)
+      prezzo = 10 * (dati[:consumo].to_d) / (parametri[:quantity].to_d)
       #return Spree::Money.new(parametri[:base].to_i || 0, currency: @currency)
       { prezzo: prezzo, dati: dati, giorni: 1 }
     end
@@ -50,9 +51,10 @@ module Spree
       # return nil unless verifica_parametri_bandiera_personalizzata(parametri)
       # calcolo del prezzo
       # dati = calcolo_formato_resa_consumo(parametri)
+      dati = {}
       dati[:consumo] = 1
 
-      prezzo = costo_stampa * (dati[:consumo].to_d) / (parametri[:quantity].to_d)
+      prezzo = 10 * (dati[:consumo].to_d) / (parametri[:quantity].to_d)
       #return Spree::Money.new(parametri[:base].to_i || 0, currency: @currency)
       { prezzo: prezzo, dati: dati, giorni: 1 }
     end
