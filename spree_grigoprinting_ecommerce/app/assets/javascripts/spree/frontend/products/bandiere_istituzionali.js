@@ -11,8 +11,7 @@ $(document).ready(function(){
   $('#ricerca').change(visualizza);
   $('#ricerca').keyup(visualizza);
 
-  $('[data-product-radio="stati"]').click(function(){
-    $('[data-product-radio="stati"]').removeClass('selected');
-    $(this).addClass('selected');
+  $('[data-product-check="stati"]').click(function(){
+    $(this).children('a').toggleClass('selected');
   });
 });
