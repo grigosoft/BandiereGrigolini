@@ -68,6 +68,7 @@ gem 'spree_mail_settings', github: 'spree-contrib/spree_mail_settings'
 gem 'spree_print_invoice', github: 'spree-contrib/spree_print_invoice', branch: 'master'
 gem 'spree_address_book', github: 'spree-contrib/spree_address_book'
 gem 'spree_i18n', github: 'spree-contrib/spree_i18n'
+gem 'spree_paypal_express', github: 'spree-contrib/better_spree_paypal_express'
 # mia estensione
 gem 'spree_grigoprinting_ecommerce', path: '../spree_grigoprinting_ecommerce'
 #gem 'spree_grigoprinting_ecommerce', github: 'grigosoft/spree_grigoprinting_ecommerce'
