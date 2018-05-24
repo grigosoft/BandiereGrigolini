@@ -10,18 +10,24 @@
   display: flex
   flex-wrap: wrap
   +make-row($gutter: $grid-gutter-width)
-  @for $i from 1 through 12
-    .col-xs-#{$i}
-      +make-xs-column($i, $gutter: $grid-gutter-width)
+  .image_config_products
+    +make-xs-column(6, $gutter: $grid-gutter-width)
+    +make-sm-column(3, $gutter: $grid-gutter-width)
+    @media only screen and (orientation: landscape)
+      +make-xs-column(3, $gutter: $grid-gutter-width)
+  .image_config_flags
+    +make-xs-column(6, $gutter: $grid-gutter-width)
+    +make-sm-column(3, $gutter: $grid-gutter-width)
+    +make-md-column(2, $gutter: $grid-gutter-width)
+    // +make-md-column(2, $gutter: $grid-gutter-width)
+    // +make-lg-column(, $gutter: $grid-gutter-width)
+  // @for $i from 1 through 12
+  //   .col-xs-#{$i}
+  //     +make-xs-column($i, $gutter: $grid-gutter-width)
       @if $i == 6
         &.correct_occhielli
         @media only screen and (orientation: landscape)
-          +make-xs-column(3, $gutter: $grid-gutter-width)
-  .col-sm-3
-    +make-sm-column(3, $gutter: $grid-gutter-width)
-  @for $i from 1 through 12
-    .col-md-#{$i}
-      +make-md-column($i, $gutter: $grid-gutter-width)
+         +make-xs-column(3, $gutter: $grid-gutter-width)
 
 #inside-product-cart-form
   input
