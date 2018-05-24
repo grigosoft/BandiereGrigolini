@@ -13,7 +13,23 @@
   </div>
 </div>
 <div class="row">
-
+  <div class="col-md-9 col-md-offset-3">
+    <%= text_field_tag 'ricerca', nil, size: 25, maxlength: 25, class: "form-control" %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-9 col-md-offset-3">
+    <% stati_mondo = render partial: 'spree/products/custom/shared/stati_mondo' %>
+    <% json = JSON.parse( stati_mondo , symbolize_names: true) %>
+    <% json.each do |stato| %>
+      <div class="col-xs-6 col-sm-2" stato="<%= stato[:nome].downcase %>" continente="<%= stato[:continente].downcase %>" data-product-check="stati">
+        <a class="button-options" role="button">
+          <%= image_tag("flags/#{stato[:sigla].downcase}.svg", alt: stato[:nome]) %>
+          <p><%= stato[:sigla] %></p>
+        </a>
+      </div>
+    <% end %>
+  </div>
 </div>
 <div class="consegna">
   <%= render partial: 'spree/products/custom/shared/quantity_and_date' %>
