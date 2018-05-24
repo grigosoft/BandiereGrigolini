@@ -52,9 +52,4 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  # Spree::PrintInvoice::Config.set(logo_path: '/path/to/public/images/company-logo.png')
-  Spree::PrintInvoice::Config.set(next_number: [1])
-  Spree::PrintInvoice::Config.set(store_pdf: true) # Default: false
-  Spree::PrintInvoice::Config.set(storage_path: 'pdfs/orders') # Default: tmp/order_prints
-
 end
