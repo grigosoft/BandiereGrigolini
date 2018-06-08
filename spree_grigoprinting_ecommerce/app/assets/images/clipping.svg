@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg
+  width="0"
+  height="0">
+  <defs>
+    <clipPath id="clipping">
+      <rect x="0" y="0" width="75" height="75"/><path d="M37.5,2l30.744,17.75l0,35.5l-30.744,17.75l-30.744,-17.75l0,-35.5l30.744,-17.75Z"/>
+  </clipPath>
+  </defs>
+</svg>

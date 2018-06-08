@@ -6,24 +6,51 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-xs-12" id="map">
-
     </div>
     <script>
       function initMap() {
-        var uluru = {lat: -25.363, lng: 131.044};
+        var grigoprinting = {lat: 45.439291, lng: 11.153117899999984};
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
-          center: uluru
+          zoom: 12,
+          center: grigoprinting
         });
+        var contentString = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h2 id="firstHeading" class="firstHeading">Grigolini</h2>'+
+            '<div id ="bodyContent">'+
+            '<p>Localit&agrave; Sant\' Antonio, 2</p>'
+            '<p>37031 Illasi (VR)</p>'+
+            '</div>'+
+            '</div>';
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        })
         var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
+          position: grigoprinting,
+          map: map,
+          title: "Grigolini"
+        });
+        marker.addListener('click', function(){
+          infowindow.open(map, marker)
         });
       }
     </script>
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACcHToZ8S-Mem1QHACY8GRm5jRa2Jc_qE&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPMosesXlqEgRzJ_4NHDi-4L2yo9zOQ6w&callback=initMap"
+  type="text/javascript">
     </script>
-
+<!-- <script type='text/javascript'>
+function init_map(){
+  var myOptions = {zoom:12,center:new google.maps.LatLng(,11.153117899999984),mapTypeId: google.maps.MapTypeId.ROADMAP};
+map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(45.439291,11.153117899999984)});
+  infowindow = new google.maps.InfoWindow({content:'<strong>Grigolini</strong><br>localita sant\'antonio 2<br>37031 illasi<br>'
+});
+  google.maps.event.addListener(marker, 'click', function(){infowindow.open(map,marker);
+  });
+  infowindow.open(map,marker);
+}
+google.maps.event.addDomListener(window, 'load', init_map);
+</script> -->
   </div>
 </div>

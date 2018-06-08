@@ -1,9 +1,9 @@
 <div class="container" data-hook="account_container">
   <div class="row">
-    <div class="sidenav col-md-2">
+    <div class="sidenav col-md-3">
       <%= render 'spree/users/profilo_tabs', current: :indirizzi %>
     </div>
-    <div class="sidenav col-md-10">
+    <div class="sidenav col-md-9">
       <div class="row">
         <h4>Indirizzo di fatturazione</h4>
       </div>
@@ -11,7 +11,7 @@
         <% if spree_current_user.fatturazione.nil? %>
           <%= link_to 'Aggiungi un indirizzo di fatturazione', controller: :addresses, action: :new, type: 'fatt' %>
         <% else %>
-        <div class="col-md-5">
+        <div class="col-md-6">
           <%= render partial: 'spree/users/address_show', locals: { address: @user.fatturazione, type: 'bill' } %>
         </div>
         <% end %>
@@ -21,7 +21,7 @@
       </div>
       <div class="row">
         <% spree_current_user.ship_addresses.each do |address| %>
-          <div class="col-md-5">
+          <div class="col-md-6">
             <%= render partial: 'spree/users/address_show', locals: { address: address, type: 'ship'} %>
           </div>
         <% end %>
