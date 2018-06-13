@@ -126,7 +126,7 @@
             content: ''
             display: block
             width: 0
-            height: 2px
+            height: 1px
             background-color: $back-link-button
             +transition-property(width)
             +transition-duration(0.2s)
@@ -149,7 +149,7 @@
   &.open
     +transform(translate(0%))
     @media screen and (min-width: $screen-sm)
-      +box-shadow(5px 1px 5px #999)
+      +box-shadow(0 10px 30px rgba(0, 0, 0, 0.2))
   width: 100%
   z-index: 9999
   background: shade($back-full-text, 2%)
@@ -185,13 +185,14 @@
       a
         color: $long-text
         display: block
-        padding: 0.8rem
+        padding: .3rem 1rem
         font-size: 1.35rem
+        margin: .5rem 0
         +border-radius($radius)
         @media screen and (min-width: $screen-md)
           font-size: inherit
           &:hover
-            border-left: 2px solid $link-back-full
+            border-left: 2px solid $back-link-button
     .contacts
       background: $back-link-button
       text-align: center
@@ -277,7 +278,7 @@ body.noscroll
     border-top: 1px solid $back-link-button
     border-bottom-width: 0
     +border-radius($radius)
-    +box-shadow(0 -5px 5px #999)
+    +box-shadow(0 10px 30px rgba(0, 0, 0, 0.2))
     .buttons
       width: 48%
       margin: 1%
@@ -291,7 +292,7 @@ body.noscroll
       width: 350px
       border-top-width: 0
       border: 1px solid $back-link-button
-      +box-shadow(0 5px 5px #999)
+      +box-shadow(0 10px 30px rgba(0, 0, 0, 0.2))
     a
       display: inline-block
       width: auto

@@ -21,7 +21,7 @@
       <% @consegna = Spree::CalcolatoreConsegna.default if @consegna.nil? %>
       <% @consegna.each_with_index do |data, k|%>
         <% prezzo = '%.2f' % data[:prezzo]%>
-        <div class="col-xs-6 col-sm-3">
+        <div class="image_config_products">
           <div class="data_consegna btn button-options<%= ' unactive' if data[:attivo] == 'false' %>"  role="button"  id="consegna_<%=k%>" data-date-selection="data_consegna" data-date-options="<%=k%>" prezzo="<%= prezzo %>">
             <span class="giorno"><%= Spree.t(data[:giorno].downcase) %></span>
             <span class="numero"><%= data[:numero] %></span>

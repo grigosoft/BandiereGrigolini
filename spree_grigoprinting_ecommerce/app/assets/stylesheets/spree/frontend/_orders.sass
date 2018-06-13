@@ -1,0 +1,59 @@
+.table-orders
+	.order-tab
+		> *
+			padding: 0 8px
+			&:last-child
+				border: none
+		&.order-tab--title
+			border-bottom: 2px solid shade($background, 40%)
+			h4
+				font-weight: 700
+				text-transform: uppercase
+		&.order-tab--content
+			+transition
+			&:nth-child(even)
+				background: shade($background, 5%)
+			&:hover
+				+transform(scale(1.01))
+				+box-shadow(0 2px 5px #444)
+				z-index: 1000		
+		p
+			padding-top: 10px
+			a
+				font-weight: 700
+			span
+				padding: 5px .5rem
+				color: $background
+				font-weight: 700
+				+border-radius(2rem)
+			&.success span 
+				background-color: $success
+			&.warning span
+				background-color: $warning
+			&.allert span
+				background-color: $allert
+	@media screen and (max-width: $screen-sm)
+		border: none
+		.order-tab
+			margin-bottom: 0.5rem
+			border: none
+			+border-radius($radius)
+			+box-shadow(0 5px 5px #ebebeb)
+			> *
+				border: none
+			&.order-tab--content
+				border: none
+			p
+				float: right
+				width: 100%
+				&:before
+					content: attr(data-label)
+					float: left
+					font-weight: bold
+					text-transform: uppercase
+					width: 50%
+					font-family: $h-font-family
+
+.status_warp
+	svg
+		width: 100%

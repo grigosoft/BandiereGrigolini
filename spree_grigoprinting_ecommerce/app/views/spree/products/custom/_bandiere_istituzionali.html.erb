@@ -13,22 +13,97 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-9 col-md-offset-3">
-    <%= text_field_tag 'ricerca', nil, size: 25, maxlength: 25, class: "form-control" %>
+  <div class="col-md-3">
+    <%= label_tag(:misura, "Seleziona la misura in cm") %>
+  </div>
+  <div class="col-md-3">
+    <%= select_tag "Misura", options_for_select(["100x70", "150x100", "225x150"], "100x70"), class: "form-control" %>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-md-3">
+    <%= label_tag(:misura, "Seleziona finitura") %>
+  </div>
+  <div class="col-md-9">
+    <div class="row-form">
+      <div class="image_config_products" data-need-show="orizzontale.fettuccia">
+        <a href="#cappio" class="button-options" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="cappio" data-product-show="4" data-product-options="cappio" data-product-selection="fettuccia">
+          <!-- nascosto se verticale -->
+          <%= image_tag("bandiera_personalizzata/cappio.svg", alt: "Bandiera con fettuccia di rinforzo, cappio superiore e cordino inferiore") %>
+          <p>Cappio e cordino</p>
+        </a>
+      </div>
+      <div class="image_config_products correct_occhielli">
+        <a href="#occhielli" class="button-options" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="occhielli" data-product-show="4" data-product-options="occhielli" data-product-selection="fettuccia">
+
+          <%= image_tag("bandiera_personalizzata/occhielli.svg", alt: "Bandiera con fettuccia di rinforzo e occhielli") %>
+          <p>Occhielli</p>
+        </a>
+      </div>
+      <div class="image_config_products">
+        <a href="#moschettoni" class="button-options" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="moschettoni" data-product-show="4" data-product-options="moschettoni" data-product-selection="fettuccia">
+          <%= image_tag("bandiera_personalizzata/moschettoni.svg", alt: "Bandiera con fettuccia di rinforzo e moschettoni") %>
+          <p>Moschettoni</p>
+        </a>
+      </div>
+      <div class="image_config_products">
+        <a href="#laccetti" class="button-options" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="laccetti" data-product-show="4" data-product-options="laccetti" data-product-selection="fettuccia">
+          <%= image_tag("bandiera_personalizzata/laccetti.svg", alt: "Bandiera con fettuccia di rinforzo e laccetti") %>
+          <p>Laccetti</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-md-3">
+    <%= label_tag(:selezione, "Seleziona le bandiere") %>
+  </div>
+  <div class="col-md-3">
+    <%= text_field_tag 'ricerca', nil, size: 25, maxlength: 25, class: "form-control", placeholder: "Cerca..." %>
   </div>
 </div>
 <div class="row">
   <div class="col-md-9 col-md-offset-3">
-    <% stati_mondo = render partial: 'spree/products/custom/shared/stati_mondo' %>
-    <% json = JSON.parse( stati_mondo , symbolize_names: true) %>
-    <% json.each do |stato| %>
-      <div class="col-xs-6 col-sm-2" stato="<%= stato[:nome].downcase %>" continente="<%= stato[:continente].downcase %>" data-product-check="stati">
-        <a class="button-options" role="button">
-          <%= image_tag("flags/#{stato[:sigla].downcase}.svg", alt: stato[:nome]) %>
-          <p><%= stato[:sigla] %></p>
-        </a>
+    <div class="row-form">
+      <div class="">
+        <a href="#">Africa</a>
       </div>
+      <div class="">
+        <a href="#">Asia</a>
+      </div>
+      <div class="">
+        <a href="#">Europa</a>
+      </div>
+      <div class="">
+        <a href="#">America del Nord</a>
+      </div>
+      <div class="">
+        <a href="#">America del Sud</a>
+      </div>
+      <div class="">
+        <a href="#">Oceania</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-9 col-md-offset-3">
+    <div class="row-form">
+      <% stati_mondo = render partial: 'spree/products/custom/shared/stati_mondo' %>
+      <% json = JSON.parse( stati_mondo , symbolize_names: true) %>
+      <% json.each do |stato| %>
+        <div class="image_config_flags" stato="<%= stato[:nome].downcase %>" continente="<%= stato[:continente].downcase %>" data-product-check="stati">
+          <a class="button-options" role="button">
+            <%= image_tag("flags/#{stato[:sigla].downcase}.svg", alt: stato[:nome]) %>
+            <p><%= stato[:sigla] %></p>
+          </a>
+        </div>
+
     <% end %>
+    </div>
   </div>
 </div>
 <div class="consegna">

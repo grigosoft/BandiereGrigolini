@@ -1,25 +1,34 @@
 <div class="container" data-hook="account_container">
   <div class="row">
-    <div class="sidenav col-md-2">
+    <svg
+      width="0"
+      height="0">
+      <defs>
+        <clipPath id="clipping">
+          <rect x="0" y="0" width="75" height="75"/><path d="M37.5,2l30.744,17.75l0,35.5l-30.744,17.75l-30.744,-17.75l0,-35.5l30.744,-17.75Z"/>
+      </clipPath>
+      </defs>
+    </svg>
+    <div class="sidenav col-md-3">
       <%= render 'spree/users/profilo_tabs', current: :utente %>
     </div>
-    <div class="sidenav col-md-10">
+    <div class="col-md-9">
       <div class="row">
 
-        <div class="col-md-10">
+        <div class="col-md-12">
           <div class="panel panel-default">
             <div class="panel-body">
               <h4>Account <%= @user.piva ? 'Aziendale' : 'Personale' %></h4>
               <p>E-mail:  <%= @user.email %></p>
               <p>
-                <%= link_to Spree.t(:logout),"/logout", :class => 'btn btn-primary' %>
+                <%= link_to Spree.t(:logout),"/logout", :class => 'btn btn-dark' %>
               </p>
             </div>
           </div>
         </div>
 
         <% if(@user.piva) %>
-          <div class="col-md-5">
+          <div class="col-md-6">
             <div class="panel panel-default">
               <div class="panel-body">
                 <h4>Dati azienda</h4>
@@ -37,7 +46,7 @@
                     </div>
                   </fieldset>
                   <p>
-                    <%= f.submit Spree.t(:update), :class => 'btn btn-primary' %>
+                    <%= f.submit Spree.t(:update), :class => 'btn btn-success' %>
                   </p>
                 <% end %>
               </div>
@@ -45,7 +54,7 @@
           </div>
         <% end %>
 
-        <div class="col-md-5">
+        <div class="col-md-6">
           <div class="panel panel-default">
             <div class="panel-body">
               <h4>Cambio e-mail</h4>
@@ -63,14 +72,14 @@
                   </div>
                 </fieldset>
                 <p>
-                  <%= f.submit Spree.t(:update), :class => 'btn btn-primary' %>
+                  <%= f.submit Spree.t(:update), :class => 'btn btn-success' %>
                 </p>
               <% end %>
             </div>
           </div>
         </div>
 
-        <div class="col-md-5">
+        <div class="col-md-6">
           <div class="panel panel-default">
             <div class="panel-body">
               <h4>Cambio Password</h4>
@@ -88,7 +97,7 @@
                   </div>
                 </fieldset>
                 <p>
-                  <%= f.submit Spree.t(:update), :class => 'btn btn-primary' %>
+                  <%= f.submit Spree.t(:update), :class => 'btn btn-success' %>
                 </p>
               <% end %>
             </div>
