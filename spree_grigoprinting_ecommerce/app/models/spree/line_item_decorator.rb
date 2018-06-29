@@ -75,6 +75,10 @@ module Spree
       false
     end
 
+    def more_options_hash
+      return JSON.parse(more_options, symbolize_names: true) unless more_options.nil?
+      nil
+    end
     # private
 
     def storico_files_decoded
