@@ -1,6 +1,7 @@
 <div class="panel panel-default">
   <div class="panel-body">
     <%= address.to_s.html_safe %>
+    <br><%= address.firstname %>
     <br><%= '<b>indirizzo di default</b>'.html_safe if spree_current_user.ship_defaults == address %><br>
     <%= link_to Spree.t(:edit), edit_address_path(address) %>&nbsp;
     <%= link_to Spree.t(:remove), address_path(address), method: :delete, confirm: Spree.t(:are_you_sure) if type=='ship' %>

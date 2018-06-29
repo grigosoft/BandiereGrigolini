@@ -1,11 +1,11 @@
-<div class="container" data-hook="account_container">
+<div class="container-fluid" data-hook="account_container">
   <div class="row">
-    <div class="sidenav col-md-3">
+    <div class="order-list sidenav">
       <%= render 'spree/users/profilo_tabs', current: :indirizzi %>
     </div>
-    <div class="sidenav col-md-9">
+    <div class="order-list-container">
       <div class="row">
-        <h4>Indirizzo di fatturazione</h4>
+        <h3>Indirizzo di fatturazione</h3>
       </div>
       <div class="row">
         <% if spree_current_user.fatturazione.nil? %>
@@ -17,7 +17,7 @@
         <% end %>
       </div>
       <div class="row">
-        <h4>Indirizzi di spedizione</h4>
+        <h3>Indirizzi di spedizione</h3>
       </div>
       <div class="row">
         <% spree_current_user.ship_addresses.each do |address| %>

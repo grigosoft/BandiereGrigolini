@@ -1,4 +1,4 @@
-<div class="container" data-hook="account_container">
+<div class="container-fluid" data-hook="account_container">
   <div class="row">
     <svg
       width="0"
@@ -9,16 +9,16 @@
       </clipPath>
       </defs>
     </svg>
-    <div class="sidenav col-md-3">
+    <div class="order-list sidenav">
       <%= render 'spree/users/profilo_tabs', current: :utente %>
     </div>
-    <div class="col-md-9">
+    <div class="order-list-container">
       <div class="row">
-
         <div class="col-md-12">
           <div class="panel panel-default">
+            <h4>Account <%= @user.piva ? 'Aziendale' : 'Personale' %></h4>
             <div class="panel-body">
-              <h4>Account <%= @user.piva ? 'Aziendale' : 'Personale' %></h4>
+              
               <p>E-mail:  <%= @user.email %></p>
               <p>
                 <%= link_to Spree.t(:logout),"/logout", :class => 'btn btn-dark' %>
@@ -30,8 +30,9 @@
         <% if(@user.piva) %>
           <div class="col-md-6">
             <div class="panel panel-default">
+              <h4>Dati azienda</h4>
               <div class="panel-body">
-                <h4>Dati azienda</h4>
+                
                 <%= render :partial => 'spree/shared/error_messages', :locals => { :target => @user } %>
                 <%= form_for Spree::User.new, :as => @user, :url => spree.user_path(@user), :method => :put do |f| %>
                   <fieldset id="password-credentials">
@@ -56,8 +57,9 @@
 
         <div class="col-md-6">
           <div class="panel panel-default">
+            <h4>Cambio e-mail</h4>
             <div class="panel-body">
-              <h4>Cambio e-mail</h4>
+              
               <%= render :partial => 'spree/shared/error_messages', :locals => { :target => @user } %>
               <%= form_for Spree::User.new, :url => spree.user_path(@user), :method => :put do |f| %>
                 <fieldset id="password-credentials">
@@ -65,7 +67,7 @@
                     <%= f.email_field :email, :class => 'form-control', :placeholder => Spree.t(:email) %>
                   </div>
                   <div class="form-group">
-                    <%= f.email_field :email, :class => 'form-control', :placeholder => Spree.t(:conferma_email) %>
+                    <%= f.email_field :email, :class => 'form-control', :placeholder => Spree.t(:confirm_email) %>
                   </div>
                   <div class="form-group">
                     <%= f.password_field :password_old, :class => 'form-control', :placeholder => Spree.t(:password), autocomplete:"off" %>
@@ -81,8 +83,9 @@
 
         <div class="col-md-6">
           <div class="panel panel-default">
+            <h4>Cambio Password</h4>
             <div class="panel-body">
-              <h4>Cambio Password</h4>
+              
               <%= render :partial => 'spree/shared/error_messages', :locals => { :target => @user } %>
               <%= form_for Spree::User.new, :url => spree.user_path(@user), :method => :put do |f| %>
                 <fieldset id="password-credentials">

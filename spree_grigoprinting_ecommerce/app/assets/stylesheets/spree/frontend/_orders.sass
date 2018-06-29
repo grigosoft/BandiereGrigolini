@@ -1,5 +1,56 @@
+.order-list.sidenav
+	width: 100%
+	padding: 0 15px
+	ul li
+		display: none
+		a
+			background: none
+			border: none
+			color: $long-text
+			font-family: $h-font-family
+			font-size: 18px
+		&.active
+			a
+				background: none
+				font-weight: 700
+				&:hover, &:focus
+					background: none
+					color: $long-text
+	@media screen and (min-width: $screen-md)
+		width: 20%
+		float: left
+		ul li
+			display: list-item
+.order-list-container
+	width: 100%
+	padding: 0 15px
+	h4
+		background: $default-gradient
+		font-weight: 700
+		padding: 0.5rem 1rem
+		+border-radius(2rem)
+	.panel
+		+box-shadow(none)
+	.panel-default
+		border: none
+		margin-bottom: 0
+	@media screen and (min-width: $screen-md)
+		width: 80%
+		float: left
 .table-orders
+	ul
+		list-style: none
+		padding: 0
+		li
+			+transition
+			&:hover
+				+transform(scale(1.01))
+				+box-shadow(0 2px 5px #444)
+			&:nth-child(odd)
+				background: shade($background, 5%)
 	.order-tab
+		display: block
+		color: $long-text
 		> *
 			padding: 0 8px
 			&:last-child
@@ -9,14 +60,7 @@
 			h4
 				font-weight: 700
 				text-transform: uppercase
-		&.order-tab--content
-			+transition
-			&:nth-child(even)
-				background: shade($background, 5%)
-			&:hover
-				+transform(scale(1.01))
-				+box-shadow(0 2px 5px #444)
-				z-index: 1000		
+				
 		p
 			padding-top: 10px
 			a
@@ -32,6 +76,8 @@
 				background-color: $warning
 			&.allert span
 				background-color: $allert
+			&.completed span
+				background: $long-text-gradient
 	@media screen and (max-width: $screen-sm)
 		border: none
 		.order-tab
@@ -54,6 +100,140 @@
 					width: 50%
 					font-family: $h-font-family
 
+.order-details
+	border: 1px solid shade($background, 40%)
+	h4
+		font-weight: 700
+		color: tint($long-text, 40%)
+	span
+		display: block
+
+.grids_container
+	display: grid
+	grid-template-columns: auto auto
+	grid-template-rows: auto auto
+	.list-product-description
+		@media screen and (max-width: $screen-sm)
+			grid-row-start: 2
+	.product-photo
+		img
+			width: 100%
+		@media screen and (max-width: $screen-sm)
+			grid-row-start: 1
+
 .status_warp
-	svg
+	padding-bottom: 2rem
+	margin-top: -1.5rem 
+	border: 1px solid shade($background, 40%)
+	border-top-width: 0px
+	.status-order-title
+		padding-left: 15px
+	@media screen and (min-width: $screen-sm)	
+		padding: 2.5rem 0 2rem 0
+		/* style */
+	.list-product-description ul
+		display: list-item
+		list-style: none
+		margin-left: 0
+		padding-left: 0
+
+.warp-arrow
+	position: absolute
+	left: 50%
+	bottom: 0
+	.open-order-intern
+		position: relative
+		left: -50%
+		width: 40px
+		height: 40px
+		+border-radius(50%)
+		background: $default-gradient
+		line-height: 40px
+		color: $long-text
+		font-size: 25px
+		text-align: center
+		border: 2px solid $back-link-button
+		box-shadow: 0 0px 4px rgba(0, 0, 0, 0.25)
+		&::before
+			padding-top: 5px
+
+.droparea
+	height: 200px
+	border: 1px solid #bebebe
+	+border-radius(1rem)
+.box__dragndrop,
+.box__uploading,
+.box__success,
+.box__error
+	display: none
+
+
+// refactoring status bar
+
+
+.inner-order-spec
+	padding-bottom: 20px
+	ul
+		list-style-type: none
+		padding: 0
+		li
+			font-size: 18px
+@media screen and (max-width: 599px)
+	/* vertical status bar */
+	.status-order-title, .status-bar-warp
 		width: 100%
+	.status-bar-warp
+		height: 430px
+		position: relative
+		.list-status
+			width: 200px
+			ul li
+				margin-bottom: 51px
+				text-align: right
+				padding-right: 40px
+		svg
+			width: 400px
+			+transform(rotate(90deg) translateY(100%))
+			position: absolute
+			top: 200px
+@media screen and (min-width: 600px)
+	/* horizontal status bar */
+	.status-bar-warp
+		height: auto
+		padding: 25px 15px 60px 15px
+		.list-status
+			width: auto
+			padding-left: 10px
+			ul li
+				display: inline-block
+				width: ( 100% / 6 )
+				padding-right: 0
+				margin-bottom: 0
+				text-align: left
+				+transform(rotate(45deg))
+				+transform-origin(left)
+		svg
+			width: 85%
+			+transform(none)
+			position: relative
+			top: 0
+@media screen and (min-width: 1024px)
+	/* horizontal stautus bar with width 75% title 25% */
+	.status-order-title
+		width: 25%
+		float: left
+	.status-bar-warp
+		width: 75%
+		float: left
+		.list-status
+			ul li
+				width: ( 100% / 6 )
+		svg
+			width: 85%
+.order-contact-details
+	padding-top: 1rem
+	@media screen and (min-width: $screen-md)
+		.col-sm-4:nth-child(2)
+			border-left: 1px solid $long-text
+			border-right: 1px solid $long-text		
+
