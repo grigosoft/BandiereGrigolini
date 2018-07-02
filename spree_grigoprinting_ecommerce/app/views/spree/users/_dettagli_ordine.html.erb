@@ -83,7 +83,7 @@
               </ul>
             </div>
           </div>
-          <div class="order-specific-details col-xs-12" order="<%= order.number %>">
+          <div class="order-specific-details col-xs-12" item="<%= line_item.id %>">
             <hr>
             <h3>Specifiche Ordine</h3>
             <div class="grids_container">
@@ -123,7 +123,7 @@
         </div>
         <!-- tasto apertura specifiche ordine -->
         <div class="warp-arrow">
-          <a href="#" class="open-order-intern grigo-icons grigo-arrow" order="<%= order.number %>"></a>
+          <a href="#" class="open-order-intern grigo-icons grigo-arrow" item="<%= line_item.id %>"></a>
         </div>
       </div>
     </div>
