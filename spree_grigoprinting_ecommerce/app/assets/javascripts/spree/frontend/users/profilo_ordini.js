@@ -3,8 +3,8 @@ $(document).ready(function(){
   // $(".order-details").hide();
 
   $("a.open-order-intern").click(function(){
-    var number = $(this).attr("order");
-    $("div.order-specific-details[order='"+number+"']").toggle();
+    var number = $(this).attr("item");
+    $("div.order-specific-details[item='"+number+"']").toggle();
   });
   $("a.order-tab").click(function(){
     var number = $(this).attr("order");
