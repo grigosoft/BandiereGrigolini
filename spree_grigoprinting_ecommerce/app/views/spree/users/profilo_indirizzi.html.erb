@@ -11,7 +11,7 @@
         <% if spree_current_user.fatturazione.nil? %>
           <%= link_to 'Aggiungi un indirizzo di fatturazione', controller: :addresses, action: :new, type: 'fatt' %>
         <% else %>
-        <div class="col-md-6">
+        <div class="col-sm-6">
           <%= render partial: 'spree/users/address_show', locals: { address: @user.fatturazione, type: 'bill' } %>
         </div>
         <% end %>
@@ -20,11 +20,13 @@
         <h3>Indirizzi di spedizione</h3>
       </div>
       <div class="row">
+        <div class="grid-container-address col-xs-12">
         <% spree_current_user.ship_addresses.each do |address| %>
-          <div class="col-md-6">
+          <div class="grid-address">
             <%= render partial: 'spree/users/address_show', locals: { address: address, type: 'ship'} %>
           </div>
         <% end %>
+        </div>
       </div>
       <div class="row">
         <%= link_to t(:add_new_shipping_address, scope: :address_book), controller: :addresses, action: :new, type: 'sped' %>
