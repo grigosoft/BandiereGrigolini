@@ -1,22 +1,13 @@
 module Spree
   UsersController.class_eval do
     before_action :ceck_old_password, only: :update
-    prepend_before_action :load_user, only: [:profilo_utente, :profilo_indirizzi, :profilo_ordini_completi]
+    prepend_before_action :load_user, only: [:profilo_utente, :profilo_indirizzi, :profilo_ordini]
 
     def profilo_utente; end
 
     def profilo_indirizzi; end
 
-    def profilo_ordini_in_corso
-      orders = @user.orders
-      @orders = []
-      orders.each do |order|
-        @orders.append(order) #if true
-      end
-      redirect_to order_path(@orders[0]) if @orders.length == 1
-    end
-
-    def profilo_ordini_completi
+    def profilo_ordini
       orders = @user.orders
       @orders = []
       orders.each do |order|
