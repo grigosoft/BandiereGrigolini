@@ -4,10 +4,10 @@ $(document).ready(function(){
 
   $("a.open-order-intern").click(function(){
     var number = $(this).attr("order");
-    $("div.order-specific-details[order='"+number+"']").toggle(2000);
+    $("div.order-specific-details[order='"+number+"']").toggle();
   });
   $("a.order-tab").click(function(){
     var number = $(this).attr("order");
-    $("div.order-details[order='"+number+"']").toggle(2000);
+    $("div.order-details[order='"+number+"']").toggle();
   });
 });

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180524141009) do
+ActiveRecord::Schema.define(version: 20180702111549) do
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
@@ -189,6 +189,7 @@ ActiveRecord::Schema.define(version: 20180524141009) do
     t.string "more_options"
     t.string "storico_files"
     t.integer "padre_id"
+    t.string "stato_spedizione"
     t.index ["order_id"], name: "index_spree_line_items_on_order_id"
     t.index ["tax_category_id"], name: "index_spree_line_items_on_tax_category_id"
     t.index ["variant_id"], name: "index_spree_line_items_on_variant_id"
