@@ -1,0 +1,126 @@
+<div class="container-fluid" data-hook="account_container">
+  <div class="row">
+    <div class="order-list sidenav">
+      <%= render 'spree/users/profilo_tabs', current: :ordini %>
+    </div>
+    <!-- Inizio Tabella -->
+    <div class="order-list-container">
+      <h2><%= Spree.t(:orders) %></h2>
+      <hr>
+      <h3>Ordini in Corso</h3>
+      <div class="table-orders-warp">
+        <!-- Titoli della tabella -->
+        <div class="table-orders">
+          <div class="order-tab order-tab--title clearfix hidden-xs">
+            <div class="col-sm-2">
+              <h4>N Ordine</h4>
+            </div>
+            <div class="col-sm-2">
+              <h4>Data ordine</h4>
+            </div>
+            <div class="col-sm-2">
+              <h4>Importo tot.</h4>
+            </div>
+            <div class="col-sm-2">
+              <h4>Stato</h4>
+            </div>
+            <div class="col-sm-2">
+              <h4>Pagamento</h4>
+            </div>
+            <div class="col-sm-2">
+              <h4>Azioni</h4>
+            </div>
+          </div>
+          <!-- Fine titoli della tabella -->
+          <!-- Inizio contenuto della tabella -->
+          <% if @ordini.present? %>
+            <ul>
+              <% @ordini.each do |order| %>
+                <%= render partial: "spree/users/riga_ordine", locals: {order: order} %>
+              <% end %>
+            </ul>
+          <% else %>
+            <p> Non hai ordini in lavorazione </p>
+          <% end %>
+        </div>
+      </div>
+      <hr>
+      <h3>Ordini in Completati</h3>
+      <div class="table-orders-warp">
+        <!-- Titoli della tabella -->
+        <div class="table-orders">
+          <div class="order-tab order-tab--title clearfix hidden-xs">
+            <div class="col-sm-2">
+              <h4>N Ordine</h4>
+            </div>
+            <div class="col-sm-2">
+              <h4>Data ordine</h4>
+            </div>
+            <div class="col-sm-2">
+              <h4>Importo tot.</h4>
+            </div>
+            <div class="col-sm-2">
+              <h4>Stato</h4>
+            </div>
+            <div class="col-sm-2">
+              <h4>Pagamento</h4>
+            </div>
+            <div class="col-sm-2">
+              <h4>Azioni</h4>
+            </div>
+          </div>
+          <!-- Fine titoli della tabella -->
+          <!-- Inizio contenuto della tabella -->
+          <% if @orders.present? %>
+            <ul>
+              <% @orders.each do |order| %>
+                <%= render partial: "spree/users/riga_ordine", locals: {order: order} %>
+              <% end %>
+            </ul>
+          <% else %>
+            <p> Non hai ancora ordini </p>
+          <% end %>
+        </div>
+      </div>
+      <!-- fine last row -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Fine interno ordini layout ordine pronto con specifiche interne -->
+<!-- Fine contenuto della tabella -->
+<!-- <div data-hook="account_my_orders" class="account-my-orders">
+  <h3><%= 'Ordini in corso' %></h3>
+  <% if @orders.present? %>
+  <table class="table table-striped order-summary">
+    <thead class="active">
+      <tr>
+        <th class="order-number"><%= Spree::Order.human_attribute_name(:number) %></th>
+        <th class="order-date"><%= Spree.t(:date) %></th>
+        <th class="order-status"><%= Spree.t(:status) %></th>
+        <th class="order-payment-state"><%= Spree.t(:payment_state) %></th>
+        <th class="order-shipment-state"><%= Spree.t(:shipment_state) %></th>
+        <th class="order-total"><%= Spree.t(:total) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+      <tr>
+        <td class="order-number"><%= link_to order.number, order_url(order) %></td>
+        <td class="order-date"><%= l order.completed_at.to_date %></td>
+        <td class="order-status"><%= Spree.t("order_state.#{order.state}").titleize %></td>
+        <td class="order-payment-state"><%= Spree.t("payment_states.#{order.payment_state}").titleize if order.payment_state %></td>
+        <td class="order-shipment-state"><%= Spree.t("shipment_states.#{order.shipment_state}").titleize if order.shipment_state %></td>
+        <td class="lead text-primary order-total"><%= order.display_total %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% else %>
+  <div class="alert alert-info"><%= Spree.t(:you_have_no_orders_yet) %></div>
+  <% end %>
+  <br />
+</div> -->
+
+
+<%= javascript_include_tag "spree/frontend/users/profilo_ordini.js" %>
