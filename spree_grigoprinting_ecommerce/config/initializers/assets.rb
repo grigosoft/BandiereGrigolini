@@ -16,6 +16,7 @@ Rails.application.config.assets.precompile += %w( spree/frontend/products/nome.j
 Rails.application.config.assets.precompile += %w( spree/frontend/products/riepilogo.js )
 Rails.application.config.assets.precompile += %w( spree/frontend/products/servizi_extra.js )
 Rails.application.config.assets.precompile += %w( spree/frontend/products/soggetti.js )
+Rails.application.config.assets.precompile += %w( spree/frontend/users/profilo_ordini.js )
 # prodotti
 Rails.application.config.assets.precompile += %w( spree/frontend/products/prodotto_personalizzato.js )
 Rails.application.config.assets.precompile += %w( spree/frontend/products/bandiere.js )
