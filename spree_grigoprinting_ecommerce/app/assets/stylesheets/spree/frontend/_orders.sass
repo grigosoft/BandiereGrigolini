@@ -25,7 +25,7 @@
 .order-list-container
 	width: 100%
 	padding: 0 15px
-	h3
+	> h3
 		background: $default-gradient
 		padding: 0.5rem 0.8rem
 		+border-radius(2rem)
@@ -54,10 +54,7 @@
 		padding: 0
 		li
 			+transition
-			&:hover
-				+transform(scale(1.01))
-				+box-shadow(0 2px 5px #444)
-			&:nth-child(odd)
+			a
 				background: shade($background, 5%)
 	.order-tab
 		display: block
@@ -89,6 +86,9 @@
 				background-color: $allert
 			&.completed span
 				background: $long-text-gradient
+		a:hover
+			+transform(scale(1.01))
+			+box-shadow(0 2px 5px #444)
 	@media screen and (max-width: $screen-sm)
 		border: none
 		.order-tab
