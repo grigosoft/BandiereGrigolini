@@ -47,6 +47,40 @@ module Spree
       desc.gsub('\n', '</br>')
     end
 
+    def stato
+      return 0 if order.canceled?
+      stat = -1
+      stat = 1 if order.completed?
+      stat = 2 if stato_files == 'da_approvare'
+      stat = 3 if stato_files == 'approvato'
+      stat = 4 if stato_files == 'approvato' && true # aggiungere 2 ore di wait
+      stat = 5 if stato_spedizione == 'spedito'
+      stat = 6 if stato_spedizione == 'consegnato'
+
+      stat
+    end
+
+    def stato_display
+      case stato
+      when 1
+        %w[Confermato warning]
+      when 2
+        ['File Caricato', 'warning']
+      when 3
+        %w[Approvazione warning]
+      when 4
+        ['In lavorazione', 'warning']
+      when 5
+        %w[Spedito success]
+      when 6
+        %w[Consegnato success]
+      when 0
+        %w[Annullato allert]
+      else
+        %w[Errore allert]
+      end
+    end
+
     def add_storico_files(azione="", info="")
       new_row = {}
       new_row[:azione] = azione
