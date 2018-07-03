@@ -1,25 +1,46 @@
 module Spree
   Order.class_eval do
 
-    def stato_ordine
-      stato = %w[Errore allert]
-      stato = %w[Confermato warning] if completed?
+    def stato
+      return 0 if canceled?
 
-      stato = ['File Caricato', 'warning'] if stato_files == 'da_approvare'
-      stato = %w[Approvazione warning] if stato_files == 'approvato'
-      stato = ['In lavorazione', 'warning'] if stato_files == 'approvato' && true # aggiungere 2 ore di wait
-      stato = %w[Spedito success] if shipment_state == 'spedito'
-      stato = %w[Consegnato success] if shipment_state == 'consegnato'
-      stato = %w[Annullato allert] unless canceled?
+      min = 1000000
+      line_items.each do |item|
+        min = item.stato if item.stato < min
+      end
+      min
+    end
 
-      stato
+    def stato_diplay
+      case stato
+      when 1
+        %w[Confermato warning]
+      when 2
+        ['File Caricato', 'warning']
+      when 3
+        %w[Approvazione warning]
+      when 4
+        ['In lavorazione', 'warning']
+      when 5
+        %w[Spedito success]
+      when 6
+        %w[Consegnato success]
+      when 0
+        %w[Annullato allert]
+      else
+        %w[Errore allert]
+      end
     end
 
     def azione_richiesta
-      azione = %w[nessuna success]
-      azione = ['Carica file', 'warning'] if stato_ordine == 'Confermato'
-
-      azione
+      case stato
+      when 1
+        ['Carica file', 'warning']
+      when 5
+        ['Traccia pacco', 'success']
+      else
+        %w[nessuna success]
+      end
     end
 
     # se tutti item confermati = confermato
