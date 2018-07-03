@@ -1,4 +1,4 @@
-<li>
+<li class="order-item clearfix">
   <a href="#" class="order-tab order-tab--content clearfix" order="<%= order.number %>">
     <div class="col-sm-2">
       <p data-label="n Ordine"><%= order.number %></p>
@@ -13,13 +13,13 @@
       <p data-label="stato" class="<%= order.stato_diplay[1] %>"><span><%= order.stato_diplay[0] %></span></p>
     </div>
     <!-- <p data-label="stato" class="warning"><span>in corso</span></p>
-      <p data-label="stato" class="success"><span>in corso</span></p>
-        <p data-label="stato" class="allert"><span>in corso</span></p> -->
+    <p data-label="stato" class="success"><span>in corso</span></p>
+    <p data-label="stato" class="allert"><span>in corso</span></p> -->
     <div class="col-sm-2">
       <p data-label="pagamento"><%= Spree.t("payment_states.#{order.payment_state}").titleize if order.payment_state %></p>
     </div>
     <div class="col-sm-2">
-      <p data-label="azioni"class="<%= order.azione_richiesta[1] %>"><span><%= order.azione_richiesta[0] %></span></p>
+      <p data-label="azioni" class="<%= order.azione_richiesta[1] %>"><span><%= order.azione_richiesta[0] %></span></p>
     </div>
   </a>
   <%= render partial: "spree/users/dettagli_ordine", locals: {order: order} %>

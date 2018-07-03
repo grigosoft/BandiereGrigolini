@@ -34,13 +34,13 @@
           <!-- Fine titoli della tabella -->
           <!-- Inizio contenuto della tabella -->
           <% if @ordini.present? %>
-            <ul>
-              <% @ordini.each do |order| %>
-                <%= render partial: "spree/users/riga_ordine", locals: {order: order} %>
-              <% end %>
-            </ul>
+          <ul>
+            <% @ordini.each do |order| %>
+            <%= render partial: "spree/users/riga_ordine", locals: {order: order} %>
+            <% end %>
+          </ul>
           <% else %>
-            <p> Non hai ordini in lavorazione </p>
+          <p> Non hai ordini in lavorazione </p>
           <% end %>
         </div>
       </div>
@@ -72,13 +72,13 @@
           <!-- Fine titoli della tabella -->
           <!-- Inizio contenuto della tabella -->
           <% if @orders.present? %>
-            <ul>
-              <% @orders.each do |order| %>
-                <%= render partial: "spree/users/riga_ordine", locals: {order: order} %>
-              <% end %>
-            </ul>
+          <ul>
+            <% @orders.each do |order| %>
+            <%= render partial: "spree/users/riga_ordine", locals: {order: order} %>
+            <% end %>
+          </ul>
           <% else %>
-            <p> Non hai ancora ordini </p>
+          <p> Non hai ancora ordini </p>
           <% end %>
         </div>
       </div>
@@ -120,6 +120,4 @@
   <% end %>
   <br />
 </div> -->
-
-
 <%= javascript_include_tag "spree/frontend/users/profilo_ordini.js" %>
