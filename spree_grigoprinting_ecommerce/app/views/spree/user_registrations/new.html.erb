@@ -11,17 +11,6 @@
               <%= render :partial => 'spree/shared/user_form', :locals => { :f => f } %>
               <%= check_box_tag :se_azienda %>
               <%= label_tag 'crea account aziendale' %>
-              <div id="dati_azienda">
-                <p>
-                  <%= f.text_field :ragione_sociale, class: 'form-control', required: true, placeholder: 'Ragione sociale' %>
-                </p>
-                <p>
-                <%= f.text_field :piva, class: 'form-control', required: true, placeholder: 'Partita iva' %>
-                </p>
-                <p>
-                <%= f.text_field :cf, class: 'form-control', required: true, placeholder: 'Codice Fiscale' %>
-                </p>
-              </div>
             </div>
             <p><%= f.submit Spree.t(:create), :class => 'btn btn-lg btn-success btn-block' %></p>
           <% end %>

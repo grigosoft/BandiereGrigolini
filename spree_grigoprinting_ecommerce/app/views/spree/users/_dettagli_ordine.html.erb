@@ -86,8 +86,8 @@
             </ul>
           </div>
         </div>
-        <% if line_item.stato == 1 %>
-        <%= render partial: "spree/users/file_ordine", locals: {order: order, line_item: line_item} %>
+        <% if line_item.stato == 1 || line_item.stato == 2 %>
+          <%= render partial: "spree/users/file_ordine", locals: {order: order, line_item: line_item} %>
         <% end %>
         <div class="order-specific-details col-xs-12" item="<%= line_item.id %>">
           <hr>

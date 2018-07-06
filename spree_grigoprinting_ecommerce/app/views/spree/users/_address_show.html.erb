@@ -1,13 +1,14 @@
 <div class="panel panel-default">
   <div class="panel-body">
-    <p><strong><%= address.firstname + " " + address.lastname %></strong></p>
+    <p><strong><%= address.full_name %></strong></p>
+    <%= ("<p>Referente: " + address.referente + "</p>").html_safe if address.user.azienda? && !(address.referente.nil? || address.referente == "") %>
     <p><%= address.address1 %></p>
-    <%= ("<p>" + address.address2 + "</p>").html_safe unless address.address2.nil? || address.address2 == "" %> 
+    <%= ("<p>" + address.address2 + "</p>").html_safe unless address.address2.nil? || address.address2 == "" %>
     <p><%= address.zipcode + ", " + address.city %></p>
 
     <%= link_to edit_address_path(address) do %>
-    <span class="grigo-icons grigo-modify"></span><span><%= Spree.t(:edit) %></span>
-	<% end %>
-	<%= link_to Spree.t(:remove), address_path(address), method: :delete, confirm: Spree.t(:are_you_sure) if type=='ship' %>
+      <span class="grigo-icons grigo-modify"></span><span><%= Spree.t(:edit) %></span>
+  	<% end %>
+	  <%= link_to Spree.t(:remove), address_path(address), method: :delete, confirm: Spree.t(:are_you_sure) unless address.bill? %>
   </div>
 </div>

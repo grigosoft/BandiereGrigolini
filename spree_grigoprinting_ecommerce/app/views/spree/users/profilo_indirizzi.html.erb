@@ -11,8 +11,8 @@
         <% if spree_current_user.fatturazione.nil? %>
           <%= link_to 'Aggiungi un indirizzo di fatturazione', controller: :addresses, action: :new, type: 'fatt' %>
         <% else %>
-        <div class="col-sm-6">
-          <%= render partial: 'spree/users/address_show', locals: { address: @user.fatturazione, type: 'bill' } %>
+        <div class="col-sm-6<%= ' selected' if @user.fatturazione.id == @user.ship_address.id %>">
+          <%= render partial: 'spree/users/address_show', locals: { address: @user.fatturazione } %>
         </div>
         <% end %>
       </div>
@@ -22,8 +22,8 @@
       <div class="row">
         <div class="grid-container-address col-xs-12">
         <% spree_current_user.ship_addresses.each do |address| %>
-          <div class="grid-address">
-            <%= render partial: 'spree/users/address_show', locals: { address: address, type: 'ship'} %>
+          <div class="grid-address<%= ' selected' if address.id == @user.ship_address.id %>">
+            <%= render partial: 'spree/users/address_show', locals: { address: address } %>
           </div>
         <% end %>
         </div>

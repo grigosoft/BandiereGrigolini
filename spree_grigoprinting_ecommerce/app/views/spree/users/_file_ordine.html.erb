@@ -2,15 +2,74 @@
   <hr>
   <h3>Caricamento file</h3>
   <div class="col-sm-12 col-xs-12 list-product-loading">
-    <form class="box" method="post" action="" enctype="multipart/form-data">
-      <div class="box__input">
-        <input class="box__file" type="file" name="files[]" id="file" data-multiple-caption="{count} files selected" multiple />
-        <label for="file"><strong>Choose a file</strong><span class="box__dragndrop"> or drag it here</span>.</label>
-        <button class="btn button button-default" type="submit">Carica file</button>
+    <%= form_for(Spree::Upload.new, html: {id: "new_upload_#{line_item.id}", multipart: true, class: "dropzone"}) do |f|  %>
+      <%= hidden_field_tag "upload[order_id]", order.id %>
+      <%= hidden_field_tag "upload[line_item_id]", line_item.id %>
+      <div class="fallback">
+        <%= f.file_field :image %><br>
+        <%= f.submit "Upload" %>
       </div>
-      <div class="box__uploading">Uploading&hellip;</div>
-      <div class="box__success">Done!</div>
-      <div class="box__error">Error! <span></span>.</div>
-    </form>
+    <% end %>
   </div>
 </div>
+<script>
+Dropzone.autoDiscover = false;
+    new Dropzone("#new_upload_<%= line_item.id %>", {
+
+      //url: "/upload_photo", // You can override url of form in here.
+
+      //maxFiles: 10, // da errore e non ti fa togliere il file, da gestire noi
+      maxFilesize: 50, // in MB
+      maxFiles: 10,
+      parallelUploads: 1,
+
+      acceptedFiles:'.jpg, .png, .jpeg',// .pdf, .ai, .eps', // type of files
+
+      // non mettendone una mantiene le proprozioni
+      //thumbnailWidth: 120,
+      //thumbnailHeight: 120,
+
+      // changed the passed param to one accepted by
+      // our rails app
+      paramName: "upload[image]",
+
+      addRemoveLinks: true,
+
+      success: function(file, response){
+  			// find the remove button link of the uploaded file and give it an id
+  			// based of the fileID response from the server
+  			$(file.previewTemplate).find('.dz-remove').attr('id', response.fileID);
+  			// add the dz-success class (the green tick sign)
+  			$(file.previewElement).addClass("dz-success");
+  		},
+  		//when the remove button is clicked
+  		removedfile: function(file){
+  			// grap the id of the uploaded file we set earlier
+  			var id = $(file.previewTemplate).find('.dz-remove').attr('id');
+
+  			// make a DELETE ajax request to delete the file
+  			$.ajax({
+  				type: 'DELETE',
+  				url: '/uploads/' + id,
+  				success: function(data){
+  					console.log(data.message);
+            // TOLGO ANTEPRIMA
+            $(document).find(file.previewElement).remove();
+  				}
+  			});
+      },
+      // aggiungo file gia presenti nel server
+      init: function () {
+        <% line_item.upload.each do |file| %>
+          var mockFile = {name: "<%= file.image_file_name %>", size: <%= file.image_file_size %>, type: '<%= file.image_content_type %>', accepted: true };
+          this.options.addedfile.call(this, mockFile);
+          this.options.thumbnail.call(this, mockFile, "<%= "/spree/uploads/ord_#{order.id}/li_#{item.id}/#{file.id}/thumb/#{file.image_file_name}" %>");
+          // aggiungo id per rimozione file
+          $(mockFile.previewTemplate).find('.dz-remove').attr('id', <%= file.id %>);
+          mockFile.previewElement.classList.add('dz-success');
+          mockFile.previewElement.classList.add('dz-complete');
+        <% end %>
+      }
+    }); // new dropzone
+
+</script>
