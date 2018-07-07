@@ -1,6 +1,7 @@
 <% address_id = address_type.chars.first %>
 
 <div class="inner" data-hook=<%="#{address_type}_inner" %>>
+  <% is_bill = 't' if is_bill.nil? && address_id == 'b' %>
   <%= address_form.hidden_field :is_bill %>
   <% if address.bill? && spree_current_user.azienda? %>
     <p class="form-group" id=<%="#{address_id}ragione_sociale" %>>

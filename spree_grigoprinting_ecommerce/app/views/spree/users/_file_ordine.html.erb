@@ -63,7 +63,7 @@ Dropzone.autoDiscover = false;
         <% line_item.upload.each do |file| %>
           var mockFile = {name: "<%= file.image_file_name %>", size: <%= file.image_file_size %>, type: '<%= file.image_content_type %>', accepted: true };
           this.options.addedfile.call(this, mockFile);
-          this.options.thumbnail.call(this, mockFile, "<%= "/spree/uploads/ord_#{order.id}/li_#{item.id}/#{file.id}/thumb/#{file.image_file_name}" %>");
+          this.options.thumbnail.call(this, mockFile, "<%= "/spree/uploads/ord_#{order.id}/li_#{line_item.id}/#{file.id}/thumb/#{file.image_file_name}" %>");
           // aggiungo id per rimozione file
           $(mockFile.previewTemplate).find('.dz-remove').attr('id', <%= file.id %>);
           mockFile.previewElement.classList.add('dz-success');

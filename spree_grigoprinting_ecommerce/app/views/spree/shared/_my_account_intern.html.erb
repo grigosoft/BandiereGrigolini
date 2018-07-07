@@ -5,6 +5,6 @@
 </div>
 <% else %>
 <div class="login_header container-fluid">
-  <%= render partial: 'spree/shared/login' %>
+  <%= render partial: 'spree/shared/login', locals: {registrati: true} %>
 </div>
 <% end %>

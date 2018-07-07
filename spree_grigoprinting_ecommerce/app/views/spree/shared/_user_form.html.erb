@@ -1,0 +1,32 @@
+<fieldset id="password-credentials">
+  <div class="form-group">
+    <%= f.email_field :email, :class => 'form-control', :placeholder => Spree.t(:email) %>
+  </div>
+  <hr />
+  <div class="form-group">
+    <%= f.password_field :password, :class => 'form-control', :placeholder => Spree.t(:password) %>
+  </div>
+  <div class="form-group">
+    <%= f.password_field :password_confirmation, :class => 'form-control', :placeholder => Spree.t(:confirm_password) %>
+  </div>
+  <%= check_box_tag :se_azienda %>
+  <%= label_tag 'Crea account aziendale (fatturazione verso azienda)' %><br>
+  <div id="is_azienda">
+    <%= f.check_box :is_azienda %>
+    <%= label_tag 'Conferma per rendere definitivamente l\'account di tipo aziendale' %>
+  </div>
+</fieldset>
+<div data-hook="signup_below_password_fields"></div>
+<script>
+  $(document).ready(function(){
+    $('#is_azienda').hide();
+
+    $('#se_azienda').click(function(){
+      if ($(this).prop('checked')){
+        $('#is_azienda').show();
+      } else {
+        $('#is_azienda').hide();
+      }
+    });
+  });
+</script>

@@ -4,7 +4,7 @@
 (function($) {
   $(document).ready(function(){
     // inizio con use billing address attivo e il resto nascosto
-    $('#order_use_billing').checked = true;
+    $('#order_use_billing').prop('checked', true);
     $("#shipping .select_address_shipping").hide();
     hide_address_form('shipping');
     $("input.billing_radio").hide();

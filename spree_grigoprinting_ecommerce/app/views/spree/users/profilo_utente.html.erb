@@ -17,13 +17,20 @@
         <div class="col-sm-6">
           <div class="panel panel-default">
             <h4>Account <%= @user.azienda? ? 'Aziendale' : 'Personale' %></h4>
+            <% unless @user.azienda? %>
+            <!-- link di trasformazione in account azeindale, solo se personale -->
+            <% end %>
             <div class="panel-body">
-              <p><b><%= @user.fatturazione.full_name %></b></p>
-              <% unless @user.fatturazione.piva.nil? || @user.fatturazione.piva == ''  %>
-                <p>Partita iva: <%= @user.fatturazione.piva %></p>
-              <% end %>
-              <% unless @user.fatturazione.cf.nil? || @user.fatturazione.cf == '' %>
-                <p>Codice fiscale: <%= @user.fatturazione.cf %></p>
+              <% unless @user.fatturazione.nil? %>
+                <p><b><%= @user.fatturazione.full_name %></b></p>
+                <% unless @user.fatturazione.piva.nil? || @user.fatturazione.piva == ''  %>
+                  <p>Partita iva: <%= @user.fatturazione.piva %></p>
+                <% end %>
+                <% unless @user.fatturazione.cf.nil? || @user.fatturazione.cf == '' %>
+                  <p>Codice fiscale: <%= @user.fatturazione.cf %></p>
+                <% end %>
+              <% else %>
+                <%= link_to 'Aggiungi l\'indirizzo di fatturazione', controller: :addresses, action: :new, type: 'fatt' %>
               <% end %>
               <p>E-mail:  <%= @user.email %></p>
               <p>
@@ -41,6 +48,8 @@
             <address>
               <% unless @user.fatturazione.nil? %>
                 <%= render partial: 'spree/users/address_show', locals: { address: @user.fatturazione } %>
+              <% else %>
+                <%= link_to 'Aggiungi l\'indirizzo di fatturazione', controller: :addresses, action: :new, type: 'fatt' %>
               <% end %>
             </address>
             </div>
