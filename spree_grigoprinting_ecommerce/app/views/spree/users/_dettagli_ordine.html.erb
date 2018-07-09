@@ -34,7 +34,11 @@
       <div class="row">
         <div class="col-xs-12 inner-order-spec">
           <h3 class="title_section clearfix">
-            <span class="title_number col-sm-2"><%= line_item.more_options_hash[:name] %></span>
+            <span class="title_number col-sm-2">
+              <% unless line_item.more_options_hash.nil? %>
+                <%= line_item.more_options_hash[:name] %>
+              <% end %>
+            </span>
             <span class="title_header col-sm-10"><%= line_item.product.name %></span>
           </h3>
           <div class="status_warp clearfix">
