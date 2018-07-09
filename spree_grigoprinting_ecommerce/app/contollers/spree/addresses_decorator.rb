@@ -33,7 +33,10 @@ module Spree
                             :zipcode,
                             :country_id,
                             :phone,
-                            :is_bill)
+                            :is_bill,
+                            :ragione_sociale,
+                            :piva,
+                            :cf)
   end
 
   # def set_fatt

@@ -16,9 +16,22 @@
       <div class="row">
         <div class="col-sm-6">
           <div class="panel panel-default">
-            <h4>Account <%= @user.piva ? 'Aziendale' : 'Personale' %></h4>
+            <h4>Account <%= @user.azienda? ? 'Aziendale' : 'Personale' %></h4>
+            <% unless @user.azienda? %>
+            <!-- link di trasformazione in account azeindale, solo se personale -->
+            <% end %>
             <div class="panel-body">
-              <p><%= @user.fatturazione.firstname + " " + @user.fatturazione.lastname %></p>
+              <% unless @user.fatturazione.nil? %>
+                <p><b><%= @user.fatturazione.full_name %></b></p>
+                <% unless @user.fatturazione.piva.nil? || @user.fatturazione.piva == ''  %>
+                  <p>Partita iva: <%= @user.fatturazione.piva %></p>
+                <% end %>
+                <% unless @user.fatturazione.cf.nil? || @user.fatturazione.cf == '' %>
+                  <p>Codice fiscale: <%= @user.fatturazione.cf %></p>
+                <% end %>
+              <% else %>
+                <%= link_to 'Aggiungi l\'indirizzo di fatturazione', controller: :addresses, action: :new, type: 'fatt' %>
+              <% end %>
               <p>E-mail:  <%= @user.email %></p>
               <p>
                 <%= link_to Spree.t(:logout),"/logout", :class => 'btn btn-dark' %>
@@ -26,34 +39,6 @@
             </div>
           </div>
         </div>
-
-        <% if(@user.piva) %>
-          <div class="col-sm-6">
-            <div class="panel panel-default">
-              <h4>Dati azienda</h4>
-              <div class="panel-body">
-                
-                <%= render :partial => 'spree/shared/error_messages', :locals => { :target => @user } %>
-                <%= form_for Spree::User.new, :as => @user, :url => spree.user_path(@user), :method => :put do |f| %>
-                  <fieldset id="password-credentials">
-                    <div class="form-group">
-                      <%= f.text_field :ragione_sociale, :class => 'form-control', :placeholder => 'Ragione Sociale azienda' %>
-                    </div>
-                    <div class="form-group">
-                      <%= f.text_field :piva, :class => 'form-control', :placeholder => 'Partita Iva' %>
-                    </div>
-                    <div class="form-group">
-                      <%= f.text_field :cf, :class => 'form-control', :placeholder => 'codiace Fiscale' %>
-                    </div>
-                  </fieldset>
-                  <p>
-                    <%= f.submit Spree.t(:update), :class => 'btn btn-success' %>
-                  </p>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        <% end %>
       </div>
       <div class="row">
         <div class="col-sm-6">
@@ -61,10 +46,11 @@
             <h4>Dati di fatturazione</h4>
             <div class="panel-body">
             <address>
-              <%= @user.fatturazione.firstname + " " + @user.fatturazione.lastname %> <br>
-              <%= @user.fatturazione.address1 + " " + @user.fatturazione.address2 %> <br>
-              <%= @user.fatturazione.zipcode + " - " + @user.fatturazione.city  %>
-              <%= @user.fatturazione.state_name %> <br>
+              <% unless @user.fatturazione.nil? %>
+                <%= render partial: 'spree/users/address_show', locals: { address: @user.fatturazione } %>
+              <% else %>
+                <%= link_to 'Aggiungi l\'indirizzo di fatturazione', controller: :addresses, action: :new, type: 'fatt' %>
+              <% end %>
             </address>
             </div>
           </div>
@@ -74,10 +60,13 @@
             <h4>Indirizzo di spedizione standard</h4>
             <div class="panel-body">
             <address>
-              <%= @user.ship_address.firstname + " " + @user.ship_address.lastname %> <br>
-              <%= @user.ship_address.address1 + " " + @user.ship_address.address2 %> <br>
-              <%= @user.ship_address.zipcode + " - " + @user.ship_address.city  %>
-              <%= @user.ship_address.state_name %> <br>
+              <% unless @user.ship_address.nil? %>
+                <% if !@user.fatturazione.nil? && @user.ship_address.id == @user.fatturazione.id %>
+                  <p>Indirizzo di fatturazione</p>
+                <% else %>
+                  <%= render partial: 'spree/users/address_show', locals: { address: @user.ship_address } %>
+                <% end %>
+              <% end %>
             </address>
             </div>
           </div>
@@ -133,7 +122,7 @@
             </div>
           </div>
         </div>
-      
+
       </div>
     </div>
 

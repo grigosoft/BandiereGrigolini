@@ -51,9 +51,9 @@ module Spree
       return 0 if order.canceled?
       stat = -1
       stat = 1 if order.completed?
-      stat = 2 if stato_files == 'da_approvare'
-      stat = 3 if stato_files == 'approvato'
-      stat = 4 if stato_files == 'approvato' && true # aggiungere 2 ore di wait
+      stat = 2 if product.personalizzabile? && stato_files == 'da_approvare'
+      stat = 3 if !product.personalizzabile? || stato_files == 'approvato'
+      stat = 4 if !product.personalizzabile? || stato_files == 'approvato' && true # aggiungere 2 ore di wait
       stat = 5 if stato_spedizione == 'spedito'
       stat = 6 if stato_spedizione == 'consegnato'
 

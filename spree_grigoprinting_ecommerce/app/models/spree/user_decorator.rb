@@ -7,4 +7,8 @@ Spree::User.class_eval do
 
   has_many :orders, -> { where(['completed_at not ?', nil]) }, class_name: 'Spree::Order'
   # has_many :orders_not_complete, -> { where(completed_at: nil) }, class_name: 'Spree::Order'
+
+  def azienda?
+    is_azienda == 't' || is_azienda == 1
+  end
 end

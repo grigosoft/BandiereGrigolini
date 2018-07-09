@@ -2,53 +2,21 @@
 <%= render :partial => 'spree/shared/error_messages', :locals => { :target => @user } %>
 <div class="col-md-6 col-md-offset-3">
   <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= Spree.t(:new_customer) %></h3>
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= Spree.t(:new_customer) %></h3>
     </div>
-      <div id="new-customer" class="panel-body" data-hook="login">
-          <%= form_for resource, :as => :spree_user, :url => spree.registration_path do |f| %>
-            <div data-hook="signup_inside_form">
-              <%= render :partial => 'spree/shared/user_form', :locals => { :f => f } %>
-              <%= check_box_tag :se_azienda %>
-              <%= label_tag 'crea account aziendale' %>
-              <div id="dati_azienda">
-                <p>
-                  <%= f.text_field :ragione_sociale, class: 'form-control', required: true, placeholder: 'Ragione sociale' %>
-                </p>
-                <p>
-                <%= f.text_field :piva, class: 'form-control', required: true, placeholder: 'Partita iva' %>
-                </p>
-                <p>
-                <%= f.text_field :cf, class: 'form-control', required: true, placeholder: 'Codice Fiscale' %>
-                </p>
-              </div>
-            </div>
-            <p><%= f.submit Spree.t(:create), :class => 'btn btn-lg btn-success btn-block' %></p>
-          <% end %>
-          <div class="text-center">
-            <%= Spree.t(:or) %>
-              <%= link_to Spree.t(:login_as_existing), spree.login_path %>
-          </div>
-          <div data-hook="login_extras"></div>
+    <div id="new-customer" class="panel-body" data-hook="login">
+      <%= form_for resource, :as => :spree_user, :url => spree.registration_path do |f| %>
+        <div data-hook="signup_inside_form">
+          <%= render :partial => 'spree/shared/user_form', :locals => { :f => f } %>
+        </div>
+        <p><%= f.submit Spree.t(:create), :class => 'btn btn-lg btn-success btn-block' %></p>
+      <% end %>
+      <div class="text-center">
+        <%= Spree.t(:or) %>
+          <%= link_to Spree.t(:login_as_existing), spree.login_path %>
       </div>
+      <div data-hook="login_extras"></div>
+    </div>
   </div>
 </div>
-<script>
-  function togleDatiAzienda(){
-    if($('#se_azienda').prop( "checked" )){
-      $('#dati_azienda').show();
-    } else {
-      $('#dati_azienda').hide();
-      $('#spree_user_ragione_sociale').val('');
-      $('#spree_user_piva').val('');
-      $('#spree_user_cf').val('');
-    }
-  }
-  $(document).ready(function(){
-    togleDatiAzienda();
-
-    $('#se_azienda').change(function(){
-      togleDatiAzienda();
-    });
-  });
-</script>
