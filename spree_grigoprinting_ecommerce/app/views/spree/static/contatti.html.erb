@@ -1,11 +1,28 @@
 <div class="container">
   <div class="row">
-    <h2 class="col-xs-12"><%= Spree.t(:contacts)%></h2>
+    <h2><%= Spree.t(:contacts)%></h2>
   </div>
 </div>
 <div class="container-fluid">
   <div class="row">
-    <div class="col-xs-12" id="map">
+    <div class="warp-contacts container">
+      <div class="row">
+    <div class="col-sm-6">
+        <h3>Ombrellificio Grigolini di Grigolini Marcello</h3>
+        <div>
+          <span class="grigo-icons grigo-company"></span>
+          <address>Loc. Sant'Antonio, 02 <br> 37031 Illasi VR</address>
+        </div>
+        <p><span class="grigo-icons grigo-phone"></span>
+          <span>+39 045 7834054</span>
+        </p>
+        <p>
+          <span class="grigo-icons grigo-mail"></span>
+          <a href="mailto:info@bandieregrigolini.it">info@bandieregrigolini.it</a>
+        </p>
+    </div>
+    <div class="col-sm-6">
+      <div id="map"></div>
     </div>
     <script>
       function initMap() {
@@ -52,5 +69,7 @@ map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);mar
 }
 google.maps.event.addDomListener(window, 'load', init_map);
 </script> -->
+  </div>
+    </div>
   </div>
 </div>

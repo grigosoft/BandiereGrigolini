@@ -3,6 +3,7 @@
 
   <div class="active row-form cart_header hidden-xs hidden-sm" data-hook="cart_items_headers">
     <div class="cart-item-description-header col-sm-6" ><%= Spree.t(:item) %></div>
+    <div class="cart-item-date-header col-sm-1"><%= Spree.t(:date) %></div>
     <div class="cart-item-price-header col-sm-1"><%= Spree.t(:price) %></div>
     <div class="cart-item-quantity-header col-sm-2"><%= Spree.t(:qty) %></div>
     <div class="cart-item-total-header col-sm-2"><%= Spree.t(:total) %></div>
@@ -12,16 +13,23 @@
   <div id="line_items" data-hook>
     <%= render partial: 'spree/orders/line_item', collection: order_form.object.line_items, locals: { order_form: order_form } %>
   </div>
+<div class="cart-total-warp">
   <% if @order.adjustments.nonzero.exists? || @order.line_item_adjustments.nonzero.exists? || @order.shipment_adjustments.nonzero.exists? || @order.shipments.any? %>
     <div class="cart-subtotal row">
-      <div class="col-sm-3 col-sm-offset-6"><h5><%= Spree.t(:cart_subtotal, count: @order.line_items.sum(:quantity)) %></h5></div>
-      <div class="col-sm-2"><h5><%= order_form.object.display_item_total %></h5></div>
+      <div class="col-sm-3 col-sm-offset-6">
+        <h5><%= Spree.t(:cart_subtotal, count: @order.line_items.sum(:quantity)) %></h5>
+      </div>
+      <div class="col-sm-2">
+        <h5><%= order_form.object.display_item_total %></h5>
+      </div>
     </div>
     <%= render "spree/orders/adjustments" %>
   <% end %>
   <div class="warning cart-total row-form">
-    <div class="col-sm-3 col-sm-offset-6"><h5><%= Spree.t(:total) %></h5></div>
+    <div class="col-sm-3 col-sm-offset-6">
+      <h5><%= Spree.t(:total) %></h5>
+    </div>
     <div class="lead col-sm-2"><%= order_form.object.display_total %></div>
-
   </div>
+</div>
 </div>

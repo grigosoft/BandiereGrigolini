@@ -103,8 +103,11 @@
       display: inline
   // @media screen and (min-width: $screen-sm)
   //   height: 56px
+  @media screen and (min-width: $screen-sm)
+    height: 3.15rem
   @media screen and (min-width: $screen-md)
     padding: 0.6rem 0
+    height: 4.3rem
 #spree-header
   background-color: inherit
   border-bottom: 1px solid $back-link-button
@@ -160,10 +163,10 @@
   @media screen and (min-width: $screen-sm)
     width: 40%
     bottom: 0
-    // top: 84px
+    top: 4.65rem
     border-right: 1px solid $back-link-button
   @media screen and (min-width: $screen-md)
-    // top: 113px
+    top: 5.8rem
     width: 350px
   .st-menu
     position: absolute
@@ -172,12 +175,12 @@
     width: 100%
     height: 100%
     overflow: auto
+    h3
+      padding: 0 15px
     ul
       list-style: none
       color: $long-text
       padding: 0.6rem
-      h3
-        margin: 0
       li
         border-bottom: 1px solid $back-link-button
         &:last-child
@@ -234,16 +237,20 @@
 .hidden-media-sm
   @media screen and (min-width: $screen-sm)
     display: none
+
+html
+  overflow-y: scroll
 html.noscroll
+  position: fixed
+  height: 100%
+  width: 100%
+body.noscroll
   overflow: hidden
   height: 100%
-  @media screen and (min-width: $screen-sm)
-    overflow: auto
-body.noscroll
-  overflow: visible
-  height: 100%
-  @media screen and (min-width: $screen-sm)
-    overflow: auto
+  .warp-content
+    height: 100%
+    .shadow-warp
+      height: 100%
 //Menu Account
 .account_menu
   position: fixed
@@ -307,7 +314,7 @@ body.noscroll
 @media screen and (min-width: $screen-sm)
   .contacts_wrap
     background: shade($back-full-text, 2%)
-    height: 28px
+    height: 1.5rem
     .contacts_bar
       font-size: .8rem
       p
@@ -334,3 +341,19 @@ body.noscroll
       .languages
         text-align: center
 //fine contacts_bar
+
+.container-fluid
+  position: relative
+  @media screen and (min-width: $screen-sm)
+    .shadow-hover
+      position: absolute
+      z-index: 1000
+      opacity: 0
+      background: $long-text
+      visible: hidden
+      +transition
+      &.open
+        width: 100%
+        height: 100%
+        opacity: .5
+        visible: visible
