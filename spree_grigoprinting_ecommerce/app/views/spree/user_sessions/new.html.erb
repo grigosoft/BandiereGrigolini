@@ -1,0 +1,12 @@
+<% @body_id = 'login' %>
+<div class="col-md-6 <%= request.path == spree.login_path ? "col-md-offset-3" : "" %>">
+  <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= Spree.t(:login_as_existing) %></h3>
+    </div>
+      <div id="existing-customer" class="panel-body" data-hook="login">
+          <%= render :partial => 'spree/shared/login', locals: {registrati: true} %>
+          <div data-hook="login_extras"></div>
+      </div>
+  </div>
+</div>

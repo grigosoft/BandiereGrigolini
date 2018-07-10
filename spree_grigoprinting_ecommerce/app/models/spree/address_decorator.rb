@@ -22,9 +22,9 @@ module Spree
     #   user.azienda? && bill?
     # end
 
-    def bill?
-      is_bill == 't' || is_bill == 0
-    end
+    # def bill?
+    #   is_bill == 't' || is_bill == 0
+    # end
 
     def full_name
       return firstname + ' ' + lastname unless user.azienda?
