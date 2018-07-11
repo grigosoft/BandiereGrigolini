@@ -1,15 +1,18 @@
 <%= render partial: 'spree/shared/error_messages', locals: { target: @order } %>
 <div id="cart-detail" data-hook>
 
-  <div class="active row-form cart_header hidden-xs hidden-sm" data-hook="cart_items_headers">
-    <div class="cart-item-description-header col-sm-6" ><%= Spree.t(:item) %></div>
-    <div class="cart-item-date-header col-sm-1"><%= Spree.t(:date) %></div>
-    <div class="cart-item-price-header col-sm-1"><%= Spree.t(:price) %></div>
-    <div class="cart-item-quantity-header col-sm-2"><%= Spree.t(:qty) %></div>
-    <div class="cart-item-total-header col-sm-2"><%= Spree.t(:total) %></div>
-    <div class="cart-item-delete-header col-sm-1"></div>
+  <div class="active row cart_header hidden-xs hidden-sm" data-hook="cart_items_headers">
+  <div class="col-sm-1"></div>
+  <div class="col-sm-11">
+    <div class="row">
+      <div class="cart-item-description-header col-sm-5" ><%= Spree.t(:item) %></div>
+      <div class="cart-item-date-header col-sm-2"><%= Spree.t(:date) %></div>
+      <div class="cart-item-price-header col-sm-1"><%= Spree.t(:price) %></div>
+      <div class="cart-item-quantity-header col-sm-2"><%= Spree.t(:qty) %></div>
+      <div class="cart-item-total-header col-sm-2"><%= Spree.t(:total) %></div>
+    </div>
   </div>
-
+</div>
   <div id="line_items" data-hook>
     <%= render partial: 'spree/orders/line_item', collection: order_form.object.line_items, locals: { order_form: order_form } %>
   </div>
