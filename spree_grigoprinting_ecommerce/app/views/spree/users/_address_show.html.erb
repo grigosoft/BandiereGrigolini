@@ -9,6 +9,6 @@
     <%= link_to edit_address_path(address) do %>
       <span class="grigo-icons grigo-modify"></span><span><%= Spree.t(:edit) %></span>
   	<% end %>
-	  <%= link_to Spree.t(:remove), address_path(address), method: :delete, confirm: Spree.t(:are_you_sure) unless address.bill? %>
+	  <%= link_to Spree.t(:remove), address_path(address), method: :delete, confirm: Spree.t(:are_you_sure) unless address.is_bill.to_bool %>
   </div>
 </div>
