@@ -28,13 +28,13 @@ module Spree
 
     def full_name
       return firstname + ' ' + lastname unless user.azienda?
-      return ragione_sociale if user.azienda? && bill?
+      return ragione_sociale if user.azienda? && is_bill.to_bool
       firstname # azienda e indirizzo spedizione
     end
 
     def type
-      return 'billing' if bill?
-      return 'shipping' unless bill?
+      return 'billing' if is_bill.to_bool
+      return 'shipping' unless is_bill.to_bool
     end
   end
 end

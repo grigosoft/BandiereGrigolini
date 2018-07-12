@@ -43,6 +43,14 @@ module Spree
       end
     end
 
+    def real_item_count
+      count = 0
+      line_items.each do |item|
+        count += 1 if item.padre.nil?
+      end
+      count
+    end
+
     # se tutti item confermati = confermato
     # se almeno uno da_confermare = da confermare (con priorita)
     # se almeno uno disapprovato = disapprovato
