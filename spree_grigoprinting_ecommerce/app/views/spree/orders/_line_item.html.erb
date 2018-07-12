@@ -13,21 +13,21 @@
   </div>
   <div class="col-sm-11">
     <div class="row">
-      <div class="cart-item-title col-xs-12 col-sm-5" data-hook="cart_item_description">
+      <div class="cart-item-title col-xs-12 col-sm-4" data-hook="cart_item_description">
         <h4>
         <%= link_to line_item.name, product_path(variant.product) %>
         </h4>
       </div>
-      <div class="cart-item-date col-sm-2" data-hook="cart_item_price">
+      <div class="cart-item-date col-sm-2 text-right" data-hook="cart_item_price">
+        25-10-2018
+      </div>
+      <div class="text-primary cart-item-pric col-sm-2 text-right" data-hook="cart_item_price">
         <%= line_item.single_money.to_html %>
       </div>
-      <div class="text-primary cart-item-pric col-sm-1" data-hook="cart_item_price">
-        <%= line_item.single_money.to_html %>
-      </div>
-      <div class="cart-item-quantity col-xs-6 col-sm-2" data-hook="cart_item_quantity" valign="center">
+      <div class="cart-item-quantity col-xs-6 col-sm-2 text-right" data-hook="cart_item_quantity" valign="center">
         <%= line_item.quantity %>
       </div>
-      <div class="text-primary cart-item-total col-xs-6 col-sm-2" data-hook="cart_item_total">
+      <div class="text-primary cart-item-total col-xs-6 col-sm-2 text-right" data-hook="cart_item_total">
         <%= line_item.display_amount.to_html unless line_item.quantity.nil? %>
       </div>
     </div>
@@ -57,7 +57,7 @@
   <% line_item.figli.each do |figlio| %>
   <% variant = figlio.variant %>
   <%= order_form.fields_for :line_items, figlio do |item_form| %>
-  <div class="row cart-figlio">
+  <div class="clearfix cart-figlio">
     <div class="col-sm-1">
       <div class="cart-item-image" data-hook="cart_item_image">
         <% if variant.images.length == 0 %>
@@ -69,18 +69,18 @@
     </div>
     <div class="col-sm-11">
       <div class="row">
-        <div class="cart-item-title col-xs-12 col-sm-5" data-hook="cart_item_description">
+        <div class="cart-item-title col-xs-12 col-sm-4" data-hook="cart_item_description">
           <h4>
           <%= figlio.name.html_safe %>
           </h4>
         </div>
-        <div class="text-primary cart-item-pric col-sm-offset-2 col-sm-1" data-hook="cart_item_price">
+        <div class="text-primary cart-item-pric col-sm-offset-2 col-sm-2 text-right" data-hook="cart_item_price">
           <%= figlio.single_money.to_html %>
         </div>
-        <div class="cart-item-quantity col-xs-6 col-sm-2" data-hook="cart_item_quantity" valign="center">
+        <div class="cart-item-quantity col-xs-6 col-sm-2 text-right" data-hook="cart_item_quantity" valign="center">
           <%= figlio.quantity %>
         </div>
-        <div class="text-primary cart-item-total col-xs-6 col-sm-2" data-hook="cart_item_total">
+        <div class="text-primary cart-item-total col-xs-6 col-sm-2 text-right" data-hook="cart_item_total">
           <%= figlio.display_amount.to_html unless line_item.quantity.nil? %>
         </div>
       </div>
