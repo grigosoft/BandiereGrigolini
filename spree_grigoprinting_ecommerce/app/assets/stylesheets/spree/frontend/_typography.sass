@@ -33,6 +33,7 @@ body
 
 h1, h2, h3, h4, h5, h6
   font-family: $h-font-family
+  text-transform: capitalize
 
 // Heding wid fluid-type
 $mod_1: 1.1 // mobile
@@ -142,10 +143,8 @@ label
     color: shade($back-full-text, 25%)
     &:hover
       color: shade($back-full-text, 40%)
-.cart-item-total, .cart-item-total-header, .adjustment, .cart-adjustment-header
+.cart-item-quantity, .cart-item-quantity-header, .cart-item-total, .cart-item-total-header, .adjustment, .cart-adjustment-header
   text-align: right
-.cart-item-quantity, .cart-item-quantity-header, .cart-item-pric, .cart-item-price-header
-  text-align: center
 .cart-item-pric, .cart-item-total
   color: $long-text
 .cart-item-total
@@ -155,7 +154,7 @@ label
   text-align: right
 .cart-item-delete
   text-align: left
-  font-size: 0.8rem
+  font-size: 1.2rem
   @media screen and (min-width: $screen-md)
     text-align: center
 $mod_1_btn: 1 // mobile

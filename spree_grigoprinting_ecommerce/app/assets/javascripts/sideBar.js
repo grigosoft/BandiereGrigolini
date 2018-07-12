@@ -30,6 +30,7 @@ function resetMenu(){
             $(this).children().first().toggleClass('open');
             $('html, body').toggleClass('noscroll');
             $('#icon-products').toggleClass("grigo-hamburger grigo-close");
+            $('.shadow-hover').toggleClass('open')
             e.stopPropagation();
         });
         $('.account').click(function(e) {

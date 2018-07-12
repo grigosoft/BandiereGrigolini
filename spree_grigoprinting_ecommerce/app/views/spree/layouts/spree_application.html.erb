@@ -16,8 +16,9 @@
     <%= render partial: 'spree/shared/products_menu' %>
     <div class="warp-content">
       <%= render partial: 'spree/shared/contacts_bar' %>
-    <%= render partial: 'spree/shared/header' %>
-      <div class="container-fluid">
+      <%= render partial: 'spree/shared/header' %>
+      <div class="container-fluid shadow-warp">
+        <div class="shadow-hover"></div>
         <div class="row big-content" data-hook="data-hook">
             <%= breadcrumbs(@taxon) %>
 
