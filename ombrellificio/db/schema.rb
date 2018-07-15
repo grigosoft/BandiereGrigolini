@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180706084809) do
+ActiveRecord::Schema.define(version: 2018_07_14_151815) do
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
@@ -67,19 +88,6 @@ ActiveRecord::Schema.define(version: 20180706084809) do
     t.index ["position"], name: "index_spree_assets_on_position"
     t.index ["viewable_id"], name: "index_assets_on_viewable_id"
     t.index ["viewable_type", "type"], name: "index_assets_on_viewable_type_and_type"
-  end
-
-  create_table "spree_bookkeeping_documents", force: :cascade do |t|
-    t.string "printable_type"
-    t.integer "printable_id"
-    t.string "template"
-    t.string "number"
-    t.string "firstname"
-    t.string "lastname"
-    t.string "email"
-    t.decimal "total", precision: 12, scale: 2
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "spree_calculators", force: :cascade do |t|
@@ -173,19 +181,19 @@ ActiveRecord::Schema.define(version: 20180706084809) do
     t.integer "variant_id"
     t.integer "order_id"
     t.integer "quantity", null: false
-    t.decimal "price", null: false
+    t.decimal "price", precision: 10, scale: 2, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "currency"
-    t.decimal "cost_price"
+    t.decimal "cost_price", precision: 10, scale: 2
     t.integer "tax_category_id"
-    t.decimal "adjustment_total", default: "0.0"
-    t.decimal "additional_tax_total", default: "0.0"
-    t.decimal "promo_total", default: "0.0"
-    t.decimal "included_tax_total", default: "0.0", null: false
-    t.decimal "pre_tax_amount", default: "0.0", null: false
-    t.decimal "taxable_adjustment_total", default: "0.0", null: false
-    t.decimal "non_taxable_adjustment_total", default: "0.0", null: false
+    t.decimal "adjustment_total", precision: 10, scale: 2, default: "0.0"
+    t.decimal "additional_tax_total", precision: 10, scale: 2, default: "0.0"
+    t.decimal "promo_total", precision: 10, scale: 2, default: "0.0"
+    t.decimal "included_tax_total", precision: 10, scale: 2, default: "0.0", null: false
+    t.decimal "pre_tax_amount", precision: 12, scale: 4, default: "0.0", null: false
+    t.decimal "taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
+    t.decimal "non_taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
     t.string "more_options"
     t.string "storico_files"
     t.integer "padre_id"
@@ -296,18 +304,6 @@ ActiveRecord::Schema.define(version: 20180706084809) do
     t.index ["source_id", "source_type"], name: "index_spree_payments_on_source_id_and_source_type"
   end
 
-  create_table "spree_paypal_express_checkouts", force: :cascade do |t|
-    t.string "token"
-    t.string "payer_id"
-    t.string "transaction_id"
-    t.string "state", default: "complete"
-    t.string "refund_transaction_id"
-    t.datetime "refunded_at"
-    t.string "refund_type"
-    t.datetime "created_at"
-    t.index ["transaction_id"], name: "index_spree_paypal_express_checkouts_on_transaction_id"
-  end
-
   create_table "spree_preferences", force: :cascade do |t|
     t.text "value"
     t.string "key"
@@ -356,31 +352,8 @@ ActiveRecord::Schema.define(version: 20180706084809) do
     t.index ["property_id"], name: "index_spree_product_properties_on_property_id"
   end
 
-  create_table "spree_products", force: :cascade do |t|
-    t.string "name", default: "", null: false
-    t.text "description"
-    t.datetime "available_on"
-    t.datetime "deleted_at"
-    t.string "slug"
-    t.text "meta_description"
-    t.string "meta_keywords"
-    t.integer "tax_category_id"
-    t.integer "shipping_category_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "promotionable", default: true
-    t.string "meta_title"
-    t.datetime "discontinue_on"
-    t.decimal "personalizzabile", default: "0.0"
-    t.string "partial"
-    t.index ["available_on"], name: "index_spree_products_on_available_on"
-    t.index ["deleted_at"], name: "index_spree_products_on_deleted_at"
-    t.index ["discontinue_on"], name: "index_spree_products_on_discontinue_on"
-    t.index ["name"], name: "index_spree_products_on_name"
-    t.index ["shipping_category_id"], name: "index_spree_products_on_shipping_category_id"
-    t.index ["slug"], name: "index_spree_products_on_slug", unique: true
-    t.index ["tax_category_id"], name: "index_spree_products_on_tax_category_id"
-  end
+# Could not dump table "spree_products" because of following StandardError
+#   Unknown type 'bool' for column 'personalizzabile'
 
   create_table "spree_products_taxons", force: :cascade do |t|
     t.integer "product_id"
@@ -459,7 +432,7 @@ ActiveRecord::Schema.define(version: 20180706084809) do
     t.datetime "updated_at", null: false
     t.integer "promotion_category_id"
     t.index ["advertise"], name: "index_spree_promotions_on_advertise"
-    t.index ["code"], name: "index_spree_promotions_on_code"
+    t.index ["code"], name: "index_spree_promotions_on_code", unique: true
     t.index ["expires_at"], name: "index_spree_promotions_on_expires_at"
     t.index ["id", "type"], name: "index_spree_promotions_on_id_and_type"
     t.index ["promotion_category_id"], name: "index_spree_promotions_on_promotion_category_id"
@@ -910,10 +883,6 @@ ActiveRecord::Schema.define(version: 20180706084809) do
     t.integer "taxonomy_id"
     t.integer "lft"
     t.integer "rgt"
-    t.string "icon_file_name"
-    t.string "icon_content_type"
-    t.integer "icon_file_size"
-    t.datetime "icon_updated_at"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -951,7 +920,7 @@ ActiveRecord::Schema.define(version: 20180706084809) do
   end
 
 # Could not dump table "spree_users" because of following StandardError
-#   Unknown type '' for column 'is_azienda'
+#   Unknown type 'bool' for column 'is_azienda'
 
   create_table "spree_variants", force: :cascade do |t|
     t.string "sku", default: "", null: false

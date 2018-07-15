@@ -3,4 +3,29 @@ it:
     adjustment_labels:
       tax_rates:
         excluding_tax: Tasse escluse
+    contacts: contatti
+    my_account: Account
+    login: Accedi
+    create_a_new_account: Registrati
+    # mesi
+    january: Gennaio
+    february: Febbraio
+    march: Marzo
+    april: Aprile
+    may: Maggio
+    june: Giugno
+    july: Luglio
+    august: Agosto
+    september: Settembre
+    october: Ottobre
+    november: Novembre
+    december: Dicembre
+    # giorni settimana
+    monday: Lunedi
+    tuesday: Martedi
+    wednesday: Mercoledi
+    thursday: Giovedi
+    friday: Venerdi
+    saturday: Sabato
+    sunday: Domenica
     confirm_email: Conferma email

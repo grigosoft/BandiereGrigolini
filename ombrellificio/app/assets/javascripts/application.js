@@ -11,7 +11,25 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require activestorage
 //= require turbolinks
 //= require_tree .
+
 //= require jquery
+//= require jquery-ui
 //= require bootstrap-sprockets
+//= require dropzone
+
+//= require modernizr.custom.js
+
+jQuery.fn.insertAt = function(index, element) {
+  var lastIndex = this.children().size();
+  if (index < 0) {
+    index = Math.max(0, lastIndex + 1 + index);
+  }
+  this.append(element);
+  if (index < lastIndex) {
+    this.children().eq(index).before(this.children().last());
+  }
+  return this;
+}
