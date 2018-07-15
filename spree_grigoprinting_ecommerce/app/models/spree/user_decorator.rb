@@ -5,7 +5,7 @@ Spree::User.class_eval do
               class_name: 'Spree::Address'#, dependent: :destroy
   belongs_to :ship_defaults, class_name: 'Spree::Address', foreign_key: 'ship_address_id' #, dependent: :destroy
 
-  has_many :orders, -> { where(['completed_at not ?', nil]) }, class_name: 'Spree::Order'
+  # has_many :orders, -> { where(['completed_at not ?', nil]) }, class_name: 'Spree::Order'
   # has_many :orders_not_complete, -> { where(completed_at: nil) }, class_name: 'Spree::Order'
 
   def azienda?
