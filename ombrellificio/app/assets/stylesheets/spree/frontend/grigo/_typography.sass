@@ -1,0 +1,246 @@
+*
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.004)
+
+$grigo-icons: 'icomoon'
+@function strip-unit($value)
+  @return $value / ($value * 0 + 1)
+
+@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size)
+  $u1 : unit($min-vw)
+  $u2 : unit($max-vw)
+  $u3 : unit($min-font-size)
+  $u4 : unit($max-font-size)
+
+  @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4
+    &
+      font-size: $min-font-size
+      @media screen and (min-width: $min-vw)
+        font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}))
+      @media screen and (min-width: $max-vw)
+        font-size: $max-font-size
+
+html
+  @include fluid-type($min_width, $max_width, $min_font, $max_font)
+
+body
+  font-size: inherit
+  font-family: $text_font_family
+  font-weight: 300
+  line-height: 160%
+  @include fluid-type($min_width, $max_width, $min_font, $max_font)
+
+h1, h2, h3, h4, h5, h6
+  font-family: $h-font-family
+  text-transform: capitalize
+
+// Heding wid fluid-type
+$mod_1: 1.1 // mobile
+$mod_2: 1.2 // desktop
+
+h1
+  font-size: $mod_1*$mod_1*$mod_1*$mod_1 *1rem
+  @include fluid-type($min_width, $max_width, $mod_1*$mod_1*$mod_1 *$min_font, $mod_2*$mod_2*$mod_2 *$min_font)
+  font-weight: 800
+
+h2
+  font-size: $mod_1*$mod_1*$mod_1 *1rem
+  @include fluid-type($min_width, $max_width, $mod_1*$mod_1*$mod_1 *$min_font, $mod_2*$mod_2*$mod_2 *$min_font)
+  font-weight: 700
+
+h3
+  font-size: $mod_1*$mod_1 *1rem
+  @include fluid-type($min_width, $max_width, $mod_1*$mod_1 *$min_font, $mod_2*$mod_2 *$min_font)
+  font-weight: 600
+
+h1, h2, h3
+  line-height: 160%
+
+.status_warp
+  h4
+    font-size: 23px
+    font-weight: 700
+
+a:hover, a:focus
+  text-decoration: none
+
+.nav-bar
+  text-align: center
+
+.title_number
+  text-align: center
+
+.button-options
+  ul, li
+    text-align: left
+    list-style-position: inside
+    +adjust-font-size-to(12px)
+
+.data_consegna
+  span
+    display: block
+    width: 100%
+    text-align: center
+  .giorno, .mese
+    font-style: italic
+  .numero
+    font-size: 2rem
+    font-weight: 900
+
+
+.prezzo_consegna
+  span
+    border-top: 1px solid $positive
+    font-size: 1.5rem
+    display: block
+    text-align: center
+    padding: 10px 5px 10px
+    @media screen and (min-width: $screen-md)
+      margin-top: 1rem
+      border: none
+  &::before
+    float: left
+    content: '\20ac'
+    padding: 10px 5px 10px
+
+
+
+.informazioni
+  text-align: center
+  font-weight: 900
+  +adjust-font-size-to(18px)
+
+.alert-info
+  p
+    em
+      font-weight: 600
+clearfix
+.form-control
+  font-size: inherit
+
+label
+  font-family: $h-font-family
+  font-size: 16px
+
+#riepilogo
+  font-size: 14px
+
+#product-price
+  text-align: right
+.cart_header
+  text-transform: capitalize
+  line-height: 2rem
+  font-weight: 600
+  font-family: $h-font-family
+
+.line-item
+  h4
+    margin-bottom: auto
+.cart-item-delete
+  text-align: center
+  a
+    color: shade($back-full-text, 25%)
+    &:hover
+      color: shade($back-full-text, 40%)
+.cart-item-quantity, .cart-item-quantity-header, .cart-item-total, .cart-item-total-header, .adjustment, .cart-adjustment-header
+  text-align: right
+.cart-item-pric, .cart-item-total
+  color: $long-text
+.cart-item-total
+  font-weight: 400
+
+.cart-subtotal, .cart-total
+  text-align: right
+.cart-item-delete
+  text-align: left
+  font-size: 1.2rem
+  @media screen and (min-width: $screen-md)
+    text-align: center
+$mod_1_btn: 1 // mobile
+$mod_2_btn: 0.98 // desktop
+.button-options
+  @include fluid-type($min_width, $max_width, $mod_1_btn*$mod_1_btn *$min_font, $mod_2_btn*$mod_2_btn *$min_font)
+
+.cart_containter
+  position: relative
+  display: inline-block
+.badges
+  position: absolute
+  left: auto
+  position:  absolute
+  font-family: $text_font_family
+  font-size: .5rem
+  width: 15px
+  height: 15px
+  line-height: 15px
+  color: $back-full-text
+  +border-radius(50%)
+  font-weight:  bold
+  top: -10px
+  @media screen and (min-width: $screen-sm)
+    top: -16px
+    width: 20px
+    height: 20px
+    line-height: 20px
+  &.badge_cart
+    background:  $back-link-button
+  &.badge_account
+    background: $allert
+.cart-info, .account
+  position: relative
+
+
+//icons
+.grigo-icons
+  position: relative
+  display: inline-block
+  font-family: $grigo-icons
+  font-style: normal
+  font-weight: normal
+  line-height: 1
+
+.grigo-account::before
+  content: "\e900"
+.grigo-add-account::before
+  content: "\e901"
+.grigo-delete::before
+  content: "\e907"
+.grigo-modify::before
+  content: "\e90b"
+.grigo-cart::before
+  content: "\e903"
+.grigo-add-cart::before
+  content: "\e902"
+.grigo-new::before
+  content: "\e90d"
+.grigo-contacts::before
+  content: "\e905"
+.grigo-duplicate::before
+  content: "\e908"
+.grigo-mail::before
+  content: "\e90a"
+.grigo-hamburger::before
+  content: "\e909"
+.grigo-phone::before
+  content: "\e90e"
+.grigo-pin::before
+  content: "\e90f"
+.grigo-close::before
+  content: "\e904"
+.grigo-creditcard::before
+  content: "\e906"
+.grigo-money::before
+  content: "\e90c"
+.grigo-ship::before
+  content: "\e910"
+.grigo-arrow::before
+  content: "\e911"
+.nav_bar
+  .grigo-icons
+    font-size: 1.5rem
+.controllo_file
+  p
+    text-align: right
+  .extra_service_price
+    text-align: left

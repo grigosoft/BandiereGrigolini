@@ -1,0 +1,162 @@
+.container-fluid
+  @media screen and (max-width: 767px) and (orientation: landscape) and (min-aspect-ratio: 13/9)
+    width: 90%
+    margin-right: 10%
+.big-content
+  margin-bottom: 80px
+  margin-top: 1rem
+
+.row-form
+  display: flex
+  flex-wrap: wrap
+  +make-row($gutter: $grid-gutter-width)
+  .image_config_products
+    +make-xs-column(6, $gutter: $grid-gutter-width)
+    +make-sm-column(3, $gutter: $grid-gutter-width)
+    @media only screen and (orientation: landscape)
+      +make-xs-column(3, $gutter: $grid-gutter-width)
+  .image_config_flags
+    +make-xs-column(6, $gutter: $grid-gutter-width)
+    +make-sm-column(3, $gutter: $grid-gutter-width)
+    +make-md-column(2, $gutter: $grid-gutter-width)
+    // +make-md-column(2, $gutter: $grid-gutter-width)
+    // +make-lg-column(, $gutter: $grid-gutter-width)
+  // @for $i from 1 through 12
+  //   .col-xs-#{$i}
+  //     +make-xs-column($i, $gutter: $grid-gutter-width)
+      @if $i == 6
+        &.correct_occhielli
+        @media only screen and (orientation: landscape)
+         +make-xs-column(3, $gutter: $grid-gutter-width)
+
+#inside-product-cart-form
+  input
+    margin: .5rem 0
+#form_prodotto
+  .row
+    margin: 1rem 0
+.button-options
+  margin: 1rem auto 0 auto
+  position: relative
+  padding: 5px
+  ul
+    padding: 5px
+  @media screen and (min-width: $screen-md)
+    margin: auto
+
+.row_quantita
+  @media screen and (min-width: $screen-md)
+    margin-top: 100% !important
+
+.informazioni
+  display: block
+.total_prezzo
+  float: right
+.alert-info
+  +border-radius($radius)
+  margin-bottom: 0.5rem
+  padding: 1.5rem
+
+.form-control
+  height: auto
+
+.riepilogo_interno
+  float:  left
+  margin: auto 1px
+  padding: 0 12px
+  border-bottom: 1px solid #444
+  width: 100%
+  @media screen and (min-width: $screen-sm)
+    h4
+      float: left
+    p
+      float: right
+
+.calcolo_data_scadenza
+  @media screen and (min-width: $screen-md)
+    display: flex
+    align-items: flex-end
+    #flexquantity .form-control
+      margin-bottom: 0
+
+.title_section
+  span
+    display: inline-block
+
+.alert-info
+  position: relative
+  margin-top: 5px
+  h3, h4
+    margin-top: 0
+
+  a
+    position: absolute
+    top: 5px
+    right: 5px
+
+.table-row
+  display: table
+  .button-table
+    display: table-cell
+.panel
+  +border-radius($radius)
+
+.cart_header
+  margin: 0 auto 1rem auto
+  +border-radius($radius)
+  div:nth-child(even)
+    border: solid $back-full-text
+    border-width: 0 1px
+.cart-item-image
+  img
+    width: 100%
+.line-item, .cart-figlio
+  align-items: center
+  padding: 0.5rem 0
+  margin: auto
+.line-item
+  position: relative
+  &:nth-child(odd)
+    background-color: tint($long-text, 95%)
+  &:nth-child(even)
+    background: $background
+.cart-figlio
+  padding-left: 10px
+#line_items
+  border: solid $link-back-full
+  border-width: 1px 1px 1px 1px
+  +border-radius($radius)
+  +box-shadow(0 0 1px $link-back-full)
+.cart-item-pric
+  position: absolute !important
+  top: 5px
+  right: 0px
+  text-align: right
+  @media screen and (min-width: $screen-md)
+    position: inherit !important
+    top: auto
+    right: auto
+.cart-item-description
+  margin-bottom: 10px
+
+button:focus
+  outline: 0
+.prezzo_consegna
+  margin-top: 0.8rem
+
+.controllo_file
+  margin: 0.5rem 0
+
+div#filare_generato
+  div
+    width: 50px
+    height: 50px
+    display: block
+    float: left
+    svg
+      width: 100%
+      height: 100%
+#map
+  height: 400px
+  background: gray
+  +box-shadow(0 0 10px rgba($long-text, .3))
